@@ -8,12 +8,19 @@
         <title>Login volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+        
+           <script>
+            function RegistracijaVolontera() {
+                window.open("registracija_volonter.xhtml","_blank",);
+            }
+            
+           </script>
     </h:head>
     <h:body>
         <h:form>
             <p:panel id="panel" header="Login volonter">
 
-                <p:messages id="msgs" />
+                
 
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="mail" value="Mail:" />
@@ -26,18 +33,21 @@
                     <p:message for="mail" />
 
                     <p:outputLabel for="password" value="Password:" />
-                    <p:inputText id="password" value="#{userView.password}" 
+                    <p:password id="password" value="#{userView.password}" 
                                  label="Password" required="true" 
                                  requiredMessage="Lozinka je obavezna."
                                  validatorMessage="Lozinka mora imati minimum 5 karaktera.">
                         <f:validateLength minimum="5"/>
-                        <p:ajax update="msgPassword"/>
-                    </p:inputText>
-                    <p:message for="password" id="msgPassword" />
+                        
+                    </p:password>
+                    <p:messages for="password" />
 
                 </h:panelGrid>
 
-                <p:commandButton value="Login" update="panel" actionListener="#{userView.login}"  />
+              <p:commandButton value="Login" update="panel" actionListener="#{userView.login}"  />
+              <a href="#" onclick="">Zaboravio sam lozinku</a>
+              <p></p>
+              <a href="#" onclick="RegistracijaVolontera()">Registruj se</a>
             </p:panel>
         </h:form>
    </h:body>

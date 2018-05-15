@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registracija volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
@@ -25,21 +26,55 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
                     <li class="nav-item">
+                        <a class="nav-link" href="#">O portalu</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Pocetna</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
+                        <a class="nav-link" href="#">Vesti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="otvoriProzorOrganizacije()">Organizacija</a>
+                        <a class="nav-link" href="#">Obavestenja</a>
                     </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Oglasi</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Kontakt</a>
                     </li> 
                 </ul>
             </div> 
         </nav>
-        Zdravo dragi volonteru! :-)
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+            <h:panelGrid columns="3" cellpadding="5">
+                
+                <p:outputLabel for="imeiprezime" value="Imeiprezime:" />
+                    <p:inputText id="imeiprezime" value="#{registracijaVolontera.imeiprezime}" required="true" 
+                                 label="Ime" requiredMessage="Unesite ime i prezime."
+                                 >
+                        
+                        <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                    </p:inputText>
+                <p:message for="imeiprezime" />
+            </h:panelGrid>
+                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+                        <h:outputText value="Mask:" />
+                        <h:outputText value="#{calendarView.date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+
+                </p:dialog>
+               
+            
+            <p:commandButton value="Registruj se" actionListener="#{registracijaVolontera.registrujVolontera}"/>
+            <a href="#" onclick="RegistrujVolontera()"></a>
+        </h:form>
+        
     </h:body>
 </html>
 
