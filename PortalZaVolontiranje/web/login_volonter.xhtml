@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login volontera</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="panel" header="Login volonter">
+
+                <p:messages id="msgs" />
+
+                <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="mail" value="Mail:" />
+                    <p:inputText id="mail" value="#{userView.mail}" required="true" 
+                                 label="Mail" requiredMessage="Mejl je obavezan."
+                                 validatorMessage="Unesite ispravan mejl.">
+                        
+                        <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+" />
+                    </p:inputText>
+                    <p:message for="mail" />
+
+                    <p:outputLabel for="password" value="Password:" />
+                    <p:inputText id="password" value="#{userView.password}" 
+                                 label="Password" required="true" 
+                                 requiredMessage="Lozinka je obavezna."
+                                 validatorMessage="Lozinka mora imati minimum 5 karaktera.">
+                        <f:validateLength minimum="5"/>
+                        <p:ajax update="msgPassword"/>
+                    </p:inputText>
+                    <p:message for="password" id="msgPassword" />
+
+                </h:panelGrid>
+
+                <p:commandButton value="Login" update="panel" actionListener="#{userView.login}"  />
+            </p:panel>
+        </h:form>
+   </h:body>
+</html>

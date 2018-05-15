@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 rounded bg-light mt-4 text-center">
+                    <h:form>
+                        <h2>Dodavanje volontera</h2>
+                        <h:panelGrid columns="2">
+                          
+                        </h:panelGrid>
+                        <h:commandButton value="Dodaj volontera" action="#{volonterCon.dodajVolontera()}" class="btn btn-info mt-2"></h:commandButton>
+                    </h:form>
+                </div>
+                <div class="col-sm-4 bg-light rounded text-center mt-4 border">
+                    <h2>Brisanje volontera</h2>
+                    <h:form id="mojaforma">
+                        <h:selectOneMenu value="#{volonterCon.volonterZaBrisanje}">
+                            <f:selectItems value="#{volonterCon.dohvatiVolontere()}" var="volonter" itemLabel="#{volonter.naziv}" itemValue="#{volonter.naziv}"></f:selectItems> <!-- da li dodati e-mail da se po njemu brise jer je jedinstven -->
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:commandButton class="btn btn-danger mt-2" value="Obrisi volontera" action="#{volonterCon.obrisiVolontera()}">
+                            <f:ajax execute="@form" render=":mojaforma"></f:ajax>
+                        </h:commandButton>
+                        
+                    </h:form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Prikaz svih volontera</h2>
+                    <h:dataTable value="#{filmovi.mojiOmiljeniFilmovi}" var="film" class="table table-striped">
+                        <h:column>
+                            #{film.naziv}
+                        </h:column>
+                        <h:column>
+                            #{film.zanr}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+            
+        </div>
+    </h:body>
+</html>
+

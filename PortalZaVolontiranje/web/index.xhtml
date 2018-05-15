@@ -1,24 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Pocetna</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+        
+        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+           <script>
+            function otvoriProzorVolontera() {
+                window.open("login_volonter.xhtml","_blank","top=100, left=400, height=500, width=500");
+            }
+            function otvoriProzorOrganizacije() {
+                window.open("organizacija.xhtml", "_blank", "toolbar=no, top=100, left=400, height=500, width=500");
+            }
+        </script>
     </h:head>
     <h:body>
         <div class="media">
             <div class="media-left">
-                <img class="mr-3" src="resources/images/drzavni.png" style="width:100px"></img>
+                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/drzavni.png" style="width:100px"></img></a>
             </div>
-            <div class="media-body ">
-                <h2 class="mt-0 " style="padding-top:10px;">Portal za volontiranje</h2>
+            <div class="media-body mt-4">
+                <h4 class="mt-0 " style="padding-top:10px;">Portal za volontiranje</h4>
             </div>
         </div>
 
-        
-        <nav class="navbar navbar-expand-md bg-success navbar-dark">
+
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: #8585ad">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,16 +37,16 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
                     <li class="nav-item">
-                        <a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#myModal">Pocetna-Volonter</a>
+                        <a class="nav-link" href="#">Pocetna</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Volonter</button></a>
+                        <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Organizacija</button></a>
+                        <a class="nav-link" href="#" onclick="otvoriProzorOrganizacije()">Organizacija</a>
                     </li> 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Kontakt</a>
+                        <a class="nav-link" href="#">Kontakt</a>
                     </li> 
                 </ul>
             </div> 
@@ -72,49 +83,92 @@
                 </a>
 
             </div>
-        </div>
-        <div class="container">
-           
-  
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
 
-                 
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            
+            <div id="naslov">
+                <h3>Naslov</h3>
+            </div>
+           
+
+        <footer class="page-footer font-small blue-grey lighten-5 pt-0">
+
+            <div class="bg-success">
+                <div class="container">
+
+                    <div class="row py-4 d-flex align-items-center">
+
+
+                        <div class="col-12 col-md-5 text-left mb-4 mb-md-0">
+                            <h6 class="mb-0 white-text text-center text-md-left">
+                                <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                            </h6>
                         </div>
-                        <div class="modal-body">
-                            <h:form>
-                                <h4>Logovanje</h4>
-                                <h:panelGrid columns="2">
-                            E-mail:
-                            <h:inputText value=""></h:inputText>
-                            Lozinka:
-                            <h:inputText value=""></h:inputText>
-                                </h:panelGrid>
-                                 <h:commandButton class="btn btn-success" action="bla" value="Bla"></h:commandButton>
-                            </h:form>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container mt-5 mb-4 text-center text-md-left">
+                <div class="row mt-3">
+
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <strong>Korisni linkovi</strong>
+                        </h6>
+                        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+                        <p>
+                            <a href="#" class="dark-grey-text">Pravilnik i uputstvo koriscenja portala</a>
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <strong>Pitanja i odgovori</strong>
+                        </h6>
+                        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
+                            </div>
+                            <div class="media-body ">
+                                <p class="mt-0 ">info@example.com</p>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <a href="#">Niste jos uvek registrovani?</a>
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Uloguj se</button>
-                          
-                           <input class="btn btn-primary" type="submit" value="Submit"></input>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                            </div>
+                            <div class="media-body ">
+                                <p class="mt-0 ">+ 011 234 567</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                            </div>
+                            <div class="media-body ">
+                                <p class="mt-0 ">+ 011 234 567</p>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
 
+
+            <div class="footer-copyright py-3 text-center">
+                © All rights reserved 2018.
+            </div>
+
+
+        </footer>
         </div>
-        
-<div id="container">
-  <h3>Naslov</h3>
-</div>
-        
-  <!-- jQuery library -->
+
+
+        <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <!-- Popper JS -->
