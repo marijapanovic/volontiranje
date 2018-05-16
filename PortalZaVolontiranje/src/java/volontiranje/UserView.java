@@ -28,9 +28,7 @@ public class UserView {
         this.password = password;
     }
  
-    
- 
-    public void Login() {
+    public void login() {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se ulogovali." ));
     }

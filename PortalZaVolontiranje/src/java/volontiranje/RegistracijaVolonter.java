@@ -4,6 +4,7 @@ package volontiranje;
 
 import javax.faces.bean.SessionScoped;
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -33,6 +34,32 @@ public class RegistracijaVolonter {
     }
     
     
+   private boolean active;
+   private boolean inactive;
+
+   
+
+    public boolean isInactive() {
+        return inactive;
+    }
+
+    public void setInactive(boolean inactive) {
+        this.inactive = inactive;
+    }
+   
+   
+   @PostConstruct
+   public void prepareMrBean() {
+      this.active = true;
+   }
+
+   public void onActiveStatusChange() {
+      if (active) inactive = false;
+   }
+
+   public void onInactiveStatusChange() {
+      if (inactive) active = false;
+   }
     
     public void RegistracijaVolontera(){
         FacesContext.getCurrentInstance().addMessage(null,

@@ -48,31 +48,49 @@
         </nav>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
-            <h:panelGrid columns="3" cellpadding="5">
-                
-                <p:outputLabel for="imeiprezime" value="Imeiprezime:" />
-                    <p:inputText id="imeiprezime" value="#{registracijaVolontera.imeiprezime}" required="true" 
+            <h:panelGrid style="margin:50px">
+                <f:facet name="header">
+                 <p:row>
+                    <h2>Registracija</h2>
+                 </p:row>
+                </f:facet>
+                <p:row>
+                    <p:outputLabel for="imeiprezime" value="Ime i prezime:" />
+                    <p:inputText id="imeiprezime" value="#{registracijaVolonter.imeiprezime}" required="true" 
                                  label="Ime" requiredMessage="Unesite ime i prezime."
                                  >
-                        
+                    
+
                         <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
                     </p:inputText>
                 <p:message for="imeiprezime" />
-            </h:panelGrid>
-                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                </p:row>
+                <p:row>
+                <p:outputLabel for="mask" value="Datum rodjenja:" />
+                <p:calendar id="mask" value="#{registracijaVolonter.date}" pattern="dd-MM-yyyy" mask="true" />
+                
+                
+                
+                    <h:selectBooleanCheckbox id="inactive" value="#{registracijaVolonter.inactive}" > 
+                        <f:ajax render="active" listener="#{registracijaVolonter.onInactiveStatusChange}" />
+                     </h:selectBooleanCheckbox>
 
-                        <h:outputText value="Mask:" />
-                        <h:outputText value="#{calendarView.date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:panelGrid>
 
-                </p:dialog>
+                
+                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+                            <h:outputText value="#{registracijaVolonter.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:panelGrid>
+
+                    </p:dialog>
                
-            
+                </p:row>
             <p:commandButton value="Registruj se" actionListener="#{registracijaVolontera.registrujVolontera}"/>
             <a href="#" onclick="RegistrujVolontera()"></a>
+            </h:panelGrid>
         </h:form>
         
     </h:body>
