@@ -46,53 +46,100 @@
                 </ul>
             </div> 
         </nav>
-        <h:form id="form">
-            <p:growl id="msgs" showDetail="true" />
-            <h:panelGrid style="margin:50px">
-                <f:facet name="header">
-                 <p:row>
-                    <h2>Registracija</h2>
-                 </p:row>
-                </f:facet>
-                <p:row>
-                    <p:outputLabel for="imeiprezime" value="Ime i prezime:" />
-                    <p:inputText id="imeiprezime" value="#{registracijaVolonter.imeiprezime}" required="true" 
-                                 label="Ime" requiredMessage="Unesite ime i prezime."
-                                 >
-                    
-
-                        <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
-                    </p:inputText>
-                <p:message for="imeiprezime" />
-                </p:row>
-                <p:row>
-                <p:outputLabel for="mask" value="Datum rodjenja:" />
-                <p:calendar id="mask" value="#{registracijaVolonter.date}" pattern="dd-MM-yyyy" mask="true" />
+        <div class="container">
+            <div class="row">
                 
-                
-                
-                    <h:selectBooleanCheckbox id="inactive" value="#{registracijaVolonter.inactive}" > 
-                        <f:ajax render="active" listener="#{registracijaVolonter.onInactiveStatusChange}" />
-                     </h:selectBooleanCheckbox>
+                <div class="offset-sm-3 col-sm-7  rounded p-2 text-center">
+                    <h2>Registracija volonter</h2>
+                    <p></p>
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            Ime:
+                            <h:inputText value="#{registracijaVolonter.imeiprezime}" required="true" requiredMessage="Unesite ime i prezime.">
+                                <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            Datum rodjenja:
+                            <p:calendar id="mask" value="#{registracijaVolonter.datumrodjenja}" pattern="dd-MM-yyyy" mask="true" />
+                                    <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" required="true" requiredMessage="Unesite datum rodjenja."></h:selectBooleanCheckbox>
 
+                                        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                                            <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-                
-                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-                            <h:outputText value="#{registracijaVolonter.date}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:panelGrid>
-
-                    </p:dialog>
+                                                <h:outputText value="#{registracijaVolonter.datumrodjenja}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText>
+                                            </p:panelGrid>
+                                        </p:dialog>
+                            <p></p>
+                            
+                            Pol:
+                            <h:selectOneRadio value="#{registracijaVolonter.pol}">
+                                <f:selectItems value="#{registracijaVolonter.polovi}"></f:selectItems>
+                            </h:selectOneRadio>
+                            <p></p>
+                            
+                            Drzavljanstvo:
+                            <h:inputText value="#{registracijaVolonter.drzavljanstvo}" required="true" requiredMessage="Unesite drzavljanstvo.">
+                                <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            Kontakt telefon:
+                            <h:inputText value="#{registracijaVolonter.telefon}" required="true" requiredMessage="Unesite telefon.">
+                                <f:validateRegex pattern="/^[\d\.\-]+$/+" ></f:validateRegex>
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            Ulica i broj stanovanja:
+                            <h:inputText value="#{registracijaVolonter.adresa}" required="true" requiredMessage="Unesite adresu stanovanja.">
+                                <f:validateRegex pattern="^[a-zA-Z0-9\s,'-]*$"></f:validateRegex>
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            Mesto prebivalista:
+                            <h:inputText value="#{registracijaVolonter.mesto}" required="true" requiredMessage="Unesite mesto prebivalista.">
+                               <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            Slika:
+                            <h:inputText value="#{registracijaVolonter.slika}" required="true" requiredMessage="Okacite sliku">
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            CV:
+                            <h:inputText value="#{registracijaVolonter.cv}" required="true" requiredMessage="Okacite CV">
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            E-mail:
+                            <h:inputText value="#{registracijaVolonter.mail}" required="true" requiredMessage="Unesite e-mail.">
+                            </h:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
+                            
+                            Lozinka:
+                            <h:inputSecret value="#{registracijaVolonter.lozinka}" required="true" requiredMessage="Unesite lozinku.">
+                            </h:inputSecret>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p></p>
                
-                </p:row>
-            <p:commandButton value="Registruj se" actionListener="#{registracijaVolontera.registrujVolontera}"/>
-            <a href="#" onclick="RegistrujVolontera()"></a>
-            </h:panelGrid>
-        </h:form>
-        
+                        <h:commandButton value="Registruj se" actionListener="#{registracijaVolontera.registrujVolontera}">
+                            <a href="#" onclick="RegistrujVolontera()"></a>
+                        </h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+       </div> 
+      </div>
+     </div>
     </h:body>
 </html>
 
