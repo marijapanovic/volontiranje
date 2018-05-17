@@ -1,8 +1,7 @@
 
-package controlers;
+package volontiranje;
 
 
-import beans.volonter;
 import javax.faces.bean.SessionScoped;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -156,7 +155,5 @@ public class RegistracijaVolonter {
     public void RegistracijaVolontera(){
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali." ));
-        
     }
-
 }

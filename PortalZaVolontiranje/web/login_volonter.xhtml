@@ -24,7 +24,7 @@
 
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="mail" value="Mail:" />
-                    <p:inputText id="mail" value="#{login.email}" required="true" 
+                    <p:inputText id="mail" value="#{userView.mail}" required="true" 
                                  label="Mail" requiredMessage="Mejl je obavezan."
                                  validatorMessage="Unesite ispravan mejl.">
                         
@@ -33,7 +33,7 @@
                     <p:message for="mail" />
 
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{login.lozinka}" 
+                    <p:password id="password" value="#{userView.password}" 
                                  label="Password" required="true" 
                                  requiredMessage="Lozinka je obavezna."
                                  validatorMessage="Lozinka mora imati minimum 5 karaktera.">
@@ -44,7 +44,7 @@
 
                 </h:panelGrid>
 
-                <p:commandButton value="Login" update="panel" actionListener="#{login.login()}"  />
+              <p:commandButton value="Login" update="panel" actionListener="#{userView.login}"  />
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
               <a href="#" onclick="RegistracijaVolontera()">Registruj se</a>
