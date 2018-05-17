@@ -1,21 +1,18 @@
 
-package controlers;
+package beans;
 
-
-import beans.volonter;
-import javax.faces.bean.SessionScoped;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
+
 import javax.faces.context.FacesContext;
  
 
 
-@ManagedBean
-@SessionScoped
 public class RegistracijaVolonter {
+    private String imePrezime;
+    
     private String imeiprezime;
     private Date datumrodjenja;
     private boolean uslov;
