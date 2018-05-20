@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class DB {
     public static String user = "root";
-    public static String pass = "";
+    public static String pass = "qwe123";
     public static String protocol = "jdbc:mysql:";
     public static String ip = "localhost";
     public static String port = "3306";

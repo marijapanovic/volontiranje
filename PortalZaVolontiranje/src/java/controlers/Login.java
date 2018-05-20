@@ -5,14 +5,11 @@
  */
 package controlers;
 
-import beans.volonter;
-import db.DB;
+import beans.Volonter;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -67,13 +64,13 @@ public class Login {
         this.lozinka = lozinka;
     }
 
-    public volonter logInVolonter;
+    public Volonter logInVolonter;
 
-    public volonter getLogInVolonter() {
+    public Volonter getLogInVolonter() {
         return logInVolonter;
     }
 
-    public void setLogInVolonter(volonter logInVolonter) {
+    public void setLogInVolonter(Volonter logInVolonter) {
         this.logInVolonter = logInVolonter;
     }
 
@@ -88,7 +85,7 @@ public class Login {
             if (rs.getString("lozinka").equals(lozinka)) {
                 HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 sesija.setAttribute("email", email);
-                logInVolonter = new volonter();
+                logInVolonter = new Volonter();
                 logInVolonter.setIdVolonter(rs.getInt("idvolonter"));
                 logInVolonter.setEmail(rs.getString("email"));
                 logInVolonter.setImePrezime(rs.getString("ime_prezime"));

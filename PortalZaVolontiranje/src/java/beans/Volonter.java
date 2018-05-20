@@ -11,12 +11,12 @@ import java.sql.Date;
  *
  * @author Korisnik
  */
-public class volonter {
+public class Volonter {
     private int idVolonter;
     private String imePrezime;
     private Date datumRodjenja;
     private char pol;
-    private int drzavljanstvoId;
+    private Drzavljanstvo drzavljanstvo;
     private String telefon;
     private String ulica_broj;
     private int mestoId;
@@ -24,7 +24,7 @@ public class volonter {
     private String cv;
     private String email;
     private String lozinka;
-    private String zaposlen;
+    private Status status;
 
     public int getIdVolonter() {
         return idVolonter;
@@ -58,12 +58,12 @@ public class volonter {
         this.pol = pol;
     }
 
-    public int getDrzavljanstvoId() {
-        return drzavljanstvoId;
+    public Drzavljanstvo getDrzavljanstvo() {
+        return drzavljanstvo;
     }
 
-    public void setDrzavljanstvoId(int drzavljanstvoId) {
-        this.drzavljanstvoId = drzavljanstvoId;
+    public void setDrzavljanstvo(Drzavljanstvo drzavljanstvo) {
+        this.drzavljanstvo = drzavljanstvo;
     }
 
     public String getTelefon() {
@@ -121,14 +121,4 @@ public class volonter {
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
     }
-
-    public String getZaposlen() {
-        return zaposlen;
-    }
-
-    public void setZaposlen(String zaposlen) {
-        this.zaposlen = zaposlen;
-    }
-    
-    
 }
