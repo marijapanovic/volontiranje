@@ -12,18 +12,18 @@
     <h:body>
         <div class="media">
             <div class="media-left">
-                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/drzavni.png" style="width:100px"></img></a>
+                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img></a>
             </div>
             <div class="media-body mt-4">
-                <h4 class="mt-0 " style="padding-top:10px;">Portal za volontiranje</h4>
+                <h2 class="mt-0 offset-4" style="padding-top:10px; color: forestgreen">Portal za volontiranje</h2>
             </div>
         </div>
-        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: #8585ad">
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <div class="collapse navbar-collapse offset-1" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
                     <li class="nav-item">
                         <a class="nav-link" href="#">O portalu</a>
@@ -70,7 +70,7 @@
                             <h:selectOneRadio value="#{registracijaVolonter.pol}">
                                 <f:selectItems value="#{registracijaVolonter.polovi}"></f:selectItems>
                             </h:selectOneRadio>
-                            <p:outputLabel value="" />
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <p:outputLabel value="Drzavljanstvo:" />
@@ -117,6 +117,7 @@
                             
                             <p:outputLabel value="E-mail:" />
                             <p:inputText value="#{registracijaVolonter.mail}" required="true" requiredMessage="Unesite e-mail.">
+                                <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></f:validateRegex>
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
