@@ -91,7 +91,7 @@ public class Login {
                 logInVolonter.setImePrezime(rs.getString("ime_prezime"));
                 logInVolonter.setLozinka(rs.getString("lozinka"));
                 
-                return "volonter?faces-redirect=true";
+                return "index?faces-redirect=true";
             }else{
               errorPassword="Pogresna lozinka";
               return errorPassword;
