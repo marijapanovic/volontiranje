@@ -5,7 +5,8 @@
  */
 package beans;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Volonter {
     private Drzavljanstvo drzavljanstvo;
     private String telefon;
     private String ulica_broj;
-    private int mestoId;
+    private Mesto mestoId;
     private String slika;
     private String cv;
     private String email;
@@ -82,11 +83,11 @@ public class Volonter {
         this.ulica_broj = ulica_broj;
     }
 
-    public int getMestoId() {
+    public Mesto getMestoId() {
         return mestoId;
     }
 
-    public void setMestoId(int mestoId) {
+    public void setMestoId(Mesto mestoId) {
         this.mestoId = mestoId;
     }
 
@@ -120,5 +121,14 @@ public class Volonter {
 
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
+    }  
+
+    public Status getStatus() {
+        return status;
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    
 }

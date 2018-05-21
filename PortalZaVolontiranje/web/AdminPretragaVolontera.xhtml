@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Pretraga volontera</title>
+        <f:metadata>
+            <f:viewAction action="#{dohvatiPretraziVolontere.dohvatiSveVolontere()}"></f:viewAction>
+        </f:metadata>
+    </h:head>
+    <h:body>
+       
+        <h:form id="form">
+            <p:dataTable  widgetVar="dataTableRefresh" var="volonter" value="#{dohvatiPretraziVolontere.sviVolonteri}" paginator="true" rows="10" selectionMode="single" selection="#{obrisiVolontera.selektovaniVolonter}" rowKey="#{volonter.idVolonter}"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         >
+
+                <p:column headerText="Id" sortBy="#{volonter.idVolonter}" filterBy="#{volonter.idVolonter}">
+                    <h:outputText value="#{volonter.idVolonter}" />
+                </p:column>
+                <p:column headerText="Ime i prezime" sortBy="#{volonter.imePrezime}" filterBy="#{volonter.imePrezime}">
+                    <h:outputText value="#{volonter.imePrezime}" />
+                </p:column>
+                <p:column headerText="E-mail" sortBy="#{volonter.email}" filterBy="#{volonter.email}">
+                    <h:outputText value="#{volonter.email}" />
+                </p:column>
+             <!--   <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
+                    <h:outputText value="#{volonter.datumRodjenja}" />
+                </p:column>-->
+                
+                <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
+                    <h:outputText value="#{volonter.datumRodjenja}">
+                        <f:convertDateTime pattern="dd-mm-yyyy" ></f:convertDateTime>
+                    </h:outputText>
+                    
+                </p:column>
+                <p:column headerText="Ulica i broj" sortBy="#{volonter.ulica_broj}" filterBy="#{volonter.ulica_broj}">
+                    <h:outputText value="#{volonter.ulica_broj}" />
+                </p:column>
+                <p:column headerText="Brisanje">
+                    
+                    <p:commandButton  actionListener="#{obrisiVolontera.obrisiVolontera()}"  value="Obrisi" ajax="true" update="@all"   pt:data-tooltip="Najpre selektujte zeljeni red pa onda kliknite Obrisi" oncomplete="PF('dataTableRefresh').filter()"  > 
+                        <p:tooltip></p:tooltip> 
+                        
+                    </p:commandButton>
+                    
+                  <!-- <ui:include src="#{filmovi.dohvatiFilmove()}"></ui:include>  -->
+                    
+                </p:column>
+            </p:dataTable>
+            <p:dialog header="Car Detail" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty dtLazyView.selectedCar}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif"/> 
+                        </f:facet>
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{dtLazyView.selectedCar.id}" />
+
+                        <h:outputText value="Year" />
+                        <h:outputText value="#{dtLazyView.selectedCar.year}" />
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{dtLazyView.selectedCar.color}" style="color:#{dtLazyView.selectedCar.color}"/>
+
+                        <h:outputText value="Price:" />
+                        <h:outputText value="#{dtLazyView.selectedCar.price}">
+                            <f:convertNumber type="currency" currencySymbol="$" />
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
+    </h:body>
+</html>
+
