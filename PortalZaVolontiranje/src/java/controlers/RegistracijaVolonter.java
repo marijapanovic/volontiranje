@@ -2,15 +2,22 @@ package controlers;
 
 import beans.Drzavljanstvo;
 import beans.Mesto;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
+import beans.Drzavljanstvo;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -261,7 +268,25 @@ public class RegistracijaVolonter {
    
 
   
-    public void RegistrujVolontera() {
+    public String RegistrujVolontera() {
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from volonter where email='"+mail+"'");
+            rs.next();
+            if (rs.getString("email").equals(mail)){
+                return "Email vec postoji u bazi";
+            }
+            else{
+                private int drzId=Drzavljanstvo
+                stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+Drzavljanstvo.)
+            }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
 
