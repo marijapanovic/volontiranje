@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registracija organizacije</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <div class="media">
+            <div class="media-left">
+                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img></a>
+            </div>
+            <div class="media-body mt-4">
+                <h2 class="mt-0 offset-4" style="padding-top:10px; color: forestgreen">Portal za volontiranje</h2>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse offset-1" id="collapsibleNavbar">
+                <ul class="navbar-nav offset-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O portalu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Vesti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Obavestenja</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Oglasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kontakt</a>
+                    </li> 
+                </ul>
+            </div> 
+        </nav>
+        <div class="container">
+            <div class="row">
+                
+                <div class="offset-sm-3 col-sm-7  rounded p-2 text-center">
+                    <h2>Registracija organizacije</h2>
+                    <p></p>
+                    <h:form>
+                        <h:panelGrid columns="4" cellpadding="5">
+                            <p:outputLabel value="Naziv organizacije:" />
+                            <p:inputText value="#{registracijaOrganizacije.naziv}" required="true" requiredMessage="Unesite naziv organizacije.">
+                                <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                 
+                            <p:outputLabel value="Sediste organizacije:" />
+                            <p:selectOneMenu id="mesto" value="#{registracijaOrganizacije.mesto}">
+                                <f:selectItem itemLabel="Izaberite mesto" itemValue="" />
+                                <f:selectItems value="#{registracijaOrganizacije.svaMesta}" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="E-mail:" />
+                            <p:inputText value="#{registracijaOrganizacije.mail}" required="true" requiredMessage="Unesite e-mail.">
+                                <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="Kontakt telefon:" />
+                            <p:inputText value="#{registracijaOrganizacije.telefon}" required="true" requiredMessage="Unesite telefon.">
+                                <f:validateRegex pattern="[0–9/]" ></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="Delatnost:" />
+                            <p:selectOneMenu id="delatnost" value="#{registracijaOrganizacije.delatnost}">
+                                <f:selectItem itemLabel="Izaberite delatnost" itemValue="" />
+                                <f:selectItems value="#{registracijaOrganizacije.sveDelatnosti}" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="Broj zaposlenih:" />
+                            <p:inputText value="#{registracijaOrganizacije.brojZaposlenih}" required="true" requiredMessage="Unesite broj zaposlenih.">
+                                <f:validateRegex pattern="[0–9/]" ></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                             <p:outputLabel value="Logo organizacije:" />
+                            <p:inputText value="#{registracijaOrganizacije.slika}" required="true" requiredMessage="Okacite logo">
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>                           
+                            
+                            <p:outputLabel value="Lozinka:" />
+                            <p:password value="#{registracijaVolonter.lozinka}" required="true" requiredMessage="Unesite lozinku.">
+                            </p:password>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                        <div class="media-left">
+                            <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:150px"></img></a>
+                        </div>   
+                        <div>
+                            <h:commandButton value="Registruj se" style="text-align: center"
+                                    actionListener="#{registracijaOrganizacije.registrujOrganizaciju}">
+                                <a href="#" onclick="RegistrujOrganizaciju()"></a>
+                            </h:commandButton>
+                        </div>
+                        <div>
+                            <h:button value="Odustani" style="text-align: center">
+                                <a href="/index.xhtml"></a>
+                            </h:button>
+                        </div>    
+                        </h:panelGrid>
+                    </h:form>
+                </div> 
+            </div>
+        </div>
+    </h:body>
+</html>
+
