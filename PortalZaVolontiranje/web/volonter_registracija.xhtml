@@ -53,18 +53,21 @@
                     <h2>Registracija volonter</h2>
                     <p></p>
                     <h:form>
-                        <h:panelGrid columns="4" cellpadding="5">
+                        <h:panelGrid columns="5" cellpadding="3">
+                            
                             <p:outputLabel value="Ime:" />
                             <p:inputText value="#{registracijaVolonter.imePrezime}" required="true" requiredMessage="Unesite ime i prezime.">
                                 <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Datum rodjenja:" />
                             <p:calendar id="mask" value="#{registracijaVolonter.datumRodjenja}" pattern="dd-MM-yyyy" mask="true" />
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" required="true" requiredMessage="Unesite datum rodjenja."></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Pol:" />
                             <h:selectOneRadio value="#{registracijaVolonter.pol}">
@@ -72,6 +75,7 @@
                             </h:selectOneRadio>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Drzavljanstvo:" />
                             <p:selectOneMenu id="drzavljanstvo" value="#{registracijaVolonter.drzavljanstvo}">
@@ -85,13 +89,13 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <h:panelGroup id="drzavljanstvoDrugo">
-                                <p:outputLabel value="Ime kompanije" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}" />
+                                <p:outputLabel value="Drzavljanstvo:" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}" />
                                 <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" required="true" 
                                              requiredMessage="Unesite ime drzavljanstvo." 
                                              rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}">
                                 </p:inputText>
                                 <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></h:selectBooleanCheckbox>
-                                <p:outputLabel value="Javni podatak" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></p:outputLabel>
+                                <p:outputLabel value="Drzavljanstvo" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></p:outputLabel>
                             </h:panelGroup>
 
                             
@@ -101,6 +105,7 @@
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Ulica i broj stanovanja:" />
                             <p:inputText value="#{registracijaVolonter.adresa}" required="true" requiredMessage="Unesite adresu stanovanja.">
@@ -108,6 +113,7 @@
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Mesto prebivalista:" />
                             <p:selectOneMenu id="mesto" value="#{registracijaVolonter.mesto}">
@@ -116,18 +122,21 @@
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Slika:" />
                             <p:inputText value="#{registracijaVolonter.slika}" required="true" requiredMessage="Okacite sliku">
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="CV:" />
                             <p:inputText value="#{registracijaVolonter.cv}" required="true" requiredMessage="Okacite CV">
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="E-mail:" />
                             <p:inputText value="#{registracijaVolonter.mail}" required="true" requiredMessage="Unesite e-mail.">
@@ -135,12 +144,14 @@
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Lozinka:" />
                             <p:password value="#{registracijaVolonter.lozinka}" required="true" requiredMessage="Unesite lozinku.">
                             </p:password>
-                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
-                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel for="status" value="Status:" />
                             <p:selectOneMenu id="status" value="#{registracijaVolonter.status}">
@@ -193,9 +204,36 @@
                                 </p:inputText>
                             </h:panelGroup>
                             
+                            <p:outputLabel for="dani" value="Dani za volontiranje:" />
+                            <p:selectManyMenu id ="dani" value="#{registracijaVolonter.odgovarajuciDani}">
+                                <f:selectItems value="#{registracijaVolonter.daniUNedelji}" var="dan"
+                                               itemValue="#{dan.getImeDana()}" itemLabel="#{dan.getImeDana()}">
+                                </f:selectItems>
+                            </p:selectManyMenu>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel for="Vestine" value="Vestine:" />
+                            <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
+                                <f:selectItem itemLabel="Nazivobrazovne institucije" itemValue=""/>
+                                <p:inputText value="#{registracijaVolonter.vestine}" required="true" 
+                                             requiredMessage="Unesite naziv vestine." rendered="#{registracijaVolonter.nazivvestine == ''}">
+                                </p:inputText>
+                                <f:selectItem itemLabel="Strucno zvanje" itemValue="" />
+                                <f:selectItem itemLabel="Ostale diplome i stecene vestine" itemValue="" />
+                                <f:selectItem itemLabel="prethodna iskustva" itemValue=""/>
+                                
+                                <f:ajax render="statusDodatnaPolja" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            
+                            
                             <h:commandButton value="Registruj se" 
                                              actionListener="#{registracijaVolontera.registrujVolontera}">
-                                <a href="#" onclick="RegistrujVolontera()"></a>
+                                <a href="index.xhtml" onclick="RegistrujVolontera()"></a>
                             </h:commandButton>
                             
                             

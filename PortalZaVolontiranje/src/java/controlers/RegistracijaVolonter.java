@@ -18,9 +18,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.Volonter;
 import controlers.greske.GreskaPriRegistraciji;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import beans.Vestine;
 
 @ManagedBean
 public class RegistracijaVolonter {
@@ -47,6 +51,7 @@ public class RegistracijaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
+    private String[] odgovarajuciDani;
     
     public String getImePrezime() {
         return imePrezime;
@@ -274,6 +279,47 @@ public class RegistracijaVolonter {
     public void setGodinaUpisa(String godinaUpisa) {
         this.godinaUpisa = godinaUpisa;
     }
+    
+    public static class Dan{
+        private int brDana;
+        public Dan(int broj){
+            this.brDana = broj;
+        }
+
+        public int getBrDana() {
+            return brDana;
+        }
+        
+        public String getImeDana(){
+            DateFormatSymbols dfs = new DateFormatSymbols();
+            String[] dani = dfs.getWeekdays();
+            return dani[brDana];
+        }
+    }
+    
+    private static Dan[] daniUNedelji;
+    static{
+        daniUNedelji = new Dan[7];
+        for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++){
+            daniUNedelji[i-Calendar.SUNDAY] = new Dan(i);
+        }
+    }
+
+    public Dan[] getDaniUNedelji() {
+        return daniUNedelji;
+    }
+
+    public void setDaniUNedelji(Dan[] daniUNedelji) {
+        RegistracijaVolonter.daniUNedelji = daniUNedelji;
+    }
+
+    public String[] getOdgovarajuciDani() {
+        return odgovarajuciDani;
+    }
+
+    public void setOdgovarajuciDani(String[] odgovarajuciDani) {
+        this.odgovarajuciDani = odgovarajuciDani;
+    }
 
    
 
@@ -288,16 +334,17 @@ public class RegistracijaVolonter {
             if (rs.getString("email").equals(mail)){
                 return "Email vec postoji u bazi";
             } else {
-                int drzavljanstvoId;
+                int drzavljanstvoId = 0;
                 if ("drugo".equals(drzavljanstvo.getValue())) {
+                    
                     // snimiti novo drzaljvanstvo u bazu
                 } else if (!"".equals(drzavljanstvo.getValue())) {
-                    drzavljanstvoId = (Integer)drzavljanstvo.getValue();
+                    drzavljanstvoId = (int)drzavljanstvo.getValue();
                 } else {
                     throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
                 }
-//                int drzId=Drzavljanstvo
-//                stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+Drzavljanstvo.)
+              //  Volonter volonter = new Volonter();
+                //stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+drzavljanstvoId+"',)");
             }
                 
         } catch (SQLException ex) {
@@ -306,7 +353,7 @@ public class RegistracijaVolonter {
             
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-        return "Uspesno";
+        return "index?faces-redirect=true";
     }
 
 }
