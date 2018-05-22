@@ -79,9 +79,9 @@
                             
                             <p:outputLabel value="Drzavljanstvo:" />
                             <p:selectOneMenu id="drzavljanstvo" value="#{registracijaVolonter.drzavljanstvo}">
-                                <f:selectItem itemLabel="Izaberite drzavljanstvo" itemValue="" />
+                                <f:selectItem value="#{registracijaVolonter.izaberiDrzavljanstvo}" />
                                 <f:selectItems value="#{registracijaVolonter.svaDrzavljanstva}" />
-                                <f:selectItem itemLabel="Drugo" itemValue="drugo" />
+                                <f:selectItem value="#{registracijaVolonter.drugoDrzavljanstvo}" />
                                 <f:ajax render="drzavljanstvoDrugo" />
                                 <!-- TODO: validacija -->
                             </p:selectOneMenu>
@@ -89,13 +89,19 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <h:panelGroup id="drzavljanstvoDrugo">
-                                <p:outputLabel value="Drzavljanstvo:" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}" />
+                                
+                                <p:outputLabel value="Drzavljanstvo:" 
+                                               rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}" />
                                 <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" required="true" 
                                              requiredMessage="Unesite ime drzavljanstvo." 
-                                             rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}">
+                                             rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
                                 </p:inputText>
-                                <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></h:selectBooleanCheckbox>
-                                <p:outputLabel value="Drzavljanstvo" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></p:outputLabel>
+                                <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" 
+                                                         rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
+                                </h:selectBooleanCheckbox>
+                                <p:outputLabel value="Drzavljanstvo" 
+                                               rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
+                                </p:outputLabel>
                             </h:panelGroup>
 
                             
@@ -214,22 +220,23 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="Vestine" value="Vestine:" />
+                            <p:outputLabel for="vestine" value="Profesionalne vestine:" />
                             <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
-                                <f:selectItem itemLabel="Nazivobrazovne institucije" itemValue=""/>
-                                <p:inputText value="#{registracijaVolonter.vestine}" required="true" 
-                                             requiredMessage="Unesite naziv vestine." rendered="#{registracijaVolonter.nazivvestine == ''}">
-                                </p:inputText>
-                                <f:selectItem itemLabel="Strucno zvanje" itemValue="" />
-                                <f:selectItem itemLabel="Ostale diplome i stecene vestine" itemValue="" />
-                                <f:selectItem itemLabel="prethodna iskustva" itemValue=""/>
-                                
-                                <f:ajax render="statusDodatnaPolja" />
+                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue=""/>
+                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="nazivVestine"/>
+                                    <f:ajax render="statusDodatneVestine" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+
+                            <h:panelGroup id="statusDodatneVestine">
+                                    <p:outputLabel value="Naziv obrazovne institucije" rendered="#{registracijaVolonter.vestine == 'nazivVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestine}" required="true" 
+                                                             requiredMessage="Unesite poslednji zaveseni obrazovni stepen." rendered="#{registracijaVolonter.vestine == 'nazivVestine'}">
+                                    </p:inputText>
+                            </h:panelGroup>                          
                             
-                            
+                            <p:outputLabel value=""></p:outputLabel>
                             
                             <h:commandButton value="Registruj se" 
                                              actionListener="#{registracijaVolontera.registrujVolontera}">
