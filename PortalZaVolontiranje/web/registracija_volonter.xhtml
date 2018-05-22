@@ -77,9 +77,23 @@
                             <p:selectOneMenu id="drzavljanstvo" value="#{registracijaVolonter.drzavljanstvo}">
                                 <f:selectItem itemLabel="Izaberite drzavljanstvo" itemValue="" />
                                 <f:selectItems value="#{registracijaVolonter.svaDrzavljanstva}" />
+                                <f:selectItem itemLabel="Drugo" itemValue="drugo" />
+                                <f:ajax render="drzavljanstvoDrugo" />
+                                <!-- TODO: validacija -->
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <h:panelGroup id="drzavljanstvoDrugo">
+                                <p:outputLabel value="Ime kompanije" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}" />
+                                <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" required="true" 
+                                             requiredMessage="Unesite ime drzavljanstvo." 
+                                             rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}">
+                                </p:inputText>
+                                <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></h:selectBooleanCheckbox>
+                                <p:outputLabel value="Javni podatak" rendered="#{registracijaVolonter.drzavljanstvo == 'drugo'}"></p:outputLabel>
+                            </h:panelGroup>
+
                             
                             <p:outputLabel value="Kontakt telefon:" />
                             <p:inputText value="#{registracijaVolonter.telefon}" required="true" requiredMessage="Unesite telefon.">

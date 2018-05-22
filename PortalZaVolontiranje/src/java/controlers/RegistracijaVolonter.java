@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import controlers.greske.GreskaPriRegistraciji;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -30,6 +31,7 @@ public class RegistracijaVolonter {
     private boolean uslov;
     private String pol;
     private SelectItem drzavljanstvo;
+    private String drzavljanstvoDrugo;
     private String telefon;
     private String ulica_broj;
     private SelectItem mesto;
@@ -93,6 +95,14 @@ public class RegistracijaVolonter {
         for (Mesto mesto: svaMestaBinovi){
             svaMesta.add(new SelectItem(mesto.getId(),mesto.getNazivMesta()));
         } 
+    }
+
+    public String getDrzavljanstvoDrugo() {
+        return drzavljanstvoDrugo;
+    }
+
+    public void setDrzavljanstvoDrugo(String drzavljanstvoDrugo) {
+        this.drzavljanstvoDrugo = drzavljanstvoDrugo;
     }
     
     
@@ -268,7 +278,7 @@ public class RegistracijaVolonter {
    
 
   
-    public String RegistrujVolontera() {
+    public String RegistrujVolontera() throws GreskaPriRegistraciji {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
@@ -277,10 +287,17 @@ public class RegistracijaVolonter {
             rs.next();
             if (rs.getString("email").equals(mail)){
                 return "Email vec postoji u bazi";
-            }
-            else{
-                private int drzId=Drzavljanstvo
-                stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+Drzavljanstvo.)
+            } else {
+                int drzavljanstvoId;
+                if ("drugo".equals(drzavljanstvo.getValue())) {
+                    // snimiti novo drzaljvanstvo u bazu
+                } else if (!"".equals(drzavljanstvo.getValue())) {
+                    drzavljanstvoId = (Integer)drzavljanstvo.getValue();
+                } else {
+                    throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
+                }
+//                int drzId=Drzavljanstvo
+//                stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+Drzavljanstvo.)
             }
                 
         } catch (SQLException ex) {
@@ -289,7 +306,7 @@ public class RegistracijaVolonter {
             
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-
+        return "Uspesno";
     }
 
 }
