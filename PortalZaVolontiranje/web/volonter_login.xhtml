@@ -11,7 +11,7 @@
         
            <script>
             function RegistracijaVolontera() {
-                window.open("registracija_volonter.xhtml","_blank",);
+                window.open("volonter_registracija.xhtml","_blank",);
             }
             
            </script>
@@ -47,7 +47,7 @@
                 <p:commandButton value="Login" update="panel" action="#{login.login()}"/>
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
-              <a href="#" onclick="RegistracijaVolontera()">Registruj se</a>
+              <input type="button" value="Registruj se" onclick="window.open('volonter_registracija.xhtml'); window.close();"/>
             </p:panel>
         </h:form>
    </h:body>
