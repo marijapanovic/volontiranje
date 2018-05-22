@@ -15,7 +15,7 @@
     <h:body>
        
         <h:form id="form">
-            <p:dataTable  widgetVar="dataTableRefresh" var="volonter" value="#{dohvatiPretraziVolontere.sviVolonteri}" paginator="true" rows="10" selectionMode="single" selection="#{obrisiVolontera.selektovaniVolonter}" rowKey="#{volonter.idVolonter}"
+            <p:dataTable  widgetVar="dataTableRefresh" var="volonter" value="#{dohvatiPretraziVolontere.sviVolonteri}" paginator="true" rows="1000" selectionMode="single" selection="#{obrisiVolontera.selektovaniVolonter}" rowKey="#{volonter.idVolonter}"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          >
 
@@ -28,27 +28,27 @@
                 <p:column headerText="E-mail" sortBy="#{volonter.email}" filterBy="#{volonter.email}">
                     <h:outputText value="#{volonter.email}" />
                 </p:column>
-             <!--   <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
-                    <h:outputText value="#{volonter.datumRodjenja}" />
-                </p:column>-->
-                
                 <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
+                    <h:outputText value="#{volonter.datumRodjenja}" />
+                </p:column>
+                
+              <!--  <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
                     <h:outputText value="#{volonter.datumRodjenja}">
                         <f:convertDateTime pattern="dd-mm-yyyy" ></f:convertDateTime>
                     </h:outputText>
                     
-                </p:column>
+                </p:column>-->
                 <p:column headerText="Ulica i broj" sortBy="#{volonter.ulica_broj}" filterBy="#{volonter.ulica_broj}">
                     <h:outputText value="#{volonter.ulica_broj}" />
                 </p:column>
                 <p:column headerText="Brisanje">
                     
-                    <p:commandButton  actionListener="#{obrisiVolontera.obrisiVolontera()}"  value="Obrisi" ajax="true" update="@all"   pt:data-tooltip="Najpre selektujte zeljeni red pa onda kliknite Obrisi" oncomplete="PF('dataTableRefresh').filter()"  > 
+                    <p:commandButton  actionListener="#{obrisiVolontera.obrisiVolontera()}"  value="Obrisi"  ajax="true" update="@all"   pt:data-tooltip="Najpre selektujte zeljeni red pa onda kliknite Obrisi" oncomplete="PF('dataTableRefresh').filter()"> 
                         <p:tooltip></p:tooltip> 
                         
                     </p:commandButton>
-                    
-                  <!-- <ui:include src="#{filmovi.dohvatiFilmove()}"></ui:include>  -->
+                                       
+                    <ui:include src="#{dohvatiPretraziVolontere.dohvatiSveVolontere()}"></ui:include>  
                     
                 </p:column>
             </p:dataTable>

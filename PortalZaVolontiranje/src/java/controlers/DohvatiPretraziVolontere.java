@@ -48,7 +48,7 @@ public class DohvatiPretraziVolontere {
                 volonter.setIdVolonter(rs.getInt("idvolonter"));
                 volonter.setImePrezime(rs.getString("ime_prezime"));
                 volonter.setEmail(rs.getString("email"));
-             //   volonter.setDatumRodjenja(rs.getDate("datum_rodjenja"));
+          //      volonter.setDatumRodjenja(rs.getTime("datum_rodjenja"));
                 volonter.setUlica_broj(rs.getString("ulica_broj"));
              //   volonter.setCv(rs.getString("cv"));
             //    volonter.setSlika(rs.getString("slika"));
