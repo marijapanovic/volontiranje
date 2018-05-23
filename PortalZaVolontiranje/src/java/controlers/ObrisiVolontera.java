@@ -37,7 +37,7 @@ public class ObrisiVolontera {
         try {
             Connection con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = con.createStatement();
-            stm.executeUpdate("delete from volonter where idvolontera="+selektovaniVolonter.getIdVolonter());
+            stm.executeUpdate("delete from volonter where idvolonter="+selektovaniVolonter.getIdVolonter());
             
            
         } catch (SQLException ex) {

@@ -18,9 +18,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.Volonter;
 import controlers.greske.GreskaPriRegistraciji;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+
 
 @ManagedBean
 public class RegistracijaVolonter {
@@ -57,7 +61,7 @@ public class RegistracijaVolonter {
     }
     
     
-    
+
     public String getImePrezime() {
         return imePrezime;
     }
@@ -81,30 +85,49 @@ public class RegistracijaVolonter {
     public void setUslov(boolean uslov) {
         this.uslov = uslov;
     }
-    
+
     private List<SelectItem> svaMesta = new LinkedList<>();
 
     public List<SelectItem> getSvaMesta() {
         return svaMesta;
     }
-    
-    
+
     private List<SelectItem> svaDrzavljanstva = new LinkedList<>();
+
     public List<SelectItem> getSvaDrzavljanstva() {
         return svaDrzavljanstva;
     }
+    
+    private SelectItem izaberiDrzavljanstvo = new SelectItem(-2, "Izaberi drzavljanstvo");
 
+    public SelectItem getIzaberiDrzavljanstvo() {
+        return izaberiDrzavljanstvo;
+    }
+
+    public void setIzaberiDrzavljanstvo(SelectItem izaberiDrzavljanstvo) {
+        this.izaberiDrzavljanstvo = izaberiDrzavljanstvo;
+    }
+
+    private SelectItem drugoDrzavljanstvo = new SelectItem(-1, "Drugo");
+
+    public SelectItem getDrugoDrzavljanstvo() {
+        return drugoDrzavljanstvo;
+    }
+
+    public void setDrugoDrzavljanstvo(SelectItem drugoDrzavljanstvo) {
+        this.drugoDrzavljanstvo = drugoDrzavljanstvo;
+    }
     @PostConstruct
     public void init() {
         List<Drzavljanstvo> svaDrzavljanstvaBinovi = Drzavljanstvo.ucitajSvaDrzavljanstva();
-        
+
         for (Drzavljanstvo drzavljanstvo : svaDrzavljanstvaBinovi) {
             svaDrzavljanstva.add(new SelectItem(drzavljanstvo.getIddrz(), drzavljanstvo.getDrzavljanstvo()));
         }
         List<Mesto> svaMestaBinovi = Mesto.ucitajSvaMesta();
-        for (Mesto mesto: svaMestaBinovi){
-            svaMesta.add(new SelectItem(mesto.getId(),mesto.getNazivMesta()));
-        } 
+        for (Mesto mesto : svaMestaBinovi) {
+            svaMesta.add(new SelectItem(mesto.getId(), mesto.getNazivMesta()));
+        }
     }
 
     public String getDrzavljanstvoDrugo() {
@@ -114,8 +137,7 @@ public class RegistracijaVolonter {
     public void setDrzavljanstvoDrugo(String drzavljanstvoDrugo) {
         this.drzavljanstvoDrugo = drzavljanstvoDrugo;
     }
-    
-    
+
     public String getPol() {
         return pol;
     }
@@ -212,7 +234,7 @@ public class RegistracijaVolonter {
     public void setCv(String cv) {
         this.cv = cv;
     }
-    
+
     public String getStatus() {
         return status;
     }
@@ -285,38 +307,93 @@ public class RegistracijaVolonter {
         this.godinaUpisa = godinaUpisa;
     }
 
-   
+    public static class Dan {
 
-  
+        private int brDana;
+
+        public Dan(int broj) {
+            this.brDana = broj;
+        }
+
+        public int getBrDana() {
+            return brDana;
+        }
+
+        public String getImeDana() {
+            DateFormatSymbols dfs = new DateFormatSymbols();
+            String[] dani = dfs.getWeekdays();
+            return dani[brDana];
+        }
+    }
+
+    private static Dan[] daniUNedelji;
+
+    static {
+        daniUNedelji = new Dan[7];
+        for (int i = Calendar.SUNDAY; i <= Calendar.SATURDAY; i++) {
+            daniUNedelji[i - Calendar.SUNDAY] = new Dan(i);
+        }
+    }
+
+    public Dan[] getDaniUNedelji() {
+        return daniUNedelji;
+    }
+
+    public void setDaniUNedelji(Dan[] daniUNedelji) {
+        RegistracijaVolonter.daniUNedelji = daniUNedelji;
+    }
+
+    public String[] getOdgovarajuciDani() {
+        return odgovarajuciDani;
+    }
+
+    public void setOdgovarajuciDani(String[] odgovarajuciDani) {
+        this.odgovarajuciDani = odgovarajuciDani;
+    }
+
+    public String getVestine() {
+        return vestine;
+    }
+
+    public void setVestine(String vestine) {
+        this.vestine = vestine;
+    }
+
+    
+
     public String RegistrujVolontera() throws GreskaPriRegistraciji {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from volonter where email='"+mail+"'");
+            ResultSet rs = stm.executeQuery("select * from volonter where email='" + mail + "'");
             rs.next();
-            if (rs.getString("email").equals(mail)){
+            if (rs.getString("email").equals(mail)) {
                 return "Email vec postoji u bazi";
             } else {
-                int drzavljanstvoId;
+                int drzavljanstvoId = 0;
                 if ("drugo".equals(drzavljanstvo.getValue())) {
+
                     // snimiti novo drzaljvanstvo u bazu
                 } else if (!"".equals(drzavljanstvo.getValue())) {
-                    drzavljanstvoId = (Integer)drzavljanstvo.getValue();
+                    drzavljanstvoId = (int) drzavljanstvo.getValue();
                 } else {
                     throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
                 }
-//                int drzId=Drzavljanstvo
-//                stm.executeUpdate("insert into volonter (ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) values ('"+imePrezime+"','"+datumRodjenja"','"+pol+"','"+Drzavljanstvo.)
+                //  Volonter volonter = new Volonter();
+                stm.executeUpdate("insert into volonter "
+                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
+                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
+                        + "values ('" + imePrezime + "','" + datumRodjenja + "','" + pol + "','" + drzavljanstvoId + "',)");
             }
-                
+
         } catch (SQLException ex) {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-        return "Uspesno";
+        return "index?faces-redirect=true";
     }
 
 }

@@ -11,10 +11,10 @@
         
            <script>
             function RegistracijaOrganizacije() {
-                window.open("organizacija_reg.xhtml","_blank",);
+                window.open("organizacija_registracija.xhtml","_blank");
             }
             
-           </script>
+            </script>
     </h:head>
     <h:body>
         <h:form>
@@ -43,11 +43,10 @@
                     <p:messages for="password" />
 
                 </h:panelGrid>
-
                 <p:commandButton value="Login" update="panel" action="#{login.login()}"  />
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
-              <a href="#" onclick="RegistracijaOrganizacije()">Registruj se</a>
+              <input type="button" value="Registruj se" onclick="window.open('organizacija_registracija.xhtml'); window.close();" />
             </p:panel>
         </h:form>
    </h:body>
