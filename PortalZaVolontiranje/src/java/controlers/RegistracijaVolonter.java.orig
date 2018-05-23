@@ -61,6 +61,7 @@ public class RegistracijaVolonter {
     private String vestineIskustva;
   
 
+
     public Boolean getJPIme() {
         return JPIme;
     }

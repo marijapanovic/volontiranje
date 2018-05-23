@@ -92,7 +92,8 @@
                                 
                                 <p:outputLabel value="Drzavljanstvo:" 
                                                rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}" />
-                                <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" required="true" 
+                                <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" 
+                                             required="true" 
                                              requiredMessage="Unesite ime drzavljanstvo." 
                                              rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
                                 </p:inputText>
@@ -174,12 +175,14 @@
                             <h:panelGroup id="statusDodatnaPolja">
                                 <p:outputLabel value="Ime kompanije" rendered="#{registracijaVolonter.status == 'zaposlen'}" />
                                 <p:inputText value="#{registracijaVolonter.kompanija}" required="true" 
-                                             requiredMessage="Unesite ime kompanije." rendered="#{registracijaVolonter.status == 'zaposlen'}">
+                                             requiredMessage="Unesite ime kompanije." 
+                                             rendered="#{registracijaVolonter.status == 'zaposlen'}">
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Sediste kompanije:" rendered="#{registracijaVolonter.status == 'zaposlen'}" />
                                 <p:inputText value="#{registracijaVolonter.sedisteKompanije}" required="true" 
-                                             requiredMessage="Unesite sediste kompanije." rendered="#{registracijaVolonter.status == 'zaposlen'}">
+                                             requiredMessage="Unesite sediste kompanije." 
+                                             rendered="#{registracijaVolonter.status == 'zaposlen'}">
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 'zaposlen'}" />
@@ -187,7 +190,8 @@
                                              requiredMessage="Unesite poziciju." rendered="#{registracijaVolonter.status == 'zaposlen'}">
                                 </p:inputText>
 
-                                <p:outputLabel value="Naziv obrazovne institucije:" rendered="#{registracijaVolonter.status == 'skolovanje'}" />
+                                <p:outputLabel value="Naziv obrazovne institucije:" 
+                                               rendered="#{registracijaVolonter.status == 'skolovanje'}" />
                                 <p:inputText value="#{registracijaVolonter.nazivSkole}" required="true" 
                                              requiredMessage="Unesite naziv obrazovne ustanove koju pohadjate." 
                                              rendered="#{registracijaVolonter.status == 'skolovanje'}">
@@ -201,12 +205,14 @@
                                 
                                 <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 'skolovanje'}" />
                                 <p:inputText value="#{registracijaVolonter.nivoStudija}" required="true" 
-                                             requiredMessage="Unesite nivo studija." rendered="#{registracijaVolonter.status == 'skolovanje'}">
+                                             requiredMessage="Unesite nivo studija." 
+                                             rendered="#{registracijaVolonter.status == 'skolovanje'}">
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 'skolovanje'}" />
                                 <p:inputText value="#{registracijaVolonter.godinaUpisa}" required="true" 
-                                             requiredMessage="Unesite godinu upisa." rendered="#{registracijaVolonter.status == 'skolovanje'}">
+                                             requiredMessage="Unesite godinu upisa." 
+                                             rendered="#{registracijaVolonter.status == 'skolovanje'}">
                                 </p:inputText>
                             </h:panelGroup>
                             
@@ -220,10 +226,10 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="vestine" value="Profesionalne vestine:" />
+                            <p:outputLabel for="vestine" value="Vestine:" />
                             <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
                                             <f:selectItem itemLabel="Izaberite vestine:" itemValue=""/>
-                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="nazivVestine"/>
+                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
                                     <f:ajax render="statusDodatneVestine" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}"></h:selectBooleanCheckbox>
@@ -231,25 +237,28 @@
 
                             <h:panelGroup id="statusDodatneVestine">
                                     <p:outputLabel value="Naziv obrazovne institucije" 
-                                                   rendered="#{registracijaVolonter.vestineNaziv == 'vestineNaziv'}" />
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
                                     <p:inputText value="#{registracijaVolonter.vestineNaziv}" required="true" 
-                                                             requiredMessage="Unesite poslednji zaveseni obrazovni stepen." 
-                                                             rendered="#{registracijaVolonter.vestineNaziv == 'vestineNaziv'}">
+                                                             requiredMessage="Unesite poslednji zavrseni obrazovni stepen." 
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
                                     </p:inputText>
-                                    <p:outputLabel value="Strucno zvanje" rendered="#{registracijaVolonter.vestineZvanje == 'vestineZvanje'}" />
+                                    
+                                    <p:outputLabel value="Strucno zvanje" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
                                     <p:inputText value="#{registracijaVolonter.vestineZvanje}" required="true" 
-                                                             requiredMessage="Unesite poslednji zaveseni obrazovni stepen."
-                                                             rendered="#{registracijaVolonter.vestineZvanje == 'vestineZvanje'}">
+                                                             requiredMessage="Unesite strucno zvanje."
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
                                     </p:inputText>
                                     <p:outputLabel value="Ostale diplome,znanja i vestine" 
-                                                   rendered="#{registracijaVolonter.vestineOstalo == 'vestineOstalo'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineOstalo}" required="true" 
-                                                             requiredMessage="Unesite ostale diplome,stecena zvanja i vestine." 
-                                                             rendered="#{registracijaVolonter.vestineOstalo == 'vestineOstalo'}">
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineOstalo}"  
+                                                              
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
                                     </p:inputText>
-                                    <p:outputLabel value="Prethodna iskustva" rendered="#{registracijaVolonter.vestineIskustva == 'vestineIskustva'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineIskustva}" required="true" 
-                                                             requiredMessage="Unesite iskustva iz navedenih oblasti." rendered="#{registracijaVolonter.vestineiskustva == 'vestineIskustva'}">
+                                    <p:outputLabel value="Prethodna iskustva" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineIskustva}" 
+                                                            rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
                                     </p:inputText>
                                     
                             </h:panelGroup>                          
