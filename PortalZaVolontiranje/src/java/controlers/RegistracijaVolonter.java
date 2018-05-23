@@ -26,7 +26,7 @@ import javax.faces.model.SelectItem;
 public class RegistracijaVolonter {
 
     private String imePrezime;
-
+    private int JPIme;
     private Date datumRodjenja;
     private boolean uslov;
     private String pol;
@@ -47,6 +47,16 @@ public class RegistracijaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
+
+    public int getJPIme() {
+        return JPIme;
+    }
+
+    public void setJPIme(int JPIme) {
+        this.JPIme = JPIme;
+    }
+    
+    
     
     public String getImePrezime() {
         return imePrezime;
