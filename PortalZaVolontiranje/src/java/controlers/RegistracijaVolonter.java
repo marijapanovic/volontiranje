@@ -24,6 +24,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import beans.Vestine;
 
 
 @ManagedBean
@@ -52,6 +53,8 @@ public class RegistracijaVolonter {
     private String nivoStudija;
     private String godinaUpisa;
     private String[] odgovarajuciDani;
+    
+    private String vestine;
     private String vestineNaziv;
     private String vestineZvanje;
     private String vestineOstalo;
@@ -356,6 +359,10 @@ public class RegistracijaVolonter {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
+   
+
+    
+
     public String getVestineNaziv() {
         return vestineNaziv;
     }
@@ -388,6 +395,14 @@ public class RegistracijaVolonter {
         this.vestineIskustva = vestineIskustva;
     }
 
+    public String getVestine() {
+        return vestine;
+    }
+
+    public void setVestine(String vestine) {
+        this.vestine = vestine;
+    }
+    
     
 
     
