@@ -11,9 +11,8 @@
         
            <script>
             function RegistracijaVolontera() {
-                window.open("volonter_registracija.xhtml","_blank",);
+                window.open("volonter_registracija.xhtml","_blank");
             }
-            
            </script>
     </h:head>
     <h:body>
@@ -30,7 +29,7 @@
                         
                         <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+" />
                     </p:inputText>
-                    <p:message for="mail" />
+                <p:message for="mail" /> 
 
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{login.lozinka}" 
@@ -40,11 +39,12 @@
                         <f:validateLength minimum="5"/>
                         
                     </p:password>
-                    <p:messages for="password" />
+                 <p:messages for="password" />
 
                 </h:panelGrid>
 
                 <p:commandButton value="Login" update="panel" action="#{login.login()}"/>
+
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
               <input type="button" value="Registruj se" onclick="window.open('volonter_registracija.xhtml'); window.close();"/>

@@ -186,8 +186,8 @@
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 'zaposlen'}" />
-                                <p:inputText value="#{registracijaVolonter.pozicijaUKompaniji}" required="true" 
-                                             requiredMessage="Unesite poziciju." rendered="#{registracijaVolonter.status == 'zaposlen'}">
+                                <p:inputText value="#{registracijaVolonter.pozicijaUKompaniji}" 
+                                             rendered="#{registracijaVolonter.status == 'zaposlen'}">
                                 </p:inputText>
 
                                 <p:outputLabel value="Naziv obrazovne institucije:" 
@@ -204,14 +204,12 @@
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 'skolovanje'}" />
-                                <p:inputText value="#{registracijaVolonter.nivoStudija}" required="true" 
-                                             requiredMessage="Unesite nivo studija." 
+                                <p:inputText value="#{registracijaVolonter.nivoStudija}" 
                                              rendered="#{registracijaVolonter.status == 'skolovanje'}">
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 'skolovanje'}" />
-                                <p:inputText value="#{registracijaVolonter.godinaUpisa}" required="true" 
-                                             requiredMessage="Unesite godinu upisa." 
+                                <p:inputText value="#{registracijaVolonter.godinaUpisa}" 
                                              rendered="#{registracijaVolonter.status == 'skolovanje'}">
                                 </p:inputText>
                             </h:panelGroup>

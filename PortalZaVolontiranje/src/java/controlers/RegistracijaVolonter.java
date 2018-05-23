@@ -417,16 +417,17 @@ public class RegistracijaVolonter {
             if (rs.getString("email").equals(mail)) {
                 return "Email vec postoji u bazi";
             } else {
-                int drzavljanstvoId = 0;
+                
                 if ("drugo".equals(drzavljanstvo.getValue())) {
 
                     // snimiti novo drzaljvanstvo u bazu
                 } else if (!"".equals(drzavljanstvo.getValue())) {
+                    int drzavljanstvoId = 0;
                     drzavljanstvoId = (int) drzavljanstvo.getValue();
                 } else {
                     throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
                 }
-                //  Volonter volonter = new Volonter();
+                Volonter volonter = new Volonter();
 //                stm.executeUpdate("insert into volonter "
 //                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
 //                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
