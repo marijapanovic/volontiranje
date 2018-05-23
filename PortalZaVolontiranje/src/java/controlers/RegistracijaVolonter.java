@@ -52,7 +52,10 @@ public class RegistracijaVolonter {
     private String nivoStudija;
     private String godinaUpisa;
     private String[] odgovarajuciDani;
-    private String vestine;
+    private String vestineNaziv;
+    private String vestineZvanje;
+    private String vestineOstalo;
+    private String vestineIskustva;
   
 
     public String getImePrezime() {
@@ -344,13 +347,39 @@ public class RegistracijaVolonter {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
-    public String getVestine() {
-        return vestine;
+    public String getVestineNaziv() {
+        return vestineNaziv;
     }
 
-    public void setVestine(String vestine) {
-        this.vestine = vestine;
+    public void setVestineNaziv(String vestineNaziv) {
+        this.vestineNaziv = vestineNaziv;
     }
+
+    public String getVestineZvanje() {
+        return vestineZvanje;
+    }
+
+    public void setVestineZvanje(String vestineZvanje) {
+        this.vestineZvanje = vestineZvanje;
+    }
+
+    public String getVestineOstalo() {
+        return vestineOstalo;
+    }
+
+    public void setVestineOstalo(String vestineOstalo) {
+        this.vestineOstalo = vestineOstalo;
+    }
+
+    public String getVestineIskustva() {
+        return vestineIskustva;
+    }
+
+    public void setVestineIskustva(String vestineIskustva) {
+        this.vestineIskustva = vestineIskustva;
+    }
+
+    
 
     
 
@@ -374,10 +403,10 @@ public class RegistracijaVolonter {
                     throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
                 }
                 //  Volonter volonter = new Volonter();
-                stm.executeUpdate("insert into volonter "
-                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
-                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
-                        + "values ('" + imePrezime + "','" + datumRodjenja + "','" + pol + "','" + drzavljanstvoId + "',)");
+//                stm.executeUpdate("insert into volonter "
+//                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
+//                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
+//                        + "values ('" + imePrezime + "','" + datumRodjenja + "','" + pol + "','" + drzavljanstvoId + "',)");
             }
 
         } catch (SQLException ex) {
