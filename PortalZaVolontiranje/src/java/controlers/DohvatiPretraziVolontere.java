@@ -65,6 +65,6 @@ public class DohvatiPretraziVolontere {
             Logger.getLogger(DohvatiPretraziVolontere.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    } 
+    }
     
 }
