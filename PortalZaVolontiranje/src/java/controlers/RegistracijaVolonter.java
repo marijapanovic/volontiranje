@@ -30,7 +30,7 @@ import javax.faces.model.SelectItem;
 public class RegistracijaVolonter {
 
     private String imePrezime;
-
+    private int JPIme;
     private Date datumRodjenja;
     private boolean uslov;
     private String pol;
@@ -51,12 +51,25 @@ public class RegistracijaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
+<<<<<<< HEAD
     private String[] odgovarajuciDani;
     private String vestineNaziv;
     private String vestineZvanje;
     private String vestineOstalo;
     private String vestineIskustva;
   
+=======
+
+    public int getJPIme() {
+        return JPIme;
+    }
+
+    public void setJPIme(int JPIme) {
+        this.JPIme = JPIme;
+    }
+    
+    
+>>>>>>> aa24c5834df794ba02485e9e57f3a33572fa9a67
 
     public String getImePrezime() {
         return imePrezime;
