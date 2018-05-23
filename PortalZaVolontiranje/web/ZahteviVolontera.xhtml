@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        
+        <f:metadata>
+            <f:viewAction action="#{odobravanjeVolontera.dohvatiZahteveZaOdobravanjeVolontera()}"></f:viewAction>
+        </f:metadata>
+    </h:head>
+    <h:body>
+        <h:form id="forma">
+            <p:dataList widgetVar="refresovanjeListe"  value="#{odobravanjeVolontera.volonteriZaOdobravanje}" var="volonter" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+        <f:facet name="header">
+            Zahtevi
+        </f:facet>
+                <p:commandLink update=":forma:volonterDetalji" oncomplete="PF('volonterDijalog').show()" title="Detalji o volonteru" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+            <f:setPropertyActionListener value="#{volonter}" target="#{odobravanjeVolontera.selektovaniVolonter}" />
+            <h:outputText value="#{volonter.imePrezime}" />
+        </p:commandLink>
+        <h:outputText value="#{volonter.imePrezime}" style="display:inline-block"/>
+    </p:dataList>
+ 
+    <p:dialog header="Informacije o volonteru" widgetVar="volonterDijalog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+        <p:outputPanel id="volonterDetalji" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty odobravanjeVolontera.selektovaniVolonter}"  columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="resources/images/drzavni.png"/> 
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{odobravanjeVolontera.selektovaniVolonter.idVolonter}" />
+ 
+                <h:outputText value="Ime i prezime:" />
+                <h:outputText value="#{odobravanjeVolontera.selektovaniVolonter.imePrezime}" />
+ 
+                <h:outputText value="E-mail:" />
+                <h:outputText value="#{odobravanjeVolontera.selektovaniVolonter.email}"/>
+ 
+                <h:outputText value="Ulica i broj" />
+                <h:outputText value="#{odobravanjeVolontera.selektovaniVolonter.ulica_broj}" />
+                
+            </p:panelGrid>
+            <p:commandButton  value="Odobri zahtev" actionListener="#{odobravanjeVolontera.odobriZahtevVolontera()}" oncomplete="PF('refresovanjeListe').show()" ajax="true" update="@all" ></p:commandButton>
+            <ui:include src="#{odobravanjeVolontera.dohvatiZahteveZaOdobravanjeVolontera()}"></ui:include>
+            
+        </p:outputPanel>
+    </p:dialog>
+        </h:form>
+        
+        
+        
+        
+    </h:body>
+</html>
+
