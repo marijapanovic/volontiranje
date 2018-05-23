@@ -220,8 +220,10 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
+                            
+                            
                             <p:outputLabel for="vestine" value="Profesionalne vestine:" />
-                            <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
+                            <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestineNaziv}">
                                             <f:selectItem itemLabel="Izaberite vestine:" itemValue=""/>
                                             <f:selectItem itemLabel="Popunite vestine:" itemValue="nazivVestine"/>
                                     <f:ajax render="statusDodatneVestine" />
@@ -249,7 +251,7 @@
                                     </p:inputText>
                                     <p:outputLabel value="Prethodna iskustva" rendered="#{registracijaVolonter.vestineIskustva == 'vestineIskustva'}" />
                                     <p:inputText value="#{registracijaVolonter.vestineIskustva}" required="true" 
-                                                             requiredMessage="Unesite iskustva iz navedenih oblasti." rendered="#{registracijaVolonter.vestineiskustva == 'vestineIskustva'}">
+                                                             requiredMessage="Unesite iskustva iz navedenih oblasti." rendered="#{registracijaVolonter.vestineIskustva == 'vestineIskustva'}">
                                     </p:inputText>
                                     
                             </h:panelGroup>                          

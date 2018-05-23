@@ -30,7 +30,7 @@ import javax.faces.model.SelectItem;
 public class RegistracijaVolonter {
 
     private String imePrezime;
-    private int JPIme;
+    private Boolean JPIme;
     private Date datumRodjenja;
     private boolean uslov;
     private String pol;
@@ -58,11 +58,11 @@ public class RegistracijaVolonter {
     private String vestineIskustva;
   
 
-    public int getJPIme() {
+    public Boolean getJPIme() {
         return JPIme;
     }
 
-    public void setJPIme(int JPIme) {
+    public void setJPIme(Boolean JPIme) {
         this.JPIme = JPIme;
     }
     
