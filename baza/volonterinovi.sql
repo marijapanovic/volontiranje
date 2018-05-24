@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `volonteri` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `volonteri`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: volonteri
@@ -199,19 +197,18 @@ CREATE TABLE `volonter` (
   `email` varchar(255) NOT NULL,
   `lozinka` varchar(20) NOT NULL,
   `zaposlen` varchar(45) NOT NULL,
-  `JPime` int(1) NOT NULL,
-  `JPdatum_rodjenja` int(1) NOT NULL,
-  `JPpol` int(1) NOT NULL,
-  `JPdrzavljanstvo` int(1) NOT NULL,
-  `JPtelefon` int(1) NOT NULL,
-  `JPulica_broj` int(1) NOT NULL,
-  `JPmesto` int(1) NOT NULL,
-  `JPslika` int(1) NOT NULL,
-  `JPcv` int(1) NOT NULL,
-  `JPemail` int(1) NOT NULL,
-  `JPstatus` int(1) NOT NULL,
-  `Aktivan` int(1) NOT NULL DEFAULT '0',
-  `tip` int(1) NOT NULL,
+  `JPime` tinyint(4) NOT NULL,
+  `JPdatum_rodjenja` tinyint(4) NOT NULL,
+  `JPpol` tinyint(4) NOT NULL,
+  `JPdrzavljanstvo` tinyint(4) NOT NULL,
+  `JPtelefon` tinyint(4) NOT NULL,
+  `JPulica_broj` tinyint(4) NOT NULL,
+  `JPmesto` tinyint(4) NOT NULL,
+  `JPslika` tinyint(4) NOT NULL,
+  `JPcv` tinyint(4) NOT NULL,
+  `JPstatus` tinyint(4) NOT NULL,
+  `Aktivan` tinyint(4) NOT NULL DEFAULT '0',
+  `tip` tinyint(4) NOT NULL,
   `Zdravstveni_problemi` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idvolonter`),
   UNIQUE KEY `idvolonter_UNIQUE` (`idvolonter`),
@@ -228,7 +225,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','0000-00-00 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto','da',0,0,0,0,0,0,0,0,0,0,0,0,0,NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','0000-00-00 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto','da',0,0,0,0,0,0,0,0,0,0,0,0,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-22  9:54:34
+-- Dump completed on 2018-05-24 10:29:37
