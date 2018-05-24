@@ -57,7 +57,7 @@
                             
                             <p:outputLabel value="Ime i prezime:" />
                             <p:inputText value="#{registracijaVolonter.imePrezime}" required="true" requiredMessage="Unesite ime i prezime.">
-                                <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                                <f:validateRegex pattern="[a-zA-Z ]+" />
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpIme}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -78,37 +78,18 @@
                             <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Drzavljanstvo:" />
-                            <p:selectOneMenu id="drzavljanstvo" value="#{registracijaVolonter.drzavljanstvo}">
+                            <p:selectOneMenu id="drzavljanstvo" required="true" value="#{registracijaVolonter.drzavljanstvo}">
                                 <f:selectItem value="#{registracijaVolonter.izaberiDrzavljanstvo}" />
                                 <f:selectItems value="#{registracijaVolonter.svaDrzavljanstva}" />
                                 <f:selectItem value="#{registracijaVolonter.drugoDrzavljanstvo}" />
-                                <f:ajax render="drzavljanstvoDrugo" />
-                                <!-- TODO: validacija -->
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDrzavljanstvo}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            
-                            <h:panelGroup id="drzavljanstvoDrugo">
-                                
-                                <p:outputLabel value="Drzavljanstvo:" 
-                                               rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}" />
-                                <p:inputText value="#{registracijaVolonter.drzavljanstvoDrugo}" 
-                                             required="true" 
-                                             requiredMessage="Unesite ime drzavljanstvo." 
-                                             rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
-                                </p:inputText>
-                                <h:selectBooleanCheckbox value="#{registracijaVolonter.uslov}" 
-                                                         rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
-                                </h:selectBooleanCheckbox>
-                                <p:outputLabel value="Drzavljanstvo" 
-                                               rendered="#{registracijaVolonter.drzavljanstvo.equals(registracijaVolonter.drugoDrzavljanstvo)}">
-                                </p:outputLabel>
-                            </h:panelGroup>
-
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Kontakt telefon:" />
                             <p:inputText value="#{registracijaVolonter.telefon}" required="true" requiredMessage="Unesite telefon.">
-                                <f:validateRegex pattern="/^[\d\.\-]+$/+" ></f:validateRegex>
+                                <f:validateRegex pattern="^[\d\.\-]+$" ></f:validateRegex>
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpTelefon}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -147,7 +128,7 @@
                             
                             <p:outputLabel value="E-mail:" />
                             <p:inputText value="#{registracijaVolonter.mail}" required="true" requiredMessage="Unesite e-mail.">
-                                <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></f:validateRegex>
+                                <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" ></f:validateRegex>
                             </p:inputText>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>

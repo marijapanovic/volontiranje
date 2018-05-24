@@ -129,7 +129,7 @@ public class RegistracijaVolonter {
         }
         List<Mesto> svaMestaBinovi = Mesto.ucitajSvaMesta();
         for (Mesto mesto : svaMestaBinovi) {
-            svaMesta.add(new SelectItem(mesto.getId(), mesto.getNazivMesta()));
+            svaMesta.add(new SelectItem("" + mesto.getId(), mesto.getNazivMesta()));
         }
     }
 
@@ -538,29 +538,33 @@ public class RegistracijaVolonter {
                // Volonter volonter = new Volonter();
 //                int drzavljanstvoId = 0;
 //                    drzavljanstvoId = (int) drzavljanstvo.getValue();
-                preparedstatement.executeUpdate("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, status, JPime, JPdatum_rodjenja, JPpol, JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                preparedstatement.executeUpdate("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
+                        + " telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, status, JPime, JPdatum_rodjenja, JPpol,"
+                        + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 preparedstatement.setString(1, imePrezime);
                 preparedstatement.setDate(2, (java.sql.Date) datumRodjenja);
                 preparedstatement.setString(3, pol);
                 preparedstatement.setInt(4, (int) drzavljanstvo.getValue());
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
-                preparedstatement.setString(7, slika);
-                preparedstatement.setString(8, cv);
-                preparedstatement.setString(9, mail);
-                preparedstatement.setString(10, lozinka);
-                preparedstatement.setString(11, status);
-                preparedstatement.setBoolean(12, jpIme);
-                preparedstatement.setBoolean(13, jpDatumRodjenja);
-                preparedstatement.setBoolean(14, jpPol);
-                preparedstatement.setBoolean(15, jpDrzavljanstvo);
-                preparedstatement.setBoolean(16, jpTelefon);
-                preparedstatement.setBoolean(17, jpAdresa);
-                preparedstatement.setBoolean(18, jpMesto);
-                preparedstatement.setBoolean(19, jpSlika);
-                preparedstatement.setBoolean(20, jpCv);
-                preparedstatement.setBoolean(21, jpStatus);
-                preparedstatement.setString(22, zdravstveneNapomene);
+                preparedstatement.setInt(7, (int) mesto.getValue());
+                preparedstatement.setString(8, slika);
+                preparedstatement.setString(9, cv);
+                preparedstatement.setString(10, mail);
+                preparedstatement.setString(11, lozinka);
+                preparedstatement.setString(12, status);
+                preparedstatement.setBoolean(13, jpIme);
+                preparedstatement.setBoolean(14, jpDatumRodjenja);
+                preparedstatement.setBoolean(15, jpPol);
+                preparedstatement.setBoolean(16, jpDrzavljanstvo);
+                preparedstatement.setBoolean(17, jpTelefon);
+                preparedstatement.setBoolean(18, jpAdresa);
+                preparedstatement.setBoolean(19, jpMesto);
+                preparedstatement.setBoolean(20, jpSlika);
+                preparedstatement.setBoolean(21, jpCv);
+                preparedstatement.setBoolean(22, jpStatus);
+                preparedstatement.setString(23, zdravstveneNapomene);
                 preparedstatement.executeUpdate();
                 
                 
