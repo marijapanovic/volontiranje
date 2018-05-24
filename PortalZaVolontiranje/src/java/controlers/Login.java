@@ -132,7 +132,7 @@ public class Login {
                     logInVolonter.setMesto(rs.getInt("mesto"));
                     logInVolonter.setSlika(rs.getString("slika"));
                     logInVolonter.setCv(rs.getString("cv"));
-                    logInVolonter.setStatusID(rs.getInt("zaposlen"));
+                    logInVolonter.setStatusID(rs.getInt("status"));
                     logInVolonter.setJPime(rs.getBoolean("JPime"));
                     logInVolonter.setJPdatum_rodjenja(rs.getBoolean("JPdatum_rodjenja"));
                     logInVolonter.setJPpol(rs.getBoolean("JPpol"));

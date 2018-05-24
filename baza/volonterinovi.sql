@@ -196,7 +196,7 @@ CREATE TABLE `volonter` (
   `cv` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `lozinka` varchar(20) NOT NULL,
-  `zaposlen` varchar(45) NOT NULL,
+  `status` int(11) NOT NULL,
   `JPime` tinyint(4) NOT NULL,
   `JPdatum_rodjenja` tinyint(4) NOT NULL,
   `JPpol` tinyint(4) NOT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','0000-00-00 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto','da',0,0,0,0,0,0,0,0,0,0,0,0,NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','0000-00-00 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,0,0,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-24 10:29:37
+-- Dump completed on 2018-05-24 10:41:01
