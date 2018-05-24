@@ -109,7 +109,10 @@ public class Login {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email='" + email + "'");
-            rs.next();
+            if (!rs.next()){
+                errorEmail = "Ne postoji korisnicko ime";
+                return errorEmail;
+            };
             aktivan=rs.getInt("Aktivan");
             if (aktivan == 0) {
                errorNeaktivan="Vas nalog jos nije aktiviran";
@@ -154,8 +157,7 @@ public class Login {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //errorEmail = "Ne postoji korisnicko ime";
-        //return errorEmail;
+        //
         return null; 
     }
 
