@@ -18,14 +18,170 @@ public class Volonter {
     private Date datumRodjenja;
     private char pol;
     private Drzavljanstvo drzavljanstvo;
+    private int drzavljanstvoID;
     private String telefon;
     private String ulica_broj;
     private Mesto mestoId;
+    private int mesto;
     private String slika;
     private String cv;
     private String email;
     private String lozinka;
     private Status status;
+    private int statusID;
+    private Boolean JPime;
+    private Boolean JPdatum_rodjenja;
+    private Boolean JPpol;
+    private Boolean JPdrzavljanstvo;
+    private Boolean JPtelefon;
+    private Boolean JPulica_broj;
+    private Boolean JPmesto;
+    private Boolean JPslika;
+    private Boolean JPcv;
+    private Boolean JPstatus;
+    private int Aktivan;
+    private int Tip;
+    private String zdravstveni_problemi;
+
+    public String getZdravstveni_problemi() {
+        return zdravstveni_problemi;
+    }
+
+    public void setZdravstveni_problemi(String zdravstveni_problemi) {
+        this.zdravstveni_problemi = zdravstveni_problemi;
+    }
+    
+    
+
+    public int getStatusID() {
+        return statusID;
+    }
+
+    public void setStatusID(int statusID) {
+        this.statusID = statusID;
+    }
+
+    
+    
+    public int getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(int mesto) {
+        this.mesto = mesto;
+    }
+    
+    
+
+    public int getDrzavljanstvoID() {
+        return drzavljanstvoID;
+    }
+
+    public void setDrzavljanstvoID(int drzavljanstvoID) {
+        this.drzavljanstvoID = drzavljanstvoID;
+    }
+    
+    
+
+    public Boolean getJPime() {
+        return JPime;
+    }
+
+    public void setJPime(Boolean JPime) {
+        this.JPime = JPime;
+    }
+
+    public Boolean getJPdatum_rodjenja() {
+        return JPdatum_rodjenja;
+    }
+
+    public void setJPdatum_rodjenja(Boolean JPdatum_rodjenja) {
+        this.JPdatum_rodjenja = JPdatum_rodjenja;
+    }
+
+    public Boolean getJPpol() {
+        return JPpol;
+    }
+
+    public void setJPpol(Boolean JPpol) {
+        this.JPpol = JPpol;
+    }
+
+    public Boolean getJPdrzavljanstvo() {
+        return JPdrzavljanstvo;
+    }
+
+    public void setJPdrzavljanstvo(Boolean JPdrzavljanstvo) {
+        this.JPdrzavljanstvo = JPdrzavljanstvo;
+    }
+
+    public Boolean getJPtelefon() {
+        return JPtelefon;
+    }
+
+    public void setJPtelefon(Boolean JPtelefon) {
+        this.JPtelefon = JPtelefon;
+    }
+
+    public Boolean getJPulica_broj() {
+        return JPulica_broj;
+    }
+
+    public void setJPulica_broj(Boolean JPulica_broj) {
+        this.JPulica_broj = JPulica_broj;
+    }
+
+    public Boolean getJPmesto() {
+        return JPmesto;
+    }
+
+    public void setJPmesto(Boolean JPmesto) {
+        this.JPmesto = JPmesto;
+    }
+
+    public Boolean getJPslika() {
+        return JPslika;
+    }
+
+    public void setJPslika(Boolean JPslika) {
+        this.JPslika = JPslika;
+    }
+
+    public Boolean getJPcv() {
+        return JPcv;
+    }
+
+    public void setJPcv(Boolean JPcv) {
+        this.JPcv = JPcv;
+    }
+
+    public Boolean getJPstatus() {
+        return JPstatus;
+    }
+
+    public void setJPstatus(Boolean JPstatus) {
+        this.JPstatus = JPstatus;
+    }
+
+    public int getAktivan() {
+        return Aktivan;
+    }
+
+    public void setAktivan(int Aktivan) {
+        this.Aktivan = Aktivan;
+    }
+
+    public int getTip() {
+        return Tip;
+    }
+
+    public void setTip(int Tip) {
+        this.Tip = Tip;
+    }
+    
+    
+    
+    
 
     public int getIdVolonter() {
         return idVolonter;
