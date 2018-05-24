@@ -25,26 +25,35 @@ import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import beans.Vestine;
+import java.sql.PreparedStatement;
 
 
 @ManagedBean
 public class RegistracijaVolonter {
 
     private String imePrezime;
-    private Boolean JPIme;
+    private Boolean jpIme;
     private Date datumRodjenja;
-    private boolean uslov;
+    private Boolean jpDatumRodjenja;
     private String pol;
+    private Boolean jpPol;
     private SelectItem drzavljanstvo;
+    private Boolean jpDrzavljanstvo;
     private String drzavljanstvoDrugo;
     private String telefon;
+    private Boolean jpTelefon;
     private String ulica_broj;
+    private Boolean jpAdresa;
     private SelectItem mesto;
+    private Boolean jpMesto;
     private String mail;
     private String lozinka;
     private String slika;
+    private Boolean jpSlika;
     private String cv;
+    private Boolean jpCv;
     private String status;
+    private Boolean jpStatus;
     private String kompanija;
     private String sedisteKompanije;
     private String pozicijaUKompaniji;
@@ -53,23 +62,17 @@ public class RegistracijaVolonter {
     private String nivoStudija;
     private String godinaUpisa;
     private String[] odgovarajuciDani;
+    private Boolean jpOdovarajuciDani;
     
     private String vestine;
+    private Boolean jpVestine;
     private String vestineNaziv;
     private String vestineZvanje;
     private String vestineOstalo;
     private String vestineIskustva;
+    private String zdravstveneNapomene;
+    private Boolean jpZdravstveneNapomene;
   
-
-    public Boolean getJPIme() {
-        return JPIme;
-    }
-
-    public void setJPIme(Boolean JPIme) {
-        this.JPIme = JPIme;
-    }
-    
-
     public String getImePrezime() {
         return imePrezime;
     }
@@ -84,14 +87,6 @@ public class RegistracijaVolonter {
 
     public void setDatumrodjenja(Date datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
-    }
-
-    public boolean isUslov() {
-        return uslov;
-    }
-
-    public void setUslov(boolean uslov) {
-        this.uslov = uslov;
     }
 
     private List<SelectItem> svaMesta = new LinkedList<>();
@@ -402,6 +397,119 @@ public class RegistracijaVolonter {
     public void setVestine(String vestine) {
         this.vestine = vestine;
     }
+
+    public String getZdravstveneNapomene() {
+        return zdravstveneNapomene;
+    }
+
+    public void setZdravstveneNapomene(String zdravstveneNapomene) {
+        this.zdravstveneNapomene = zdravstveneNapomene;
+    }
+    
+
+    public Boolean getJpIme() {
+        return jpIme;
+    }
+
+    public void setJpIme(Boolean jpIme) {
+        this.jpIme = jpIme;
+    }
+
+    public Boolean getJpDatumRodjenja() {
+        return jpDatumRodjenja;
+    }
+
+    public void setJpDatumRodjenja(Boolean jpDatumRodjenja) {
+        this.jpDatumRodjenja = jpDatumRodjenja;
+    }
+
+    public Boolean getJpPol() {
+        return jpPol;
+    }
+
+    public void setJpPol(Boolean jpPol) {
+        this.jpPol = jpPol;
+    }
+
+    public Boolean getJpDrzavljanstvo() {
+        return jpDrzavljanstvo;
+    }
+
+    public void setJpDrzavljanstvo(Boolean jpDrzavljanstvo) {
+        this.jpDrzavljanstvo = jpDrzavljanstvo;
+    }
+
+    public Boolean getJpTelefon() {
+        return jpTelefon;
+    }
+
+    public void setJpTelefon(Boolean jpTelefon) {
+        this.jpTelefon = jpTelefon;
+    }
+
+    public Boolean getJpAdresa() {
+        return jpAdresa;
+    }
+
+    public void setJpAdresa(Boolean jpAdresa) {
+        this.jpAdresa = jpAdresa;
+    }
+
+    public Boolean getJpMesto() {
+        return jpMesto;
+    }
+
+    public void setJpMesto(Boolean jpMesto) {
+        this.jpMesto = jpMesto;
+    }
+
+    public Boolean getJpSlika() {
+        return jpSlika;
+    }
+
+    public void setJpSlika(Boolean jpSlika) {
+        this.jpSlika = jpSlika;
+    }
+
+    public Boolean getJpCv() {
+        return jpCv;
+    }
+
+    public void setJpCv(Boolean jpCv) {
+        this.jpCv = jpCv;
+    }
+
+    public Boolean getJpStatus() {
+        return jpStatus;
+    }
+
+    public void setJpStatus(Boolean jpStatus) {
+        this.jpStatus = jpStatus;
+    }
+
+    public Boolean getJpOdovarajuciDani() {
+        return jpOdovarajuciDani;
+    }
+
+    public void setJpOdovarajuciDani(Boolean jpOdovarajuciDani) {
+        this.jpOdovarajuciDani = jpOdovarajuciDani;
+    }
+
+    public Boolean getJpVestine() {
+        return jpVestine;
+    }
+
+    public void setJpVestine(Boolean jpVestine) {
+        this.jpVestine = jpVestine;
+    }
+
+    public Boolean getJpZdravstveneNapomene() {
+        return jpZdravstveneNapomene;
+    }
+
+    public void setJpZdravstveneNapomene(Boolean jpZdravstveneNapomene) {
+        this.jpZdravstveneNapomene = jpZdravstveneNapomene;
+    }
     
     
 
@@ -411,10 +519,10 @@ public class RegistracijaVolonter {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from volonter where email='" + mail + "'");
-            rs.next();
-            if (rs.getString("email").equals(mail)) {
+            PreparedStatement preparedstatement = conn.prepareStatement("select * from volonter where email= " + mail);
+            ResultSet resultset = preparedstatement.executeQuery();
+            resultset.next();
+            if (resultset.getString("email").equals(mail)) {
                 return "Email vec postoji u bazi";
             } else {
                 
@@ -427,8 +535,40 @@ public class RegistracijaVolonter {
                 } else {
                     throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
                 }
-                Volonter volonter = new Volonter();
-//                stm.executeUpdate("insert into volonter "
+               // Volonter volonter = new Volonter();
+//                int drzavljanstvoId = 0;
+//                    drzavljanstvoId = (int) drzavljanstvo.getValue();
+                preparedstatement.executeUpdate("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, status, JPime, JPdatum_rodjenja, JPpol, JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                preparedstatement.setString(1, imePrezime);
+                preparedstatement.setDate(2, (java.sql.Date) datumRodjenja);
+                preparedstatement.setString(3, pol);
+                preparedstatement.setInt(4, (int) drzavljanstvo.getValue());
+                preparedstatement.setString(5, telefon);
+                preparedstatement.setString(6, ulica_broj);
+                preparedstatement.setString(7, slika);
+                preparedstatement.setString(8, cv);
+                preparedstatement.setString(9, mail);
+                preparedstatement.setString(10, lozinka);
+                preparedstatement.setString(11, status);
+                preparedstatement.setBoolean(12, jpIme);
+                preparedstatement.setBoolean(13, jpDatumRodjenja);
+                preparedstatement.setBoolean(14, jpPol);
+                preparedstatement.setBoolean(15, jpDrzavljanstvo);
+                preparedstatement.setBoolean(16, jpTelefon);
+                preparedstatement.setBoolean(17, jpAdresa);
+                preparedstatement.setBoolean(18, jpMesto);
+                preparedstatement.setBoolean(19, jpSlika);
+                preparedstatement.setBoolean(20, jpCv);
+                preparedstatement.setBoolean(21, jpStatus);
+                preparedstatement.setString(22, zdravstveneNapomene);
+                preparedstatement.executeUpdate();
+                
+                
+//                        ps = conn.prepareStatement("insert into mesto(posbroj, naziv) values(?,?)");
+//                        ps.setString(1, posBr);
+//                        ps.setString(2, nazivMesta);
+//                        ps.executeUpdate();
+                        
 //                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
 //                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
 //                        + "values ('" + imePrezime + "','" + datumRodjenja + "','" + pol + "','" + drzavljanstvoId + "',)");
