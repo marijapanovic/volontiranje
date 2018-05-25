@@ -7,14 +7,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <f:metadata>
             <f:viewAction action="#{odobravanjeVolontera.dohvatiZahteveZaOdobravanjeVolontera()}"></f:viewAction>
         </f:metadata>
     </h:head>
     <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 offset-4">
         <h:form id="forma">
-            <p:dataList widgetVar="refresovanjeListe"  value="#{odobravanjeVolontera.volonteriZaOdobravanje}" var="volonter" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataList widgetVar="refresovanjeListe"  value="#{odobravanjeVolontera.volonteriZaOdobravanje}" var="volonter" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" emptyMessage="Nema zahteva." style="text-align: center">
         <f:facet name="header">
             Zahtevi
         </f:facet>
@@ -29,7 +32,7 @@
         <p:outputPanel id="volonterDetalji" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty odobravanjeVolontera.selektovaniVolonter}"  columnClasses="label,value">
                 <f:facet name="header">
-                    <p:graphicImage value="resources/images/drzavni.png"/> 
+                    <p:graphicImage value="resources/images/drzavni.png" style="width: 150px; height: 170px"/> 
                 </f:facet>
  
                 <h:outputText value="Id:" />
@@ -46,15 +49,19 @@
                 
             </p:panelGrid>
             <p:commandButton  value="Odobri zahtev" actionListener="#{odobravanjeVolontera.odobriZahtevVolontera()}" oncomplete="PF('refresovanjeListe').show()" ajax="true" update="@all" ></p:commandButton>
+            <p:commandButton value="Odbij zahtev" actionListener="#{odobravanjeVolontera.odbijZahtevVolontera()}" oncomplete="PF('refresovanjeListe').show()" ajax="true" update="@all"></p:commandButton>
             <ui:include src="#{odobravanjeVolontera.dohvatiZahteveZaOdobravanjeVolontera()}"></ui:include>
             
         </p:outputPanel>
     </p:dialog>
         </h:form>
         
+                </div>
+            </div>
+            
+        </div>
         
-        
-        
+
     </h:body>
 </html>
 

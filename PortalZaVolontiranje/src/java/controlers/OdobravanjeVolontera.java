@@ -49,7 +49,7 @@ public class OdobravanjeVolontera {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from volonter where JPstatus=0");
+            ResultSet rs = stm.executeQuery("select * from volonter where Aktivan=0");
             volonteriZaOdobravanje = new ArrayList<Volonter>();
             while(rs.next()){
                 Volonter volonter = new Volonter();
@@ -74,7 +74,7 @@ public class OdobravanjeVolontera {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            stm.executeUpdate("update volonter set JPstatus=1 where idvolonter="+ selektovaniVolonter.getIdVolonter());
+            stm.executeUpdate("update volonter set Aktivan=1 where idvolonter="+ selektovaniVolonter.getIdVolonter());
             
             
             
@@ -82,6 +82,20 @@ public class OdobravanjeVolontera {
             Logger.getLogger(OdobravanjeVolontera.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        
+    }
+    
+    public void odbijZahtevVolontera(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            stm.executeUpdate("delete from volonter where idvolonter="+ selektovaniVolonter.getIdVolonter());
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OdobravanjeVolontera.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }
