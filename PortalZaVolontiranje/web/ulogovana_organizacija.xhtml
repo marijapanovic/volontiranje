@@ -9,14 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-           <script>
-            function otvoriProzorVolontera() {
-                window.open("volonter_login.xhtml","_blank","toolbar=no,top=100, left=500, height=300, width=600");
-            }
-            function otvoriProzorOrganizacije() {
-                window.open("organizacija_login.xhtml", "_blank", "toolbar=no, top=100, left=400, height=250, width=500");
-            }
-        </script>
+           
     </h:head>
     <h:body>
         <div class="media">
@@ -24,7 +17,13 @@
                 <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img></a>
             </div>
             <div class="media-body mt-4">
-                <h2 class="mt-0 offset-4" style="padding-top:10px; color: forestgreen">Portal za volontiranje - pocetna</h2>
+                <h2 class="mt-0 offset-4" style="padding-top:10px; color: forestgreen">Ulogovana organizacija</h2>
+            </div>
+            <div class="media-desno mt-4 mr-3">
+                <h6>Dobrodosli,  #{login.logInVolonter.email}
+            #{login.errorEmail}
+            #{login.errorPassword}
+            #{login.errorNeaktivan}</h6>
             </div>
         </div>
 
@@ -186,4 +185,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
     </h:body>
 </html>
+
 

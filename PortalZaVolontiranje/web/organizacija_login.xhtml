@@ -43,7 +43,7 @@
                     <p:messages for="password" />
 
                 </h:panelGrid>
-                <p:commandButton value="Login" update="panel" action="#{login.login()}"  />
+                <p:commandButton value="Login" update="panel" onclick="window.open('ulogovana_organizacija.xhtml'); window.close();"  />
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
               <input type="button" value="Registruj se" onclick="window.open('organizacija_registracija.xhtml'); window.close();" />
