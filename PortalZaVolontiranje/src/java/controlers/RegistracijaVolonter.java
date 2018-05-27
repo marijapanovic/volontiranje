@@ -18,6 +18,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.Status;
+import beans.TipNaloga;
 import beans.Volonter;
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
@@ -26,6 +28,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import beans.Vestine;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+import java.time.ZoneId;
 
 
 @ManagedBean
@@ -37,14 +41,13 @@ public class RegistracijaVolonter {
     private Boolean jpDatumRodjenja;
     private String pol;
     private Boolean jpPol;
-    private SelectItem drzavljanstvo;
+    private Integer drzavljanstvo;
     private Boolean jpDrzavljanstvo;
-    private String drzavljanstvoDrugo;
     private String telefon;
     private Boolean jpTelefon;
     private String ulica_broj;
     private Boolean jpAdresa;
-    private SelectItem mesto;
+    private Integer mesto;
     private Boolean jpMesto;
     private String mail;
     private String lozinka;
@@ -52,7 +55,7 @@ public class RegistracijaVolonter {
     private Boolean jpSlika;
     private String cv;
     private Boolean jpCv;
-    private String status;
+    private Integer status;
     private Boolean jpStatus;
     private String kompanija;
     private String sedisteKompanije;
@@ -85,7 +88,7 @@ public class RegistracijaVolonter {
         return datumRodjenja;
     }
 
-    public void setDatumrodjenja(Date datumRodjenja) {
+    public void setDatumRodjenja(Date datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
     }
 
@@ -100,26 +103,7 @@ public class RegistracijaVolonter {
     public List<SelectItem> getSvaDrzavljanstva() {
         return svaDrzavljanstva;
     }
-    
-    private SelectItem izaberiDrzavljanstvo = new SelectItem(-2, "Izaberi drzavljanstvo");
 
-    public SelectItem getIzaberiDrzavljanstvo() {
-        return izaberiDrzavljanstvo;
-    }
-
-    public void setIzaberiDrzavljanstvo(SelectItem izaberiDrzavljanstvo) {
-        this.izaberiDrzavljanstvo = izaberiDrzavljanstvo;
-    }
-
-    private SelectItem drugoDrzavljanstvo = new SelectItem(-1, "Drugo");
-
-    public SelectItem getDrugoDrzavljanstvo() {
-        return drugoDrzavljanstvo;
-    }
-
-    public void setDrugoDrzavljanstvo(SelectItem drugoDrzavljanstvo) {
-        this.drugoDrzavljanstvo = drugoDrzavljanstvo;
-    }
     @PostConstruct
     public void init() {
         List<Drzavljanstvo> svaDrzavljanstvaBinovi = Drzavljanstvo.ucitajSvaDrzavljanstva();
@@ -129,17 +113,11 @@ public class RegistracijaVolonter {
         }
         List<Mesto> svaMestaBinovi = Mesto.ucitajSvaMesta();
         for (Mesto mesto : svaMestaBinovi) {
-            svaMesta.add(new SelectItem("" + mesto.getId(), mesto.getNazivMesta()));
+            svaMesta.add(new SelectItem(mesto.getId(), mesto.getNazivMesta()));
         }
     }
 
-    public String getDrzavljanstvoDrugo() {
-        return drzavljanstvoDrugo;
-    }
-
-    public void setDrzavljanstvoDrugo(String drzavljanstvoDrugo) {
-        this.drzavljanstvoDrugo = drzavljanstvoDrugo;
-    }
+  
 
     public String getPol() {
         return pol;
@@ -166,11 +144,11 @@ public class RegistracijaVolonter {
         RegistracijaVolonter.polovi = polovi;
     }
 
-    public SelectItem getDrzavljanstvo() {
+    public Integer getDrzavljanstvo() {
         return drzavljanstvo;
     }
 
-    public void setDrzavljanstvo(SelectItem drzavljanstvo) {
+    public void setDrzavljanstvo(Integer drzavljanstvo) {
         this.drzavljanstvo = drzavljanstvo;
     }
 
@@ -198,11 +176,11 @@ public class RegistracijaVolonter {
         this.ulica_broj = ulicaibroj;
     }
 
-    public SelectItem getMesto() {
+    public Integer getMesto() {
         return mesto;
     }
 
-    public void setMesto(SelectItem mesto) {
+    public void setMesto(Integer mesto) {
         this.mesto = mesto;
     }
 
@@ -238,11 +216,19 @@ public class RegistracijaVolonter {
         this.cv = cv;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
+    
+    public List<SelectItem> getStatusi() {
+        List<SelectItem> statusi = new LinkedList<>();
+        for (Map.Entry<Integer, String> statusEntry : Status.statusi.entrySet()) {
+            statusi.add(new SelectItem(statusEntry.getKey(), statusEntry.getValue()));
+        }
+        return statusi;
+    }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -515,67 +501,46 @@ public class RegistracijaVolonter {
 
     
 
-    public String RegistrujVolontera() throws GreskaPriRegistraciji {
+    public String registrujVolontera() throws GreskaPriRegistraciji {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = conn.prepareStatement("select * from volonter where email= " + mail);
+            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as broj_naloga from volonter where email = ?");
+            preparedstatement.setString(1, mail);
             ResultSet resultset = preparedstatement.executeQuery();
             resultset.next();
-            if (resultset.getString("email").equals(mail)) {
+            if (resultset.getInt("broj_naloga") > 0) {
                 return "Email vec postoji u bazi";
             } else {
-                
-                if ("drugo".equals(drzavljanstvo.getValue())) {
-
-                    // snimiti novo drzaljvanstvo u bazu
-                } else if (!"".equals(drzavljanstvo.getValue())) {
-                    int drzavljanstvoId = 0;
-                    drzavljanstvoId = (int) drzavljanstvo.getValue();
-                } else {
-                    throw new GreskaPriRegistraciji("Nije uneto drzavljanstvo");
-                }
-               // Volonter volonter = new Volonter();
-//                int drzavljanstvoId = 0;
-//                    drzavljanstvoId = (int) drzavljanstvo.getValue();
-                preparedstatement.executeUpdate("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
+                preparedstatement = conn.prepareStatement("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
                         + " telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, status, JPime, JPdatum_rodjenja, JPpol,"
-                        + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi) "
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi, tip) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 preparedstatement.setString(1, imePrezime);
-                preparedstatement.setDate(2, (java.sql.Date) datumRodjenja);
+                preparedstatement.setTimestamp(2, new Timestamp(datumRodjenja.toInstant().atZone(ZoneId.of( "Europe/Belgrade" )).toEpochSecond()));
                 preparedstatement.setString(3, pol);
-                preparedstatement.setInt(4, (int) drzavljanstvo.getValue());
+                preparedstatement.setInt(4, drzavljanstvo);
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
-                preparedstatement.setInt(7, (int) mesto.getValue());
+                preparedstatement.setInt(7, (int) 1 /*mesto.getValue()*/);
                 preparedstatement.setString(8, slika);
                 preparedstatement.setString(9, cv);
                 preparedstatement.setString(10, mail);
                 preparedstatement.setString(11, lozinka);
-                preparedstatement.setString(12, status);
+                preparedstatement.setInt(12, status);
                 preparedstatement.setBoolean(13, jpIme);
                 preparedstatement.setBoolean(14, jpDatumRodjenja);
                 preparedstatement.setBoolean(15, jpPol);
-                preparedstatement.setBoolean(16, jpDrzavljanstvo);
+                preparedstatement.setBoolean(16, false /*jpDrzavljanstvo*/);
                 preparedstatement.setBoolean(17, jpTelefon);
                 preparedstatement.setBoolean(18, jpAdresa);
-                preparedstatement.setBoolean(19, jpMesto);
+                preparedstatement.setBoolean(19, false /*jpMesto*/);
                 preparedstatement.setBoolean(20, jpSlika);
                 preparedstatement.setBoolean(21, jpCv);
                 preparedstatement.setBoolean(22, jpStatus);
                 preparedstatement.setString(23, zdravstveneNapomene);
+                preparedstatement.setInt(24, TipNaloga.VOLONTER);
                 preparedstatement.executeUpdate();
-                
-                
-//                        ps = conn.prepareStatement("insert into mesto(posbroj, naziv) values(?,?)");
-//                        ps.setString(1, posBr);
-//                        ps.setString(2, nazivMesta);
-//                        ps.executeUpdate();
-                        
-//                        + "(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id, telefon, "
-//                        + "ulica_broj, mesto_id, slika, cv, email, lozinka, zaposlen) "
-//                        + "values ('" + imePrezime + "','" + datumRodjenja + "','" + pol + "','" + drzavljanstvoId + "',)");
             }
 
         } catch (SQLException ex) {

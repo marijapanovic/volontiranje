@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beans;
 
-/**
- *
- * @author dprokic
- */
-public abstract class Status {
-    Integer idStatusa;
-    Integer idDetalja;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Status {
+    public static Map<Integer, String> statusi;
+    static {
+        statusi = new HashMap<>();
+        statusi.put(1, "zaposlen");
+        statusi.put(2, "nezaposlen");
+        statusi.put(3, "na skolovanju");
+        statusi.put(4, "u penziji");
+    }
 }

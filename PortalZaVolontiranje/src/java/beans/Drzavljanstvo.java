@@ -22,12 +22,13 @@ import java.util.logging.Logger;
  */
 public class Drzavljanstvo {
     private Integer iddrz;
-
+    private String drzavljanstvo;
+    
     public Drzavljanstvo(Integer iddrz, String drzavljanstvo) {
         this.iddrz = iddrz;
         this.drzavljanstvo = drzavljanstvo;
     }
-    private String drzavljanstvo;
+    
 
     public Integer getIddrz() {
         return iddrz;

@@ -78,10 +78,10 @@
                             <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Drzavljanstvo:" />
-                            <p:selectOneMenu id="drzavljanstvo" required="true" value="#{registracijaVolonter.drzavljanstvo}">
-                                <f:selectItem value="#{registracijaVolonter.izaberiDrzavljanstvo}" />
+                            <p:selectOneMenu id="drzavljanstvo" required="true"
+                                             value="#{registracijaVolonter.drzavljanstvo}">
+                                <f:selectItem itemValue="#{0}" itemLabel="Izaberite drzavljanstvo" />
                                 <f:selectItems value="#{registracijaVolonter.svaDrzavljanstva}" />
-                                <f:selectItem value="#{registracijaVolonter.drugoDrzavljanstvo}" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDrzavljanstvo}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -143,14 +143,11 @@
                             
                             <p:outputLabel for="status" value="Status:" />
                             <p:selectOneMenu id="status" value="#{registracijaVolonter.status}">
-                                <f:selectItem itemLabel="Izaberite status" itemValue=""/>
-                                <f:selectItem itemLabel="Zaposlen" itemValue="zaposlen" />
-                                <f:selectItem itemLabel="Nezaposlen" itemValue="nezaposlen" />
-                                <f:selectItem itemLabel="Na skolovanju" itemValue="skolovanje"/>
-                                <f:selectItem itemLabel="U penziji" itemValue="U penziji"/>
+                                <f:selectItem itemLabel="Izaberite status" itemValue="#{0}"/>
+                                <f:selectItems value="#{registracijaVolonter.statusi}" />
                                 <f:ajax render="statusDodatnaPolja" />
                             </p:selectOneMenu>
-                            <h:selectBooleanCheckbox value="#{registracijaVolonter.status}"></h:selectBooleanCheckbox>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpStatus}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <h:panelGroup id="statusDodatnaPolja">
@@ -249,9 +246,7 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
-                            <h:commandButton value="Registruj se" 
-                                             actionListener="#{registracijaVolontera.registrujVolontera}" action="#{registracijaVolonter.registrujVolontera()}">
-                         <!--       <a href="index.xhtml" onclick="#{registracijaVolonter.registrujVolontera()}"></a>-->
+                            <h:commandButton value="Registruj se" action="#{registracijaVolonter.registrujVolontera()}">
                             </h:commandButton>
                             
                             
