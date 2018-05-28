@@ -30,9 +30,19 @@ public class Login {
     private String errorNeaktivan;
     private int idVolonter;
     private int aktivan;
-
     private String errorPassword = "";
     private String errorEmail = "";
+    private boolean ok=false;
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean ok) {
+        this.ok = ok;
+    }
+    
+    
 
     public String getErrorNeaktivan() {
         return errorNeaktivan;
@@ -126,10 +136,10 @@ public class Login {
                     logInVolonter.setImePrezime(rs.getString("ime_prezime"));
                     logInVolonter.setLozinka(rs.getString("lozinka"));
                     logInVolonter.setDatumRodjenja(rs.getDate("datum_rodjenja"));
-                    logInVolonter.setDrzavljanstvoID(rs.getInt("drzavljanstvo"));
+                    logInVolonter.setDrzavljanstvoID(rs.getInt("drzavljanstvo_id"));
                     logInVolonter.setTelefon(rs.getString("telefon"));
                     logInVolonter.setUlica_broj(rs.getString("ulica_broj"));
-                    logInVolonter.setMesto(rs.getInt("mesto"));
+                    logInVolonter.setMesto(rs.getInt("mesto_id"));
                     logInVolonter.setSlika(rs.getString("slika"));
                     logInVolonter.setCv(rs.getString("cv"));
                     logInVolonter.setStatusID(rs.getInt("status"));
@@ -147,8 +157,8 @@ public class Login {
                     logInVolonter.setTip(rs.getInt("Tip"));
                     logInVolonter.setZdravstveni_problemi(rs.getString("zdravstveni_problemi"));
                     sesija.setAttribute("volonter", logInVolonter);
-
-                    return "index?faces-redirect=true";
+                    ok=true;
+                    return "volonter_login?faces-redirect=true";
                 } else {
                     errorPassword = "Pogresna lozinka";
                     return errorPassword;

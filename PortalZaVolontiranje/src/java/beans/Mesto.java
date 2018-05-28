@@ -28,6 +28,10 @@ public class Mesto {
         this.nazivMesta = nazivMesta;
     }
 
+    public Mesto() {
+       
+    }
+
     public int getId() {
         return id;
     }
@@ -40,7 +44,7 @@ public class Mesto {
         return nazivMesta;
     }
 
-    public void setNazivMesta(String nazivMesta) {
+    public void setNazivMesta(String nazivMesta) {    
         this.nazivMesta = nazivMesta;
     }
     

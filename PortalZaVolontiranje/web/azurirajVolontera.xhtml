@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+         <f:metadata>
+             <f:viewAction action="#{registracijaVolonter.init()}"></f:viewAction>
+         </f:metadata>
+    </h:head>
+    <h:body>
+     <!--   <h:form>
+            <p:selectOneMenu id="mesto" value="#{registracijaVolonter.svaMesta}">
+                               
+            <f:selectItems value="#{registracijaVolonter.init()}" />
+                            </p:selectOneMenu>
+        </h:form>-->
+      <h:form id="mojaforma">
+          <h:selectOneMenu value="#{azuriranjeProfilaVolonter.selektovanoMesto}">
+              <f:selectItems value="#{azuriranjeProfilaVolonter.dohvatiSvaMesta()}" var="mesto" itemLabel="#{mesto.naziv}" itemValue="#{mesto.naziv}"></f:selectItems>
+                        </h:selectOneMenu>
+                        <br/>
+                       
+                    </h:form>
+    </h:body>
+</html>
+
