@@ -10,6 +10,11 @@
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         
            <script>
+            //function Close(){
+             //  window.open("ulogovani_volonter.xhtml");
+              // window.close();
+            
+            //}
             function RegistracijaVolontera() {
                 window.open("volonter_registracija.xhtml","_blank");
             }
@@ -43,7 +48,7 @@
 
                 </h:panelGrid>
 
-                <p:commandButton value="Login" update="panel" action="#{login.login()}"/>
+                <p:commandButton value="Login" update="panel" action="#{login.login()}" />
 
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
