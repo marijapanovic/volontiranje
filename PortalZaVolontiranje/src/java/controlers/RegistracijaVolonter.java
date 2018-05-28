@@ -1,12 +1,12 @@
 package controlers;
 
-import beans.Drzavljanstvo;
+
 import beans.Mesto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -20,13 +20,13 @@ import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
 import beans.Status;
 import beans.TipNaloga;
-import beans.Volonter;
+
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import beans.Vestine;
+
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.time.ZoneId;
@@ -75,6 +75,7 @@ public class RegistracijaVolonter {
     private String vestineIskustva;
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
+    private int idvolonter;
   
     public String getImePrezime() {
         return imePrezime;
@@ -501,7 +502,7 @@ public class RegistracijaVolonter {
 
     
 
-    public String registrujVolontera() throws GreskaPriRegistraciji {
+    public String registrujVolontera() throws GreskaPriRegistraciji, SQLException {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
@@ -522,7 +523,7 @@ public class RegistracijaVolonter {
                 preparedstatement.setInt(4, drzavljanstvo);
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
-                preparedstatement.setInt(7, (int) 1 /*mesto.getValue()*/);
+                preparedstatement.setInt(7,mesto);
                 preparedstatement.setString(8, slika);
                 preparedstatement.setString(9, cv);
                 preparedstatement.setString(10, mail);
@@ -531,10 +532,10 @@ public class RegistracijaVolonter {
                 preparedstatement.setBoolean(13, jpIme);
                 preparedstatement.setBoolean(14, jpDatumRodjenja);
                 preparedstatement.setBoolean(15, jpPol);
-                preparedstatement.setBoolean(16, false /*jpDrzavljanstvo*/);
+                preparedstatement.setBoolean(16,jpDrzavljanstvo);
                 preparedstatement.setBoolean(17, jpTelefon);
                 preparedstatement.setBoolean(18, jpAdresa);
-                preparedstatement.setBoolean(19, false /*jpMesto*/);
+                preparedstatement.setBoolean(19, jpMesto);
                 preparedstatement.setBoolean(20, jpSlika);
                 preparedstatement.setBoolean(21, jpCv);
                 preparedstatement.setBoolean(22, jpStatus);
@@ -549,7 +550,77 @@ public class RegistracijaVolonter {
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-        return "index?faces-redirect=true";
+        return registrovaniVolonterStatus();
     }
+    
+    public String registrovaniVolonterStatus() throws GreskaPriRegistraciji, SQLException{
+        
+        Connection con;
+        try {
+            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
+            preparedstatement.setString(1, mail);
+            ResultSet resultset = preparedstatement.executeQuery();
+            resultset.next();
+            int idVolonter;
+            
+            idVolonter = resultset.getInt(idvolonter);
+            if (resultset.getInt(status)== 1){
+               preparedstatement = con.prepareStatement("insert into zaposlenje(idvolonter, kompanija, sediste,pozicija) "
+                       + "values(?,?,?,?)");
+            
+               preparedstatement.setInt(1,idVolonter);
+               preparedstatement.setString(2,kompanija);
+               preparedstatement.setString(3, sedisteKompanije);
+               preparedstatement.setString(4,pozicijaUKompaniji);
+                
+               preparedstatement.executeUpdate();
+                
+               return "volonter_login.xhtml";
+            }
+            else if (resultset.getInt(status)== 3){
+                preparedstatement = con.prepareStatement("insert into skola(idvolonter, naziv, mesto, nivo, godina_upisa) "
+                        + "value(?,?,?,?)");
+                preparedstatement.setInt(1, idVolonter);
+                preparedstatement.setString(2, nazivSkole);
+                preparedstatement.setString(3, sedisteSkole);
+                preparedstatement.setString(4, nivoStudija);
+                preparedstatement.setString(5, godinaUpisa);
+            }
+            
+          
+        }   catch (SQLException ex) {
+            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return RegistrovaniVolonterVestine();
 
+    }
+    public String RegistrovaniVolonterVestine(){
+        Connection con;
+        
+        try{
+            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
+            preparedstatement.setString(1, mail);
+            int idVolonter = 0;
+            ResultSet resultset = preparedstatement.executeQuery();
+            resultset.next();
+            if(resultset.getString(vestine)!= ""){
+               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
+               preparedstatement.setInt(1,idVolonter);
+               preparedstatement.setString(2,vestineNaziv);
+               preparedstatement.setString(3, vestineZvanje);
+               preparedstatement.setString(4, vestineIskustva);
+               
+               preparedstatement.executeUpdate();
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "ulogovani_volonter.xhtml";
+    }
+    
+    
+    
 }

@@ -65,7 +65,8 @@
                             
                             <p:outputLabel value="Datum rodjenja:" />
                             <p:calendar id="mask" value="#{registracijaVolonter.datumRodjenja}" pattern="dd-MM-yyyy" mask="true" />
-                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDatumRodjenja}" required="true" requiredMessage="Unesite datum rodjenja."></h:selectBooleanCheckbox>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDatumRodjenja}" required="true" 
+                                                     requiredMessage="Unesite datum rodjenja."></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
@@ -204,7 +205,7 @@
                             
                             <p:outputLabel for="vestine" value="Vestine:" />
                             <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
-                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue=""/>
+                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue="#{0}"/>
                                             <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
                                     <f:ajax render="statusDodatneVestine" />
                             </p:selectOneMenu>
