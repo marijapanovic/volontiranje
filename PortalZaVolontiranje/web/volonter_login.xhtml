@@ -10,6 +10,10 @@
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         
            <script>
+               if(#{login.ok}){
+                    window.opener.location.href="ulogovani_volonter.xhtml";
+                    window.close();
+                }
             //function Close(){
              //  window.open("ulogovani_volonter.xhtml");
               // window.close();
@@ -25,7 +29,8 @@
             <p:panel id="panel" header="Login volonter">
 
                 
-
+                #{login.errorPassword}
+                #{login.errorEmail}
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="mail" value="Mail:" />
                     <p:inputText id="mail" value="#{login.email}" required="true" 

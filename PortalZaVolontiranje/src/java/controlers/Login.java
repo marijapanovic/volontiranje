@@ -32,6 +32,17 @@ public class Login {
     private int aktivan;
     private String errorPassword = "";
     private String errorEmail = "";
+    private boolean ok=false;
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean ok) {
+        this.ok = ok;
+    }
+    
+    
 
     public String getErrorNeaktivan() {
         return errorNeaktivan;
@@ -146,7 +157,8 @@ public class Login {
                     logInVolonter.setTip(rs.getInt("Tip"));
                     logInVolonter.setZdravstveni_problemi(rs.getString("zdravstveni_problemi"));
                     sesija.setAttribute("volonter", logInVolonter);
-                    return "ulogovani_volonter?faces-redirect=true";
+                    ok=true;
+                    return "volonter_login?faces-redirect=true";
                 } else {
                     errorPassword = "Pogresna lozinka";
                     return errorPassword;
