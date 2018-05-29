@@ -5,16 +5,21 @@
  */
 package controlers;
 
+import beans.Drzavljanstvo;
 import beans.Mesto;
+import beans.Status;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -59,7 +64,7 @@ public class AzuriranjeProfilaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
-    private String[] odgovarajuciDani;
+    private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
 
     private String vestine;
@@ -70,7 +75,11 @@ public class AzuriranjeProfilaVolonter {
     private String vestineIskustva;
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
-
+    
+  
+    
+    
+    
     public Boolean getJpIme() {
         return jpIme;
     }
@@ -287,13 +296,7 @@ public class AzuriranjeProfilaVolonter {
         this.godinaUpisa = godinaUpisa;
     }
 
-    public String[] getOdgovarajuciDani() {
-        return odgovarajuciDani;
-    }
-
-    public void setOdgovarajuciDani(String[] odgovarajuciDani) {
-        this.odgovarajuciDani = odgovarajuciDani;
-    }
+    
 
     public Boolean getJpOdovarajuciDani() {
         return jpOdovarajuciDani;
@@ -386,42 +389,139 @@ public class AzuriranjeProfilaVolonter {
         this.selektovanoMesto = selektovanoMesto;
     }
    
+    private List<Drzavljanstvo> svaDrzavljanstva2;
+
+    public List<Drzavljanstvo> getSvaDrzavljanstva2() {
+        return svaDrzavljanstva2;
+    }
+
+    public void setSvaDrzavljanstva2(List<Drzavljanstvo> svaDrzavljanstva2) {
+        this.svaDrzavljanstva2 = svaDrzavljanstva2;
+    }
+    
+    private Drzavljanstvo selektovanoDrzavljanstvo;
+
+    public Drzavljanstvo getSelektovanoDrzavljanstvo() {
+        return selektovanoDrzavljanstvo;
+    }
+
+    public void setSelektovanoDrzavljanstvo(Drzavljanstvo selektovanoDrzavljanstvo) {
+        this.selektovanoDrzavljanstvo = selektovanoDrzavljanstvo;
+    }
     
     
-    public String dohvatiSvaMesta(){
+    
+    public List<Mesto> dohvatiMesta(){
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-               Statement stm = conn.createStatement();
-              ResultSet rs = stm.executeQuery("select id, naziv_mesta from tblgrad");
-              svaMesta2= new ArrayList<>();
-              while(rs.next()){
-                  Mesto mesto2 = new Mesto();
-                  mesto2.setId(rs.getInt("id"));
-                  mesto2.setNazivMesta(rs.getString("naziv_mesta"));
-                  svaMesta2.add(mesto2);
-                  
-                  
-              }
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from tblgrad");
+            svaMesta2 = new ArrayList<Mesto>();
+            while(rs.next()){
+                Mesto mesto2 = new Mesto();
+                mesto2.setId(rs.getInt("id"));
+                mesto2.setNazivMesta(rs.getString("naziv_mesta"));
+                mesto2.setPostanski_broj(rs.getInt("postanski_broj"));
+                mesto2.setOkrug(rs.getString("okrug"));
+                mesto2.setOpstina(rs.getString("opstina"));
+                
+                svaMesta2.add(mesto2);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return svaMesta2;
     }
     
+     public List<Drzavljanstvo> dohvatiDrzavljanstva(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from drzavljanstvo");
+            svaDrzavljanstva2 = new ArrayList<Drzavljanstvo>();
+            while(rs.next()){
+                Drzavljanstvo drzavljanstvo2 = new Drzavljanstvo();
+                drzavljanstvo2.setIddrz(rs.getInt("iddrz"));
+                drzavljanstvo2.setDrzavljanstvo(rs.getString("drzavljanstvo"));
+                svaDrzavljanstva2.add(drzavljanstvo2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return svaDrzavljanstva2;
+    }
+    
+    
+    public static class Dan {
+
+        private int brDana;
+
+        public Dan(int broj) {
+            this.brDana = broj;
+        }
+
+        public int getBrDana() {
+            return brDana;
+        }
+
+        public String getImeDana() {
+            DateFormatSymbols dfs = new DateFormatSymbols();
+            String[] dani = dfs.getWeekdays();
+            return dani[brDana];
+        }
+    }
+
+    private static Dan[] daniUNedelji;
+
+    static {
+        daniUNedelji = new Dan[7];
+        for (int i = Calendar.SUNDAY; i <= Calendar.SATURDAY; i++) {
+            daniUNedelji[i - Calendar.SUNDAY] = new Dan(i);
+        }
+    }
+
+    public Dan[] getDaniUNedelji() {
+        return daniUNedelji;
+    }
+
+    public void setDaniUNedelji(Dan[] daniUNedelji) {
+        AzuriranjeProfilaVolonter.daniUNedelji = daniUNedelji;
+    }
+
+    public Integer[] getOdgovarajuciDani() {
+        return odgovarajuciDani;
+    }
+
+    public void setOdgovarajuciDani(Integer[] odgovarajuciDani) {
+        this.odgovarajuciDani = odgovarajuciDani;
+    }
+
+    public List<SelectItem> dohvatiStatuse() {
+        List<SelectItem> statusi = new LinkedList<>();
+        for (Map.Entry<Integer, String> statusEntry : Status.statusi.entrySet()) {
+            statusi.add(new SelectItem(statusEntry.getKey(), statusEntry.getValue()));
+        }
+        return statusi;
+    }
+     
+     
     public void azurirajProfil() {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + mail + "'");
             rs.next();
-            stm.executeUpdate("update volonter, drzavljanstvo, tblgrad, sati, raspolozivost, skola, zaposlenje, vestine set "
+            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
                     + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
                     + ", volonter.jpdrzavljanstvo=" + jpDrzavljanstvo + ", volonter.telefon='" + telefon + "', volonter.jptelefon="
                     + jpTelefon + ", volonter.ulica_broj='" + ulica_broj + "' , volonter.jpulica_broj=" + jpAdresa + ", volonter.jpmesto=" + jpMesto + ", volonter.lozinka='"
                     + lozinka + "', volonter.slika='" + slika + "', volonter.jpslika=" + jpSlika + ", volonter.cv='" + cv + "', volonter.jpcv=" + jpCv +
                     ", volonter.status="+ status + ", volonter.jpstatus=" + jpStatus + ", volonter.zdravstveni_problemi='" + zdravstveneNapomene +"', "
-                            + ", drzavljanstvo.drzavljanstvo'" + drzavljanstvo + "', tblgrad.naziv_mesta= '"
-            );
+                    + "', volonter.mesto_id= " + selektovanoMesto.getId() + ", volonter.drzavljanstvo_id= " + selektovanoDrzavljanstvo.getIddrz() + ", raspolozivost.iddana=" + odgovarajuciDani + ", skola.naziv='"+nazivSkole 
+                    +"', skola.mesto='" + sedisteSkole + "', skola.nivo='" + nivoStudija + "', skola.godina_upisa='" + godinaUpisa +"', zaposlenje.kompanija='" + kompanija +"',"
+                    + " zaposlenje.sediste='" + sedisteKompanije + "', zaposlenje.pozicija='" + pozicijaUKompaniji + "', vestine.naziv='" + vestineNaziv + "', vestine.struka= '" + vestineZvanje + "', vestine.iskustva='"
+                    + vestineIskustva + "' where volonter.email='" + mail + "' and volonter.idvolonter = raspolozivost.idvolontera and volonter.idvolonter=raspolozivost.idvolontera and "
+                            + "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolonter" );
 
 //            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
 //                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 

@@ -6,25 +6,245 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-         <f:metadata>
-             <f:viewAction action="#{registracijaVolonter.init()}"></f:viewAction>
-         </f:metadata>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+
     </h:head>
     <h:body>
-     <!--   <h:form>
-            <p:selectOneMenu id="mesto" value="#{registracijaVolonter.svaMesta}">
+        <h:form>
+
+            Odaberite mesto:
+            <h:selectOneMenu value="#{azuriranjeProfilaVolonter.selektovanoMesto}" >
+                <f:selectItems value="#{azuriranjeProfilaVolonter.dohvatiMesta()}" var="mesto" itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.nazivMesta}"></f:selectItems>
+            </h:selectOneMenu>
+
+        </h:form>
+        <h:form>
+
+            Odaberite drzavljanstvo:
+            <h:selectOneMenu value="#{azuriranjeProfilaVolonter.selektovanoDrzavljanstvo}" >
+                <f:selectItems value="#{azuriranjeProfilaVolonter.dohvatiDrzavljanstva()}" var="drzavljanstvo" itemLabel="#{drzavljanstvo.drzavljanstvo}" itemValue="#{drzavljanstvo.drzavljanstvo}"></f:selectItems>
+            </h:selectOneMenu>
+
+        </h:form>
+        <h:form>
+            <p:selectManyMenu id ="dani" value="#{azuriranjeProfilaVolonter.odgovarajuciDani}">
+                <f:selectItems value="#{azuriranjeProfilaVolonter.daniUNedelji}" var="dan"
+                               itemValue="#{dan.brDana}" itemLabel="#{dan.getImeDana()}">
+                </f:selectItems>
+            </p:selectManyMenu>
+        </h:form>
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="offset-sm-3 col-sm-7  rounded p-2 text-center">
+                    <h2>Izmeni profil volontera</h2>
+                    <p></p>
+                    <h:form>
+                        <h:panelGrid columns="5" cellpadding="3">
+                            
+                            <p:outputLabel value="Ime i prezime:" />
+                            <h:outputText value="#{registracijaVolonter.imePrezime}" >
                                
-            <f:selectItems value="#{registracijaVolonter.init()}" />
+                            </h:outputText>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpIme}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Datum rodjenja:" />
+                            <p:calendar id="mask" value="#{registracijaVolonter.datumRodjenja}" pattern="dd-MM-yyyy" mask="true" />
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDatumRodjenja}" required="true" 
+                                                     requiredMessage="Unesite datum rodjenja."></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Pol:" />
+                            <h:selectOneRadio value="#{registracijaVolonter.pol}">
+                                <f:selectItems value="#{registracijaVolonter.polovi}"></f:selectItems>
+                            </h:selectOneRadio>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpPol}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Drzavljanstvo:" />
+                            <p:selectOneMenu id="drzavljanstvo" required="true"
+                                             value="#{azuriranjeProfilaVolonter.drzavljanstvo}">
+                                <f:selectItem itemValue="#{0}" itemLabel="Izaberite drzavljanstvo" />
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.svaDrzavljanstva2}" />
                             </p:selectOneMenu>
-        </h:form>-->
-      <h:form id="mojaforma">
-          <h:selectOneMenu value="#{azuriranjeProfilaVolonter.selektovanoMesto}">
-              <f:selectItems value="#{azuriranjeProfilaVolonter.dohvatiSvaMesta()}" var="mesto" itemLabel="#{mesto.naziv}" itemValue="#{mesto.naziv}"></f:selectItems>
-                        </h:selectOneMenu>
-                        <br/>
-                       
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpDrzavljanstvo}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Kontakt telefon:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.telefon}" required="true" requiredMessage="Unesite telefon.">
+                                <f:validateRegex pattern="^[\d\.\-]+$" ></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpTelefon}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Ulica i broj stanovanja:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.ulica_broj}" required="true" requiredMessage="Unesite adresu stanovanja.">
+                                <f:validateRegex pattern="^[a-zA-Z0-9\s,'-]*$"></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpAdresa}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Mesto prebivalista:" />
+                            <p:selectOneMenu id="mesto" value="#{azuriranjeProfilaVolonter.mesto}">
+                                <f:selectItem itemLabel="Izaberite mesto" itemValue="" />
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.svaMesta2}" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpMesto}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Slika:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.slika}" required="true" requiredMessage="Okacite sliku">
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpSlika}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="CV:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.cv}" required="true" requiredMessage="Okacite CV">
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpCv}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="E-mail:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.mail}" required="true" requiredMessage="Unesite e-mail.">
+                                <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" ></f:validateRegex>
+                            </p:inputText>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Lozinka:" />
+                            <p:password value="#{azuriranjeProfilaVolonter.lozinka}" required="true" requiredMessage="Unesite lozinku.">
+                            </p:password>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel for="status" value="Status:" />
+                            <p:selectOneMenu id="status" value="#{azuriranjeProfilaVolonter.status}">
+                                <f:selectItem itemLabel="Izaberite status" itemValue="#{0}"/>
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.dohvatiStatuse()}" />
+                                <f:ajax render="statusDodatnaPolja" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpStatus}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <h:panelGroup id="statusDodatnaPolja">
+                                <p:outputLabel value="Ime kompanije" rendered="#{azuriranjeProfilaVolonter.status == 1}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.kompanija}" required="true" 
+                                             requiredMessage="Unesite ime kompanije." 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 1}">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Sediste kompanije:" rendered="#{azuriranjeProfilaVolonter.status == 1}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteKompanije}" required="true" 
+                                             requiredMessage="Unesite sediste kompanije." 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 1}">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Pozicija u kompaniji:" rendered="#{azuriranjeProfilaVolonter.status == 1}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.pozicijaUKompaniji}" 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 1}">
+                                </p:inputText>
+
+                                <p:outputLabel value="Naziv obrazovne institucije:" 
+                                               rendered="#{azuriranjeProfilaVolonter.status == 3}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.nazivSkole}" required="true" 
+                                             requiredMessage="Unesite naziv obrazovne ustanove koju pohadjate." 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 3}">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Sediste(grad,drzava):" rendered="#{azuriranjeProfilaVolonter.status == 3}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteSkole}" required="true" 
+                                             requiredMessage="Unesite stecena znanja." 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 3}">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Nivo studija:" rendered="#{azuriranjeProfilaVolonter.status == 3}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.nivoStudija}" 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 3}">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Godina upisa:" rendered="#{azuriranjeProfilaVolonter.status == 3}" />
+                                <p:inputText value="#{azuriranjeProfilaVolonter.godinaUpisa}" 
+                                             rendered="#{azuriranjeProfilaVolonter.status == 3}">
+                                </p:inputText>
+                            </h:panelGroup>
+                            
+                            <p:outputLabel for="dani" value="Dani za volontiranje:" />
+                            <p:selectManyMenu id ="dani" value="#{azuriranjeProfilaVolonter.odgovarajuciDani}">
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.daniUNedelji}" var="dan"
+                                               itemValue="#{dan.brDana}" itemLabel="#{dan.getImeDana()}">
+                                </f:selectItems>
+                            </p:selectManyMenu>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpOdovarajuciDani}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel for="vestine" value="Vestine:" />
+                            <p:selectOneMenu id="vestine" value="#{azuriranjeProfilaVolonter.vestineNaziv}">
+                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue="#{0}"/>
+                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
+                                    <f:ajax render="statusDodatneVestine" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpVestine}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+
+                            <h:panelGroup id="statusDodatneVestine">
+                                    <p:outputLabel value="Naziv obrazovne institucije" 
+                                                   rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineNaziv}" required="true" 
+                                                             requiredMessage="Unesite poslednji zavrseni obrazovni stepen." 
+                                                             rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    
+                                    <p:outputLabel value="Strucno zvanje" 
+                                                   rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{azuriranjeProfilaVolonter.vestineZvanje}" required="true" 
+                                                             requiredMessage="Unesite strucno zvanje."
+                                                             rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    <p:outputLabel value="Ostale diplome,znanja i vestine" 
+                                                   rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{azuriranjeProfilaVolonter.vestineOstalo}"  
+                                                              
+                                                 rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    <p:outputLabel value="Prethodna iskustva" 
+                                                   rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{azuriranjeProfilaVolonter.vestineIskustva}" 
+                                                 rendered="#{azuriranjeProfilaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    
+                            </h:panelGroup>                          
+                            
+                            <p:outputLabel value="Zdravstvene napomene:" />
+                            <p:inputText value="#{azuriranjeProfilaVolonter.zdravstveneNapomene}">
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpZdravstveneNapomene}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <h:commandButton value="Sacuvaj izmene" action="#{azuriranjeProfilaVolonter.azurirajProfil()}">
+                            </h:commandButton>
+                            
+                            
+                        </h:panelGrid>
+                        
                     </h:form>
+                </div> 
+            </div>
+        </div>
     </h:body>
 </html>
 

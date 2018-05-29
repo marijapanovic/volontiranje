@@ -28,6 +28,9 @@ public class Drzavljanstvo {
         this.iddrz = iddrz;
         this.drzavljanstvo = drzavljanstvo;
     }
+
+    public Drzavljanstvo() {
+    }
     
 
     public Integer getIddrz() {
