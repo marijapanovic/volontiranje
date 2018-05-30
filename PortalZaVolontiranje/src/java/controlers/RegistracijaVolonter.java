@@ -30,9 +30,11 @@ import javax.faces.model.SelectItem;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.time.ZoneId;
+import javax.faces.bean.ViewScoped;
 
 
 @ManagedBean
+@ViewScoped
 public class RegistracijaVolonter {
 
     private String imePrezime;
@@ -582,7 +584,7 @@ public class RegistracijaVolonter {
             int idVolonter;
             
             idVolonter = resultset.getInt("idvolonter");
-            if (resultset.getInt("status") == 1){
+            if (status == 1){
                preparedstatement = con.prepareStatement("insert into zaposlenje(idvolonter, kompanija, sediste,pozicija) "
                        + "values(?,?,?,?)");
             
@@ -595,19 +597,22 @@ public class RegistracijaVolonter {
                 
                return "volonter_login.xhtml";
             }
-            else if (resultset.getInt(status)== 3){
+            else if (status == 3){
                 preparedstatement = con.prepareStatement("insert into skola(idvolonter, naziv, mesto, nivo, godina_upisa) "
-                        + "value(?,?,?,?)");
+                        + "values(?,?,?,?,?)");
                 preparedstatement.setInt(1, idVolonter);
                 preparedstatement.setString(2, nazivSkole);
                 preparedstatement.setString(3, sedisteSkole);
                 preparedstatement.setString(4, nivoStudija);
                 preparedstatement.setString(5, godinaUpisa);
+                
+                preparedstatement.executeUpdate();
             }
             
           
         }   catch (SQLException ex) {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
         return RegistrovaniVolonterVestine();
 
