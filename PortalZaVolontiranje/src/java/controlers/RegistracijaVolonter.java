@@ -30,9 +30,11 @@ import javax.faces.model.SelectItem;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.time.ZoneId;
+import javax.faces.bean.ViewScoped;
 
 
 @ManagedBean
+@ViewScoped
 public class RegistracijaVolonter {
 
     private String imePrezime;
@@ -64,7 +66,7 @@ public class RegistracijaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
-    private String[] odgovarajuciDani;
+    private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
     
     private String vestine;
@@ -333,11 +335,11 @@ public class RegistracijaVolonter {
         RegistracijaVolonter.daniUNedelji = daniUNedelji;
     }
 
-    public String[] getOdgovarajuciDani() {
+    public Integer[] getOdgovarajuciDani() {
         return odgovarajuciDani;
     }
 
-    public void setOdgovarajuciDani(String[] odgovarajuciDani) {
+    public void setOdgovarajuciDani(Integer[] odgovarajuciDani) {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
@@ -542,10 +544,27 @@ public class RegistracijaVolonter {
                 preparedstatement.setString(23, zdravstveneNapomene);
                 preparedstatement.setInt(24, TipNaloga.VOLONTER);
                 preparedstatement.executeUpdate();
+                
+                // treba nam id korisnika koga smo upravo uneli u bazu
+                preparedstatement = conn.prepareStatement("select idvolonter from volonter where email = ?");
+                preparedstatement.setString(1, mail);
+                resultset = preparedstatement.executeQuery();
+                resultset.next();
+                int idVolontera = resultset.getInt("idvolonter");
+                
+                // sada treba njegove dane kada je raspoloziv uneti u tabelu raspolozivost, svaki dan jedan po jedan
+                preparedstatement = conn.prepareStatement("insert into raspolozivost (idvolontera, iddana) values (?, ?)");                
+                for (Integer dan : odgovarajuciDani) {
+                    preparedstatement.setInt(1, idVolontera);
+                    preparedstatement.setInt(2, dan);
+                    preparedstatement.executeUpdate();
+                }
+                
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
 
         FacesContext.getCurrentInstance().addMessage(null,
@@ -564,8 +583,8 @@ public class RegistracijaVolonter {
             resultset.next();
             int idVolonter;
             
-            idVolonter = resultset.getInt(idvolonter);
-            if (resultset.getInt(status)== 1){
+            idVolonter = resultset.getInt("idvolonter");
+            if (status == 1){
                preparedstatement = con.prepareStatement("insert into zaposlenje(idvolonter, kompanija, sediste,pozicija) "
                        + "values(?,?,?,?)");
             
@@ -578,19 +597,22 @@ public class RegistracijaVolonter {
                 
                return "volonter_login.xhtml";
             }
-            else if (resultset.getInt(status)== 3){
+            else if (status == 3){
                 preparedstatement = con.prepareStatement("insert into skola(idvolonter, naziv, mesto, nivo, godina_upisa) "
-                        + "value(?,?,?,?)");
+                        + "values(?,?,?,?,?)");
                 preparedstatement.setInt(1, idVolonter);
                 preparedstatement.setString(2, nazivSkole);
                 preparedstatement.setString(3, sedisteSkole);
                 preparedstatement.setString(4, nivoStudija);
                 preparedstatement.setString(5, godinaUpisa);
+                
+                preparedstatement.executeUpdate();
             }
             
           
         }   catch (SQLException ex) {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
         return RegistrovaniVolonterVestine();
 
@@ -602,18 +624,18 @@ public class RegistracijaVolonter {
             con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
             preparedstatement.setString(1, mail);
-            int idVolonter = 0;
             ResultSet resultset = preparedstatement.executeQuery();
             resultset.next();
-            if(resultset.getString(vestine)!= ""){
-               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
-               preparedstatement.setInt(1,idVolonter);
-               preparedstatement.setString(2,vestineNaziv);
-               preparedstatement.setString(3, vestineZvanje);
-               preparedstatement.setString(4, vestineIskustva);
-               
-               preparedstatement.executeUpdate();
-            }
+            int idVolonter = resultset.getInt("idvolonter");
+//            if(vestine != ""){
+//               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
+//               preparedstatement.setInt(1,idVolonter);
+//               preparedstatement.setString(2,vestineNaziv);
+//               preparedstatement.setString(3, vestineZvanje);
+//               preparedstatement.setString(4, vestineIskustva);
+//               
+//               preparedstatement.executeUpdate();
+//            }
         
         } catch (SQLException ex) {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
