@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.util.Date;
+import java.util.*;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,10 +26,7 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
-import java.time.ZoneId;
 import javax.faces.bean.ViewScoped;
 
 
@@ -79,6 +76,12 @@ public class RegistracijaVolonter {
     private Boolean jpZdravstveneNapomene;
     private int idvolonter;
   
+  //  Date dateStarting  = (Date) jDateChooserStart.getDate();
+    //Date dateEnding    = (Date) jDateChooserEnd.getDate();
+
+//java.util.Date utilDate = datumRodjenja.getDate();
+
+    
     public String getImePrezime() {
         return imePrezime;
     }
@@ -520,7 +523,9 @@ public class RegistracijaVolonter {
                         + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi, tip) "
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 preparedstatement.setString(1, imePrezime);
-                preparedstatement.setTimestamp(2, new Timestamp(datumRodjenja.toInstant().atZone(ZoneId.of( "Europe/Belgrade" )).toEpochSecond()));
+          
+                java.sql.Date sqlDatumRodjenja = new java.sql.Date(datumRodjenja.getTime());
+                preparedstatement.setDate(2,sqlDatumRodjenja);
                 preparedstatement.setString(3, pol);
                 preparedstatement.setInt(4, drzavljanstvo);
                 preparedstatement.setString(5, telefon);
@@ -545,14 +550,12 @@ public class RegistracijaVolonter {
                 preparedstatement.setInt(24, TipNaloga.VOLONTER);
                 preparedstatement.executeUpdate();
                 
-                // treba nam id korisnika koga smo upravo uneli u bazu
+                
                 preparedstatement = conn.prepareStatement("select idvolonter from volonter where email = ?");
                 preparedstatement.setString(1, mail);
                 resultset = preparedstatement.executeQuery();
                 resultset.next();
                 int idVolontera = resultset.getInt("idvolonter");
-                
-                // sada treba njegove dane kada je raspoloziv uneti u tabelu raspolozivost, svaki dan jedan po jedan
                 preparedstatement = conn.prepareStatement("insert into raspolozivost (idvolontera, iddana) values (?, ?)");                
                 for (Integer dan : odgovarajuciDani) {
                     preparedstatement.setInt(1, idVolontera);
@@ -598,7 +601,7 @@ public class RegistracijaVolonter {
                return "volonter_login.xhtml";
             }
             else if (status == 3){
-                preparedstatement = con.prepareStatement("insert into skola(idvolonter, naziv, mesto, nivo, godina_upisa) "
+                preparedstatement = con.prepareStatement("insert into skola(idvolont, naziv, mesto, nivo, godina_upisa) "
                         + "values(?,?,?,?,?)");
                 preparedstatement.setInt(1, idVolonter);
                 preparedstatement.setString(2, nazivSkole);
@@ -614,34 +617,34 @@ public class RegistracijaVolonter {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-        return RegistrovaniVolonterVestine();
+        return "ulogovani_volonter.xhtml";
 
     }
-    public String RegistrovaniVolonterVestine(){
-        Connection con;
-        
-        try{
-            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
-            preparedstatement.setString(1, mail);
-            ResultSet resultset = preparedstatement.executeQuery();
-            resultset.next();
-            int idVolonter = resultset.getInt("idvolonter");
-//            if(vestine != ""){
-//               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
-//               preparedstatement.setInt(1,idVolonter);
-//               preparedstatement.setString(2,vestineNaziv);
-//               preparedstatement.setString(3, vestineZvanje);
-//               preparedstatement.setString(4, vestineIskustva);
-//               
-//               preparedstatement.executeUpdate();
-//            }
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "ulogovani_volonter.xhtml";
-    }
+//    public String RegistrovaniVolonterVestine(){
+//        Connection con;
+//        
+//        try{
+//            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+//            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
+//            preparedstatement.setString(1, mail);
+//            ResultSet resultset = preparedstatement.executeQuery();
+//            resultset.next();
+//            int idVolonter = resultset.getInt("idvolonter");
+////            if(vestine != ""){
+////               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
+////               preparedstatement.setInt(1,idVolonter);
+////               preparedstatement.setString(2,vestineNaziv);
+////               preparedstatement.setString(3, vestineZvanje);
+////               preparedstatement.setString(4, vestineIskustva);
+////               
+////               preparedstatement.executeUpdate();
+////            }
+//        
+//        } catch (SQLException ex) {
+//            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return "ulogovani_volonter.xhtml";
+//    }
     
     
     
