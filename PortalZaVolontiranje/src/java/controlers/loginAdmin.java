@@ -26,10 +26,29 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 
 public class loginAdmin {
+
+    private int admin_id;
     private String email;
     private String lozinka;
+    private String imePrezime;
     private String errorEmail;
     private String errorPassword;
+
+    public int getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
+    }
+
+    public String getImePrezime() {
+        return imePrezime;
+    }
+
+    public void setImePrezime(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
 
     public String getEmail() {
         return email;
@@ -62,49 +81,47 @@ public class loginAdmin {
     public void setErrorPassword(String errorPassword) {
         this.errorPassword = errorPassword;
     }
-    
-    public Admin logInAdmin;
 
-    public Admin getLogInAdmin() {
-        return logInAdmin;
+    public Admin logAdmin;
+
+    public Admin getLogAdmin() {
+        return logAdmin;
     }
 
-    public void setLogInAdmin(Admin logInAdmin) {
-        this.logInAdmin = logInAdmin;
+    public void setLogAdmin(Admin logAdmin) {
+        this.logAdmin = logAdmin;
     }
 
-    
+    public String loginAdminNew() {
 
-   
-    
-    public String loginAdmin() {
-        
         try {
             errorEmail = "";
             errorPassword = "";
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from admin where email='" + email + "'");
-            if (!rs.next()){
+            Statement stm1 = conn.createStatement();
+            ResultSet rsa = stm1.executeQuery("select * from volonteri.admin where email='" + email + "'");
+            if (!rsa.next()) {
                 errorEmail = "Ne postoji korisnicko ime";
                 return errorEmail;
-            }else{
-                if (rs.getString("lozinka").equals(lozinka)) {
-                    HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                   logInAdmin.setAdmin_id(rs.getInt("admin_id"));
-                    logInAdmin.setEmail(rs.getString("mail"));
-                    logInAdmin.setLozinka(rs.getString("lozinka"));
-                    logInAdmin.setImePrezime(rs.getString("imePrezime"));
+            } else {
+                if (rsa.getString("lozinka").equals(lozinka)) {
+                    HttpSession sesija1 = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    logAdmin = new Admin();
+                    logAdmin.setEmail(rsa.getString("email"));
+                    logAdmin.setLozinka(rsa.getString("lozinka"));
+                    logAdmin.setImePrezime(rsa.getString("imePrezime"));
+                    logAdmin.setAdmin_id(rsa.getInt("admin_id"));
+                    sesija1.setAttribute("admin", logAdmin);
                     return "admin_ulogovan?faces-redirect=true";
-                }else{
-                    errorPassword="Pogresna lozinka";
+                } else {
+                    errorPassword = "Pogresna lozinka";
                     return errorPassword;
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-           return null; 
- }
-    
+        return null;
+    }
+
 }

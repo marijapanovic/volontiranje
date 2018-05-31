@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `volonteri` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `volonteri`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: volonteri
@@ -24,7 +26,7 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
-  `mail` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `lozinka` varchar(45) NOT NULL,
   `imePrezime` varchar(100) NOT NULL,
   PRIMARY KEY (`admin_id`)
@@ -76,7 +78,7 @@ CREATE TABLE `raspolozivost` (
   `idvolontera` int(11) NOT NULL,
   `iddana` int(11) NOT NULL,
   PRIMARY KEY (`idvolontera`,`iddana`),
-  CONSTRAINT `idvolontera` FOREIGN KEY (`idvolontera`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idvolontera` FOREIGN KEY (`idvolontera`) REFERENCES `volonter` (`idvolonter`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,8 +88,34 @@ CREATE TABLE `raspolozivost` (
 
 LOCK TABLES `raspolozivost` WRITE;
 /*!40000 ALTER TABLE `raspolozivost` DISABLE KEYS */;
-INSERT INTO `raspolozivost` VALUES (2,1),(2,5),(3,1),(3,4),(3,7),(4,1),(4,4),(4,7),(5,1),(5,4),(5,7),(6,2),(6,3),(6,4),(7,2),(7,4),(8,1);
 /*!40000 ALTER TABLE `raspolozivost` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sati`
+--
+
+DROP TABLE IF EXISTS `sati`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sati` (
+  `idvolonter` int(11) NOT NULL,
+  `iddan` int(11) NOT NULL,
+  `sati` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idvolonter`,`iddan`),
+  UNIQUE KEY `idvolontera_UNIQUE` (`idvolonter`),
+  UNIQUE KEY `iddana_UNIQUE` (`iddan`),
+  CONSTRAINT `idvolonter` FOREIGN KEY (`idvolonter`, `iddan`) REFERENCES `raspolozivost` (`idvolontera`, `iddana`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sati`
+--
+
+LOCK TABLES `sati` WRITE;
+/*!40000 ALTER TABLE `sati` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sati` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -109,7 +137,7 @@ CREATE TABLE `skola` (
   KEY `idvolKey_idx` (`idvolont`),
   KEY `volKey_idx` (`idvolont`),
   CONSTRAINT `volKey` FOREIGN KEY (`idvolont`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +146,6 @@ CREATE TABLE `skola` (
 
 LOCK TABLES `skola` WRITE;
 /*!40000 ALTER TABLE `skola` DISABLE KEYS */;
-INSERT INTO `skola` VALUES (1,7,'mkoijhbgu','hghll??','erere','fgds');
 /*!40000 ALTER TABLE `skola` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +214,7 @@ DROP TABLE IF EXISTS `volonter`;
 CREATE TABLE `volonter` (
   `idvolonter` int(11) NOT NULL AUTO_INCREMENT,
   `ime_prezime` varchar(100) NOT NULL,
-  `datum_rodjenja` date NOT NULL,
+  `datum_rodjenja` datetime NOT NULL,
   `pol` varchar(1) NOT NULL,
   `drzavljanstvo_id` int(11) NOT NULL,
   `telefon` varchar(20) NOT NULL,
@@ -215,9 +242,9 @@ CREATE TABLE `volonter` (
   UNIQUE KEY `idvolonter_UNIQUE` (`idvolonter`),
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `drzavljanstvoKey_idx` (`drzavljanstvo_id`),
-  CONSTRAINT `drzavljanstvoKey` FOREIGN KEY (`drzavljanstvo_id`) REFERENCES `drzavljanstvo` (`iddrz`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  CONSTRAINT `drzavljanstvoKey` FOREIGN KEY (`drzavljanstvo_id`) REFERENCES `drzavljanstvo` (`iddrz`),
+  CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +253,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,1,0,NULL),(2,'Marija Prokic','1970-01-18','Z',1,'8796958','Nikole Alkovica',4,'nema','zeuze','marijap@yhoo.com','1234567',1,0,0,0,0,0,0,0,0,0,0,0,2,''),(3,'Petar Petrovic','1970-01-18','M',1,'8989898','neka ulica',4,'nema','zeuze','petar@yhoo.com','85858585',1,0,0,0,0,0,0,0,0,0,0,0,2,'hsfsga'),(4,'Jagoda','1970-01-18','Z',1,'414254','Nikole Alkovica 55',342,'hdrhdsjclksajom','dccvsaas','assacsa@yhoo.com','33333333333333',1,0,0,0,0,0,0,0,0,0,0,0,2,'sffdb'),(5,'Andrej Bozic','1970-01-11','M',1,'1021525','Nikole Alkovica 55',4,'nema','fsdfdsfsd','vdsdsfdsfs@yahoo.com','fesfsefesw',3,0,0,0,0,0,0,0,0,0,0,0,2,''),(6,'Rade','1970-01-18','M',1,'2135456465','Kneza Viseslava 52',689,'nema','zeuze','perade@yhoo.com','desa3',3,0,0,0,0,0,0,1,0,0,1,0,2,''),(7,'Ljubicica Mitrovic','1970-01-18','Z',1,'989898989','Kneza Viseslava 90',5,'nema','zeuze','peradada@yhoo.com','qwertzu',3,0,0,0,0,1,0,0,0,0,0,0,2,''),(8,'Datum rodjenja','2018-05-30','Z',1,'2135456465','jdjdjkrtjetjhetjhe',4,'nema','zeuze','cas@yahoo.com','213456',4,0,0,0,0,0,0,0,0,0,0,0,2,'');
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,1,0,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +273,7 @@ CREATE TABLE `zaposlenje` (
   PRIMARY KEY (`idzaposlenje`,`idvolonter`),
   KEY `idvolonterKey_idx` (`idvolonter`),
   CONSTRAINT `idvolonterKey` FOREIGN KEY (`idvolonter`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +282,6 @@ CREATE TABLE `zaposlenje` (
 
 LOCK TABLES `zaposlenje` WRITE;
 /*!40000 ALTER TABLE `zaposlenje` DISABLE KEYS */;
-INSERT INTO `zaposlenje` VALUES (1,2,'fsdgfdsgs','sdgdsgs','ssdgs'),(2,3,'wrerwet','hfhdhf','zrwzrewz'),(3,4,'bdjvdjhvjsd','fsgbdsdsf','sdgsdgs');
 /*!40000 ALTER TABLE `zaposlenje` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -268,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-30 13:24:48
+-- Dump completed on 2018-05-31 18:01:33
