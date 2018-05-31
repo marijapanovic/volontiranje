@@ -146,16 +146,16 @@
                             <p:selectOneMenu id="status" value="#{registracijaVolonter.status}">
                                 <f:selectItem itemLabel="Izaberite status" itemValue="#{0}"/>
                                 <f:selectItems value="#{registracijaVolonter.statusi}" />
-                                <f:ajax render="statusDodatnaPolja" />
+                                <f:ajax render="statusDodatnaPolja" execute="imeKompanije" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpStatus}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <h:panelGroup id="statusDodatnaPolja">
                                 <p:outputLabel value="Ime kompanije" rendered="#{registracijaVolonter.status == 1}" />
-                                <p:inputText value="#{registracijaVolonter.kompanija}" required="true" 
+                                <p:inputText id="imeKompanije" value="#{registracijaVolonter.kompanija}" required="true" 
                                              requiredMessage="Unesite ime kompanije." 
-                                             rendered="#{registracijaVolonter.status == 1}">
+                                             rendered="#{registracijaVolonter.status == 1}" >
                                 </p:inputText>
                                 
                                 <p:outputLabel value="Sediste kompanije:" rendered="#{registracijaVolonter.status == 1}" />
@@ -203,7 +203,7 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="vestine" value="Vestine:" />
+            <!--                <p:outputLabel for="vestine" value="Vestine:" />
                             <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
                                             <f:selectItem itemLabel="Izaberite vestine:" itemValue="#{0}"/>
                                             <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
@@ -238,7 +238,7 @@
                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
                                     </p:inputText>
                                     
-                            </h:panelGroup>                          
+                           </h:panelGroup>                   -->       
                             
                             <p:outputLabel value="Zdravstvene napomene:" />
                             <p:inputText value="#{registracijaVolonter.zdravstveneNapomene}">

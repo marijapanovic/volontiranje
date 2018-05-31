@@ -1,161 +1,34 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Admin</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-        <h:outputStylesheet library="css" name="css2.css"></h:outputStylesheet>
-    </h:head>
-    <h:body>
-        <div class="media">            
-            <div class="media-body mt-4">
-                <h3 class="mt-0 offset-2" style="padding-top:10px; text-align: center; color: forestgreen">Portal za volontiranje - Admin strana</h3>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Logovanje administratora</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+         <div class="container">
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 bg-light rounded p-2 text-center">
+                    <h2>Login</h2>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <b>Email:</b>
+                            <h:inputText value="#{loginAdmin.email}" required="true" requiredMessage="Morate uneti email"></h:inputText>
+                            <b>Lozinka:</b>
+                            <h:inputSecret value="#{loginAdmin.lozinka}"  required="true" requiredMessage="Morate uneti lozinku"></h:inputSecret>  
+                        </h:panelGrid>
+                        <h:commandButton value="Login" action="#{loginAdmin.loginAdmin()}" class="btn btn-info mt-2"></h:commandButton>
+                    </h:form>
+                </div>
             </div>
-            <div class="media-left">
-                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:200px"></img></a>
-            </div>
-        </div>
-
-
-        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: #228b22">
-            
-
-            <div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: center">
-                <ul class="navbar-nav offset-2">
-                    <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Vesti</button>
-                            <div class="dropdown-content">
-                              <a href="#">Neke vesti</a>
-                              <a href="#">Neke druge vesti</a>
-                            </div>
-                          </div>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Obavestenje</button>
-                            <div class="dropdown-content">
-                              <a href="#">Neka obavestenja</a>
-                              <a href="#">Druga obavestenja</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Oglasi</button>
-                            <div class="dropdown-content">
-                              <a href="#">Neki oglasi</a>
-                              <a href="#">Neki drugi oglasi</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Diskusije</button>
-                            <div class="dropdown-content">
-                              <a href="#">Volonterske</a>
-                              <a href="#">Organizacijske</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Organizacije</button>
-                            <div class="dropdown-content">
-                              <a href="#">Nesto</a>
-                              <a href="#">Nesto drugo</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Volonteri</button>
-                            <div class="dropdown-content">
-                              <a href="#">Nesto</a>
-                              <a href="#">Nesto drugo</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Statistika</button>
-                            <div class="dropdown-content">
-                              <a href="#">Stat nesto</a>
-                              <a href="#">Stat nesto drugo</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Sifarnici</button>
-                            <div class="dropdown-content">
-                              <a href="#">Neke sifre</a>
-                              <a href="#">Neke druge sifre</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Izvestaji</button>
-                            <div class="dropdown-content">
-                              <a href="#">Nesto1</a>
-                              <a href="#">Nesto2</a>
-                            </div>
-                          </div>
-                    </li>
-                    
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Zahtevi za odobrenje</button>
-                            <div class="dropdown-content">
-                              <a href="#">Volonteri</a>
-                              <a href="#">Organizacije</a>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="nav-item">
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn" style="color: yellow">Prijave neprikladnog sadrzaja</button>
-                            <div class="dropdown-content">
-                              <a href="#">Neki neprikladan sadrzaj</a>
-                              <a href="#">Neki drugi neprikladan sadrzaj</a>
-                            </div>
-                          </div>
-                    </li>
-                </ul>
-            </div> 
-        </nav>
-
-        
-
-        
-
-
-
-
-
-        
-
-
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
-
-    </h:body>
+         </div>
+    </body>
 </html>

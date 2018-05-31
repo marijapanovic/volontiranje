@@ -22,7 +22,35 @@ import java.util.logging.Logger;
 public class Mesto {
     private int id;
     private String nazivMesta;
+    
+    private int postanski_broj;
+    private String okrug;
+    private String opstina;
 
+    public int getPostanski_broj() {
+        return postanski_broj;
+    }
+
+    public void setPostanski_broj(int postanski_broj) {
+        this.postanski_broj = postanski_broj;
+    }
+
+    public String getOkrug() {
+        return okrug;
+    }
+
+    public void setOkrug(String okrug) {
+        this.okrug = okrug;
+    }
+
+    public String getOpstina() {
+        return opstina;
+    }
+
+    public void setOpstina(String opstina) {
+        this.opstina = opstina;
+    }
+    
     public Mesto(int id, String nazivMesta) {
         this.id = id;
         this.nazivMesta = nazivMesta;
