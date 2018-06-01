@@ -24,27 +24,7 @@ public class Admin {
     private String email;
     private String lozinka;
     private String imePrezime;
-    private String errorEmail;
-    private String errorPassword;
-
-    public String getErrorEmail() {
-        return errorEmail;
-    }
-
-    public void setErrorEmail(String errorEmail) {
-        this.errorEmail = errorEmail;
-    }
-
-    public String getErrorPassword() {
-        return errorPassword;
-    }
-
-    public void setErrorPassword(String errorPassword) {
-        this.errorPassword = errorPassword;
-    }
     
-    
-
     public int getAdmin_id() {
         return admin_id;
     }

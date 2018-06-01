@@ -71,7 +71,7 @@
                             <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel value="Pol:" />
-                            <h:selectOneRadio value="#{registracijaVolonter.pol}">
+                            <h:selectOneRadio value="#{registracijaVolonter.pol}" required="true">
                                 <f:selectItems value="#{registracijaVolonter.polovi}"></f:selectItems>
                             </h:selectOneRadio>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpPol}"></h:selectBooleanCheckbox>
