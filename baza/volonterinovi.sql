@@ -29,6 +29,7 @@ CREATE TABLE `admin` (
   `email` varchar(45) NOT NULL,
   `lozinka` varchar(45) NOT NULL,
   `imePrezime` varchar(100) NOT NULL,
+  `tip` int(11) NOT NULL DEFAULT '3',
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,7 +40,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'srki@bla.com','nesto','Srdjan Abadzija');
+INSERT INTO `admin` VALUES (1,'srki@bla.com','nesto','Srdjan Abadzija',3);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,6 +69,88 @@ INSERT INTO `drzavljanstvo` VALUES (1,'Srbija');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `oblasti`
+--
+
+DROP TABLE IF EXISTS `oblasti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oblasti` (
+  `idoblasti` int(11) NOT NULL,
+  `naziv_oblasti` varchar(100) NOT NULL,
+  PRIMARY KEY (`idoblasti`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oblasti`
+--
+
+LOCK TABLES `oblasti` WRITE;
+/*!40000 ALTER TABLE `oblasti` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oblasti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `org_kontakt_tel`
+--
+
+DROP TABLE IF EXISTS `org_kontakt_tel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `org_kontakt_tel` (
+  `id_tel` int(11) NOT NULL AUTO_INCREMENT,
+  `id_org` int(11) NOT NULL,
+  `org_kontakt_tel` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_tel`,`id_org`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `org_kontakt_tel`
+--
+
+LOCK TABLES `org_kontakt_tel` WRITE;
+/*!40000 ALTER TABLE `org_kontakt_tel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `org_kontakt_tel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `organizacija`
+--
+
+DROP TABLE IF EXISTS `organizacija`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `organizacija` (
+  `idorganizacija` int(11) NOT NULL AUTO_INCREMENT,
+  `naziv` varchar(100) NOT NULL,
+  `mesto_id` int(11) NOT NULL,
+  `pib` int(11) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `tekst` longtext NOT NULL,
+  `oblast_id` int(11) NOT NULL,
+  `web_adresa` varchar(45) NOT NULL,
+  `lozinka` varchar(45) NOT NULL,
+  `tip` int(11) NOT NULL DEFAULT '2',
+  PRIMARY KEY (`idorganizacija`),
+  KEY `mestoKey_idx` (`mesto_id`),
+  KEY `oblast_idKey_idx` (`oblast_id`),
+  CONSTRAINT `mesto_idKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`),
+  CONSTRAINT `oblast_idKey` FOREIGN KEY (`oblast_id`) REFERENCES `oblasti` (`idoblasti`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `organizacija`
+--
+
+LOCK TABLES `organizacija` WRITE;
+/*!40000 ALTER TABLE `organizacija` DISABLE KEYS */;
+/*!40000 ALTER TABLE `organizacija` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `raspolozivost`
 --
 
@@ -93,33 +176,6 @@ INSERT INTO `raspolozivost` VALUES (6,3);
 UNLOCK TABLES;
 
 --
--- Table structure for table `sati`
---
-
-DROP TABLE IF EXISTS `sati`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sati` (
-  `idvolonter` int(11) NOT NULL,
-  `iddan` int(11) NOT NULL,
-  `sati` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idvolonter`,`iddan`),
-  UNIQUE KEY `idvolontera_UNIQUE` (`idvolonter`),
-  UNIQUE KEY `iddana_UNIQUE` (`iddan`),
-  CONSTRAINT `idvolonter` FOREIGN KEY (`idvolonter`, `iddan`) REFERENCES `raspolozivost` (`idvolontera`, `iddana`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sati`
---
-
-LOCK TABLES `sati` WRITE;
-/*!40000 ALTER TABLE `sati` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sati` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `skola`
 --
 
@@ -129,14 +185,14 @@ DROP TABLE IF EXISTS `skola`;
 CREATE TABLE `skola` (
   `idskola` int(11) NOT NULL AUTO_INCREMENT,
   `idvolont` int(11) NOT NULL,
-  `mesto` varchar(100) NOT NULL,
+  `idskolaSif` int(11) NOT NULL,
   `nivo` varchar(45) DEFAULT NULL,
   `godina_upisa` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`idskola`,`idvolont`),
+  PRIMARY KEY (`idskola`,`idvolont`,`idskolaSif`),
   KEY `idvolKey_idx` (`idvolont`),
   KEY `volKey_idx` (`idvolont`),
-  CONSTRAINT `SkolaSifKey` FOREIGN KEY (`idskola`) REFERENCES `skolasif` (`idskolaSif`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  CONSTRAINT `volonterKey` FOREIGN KEY (`idvolont`) REFERENCES `volonter` (`idvolonter`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,6 +201,7 @@ CREATE TABLE `skola` (
 
 LOCK TABLES `skola` WRITE;
 /*!40000 ALTER TABLE `skola` DISABLE KEYS */;
+INSERT INTO `skola` VALUES (1,1,1,'4','2015');
 /*!40000 ALTER TABLE `skola` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,8 +215,8 @@ DROP TABLE IF EXISTS `skolasif`;
 CREATE TABLE `skolasif` (
   `idskolaSif` int(11) NOT NULL AUTO_INCREMENT,
   `nazivSkole` varchar(100) NOT NULL,
-  PRIMARY KEY (`idskolaSif`),
-  UNIQUE KEY `nazivSkole_UNIQUE` (`nazivSkole`)
+  `mesto` varchar(100) NOT NULL,
+  PRIMARY KEY (`idskolaSif`,`nazivSkole`,`mesto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -169,7 +226,7 @@ CREATE TABLE `skolasif` (
 
 LOCK TABLES `skolasif` WRITE;
 /*!40000 ALTER TABLE `skolasif` DISABLE KEYS */;
-INSERT INTO `skolasif` VALUES (1,'ETF');
+INSERT INTO `skolasif` VALUES (1,'ETF','Beograd');
 /*!40000 ALTER TABLE `skolasif` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,14 +265,11 @@ DROP TABLE IF EXISTS `vestine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vestine` (
-  `idvestine` int(11) NOT NULL AUTO_INCREMENT,
   `idvolonter` int(11) NOT NULL,
-  `naziv` varchar(100) NOT NULL,
+  `idvestine` int(11) NOT NULL,
   `struka` varchar(100) NOT NULL,
   `iskustva` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`idvestine`,`idvolonter`),
-  KEY `idvolKey_idx` (`idvolonter`),
-  CONSTRAINT `idvolKey` FOREIGN KEY (`idvolonter`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idvolonter`,`idvestine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -226,6 +280,29 @@ CREATE TABLE `vestine` (
 LOCK TABLES `vestine` WRITE;
 /*!40000 ALTER TABLE `vestine` DISABLE KEYS */;
 /*!40000 ALTER TABLE `vestine` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vestinesif`
+--
+
+DROP TABLE IF EXISTS `vestinesif`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vestinesif` (
+  `idvestinesif` int(11) NOT NULL AUTO_INCREMENT,
+  `naziv` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idvestinesif`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vestinesif`
+--
+
+LOCK TABLES `vestinesif` WRITE;
+/*!40000 ALTER TABLE `vestinesif` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vestinesif` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -260,17 +337,23 @@ CREATE TABLE `volonter` (
   `JPcv` tinyint(4) NOT NULL,
   `JPstatus` tinyint(4) NOT NULL,
   `Aktivan` tinyint(4) NOT NULL DEFAULT '0',
-  `tip` tinyint(4) NOT NULL,
+  `tip` tinyint(4) NOT NULL DEFAULT '1',
   `Zdravstveni_problemi` varchar(200) DEFAULT NULL,
   `skola_id` int(11) DEFAULT NULL,
+  `oblastivolontiranjaid` int(11) NOT NULL,
+  `zaposlenjeid` int(11) DEFAULT NULL,
+  `vestineid` int(11) DEFAULT NULL,
+  `oblastiid` int(11) DEFAULT NULL,
   PRIMARY KEY (`idvolonter`),
   UNIQUE KEY `idvolonter_UNIQUE` (`idvolonter`),
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `drzavljanstvoKey_idx` (`drzavljanstvo_id`),
-  KEY `skolaKey_idx` (`skola_id`),
+  KEY `zaposlenjeKey_idx` (`zaposlenjeid`),
+  KEY `oblastiKey_idx` (`oblastiid`),
   CONSTRAINT `drzavljanstvoKey` FOREIGN KEY (`drzavljanstvo_id`) REFERENCES `drzavljanstvo` (`iddrz`),
   CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`),
-  CONSTRAINT `skolaKey` FOREIGN KEY (`skola_id`) REFERENCES `skola` (`idskola`) ON UPDATE CASCADE
+  CONSTRAINT `oblastiKey` FOREIGN KEY (`oblastiid`) REFERENCES `oblasti` (`idoblasti`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `zaposlenjeKey` FOREIGN KEY (`zaposlenjeid`) REFERENCES `zaposlenje` (`idzaposlenje`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -280,7 +363,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL),(6,'gdfg','2018-06-06 00:00:00','M',1,'234324','jhgjhghgj',1,'nhghjhg','jghjgj','hfghf@bla.com','retrret',3,0,0,0,0,0,0,0,0,0,0,0,2,'',NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02 00:00:00','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL),(6,'gdfg','2018-06-06 00:00:00','M',1,'234324','jhgjhghgj',1,'nhghjhg','jghjgj','hfghf@bla.com','retrret',3,0,0,0,0,0,0,0,0,0,0,0,2,'',NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,12 +377,12 @@ DROP TABLE IF EXISTS `zaposlenje`;
 CREATE TABLE `zaposlenje` (
   `idzaposlenje` int(11) NOT NULL AUTO_INCREMENT,
   `idvolonter` int(11) NOT NULL,
-  `kompanija` varchar(100) NOT NULL,
   `sediste` varchar(100) NOT NULL,
   `pozicija` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idzaposlenje`,`idvolonter`),
   KEY `idvolonterKey_idx` (`idvolonter`),
-  CONSTRAINT `idvolonterKey` FOREIGN KEY (`idvolonter`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idvolonterKey` FOREIGN KEY (`idvolonter`) REFERENCES `volonter` (`idvolonter`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idzaposlenjesif` FOREIGN KEY (`idzaposlenje`) REFERENCES `zaposlenjesif` (`id zaposlenje`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -311,6 +394,29 @@ LOCK TABLES `zaposlenje` WRITE;
 /*!40000 ALTER TABLE `zaposlenje` DISABLE KEYS */;
 /*!40000 ALTER TABLE `zaposlenje` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `zaposlenjesif`
+--
+
+DROP TABLE IF EXISTS `zaposlenjesif`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `zaposlenjesif` (
+  `id zaposlenje` int(11) NOT NULL,
+  `kompanija` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id zaposlenje`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `zaposlenjesif`
+--
+
+LOCK TABLES `zaposlenjesif` WRITE;
+/*!40000 ALTER TABLE `zaposlenjesif` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zaposlenjesif` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -321,4 +427,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-01  9:52:50
+-- Dump completed on 2018-06-03 19:32:54
