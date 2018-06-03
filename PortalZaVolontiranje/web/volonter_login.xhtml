@@ -37,7 +37,7 @@
                                  label="Mail" requiredMessage="Mejl je obavezan."
                                  validatorMessage="Unesite ispravan mejl.">
                         
-                        <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+" />
+                        <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" />
                     </p:inputText>
                 <p:message for="mail" /> 
 
@@ -49,7 +49,7 @@
                         <f:validateLength minimum="5"/>
                         
                     </p:password>
-                 <p:messages for="password" />
+                 <p:message for="password" />
 
                 </h:panelGrid>
 
