@@ -45,6 +45,30 @@ INSERT INTO `admin` VALUES (1,'srki@bla.com','nesto','Srdjan Abadzija',3);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `dani`
+--
+
+DROP TABLE IF EXISTS `dani`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dani` (
+  `iddani` int(11) NOT NULL,
+  `dan` varchar(45) NOT NULL,
+  PRIMARY KEY (`iddani`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dani`
+--
+
+LOCK TABLES `dani` WRITE;
+/*!40000 ALTER TABLE `dani` DISABLE KEYS */;
+INSERT INTO `dani` VALUES (1,'Ponedeljak'),(2,'Utorak'),(3,'Sreda'),(4,'Cetvrtak'),(5,'Petak'),(6,'Subota'),(7,'Nedelja');
+/*!40000 ALTER TABLE `dani` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `drzavljanstvo`
 --
 
@@ -139,6 +163,8 @@ CREATE TABLE `raspolozivost` (
   `idvolontera` int(11) NOT NULL,
   `iddana` int(11) NOT NULL,
   PRIMARY KEY (`idvolontera`,`iddana`),
+  KEY `iddanaKey_idx` (`iddana`),
+  CONSTRAINT `iddanaKey` FOREIGN KEY (`iddana`) REFERENCES `dani` (`iddani`) ON UPDATE CASCADE,
   CONSTRAINT `idvolontera` FOREIGN KEY (`idvolontera`) REFERENCES `volonter` (`idvolonter`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -205,6 +231,30 @@ CREATE TABLE `skolasif` (
 LOCK TABLES `skolasif` WRITE;
 /*!40000 ALTER TABLE `skolasif` DISABLE KEYS */;
 /*!40000 ALTER TABLE `skolasif` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statussif`
+--
+
+DROP TABLE IF EXISTS `statussif`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statussif` (
+  `idstatusSif` int(11) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`idstatusSif`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statussif`
+--
+
+LOCK TABLES `statussif` WRITE;
+/*!40000 ALTER TABLE `statussif` DISABLE KEYS */;
+INSERT INTO `statussif` VALUES (1,'Zaposlen'),(2,'Nezaposlen'),(3,'Na skolovanju'),(4,'U penziji');
+/*!40000 ALTER TABLE `statussif` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -303,9 +353,9 @@ CREATE TABLE `volonter` (
   `mesto_id` int(11) NOT NULL,
   `slika` varchar(255) NOT NULL,
   `cv` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `lozinka` varchar(20) NOT NULL,
-  `status` int(11) NOT NULL,
   `JPime` tinyint(4) NOT NULL,
   `JPdatum_rodjenja` tinyint(4) NOT NULL,
   `JPpol` tinyint(4) NOT NULL,
@@ -328,8 +378,10 @@ CREATE TABLE `volonter` (
   UNIQUE KEY `idvolonter_UNIQUE` (`idvolonter`),
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `drzavljanstvoKey_idx` (`drzavljanstvo_id`),
+  KEY `statusKey_idx` (`status`),
   CONSTRAINT `drzavljanstvoKey` FOREIGN KEY (`drzavljanstvo_id`) REFERENCES `drzavljanstvo` (`iddrz`),
-  CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`)
+  CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`),
+  CONSTRAINT `statusKey` FOREIGN KEY (`status`) REFERENCES `statussif` (`idstatusSif`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -339,7 +391,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','','srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL),(6,'gdfg','2018-06-06','M',1,'234324','jhgjhghgj',1,'nhghjhg','jghjgj','hfghf@bla.com','retrret',3,0,0,0,0,0,0,0,0,0,0,0,2,'',NULL,0,NULL,NULL,NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL),(6,'gdfg','2018-06-06','M',1,'234324','jhgjhghgj',1,'nhghjhg','jghjgj',3,'hfghf@bla.com','retrret',0,0,0,0,0,0,0,0,0,0,0,2,'',NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-04 10:20:32
+-- Dump completed on 2018-06-04 11:25:51
