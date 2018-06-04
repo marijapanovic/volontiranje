@@ -76,10 +76,7 @@ public class RegistracijaVolonter {
     private Boolean jpZdravstveneNapomene;
     private int idvolonter;
   
-  //  Date dateStarting  = (Date) jDateChooserStart.getDate();
-    //Date dateEnding    = (Date) jDateChooserEnd.getDate();
 
-//java.util.Date utilDate = datumRodjenja.getDate();
 
     
     public String getImePrezime() {
