@@ -12,7 +12,7 @@
     <h:body>
         <div class="media">
             <div class="media-left">
-                <a href="#"><img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img></a>
+                <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="media-body mt-4">
                 <h2 class="mt-0 offset-4" style="padding-top:10px; color: forestgreen">Portal za volontiranje</h2>
@@ -69,9 +69,15 @@
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
-                            <p:outputLabel value="E-mail:" />
-                            <p:inputText value="#{registracijaOrganizacije.mail}" required="true" requiredMessage="Unesite e-mail.">
-                                <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></f:validateRegex>
+                            <p:outputLabel value="Ulica i broj:" />
+                            <p:inputText value="#" required="true" requiredMessage="Unesite ulicu i broj">
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="PIB:" />
+                            <p:inputText value="#{registracijaOrganizacije.pib}" required="true" requiredMessage="Unesite Vas PIB.">
+                                <f:validateRegex pattern="[0-9]{3}" ></f:validateRegex>
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -83,17 +89,28 @@
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
-                            <p:outputLabel value="Delatnost:" />
+                            <p:outputLabel value="E-mail:" />
+                            <p:inputText value="#{registracijaOrganizacije.mail}" required="true" requiredMessage="Unesite e-mail.">
+                                <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ></f:validateRegex>
+                            </p:inputText>
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="Tekst o organizaciji:" />
+                            <textarea rows="3" cols="30"></textarea>                           
+                            <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            
+                            <p:outputLabel value="Oblast delovanja:" />
                             <p:selectOneMenu id="delatnost" value="#{registracijaOrganizacije.delatnost}">
-                                <f:selectItem itemLabel="Izaberite delatnost" itemValue="" />
+                                <f:selectItem itemLabel="Izaberite oblast delovanja" itemValue="" />
                                 <f:selectItems value="#{registracijaOrganizacije.sveDelatnosti}" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
-                            <p:outputLabel value="Broj zaposlenih:" />
-                            <p:inputText value="#{registracijaOrganizacije.brojZaposlenih}" required="true" requiredMessage="Unesite broj zaposlenih.">
-                                <f:validateRegex pattern="[0–9/]" ></f:validateRegex>
+                            <p:outputLabel value="Web adresa:" />
+                            <p:inputText value="#{registracijaOrganizacije.brojZaposlenih}" required="true" requiredMessage="Unesite web adresu.">
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
