@@ -9,7 +9,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         
+        
            <script>
+                if(#{loginorganizacija.ok}){
+                    window.opener.location.href="ulogovana_organizacija.xhtml";
+                    window.close();
+                }
             function RegistracijaOrganizacije() {
                 window.open("organizacija_registracija.xhtml","_blank");
             }
@@ -20,33 +25,34 @@
         <h:form>
             <p:panel id="panel" header="Login organizacije">
 
-                
+                #{loginOrganizacija.errorPassword}
+                #{loginOrganizacija.errorEmail}
 
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="mail" value="Mail:" />
-                    <p:inputText id="mail" value="#{login.email}" required="true" 
+                    <p:inputText id="mail" value="#{loginOrganizacija.email}" required="true" 
                                  label="Mail" requiredMessage="Mejl je obavezan."
                                  validatorMessage="Unesite ispravan mejl.">
                         
-                        <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+" />
+                        <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" />
                     </p:inputText>
                     <p:message for="mail" />
 
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{login.lozinka}" 
+                    <p:password id="password" value="#{loginOrganizacija.lozinka}" 
                                  label="Password" required="true" 
                                  requiredMessage="Lozinka je obavezna."
                                  validatorMessage="Lozinka mora imati minimum 5 karaktera.">
                         <f:validateLength minimum="5"/>
-                        
                     </p:password>
-                    <p:messages for="password" />
+                    <p:message for="password" />
 
                 </h:panelGrid>
-                <p:commandButton value="Login" update="panel" onclick="window.open('ulogovana_organizacija.xhtml'); window.close();"  />
+                <p:commandButton value="Login" update="panel" action="#{loginOrganizacija.login()}"  />
               <a href="#" onclick="">Zaboravio sam lozinku</a>
               <p></p>
-              <input type="button" value="Registruj se" onclick="window.open('organizacija_registracija.xhtml'); window.close();" />
+              <p:commandButton value="Registruj se" update="panel" onclick="window.open('organizacija_registracija.xhtml'); window.close();"/>
+              
             </p:panel>
         </h:form>
    </h:body>

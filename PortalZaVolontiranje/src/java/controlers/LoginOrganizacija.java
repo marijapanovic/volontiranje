@@ -30,7 +30,7 @@ public class LoginOrganizacija {
     private String email;
     private String lozinka;
     private String errorNeaktivan;
-    private int idOrganizacije;
+    private int idOrganizacija;
     private int aktivan;
     private String errorPassword = "";
     private String errorEmail = "";
@@ -61,11 +61,11 @@ public class LoginOrganizacija {
     }
 
     public int getIdOrganizacije() {
-        return idOrganizacije;
+        return idOrganizacija;
     }
 
     public void setIdOrganizacije(int idOrganizacije) {
-        this.idOrganizacije = idOrganizacije;
+        this.idOrganizacija = idOrganizacije;
     }
 
     public int getAktivan() {
@@ -129,9 +129,28 @@ public class LoginOrganizacija {
                 if (rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     logInOrganizacija = new Organizacija();
+                    logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
+                    logInOrganizacija.setNaziv(rs.getString("naziv"));
+                    logInOrganizacija.setMesto(rs.getInt("mesto_id"));
+                    logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
+                    logInOrganizacija.setPib(rs.getInt("pib"));
+                    logInOrganizacija.setEmail(rs.getString("email"));
+                    logInOrganizacija.setText(rs.getString("text"));
+                 // logInOrganizacija.setOblastDelovanja(rs.getInt("oblast_id"));
+                    logInOrganizacija.setWebAdresa(rs.getString("web_adresa"));
+                    logInOrganizacija.setLozinka(rs.getString("lozinka"));
+                    logInOrganizacija.setTip(rs.getInt("tip"));
+                    logInOrganizacija.setUlica_broj(rs.getString("ulica_broj"));
+                    logInOrganizacija.setTelefon(rs.getString("kontakt_telefon"));
+                    sesija.setAttribute("organizacija", logInOrganizacija);
+                    ok=true;
+                    return "organizacija_login?faces-redirect=true";
+                } else {
+                    errorPassword = "Pogresna lozinka";
+                    return errorPassword;
+                }
                     
                 }
-            }
         } catch (SQLException ex) {
             Logger.getLogger(LoginOrganizacija.class.getName()).log(Level.SEVERE, null, ex);
         }

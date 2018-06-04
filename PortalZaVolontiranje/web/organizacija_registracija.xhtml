@@ -49,11 +49,11 @@
         <div class="container">
             <div class="row">
                 
-                <div class="offset-sm-2 col-sm-7  rounded p-2 text-center">
+                <div class="offset-sm-3 col-sm-8  rounded p-2 text-center">
                     <h2>Registracija organizacije</h2>
                     <p></p>
                     <h:form>
-                        <h:panelGrid columns="4" cellpadding="5">
+                        <h:panelGrid columns="4" cellpadding="3">
                             <p:outputLabel value="Naziv organizacije:" />
                             <p:inputText value="#{registracijaOrganizacije.naziv}" required="true" requiredMessage="Unesite naziv organizacije.">
                                 <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
@@ -70,7 +70,7 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                             <p:outputLabel value="Ulica i broj:" />
-                            <p:inputText value="#" required="true" requiredMessage="Unesite ulicu i broj">
+                            <p:inputText value="#{registracijaOrganizacija.ulica_broj}" required="true" requiredMessage="Unesite ulicu i broj">
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacije.uslov}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
