@@ -136,10 +136,18 @@ CREATE TABLE `organizacija` (
   `tip` int(11) NOT NULL DEFAULT '2',
   `ulica_broj` varchar(100) NOT NULL,
   `kontakt_tel` varchar(45) NOT NULL,
+  `JPnaziv` tinyint(4) NOT NULL,
+  `JPmesto_id` tinyint(4) NOT NULL,
+  `JPpib` tinyint(4) NOT NULL,
+  `JPtekst` tinyint(4) NOT NULL,
+  `JPoblast_id` tinyint(4) NOT NULL,
+  `JPweb_adresa` tinyint(4) NOT NULL,
+  `JPulica_broj` tinyint(4) NOT NULL,
+  `JPkontakt_tel` tinyint(4) NOT NULL,
   PRIMARY KEY (`idorganizacija`),
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `oblastiKey_idx` (`oblast_id`),
-  CONSTRAINT `mesto_idKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`),
+  CONSTRAINT `mesto_idKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`) ON UPDATE CASCADE,
   CONSTRAINT `oblastiKey` FOREIGN KEY (`oblast_id`) REFERENCES `oblasti` (`idoblasti`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -457,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-05  8:59:51
+-- Dump completed on 2018-06-05  9:17:22
