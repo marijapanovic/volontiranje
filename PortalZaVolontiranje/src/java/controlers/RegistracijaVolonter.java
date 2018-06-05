@@ -74,7 +74,7 @@ public class RegistracijaVolonter {
     private String vestineIskustva;
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
-    private int idvolonter;
+    
   
 
 
@@ -343,10 +343,6 @@ public class RegistracijaVolonter {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
-   
-
-    
-
     public String getVestineNaziv() {
         return vestineNaziv;
     }
@@ -508,7 +504,8 @@ public class RegistracijaVolonter {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as broj_naloga from volonter where email = ?");
+            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as broj_naloga from volonter "
+                    + "where email = ?");
             preparedstatement.setString(1, mail);
             ResultSet resultset = preparedstatement.executeQuery();
             resultset.next();
