@@ -222,7 +222,7 @@ CREATE TABLE `skolasif` (
   `nazivSkole` varchar(100) NOT NULL,
   `mesto` varchar(100) NOT NULL,
   PRIMARY KEY (`idskolaSif`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,4 +457,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-04 11:46:05
+-- Dump completed on 2018-06-05  8:59:51
