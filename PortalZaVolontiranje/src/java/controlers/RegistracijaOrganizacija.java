@@ -36,14 +36,14 @@ public class RegistracijaOrganizacija {
     private String ulica_broj;
     private Integer idoblasti;
     private String lozinka;
-    private Integer pib;
+    private String pib;
     private String telefon;
     private String text;
     private String webAdresa;
     private Boolean jpNaziv;
     private Boolean jpMestoId;
     private Boolean jpPib;
-    private Boolean jpText;
+    private Boolean jpTekst;
     private Boolean jpUlica_broj;
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
@@ -97,11 +97,11 @@ public class RegistracijaOrganizacija {
         this.lozinka = lozinka;
     }
 
-    public Integer getPib() {
+    public String getPib() {
         return pib;
     }
 
-    public void setPib(Integer pib) {
+    public void setPib(String pib) {
         this.pib = pib;
     }
 
@@ -130,11 +130,11 @@ public class RegistracijaOrganizacija {
     }
 
     public Boolean getJpText() {
-        return jpText;
+        return jpTekst;
     }
 
     public void setJpText(Boolean jpText) {
-        this.jpText = jpText;
+        this.jpTekst = jpText;
     }
 
     public Boolean getJpUlica_broj() {
@@ -229,13 +229,16 @@ public class RegistracijaOrganizacija {
             if (resultset.getInt("br_naloga") > 0) {
                 return "Email vec postoji u bazi";
             } else {
-                preparedstatement = conn.prepareStatement("insert into organizacija(naziv, mesto_id, pib, email, tekst, oblast_id"
+                preparedstatement = conn.prepareStatement("insert into organizacija(naziv, mesto_id, pib, email, tekst, oblast_id, "
                         + "web_adresa, lozinka, tip, ulica_broj, kontakt_tel,"
-                        + " JPnaziv, JPmesto_id, JPpib, JPtext, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel) "
+                        + " JPnaziv, JPmesto_id, JPpib, JPtekst, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel) "
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                
+                
+                Integer  mojpib = Integer.parseInt(pib);
                 preparedstatement.setString(1, naziv);
                 preparedstatement.setInt(2, mesto);
-                preparedstatement.setInt(3, pib);
+                preparedstatement.setInt(3, mojpib);
                 preparedstatement.setString(4, email);
                 preparedstatement.setString(5, text);
                 preparedstatement.setInt(6, idoblasti);
@@ -247,7 +250,7 @@ public class RegistracijaOrganizacija {
                 preparedstatement.setBoolean(12, jpNaziv);
                 preparedstatement.setBoolean(13, jpMestoId);
                 preparedstatement.setBoolean(14, jpPib);
-                preparedstatement.setBoolean(15, jpText);
+                preparedstatement.setBoolean(15, jpTekst);
                 preparedstatement.setBoolean(16, jpOblast_delovanja);
                 preparedstatement.setBoolean(17, jpWebAdresa);
                 preparedstatement.setBoolean(18, jpUlica_broj);

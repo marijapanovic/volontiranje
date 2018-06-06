@@ -8,13 +8,11 @@ package beans;
 public class Organizacija {
     private Integer idOrganizacija;
     private String naziv;
-    private Mesto mestoId;
-    private Integer mesto;
-    private Integer pib;
+    private Integer mestoId;
+    private String pib;
     private String email;
     private String text;
     private String ulica_broj;
-    private OblastDelovanja naziv_oblasti;
     private Integer idoblasti;
     private String lozinka;
     private String webAdresa;
@@ -28,6 +26,30 @@ public class Organizacija {
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
+
+    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, String pib, String email, String text, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpText, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon) {
+        this.idOrganizacija = idOrganizacija;
+        this.naziv = naziv;
+        this.mestoId = mestoId;
+        this.pib = pib;
+        this.email = email;
+        this.text = text;
+        this.ulica_broj = ulica_broj;
+        this.idoblasti = idoblasti;
+        this.lozinka = lozinka;
+        this.webAdresa = webAdresa;
+        this.telefon = telefon;
+        this.Tip = Tip;
+        this.jpNaziv = jpNaziv;
+        this.jpMestoId = jpMestoId;
+        this.jpPib = jpPib;
+        this.jpText = jpText;
+        this.jpUlica_broj = jpUlica_broj;
+        this.jpOblast_delovanja = jpOblast_delovanja;
+        this.jpWebAdresa = jpWebAdresa;
+        this.jpTelefon = jpTelefon;
+    }
+    
     
     public String getNaziv() {
         return naziv;
@@ -37,17 +59,10 @@ public class Organizacija {
         this.naziv = naziv;
     }
      public Integer getMesto() {
-        return mesto;  
+        return mestoId;  
     }
     public void setMesto(Integer mesto) {
-        this.mesto = mesto;
-    }
-    public Mesto getMestoId() {
-        return mestoId;
-    }
-
-    public void setMestoId(Mesto mestoId) {
-        this.mestoId = mestoId;
+        this.mestoId = mesto;
     }
 
     public String getEmail() {
@@ -58,11 +73,11 @@ public class Organizacija {
         this.email = email;
     }
 
-    public Integer getPib() {
+    public String getPib() {
         return pib;
     }
 
-    public void setPib(Integer pib) {
+    public void setPib(String pib) {
         this.pib = pib;
     }
 
@@ -80,14 +95,6 @@ public class Organizacija {
 
     public void setUlica_broj(String ulica_broj) {
         this.ulica_broj = ulica_broj;
-    }
-
-    public OblastDelovanja getNaziv_oblasti() {
-        return naziv_oblasti;
-    }
-
-    public void setNaziv_oblasti(OblastDelovanja naziv_oblasti) {
-        this.naziv_oblasti = naziv_oblasti;
     }
 
     public Integer getIdoblasti() {

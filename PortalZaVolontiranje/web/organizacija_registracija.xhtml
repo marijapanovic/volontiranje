@@ -57,8 +57,9 @@
                             
                             <p:outputLabel for="naziv" value="Naziv organizacije:" />
                             <p:inputText id="naziv" value="#{registracijaOrganizacija.naziv}" required="true" 
-                                         requiredMessage="Unesite naziv organizacije.">
-                                <f:validateRegex pattern="[a-zA-Z]+[a-zA-Z]+" />
+                                         requiredMessage="Unesite naziv organizacije."
+                                         validatorMessage="Niste uneli ispravan naziv organizacije.">
+                                <f:validateRegex pattern="[a-zA-Z ]+" />
                             </p:inputText>
                             <p:message for="naziv"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpNaziv}"></h:selectBooleanCheckbox>
@@ -88,12 +89,9 @@
                             
                             <p:outputLabel for="piborganizacije" value="PIB:" />
                             <p:inputText id="piborganizacije" value="#{registracijaOrganizacija.pib}" required="true" 
-                                         requiredMessage="Unesite Vas PIB.">
-<<<<<<< HEAD
-                                <f:validateRegex pattern="^[\d]+$" ></f:validateRegex>
-=======
-                                <f:validateRegex pattern="[0-9]{9}" ></f:validateRegex>
->>>>>>> bdfeaa14c6603d721181e403058bb5e92a8877ba
+                                         requiredMessage="Unesite Vas PIB."
+                                         validatorMessage="Unesite ispravan pib." >
+                                <f:validateRegex pattern="^[0-9]{9}$" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="piborganizacije"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpPib}"></h:selectBooleanCheckbox>
@@ -102,6 +100,7 @@
                             
                             <p:outputLabel for="telefon" value="Kontakt telefon:" />
                             <p:inputText id="telefon" value="#{registracijaOrganizacija.telefon}" required="true" 
+                                         validatorMessage="Unesite isparvan telefon"
                                          requiredMessage="Unesite telefon.">
                                 <f:validateRegex pattern="^[\d\-/]+$" ></f:validateRegex>
                             </p:inputText>
@@ -112,7 +111,8 @@
                             
                             <p:outputLabel for="mail" value="E-mail:" />
                             <p:inputText id="mail" value="#{registracijaOrganizacija.email}" required="true" 
-                                         requiredMessage="Unesite e-mail.">
+                                         requiredMessage="Unesite e-mail."
+                                         validatorMessage="Unesite isparavan meil">
                                  <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="mail"/>
@@ -128,7 +128,9 @@
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             
                           <p:outputLabel for="delatnost" value="Oblast delovanja:" />
-                          <p:selectOneMenu id="delatnost" value="#{registracijaOrganizacija.idoblasti}">
+                          <p:selectOneMenu id="delatnost" value="#{registracijaOrganizacija.idoblasti}"
+                                           required="true"
+                                           requiredMessage="Izaberite oblast delovanja">
                                 <f:selectItem itemLabel="Izaberite oblast delovanja" itemValue="" />
                                 <f:selectItems value="#{registracijaOrganizacija.sveOblasti}" />
                             </p:selectOneMenu>
@@ -153,13 +155,6 @@
                             <p:outputLabel></p:outputLabel>
 
                         </h:panelGrid>
-                    </h:form>
-                            
-                           
-
-                            
-
-                         <h:form>  
                             <h:panelGrid columns="4" cellpadding="2">
                         <div class="media-left">
                             <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:150px"></img>
