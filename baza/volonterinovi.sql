@@ -93,6 +93,29 @@ INSERT INTO `drzavljanstvo` VALUES (1,'Srbija');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `kategorija_vesti`
+--
+
+DROP TABLE IF EXISTS `kategorija_vesti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `kategorija_vesti` (
+  `idkategorija_vesti` int(11) NOT NULL,
+  `kategorija` varchar(100) NOT NULL,
+  PRIMARY KEY (`idkategorija_vesti`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `kategorija_vesti`
+--
+
+LOCK TABLES `kategorija_vesti` WRITE;
+/*!40000 ALTER TABLE `kategorija_vesti` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kategorija_vesti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `oblasti`
 --
 
@@ -184,7 +207,6 @@ CREATE TABLE `raspolozivost` (
 
 LOCK TABLES `raspolozivost` WRITE;
 /*!40000 ALTER TABLE `raspolozivost` DISABLE KEYS */;
-INSERT INTO `raspolozivost` VALUES (6,3);
 /*!40000 ALTER TABLE `raspolozivost` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,6 +317,34 @@ INSERT INTO `tblgrad` VALUES (1,'Ada',24430,'Severnobanatski okrug','Ada'),(2,'A
 UNLOCK TABLES;
 
 --
+-- Table structure for table `vesti`
+--
+
+DROP TABLE IF EXISTS `vesti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vesti` (
+  `idvesti` int(11) NOT NULL,
+  `kategorija` int(11) NOT NULL,
+  `autor` varchar(45) NOT NULL,
+  `vreme` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tekstVesti` longtext NOT NULL,
+  PRIMARY KEY (`idvesti`,`kategorija`),
+  KEY `kategorijaKey_idx` (`kategorija`),
+  CONSTRAINT `kategorijaKey` FOREIGN KEY (`kategorija`) REFERENCES `kategorija_vesti` (`idkategorija_vesti`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='			';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vesti`
+--
+
+LOCK TABLES `vesti` WRITE;
+/*!40000 ALTER TABLE `vesti` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vesti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `vestine`
 --
 
@@ -389,10 +439,12 @@ CREATE TABLE `volonter` (
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `drzavljanstvoKey_idx` (`drzavljanstvo_id`),
   KEY `statusKey_idx` (`status`),
+  KEY `oblastIdKey_idx` (`oblastiid`),
   CONSTRAINT `drzavljanstvoKey` FOREIGN KEY (`drzavljanstvo_id`) REFERENCES `drzavljanstvo` (`iddrz`),
   CONSTRAINT `mestoKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`),
+  CONSTRAINT `oblastIdKey` FOREIGN KEY (`oblastiid`) REFERENCES `oblasti` (`idoblasti`) ON UPDATE CASCADE,
   CONSTRAINT `statusKey` FOREIGN KEY (`status`) REFERENCES `statussif` (`idstatusSif`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +453,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL),(6,'gdfg','2018-06-06','M',1,'234324','jhgjhghgj',1,'nhghjhg','jghjgj',3,'hfghf@bla.com','retrret',0,0,0,0,0,0,0,0,0,0,0,2,'',NULL,0,NULL,NULL,NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -466,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-05 10:47:03
+-- Dump completed on 2018-06-06  9:01:52
