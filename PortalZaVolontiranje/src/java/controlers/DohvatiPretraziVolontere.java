@@ -41,7 +41,7 @@ public class DohvatiPretraziVolontere {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from volonter");
+            ResultSet rs = stm.executeQuery("select * from volonter where aktivan=1");
             sviVolonteri = new ArrayList<Volonter>();
             while(rs.next()){
                 Volonter volonter = new Volonter();
