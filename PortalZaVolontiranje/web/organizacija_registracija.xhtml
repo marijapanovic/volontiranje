@@ -49,7 +49,7 @@
         <div class="container">
             <div class="row">
                 
-                <div class="offset-sm-3 col-sm-6  rounded p-2 text-center">
+                <div class="offset-sm-2 col-sm-8  rounded p-2 text-center">
                     <h2>Registracija organizacije</h2>
                     <p></p>
                     <h:form>
@@ -86,7 +86,7 @@
                             <p:outputLabel for="pib" value="PIB:" />
                             <p:inputText id="pib" value="#{registracijaOrganizacija.pib}" required="true" 
                                          requiredMessage="Unesite Vas PIB.">
-                                <f:validateRegex pattern="[0-9]{3}" ></f:validateRegex>
+                                <f:validateRegex pattern="[0-9]{9}" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="pib"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpPib}"></h:selectBooleanCheckbox>
@@ -114,7 +114,7 @@
 
                         
                             <p:outputLabel for="text" value="Tekst o organizaciji:" />
-                            <p:inputTextarea id="text" rows="3" cols="30" value="#{registracijaOrganizacija.text}" required="true" 
+                            <p:inputTextarea id="text" rows="3" cols="22" value="#{registracijaOrganizacija.text}" required="true" 
                                              requiredMessage="Unesite text o organizaciji."></p:inputTextarea>
                             <p:message for="text"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpText}"></h:selectBooleanCheckbox>

@@ -1,27 +1,100 @@
-<!DOCTYPE html>
-<html>
-<body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Pocetna</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+                <meta charset="utf-8"></meta>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        <div class="media">
+            <div class="media-left col-sm-3">
+                <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
+            </div>
+            <div class="media-body mt-4 col-sm-6">
+                <h2 class="mt-0 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje - kontakt</h2>
+            </div>
+        </div>
 
-<h1>My First Google Map</h1>
 
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<script>
-function myMap() {
-var mapOptions = {
-    center: new google.maps.LatLng(51.5, -0.12),
-    zoom: 10,
-    mapTypeId: google.maps.MapTypeId.HYBRID
-}
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-}
-</script>
+            <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav  offset-sm-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Volonter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Organizacija</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
+                    </li> 
+                </ul>
+            </div> 
+        </nav>
+        
+        <div class="container col-sm-12">
+            <div class="row col-sm-12 offset-sm-1">
+                
+                <div class="card col-sm-2">
+                    <img class="card-img-top" src="resources/images/srdjan.png" alt="Card image"></img>
+                        <div class="card-body">
+                          <h4 class="card-title">Srdjan Abadzija</h4>
+                          <p class="card-text">Ljubitelj vozova i baze podataka. Misli da Microsoft excel mora imati svaki personalni racunar. Cesto gituje.</p>
+                          <a href="#" class="btn btn-success">Srdjanov profil</a>
+                        </div>
+                      </div>
+                <div class="card col-sm-2">
+                    <img class="card-img-top" src="resources/images/vladica.jpg" alt="Card image"></img>
+                        <div class="card-body">
+                          <h4 class="card-title">Vladica Radosavljevic</h4>
+                          <p class="card-text">Diplomirani sumar, zeli da postane drvoseca. Ne priznaje git kao vestinu. Cesto volontira.</p>
+                          <a href="#" class="btn btn-success">Vladicin profil</a>
+                        </div>
+                      </div>
+                <div class="card col-sm-2">
+                    <img class="card-img-top" src="resources/images/marija.jpg" alt="Card image"></img>
+                        <div class="card-body">
+                          <h4 class="card-title">Marija Panovic</h4>
+                          <p class="card-text">Sef na portal za volontiranje. Prva pocela da gituje. Vlasnik stranice gde cesto gitujemo.</p>
+                          <a href="#" class="btn btn-success">Marijin profil</a>
+                        </div>
+                      </div>
+                <div class="card col-sm-2">
+                    <img class="card-img-top" src="resources/images/dalibor.png" alt="Card image"></img>
+                        <div class="card-body">
+                          <h4 class="card-title">Dalibor Lapcevic</h4>
+                          <p class="card-text">Instruktor voznje, mrzi taksiste, vozace GSP-a i pesake koji prelaze van pesackog prelaza. Gituje pod laznim imenom.</p>
+                          <a href="#" class="btn btn-success">Daliborov profil</a>
+                        </div>
+                      </div>
+                <div class="card col-sm-2">
+                    <img class="card-img-top" src="resources/images/gavroui.png" alt="Card image"></img>
+                        <div class="card-body">
+                          <h4 class="card-title">Nikola Tomic</h4>
+                          <p class="card-text">Kalimera, kalispera. Ne znaci da i ostale grcke fore. Borio se u bici kod Termopila, nisu mu dali stit pa otisao kuci da gituje.</p>
+                          <a href="#" class="btn btn-success">Nikolin profil</a>
+                        </div>
+                      </div>
+                
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap";></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
-</body>
-</html>
+            </div>
+        </div>
+        
+        </h:body>
+    </html>
