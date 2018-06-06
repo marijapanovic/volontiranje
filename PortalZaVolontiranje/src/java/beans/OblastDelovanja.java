@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Korisnik
- */
 public class OblastDelovanja {
     private Integer idoblasti;
     private String naziv_oblasti;
@@ -29,6 +25,9 @@ public class OblastDelovanja {
         this.naziv_oblasti = naziv_oblasti;
     }
 
+    public OblastDelovanja() {
+    }
+    
     public Integer getIdoblasti() {
         return idoblasti;
     }
@@ -52,8 +51,8 @@ public class OblastDelovanja {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select idoblasti, naziv_oblasti from oblasti");
             while (rs.next()) {
-                OblastDelovanja oblastdelovanja = new OblastDelovanja(rs.getInt("idoblasti"), rs.getString("naziv_oblasti"));
-                rezultat.add(oblastdelovanja);
+                OblastDelovanja oblastDelovanja = new OblastDelovanja(rs.getInt("idoblasti"), rs.getString("naziv_oblasti"));
+                rezultat.add(oblastDelovanja);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

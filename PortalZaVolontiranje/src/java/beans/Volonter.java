@@ -8,10 +8,7 @@ package beans;
 //import java.sql.Date;
 import java.util.Date;
 
-/**
- *
- * @author Korisnik
- */
+
 public class Volonter {
     private int idVolonter;
     private String imePrezime;

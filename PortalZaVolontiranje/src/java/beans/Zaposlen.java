@@ -5,10 +5,7 @@
  */
 package beans;
 
-/**
- *
- * @author dprokic
- */
+
 public class Zaposlen extends Status {
     private String kompanija;
     private String sedisteKompanije;
