@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Vesti</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+
+        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+        
+    </h:head>
+    <h:body>
+        <div class="media">
+            <div class="media-left col-sm-3">
+                <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
+            </div>
+            <div class="media-body mt-4 col-sm-6">
+                <h2 class="mt-0 text-center" style="padding-top:10px; color: forestgreen">Vesti</h2>
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav offset-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="otvoriProzorOrganizacije()">Organizacija</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
+                    </li> 
+                </ul>
+            </div> 
+        </nav>
+        
+        <div class="container col-sm-12">
+            <div class="row">
+                <div class="col-sm-3 bg-danger text-center" style="height: 500px">
+                    <h4>Vase vesti</h4>
+                </div>
+            
+                <div class="col-sm-6 bg-success text-center" style="height: 500px">
+                    <h3>Poslednje vesti</h3>
+                </div>
+                    
+                <div class="col-sm-3 bg-secondary text-center" style="height: 500px">
+                    <h4>Oglasi</h4>
+                </div>    
+            </div>
+        </div>
+    </h:body>
+</html>
