@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `volonteri` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `volonteri`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: volonteri
@@ -329,6 +327,8 @@ CREATE TABLE `vesti` (
   `autor` varchar(45) NOT NULL,
   `vreme` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tekstVesti` longtext NOT NULL,
+  `tip_autora` int(1) NOT NULL,
+  `vidljivost` int(1) NOT NULL,
   PRIMARY KEY (`idvesti`,`kategorija`),
   KEY `kategorijaKey_idx` (`kategorija`),
   CONSTRAINT `kategorijaKey` FOREIGN KEY (`kategorija`) REFERENCES `kategorija_vesti` (`idkategorija_vesti`) ON UPDATE CASCADE
@@ -518,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-06  9:01:52
+-- Dump completed on 2018-06-06  9:05:58
