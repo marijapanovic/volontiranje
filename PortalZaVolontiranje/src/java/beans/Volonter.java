@@ -46,7 +46,6 @@ public class Volonter implements Serializable{
     private String zdravstveni_problemi;
     private String imeKompanije;
     private boolean JPdani;
-<<<<<<< HEAD
     private int skolaid;
 //    private int zaposlenjaid;
 //    private int vestineid;
@@ -55,7 +54,6 @@ public class Volonter implements Serializable{
 //    private Boolean JPoblasti;
 //    private Boolean JPvestine;
 //    private Boolean JPdan;
-=======
     private String sedisteKompanije;
     private String pozicijaUKompaniji;
     private String nivoSkolovanja;
@@ -114,7 +112,6 @@ public class Volonter implements Serializable{
     }
     
     
->>>>>>> f49b3cb47340e0a5d95c51143aea68f63fd5dec4
 
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
