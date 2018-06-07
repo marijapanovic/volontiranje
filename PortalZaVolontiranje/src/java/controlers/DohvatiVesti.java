@@ -5,10 +5,29 @@
  */
 package controlers;
 
+import beans.Vesti;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author Korisnik
  */
+
+@ManagedBean    
+@SessionScoped
 public class DohvatiVesti {
+    
+    private Vesti sveVesti;
+
+    public Vesti getSveVesti() {
+        return sveVesti;
+    }
+
+    public void setSveVesti(Vesti sveVesti) {
+        this.sveVesti = sveVesti;
+    }
+    
+    
     
 }
