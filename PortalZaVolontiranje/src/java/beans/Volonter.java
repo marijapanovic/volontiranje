@@ -44,6 +44,64 @@ public class Volonter {
     private String zdravstveni_problemi;
     private String imeKompanije;
     private boolean JPdani;
+    private String sedisteKompanije;
+    private String pozicijaUKompaniji;
+    private String nivoSkolovanja;
+    private String nazivObrazovneInstitucije;
+    private String sedisteSkole;
+    private String godinaUpisa;
+
+    public String getNivoSkolovanja() {
+        return nivoSkolovanja;
+    }
+
+    public void setNivoSkolovanja(String nivoSkolovanja) {
+        this.nivoSkolovanja = nivoSkolovanja;
+    }
+
+    public String getNazivObrazovneInstitucije() {
+        return nazivObrazovneInstitucije;
+    }
+
+    public void setNazivObrazovneInstitucije(String nazivObrazovneInstitucije) {
+        this.nazivObrazovneInstitucije = nazivObrazovneInstitucije;
+    }
+
+    public String getSedisteSkole() {
+        return sedisteSkole;
+    }
+
+    public void setSedisteSkole(String sedisteSkole) {
+        this.sedisteSkole = sedisteSkole;
+    }
+
+    public String getGodinaUpisa() {
+        return godinaUpisa;
+    }
+
+    public void setGodinaUpisa(String godinaUpisa) {
+        this.godinaUpisa = godinaUpisa;
+    }
+    
+    
+
+    public String getSedisteKompanije() {
+        return sedisteKompanije;
+    }
+
+    public void setSedisteKompanije(String sedisteKompanije) {
+        this.sedisteKompanije = sedisteKompanije;
+    }
+
+    public String getPozicijaUKompaniji() {
+        return pozicijaUKompaniji;
+    }
+
+    public void setPozicijaUKompaniji(String pozicijaUKompaniji) {
+        this.pozicijaUKompaniji = pozicijaUKompaniji;
+    }
+    
+    
 
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
