@@ -436,6 +436,10 @@ CREATE TABLE `volonter` (
   `zaposlenjeid` int(11) DEFAULT NULL,
   `vestineid` int(11) DEFAULT NULL,
   `oblastiid` int(11) DEFAULT NULL,
+  `JPzdravstveniproblemi` tinyint(4) NOT NULL,
+  `JPoblasti` tinyint(4) NOT NULL,
+  `JPvestine` tinyint(4) NOT NULL,
+  `JPdan` tinyint(4) NOT NULL,
   PRIMARY KEY (`idvolonter`),
   UNIQUE KEY `idvolonter_UNIQUE` (`idvolonter`),
   KEY `mestoKey_idx` (`mesto_id`),
@@ -455,7 +459,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL,0,0,0,0);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -520,4 +524,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-06  9:54:57
+-- Dump completed on 2018-06-07  8:55:15

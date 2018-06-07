@@ -89,23 +89,9 @@
                             
                             <p:outputLabel for="piborganizacije" value="PIB:" />
                             <p:inputText id="piborganizacije" value="#{registracijaOrganizacija.pib}" required="true" 
-<<<<<<< HEAD
                                          requiredMessage="Unesite PIB organizacije."
                                          validatorMessage="Pib mora imati 9 brojeva." >
-=======
-<<<<<<< HEAD
-                                         requiredMessage="Unesite Vas PIB."
-                                         validatorMessage="Unesite ispravan pib." >
->>>>>>> 2dda5b64317dbea6c57fc604da531332062ac597
                                 <f:validateRegex pattern="^[0-9]{9}$" ></f:validateRegex>
-=======
-                                         requiredMessage="Unesite Vas PIB.">
-
-                                <f:validateRegex pattern="^[\d]+$" ></f:validateRegex>
-
-                                <f:validateRegex pattern="[0-9]{9}" ></f:validateRegex>
-
->>>>>>> 1730030fede32e0c8c6ef98cf4cb589c716ac333
                             </p:inputText>
                             <p:message for="piborganizacije"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpPib}"></h:selectBooleanCheckbox>
