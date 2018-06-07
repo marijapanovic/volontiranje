@@ -1,11 +1,13 @@
 
 package beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Korisnik
  */
-public class Organizacija {
+public class Organizacija implements Serializable{
     private Integer idOrganizacija;
     private String naziv;
     private Integer mestoId;

@@ -6,10 +6,15 @@
 package beans;
 
 
+//import java.sql.Date;
+import java.io.Serializable;
+
+
+
 import java.util.Date;
 
 
-public class Volonter {
+public class Volonter implements Serializable{
     private int idVolonter;
     private String imePrezime;
     private Date datumRodjenja;
