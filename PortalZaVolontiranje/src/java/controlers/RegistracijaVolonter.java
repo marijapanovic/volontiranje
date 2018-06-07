@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.Skola;
 import beans.Status;
 import beans.TipNaloga;
 
@@ -74,7 +75,15 @@ public class RegistracijaVolonter {
     private String vestineIskustva;
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
-    
+    private Integer skolaid;
+
+//    private int zaposlenjaid;
+//    private int vestineid;
+//    private int oblastid;
+//    private Boolean JPzdravstveni_problemi;
+//    private Boolean JPoblasti;
+//    private Boolean JPvestine;
+//    private Boolean JPdan;
     
     public String getImePrezime() {
         return imePrezime;
@@ -103,7 +112,12 @@ public class RegistracijaVolonter {
     public List<SelectItem> getSvaDrzavljanstva() {
         return svaDrzavljanstva;
     }
+    private List<SelectItem> sveSkole = new LinkedList<>();
 
+    public List<SelectItem> getSveSkole() {
+        return sveSkole;
+    }
+    
     @PostConstruct
     public void init() {
         List<Drzavljanstvo> svaDrzavljanstvaBinovi = Drzavljanstvo.ucitajSvaDrzavljanstva();
@@ -114,6 +128,11 @@ public class RegistracijaVolonter {
         List<Mesto> svaMestaBinovi = Mesto.ucitajSvaMesta();
         for (Mesto mesto : svaMestaBinovi) {
             svaMesta.add(new SelectItem(mesto.getId(), mesto.getNazivMesta()));
+        }
+        
+        List<Skola> sveSkoleBinovi = Skola.ucitajSveSkole();
+        for(Skola skola: sveSkoleBinovi){
+            sveSkole.add(new SelectItem(skola.getIdskolaSif(), skola.getNazivSkole()));
         }
     }
 
@@ -491,6 +510,14 @@ public class RegistracijaVolonter {
 
     public void setJpZdravstveneNapomene(Boolean jpZdravstveneNapomene) {
         this.jpZdravstveneNapomene = jpZdravstveneNapomene;
+    }
+
+    public Integer getSkolaid() {
+        return skolaid;
+    }
+
+    public void setSkolaid(Integer skolaid) {
+        this.skolaid = skolaid;
     }
     
     

@@ -41,6 +41,14 @@ public class Volonter {
     private String zdravstveni_problemi;
     private String imeKompanije;
     private boolean JPdani;
+    private int skolaid;
+//    private int zaposlenjaid;
+//    private int vestineid;
+//    private int oblastid;
+//    private Boolean JPzdravstveni_problemi;
+//    private Boolean JPoblasti;
+//    private Boolean JPvestine;
+//    private Boolean JPdan;
 
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
@@ -279,6 +287,14 @@ public class Volonter {
 
     public void setJPdani(boolean JPdani) {
         this.JPdani = JPdani;
+    }
+
+    public int getSkolaid() {
+        return skolaid;
+    }
+
+    public void setSkolaid(int skolaid) {
+        this.skolaid = skolaid;
     }
     
     

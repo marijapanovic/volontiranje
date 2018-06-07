@@ -203,19 +203,13 @@
                                              rendered="#{registracijaVolonter.status == 1}">
                                 </p:inputText>
                                 
-                                
-                                <p:outputLabel value="Naziv obrazovne institucije:" 
+                                <p:outputLabel for="skola" value = "Izaberite skolu koju pohadjate:" 
                                                rendered="#{registracijaVolonter.status == 3}" />
-                                <p:inputText value="#{registracijaVolonter.nazivSkole}" required="true" 
-                                             requiredMessage="Unesite naziv obrazovne ustanove koju pohadjate." 
-                                             rendered="#{registracijaVolonter.status == 3}">
-                                </p:inputText>
-                                
-                                <p:outputLabel value="Sediste(grad,drzava):" rendered="#{registracijaVolonter.status == 3}" />
-                                <p:inputText value="#{registracijaVolonter.sedisteSkole}" required="true" 
-                                             requiredMessage="Unesite stecena znanja." 
-                                             rendered="#{registracijaVolonter.status == 3}">
-                                </p:inputText>
+                                <p:selectOneMenu id="skola" required="true"
+                                                 value="#{registracijaVolonter.skolaid}">
+                                                 <f:selectItem itemValue="" itemLabel="Izaberite skolu." />
+                                                 <f:selectItems value="#{registracijaVolonter.sveSkole}" />
+                                </p:selectOneMenu>
                                 
                                 <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p:inputText value="#{registracijaVolonter.nivoStudija}" 
