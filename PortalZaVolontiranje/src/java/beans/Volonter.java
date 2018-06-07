@@ -5,8 +5,12 @@
  */
 package beans;
 
+
 //import java.sql.Date;
 import java.io.Serializable;
+
+
+
 import java.util.Date;
 
 
@@ -15,19 +19,16 @@ public class Volonter implements Serializable{
     private String imePrezime;
     private Date datumRodjenja;
     private char pol;
-    //private Drzavljanstvo drzavljanstvo;
     private String drzavljanstvo;
     private int drzavljanstvoID;
     private String telefon;
     private String ulica_broj;
-   // private Mesto mestoId;
     private String mestoAzuriranje;
     private int mesto;
     private String slika;
     private String cv;
     private String email;
     private String lozinka;
-   // private Status status;
     private String status;
     private int statusID;
     private Boolean JPime;
@@ -49,33 +50,22 @@ public class Volonter implements Serializable{
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
     }
-
     public void setZdravstveni_problemi(String zdravstveni_problemi) {
         this.zdravstveni_problemi = zdravstveni_problemi;
     }
-    
-    
-
     public int getStatusID() {
         return statusID;
     }
-
     public void setStatusID(int statusID) {
         this.statusID = statusID;
     }
-
-    
     
     public int getMesto() {
         return mesto;
     }
-
     public void setMesto(int mesto) {
         this.mesto = mesto;
     }
-    
-    
-
     public int getDrzavljanstvoID() {
         return drzavljanstvoID;
     }
@@ -83,9 +73,6 @@ public class Volonter implements Serializable{
     public void setDrzavljanstvoID(int drzavljanstvoID) {
         this.drzavljanstvoID = drzavljanstvoID;
     }
-    
-    
-
     public Boolean getJPime() {
         return JPime;
     }
@@ -181,11 +168,6 @@ public class Volonter implements Serializable{
     public void setTip(int Tip) {
         this.Tip = Tip;
     }
-    
-    
-    
-    
-
     public int getIdVolonter() {
         return idVolonter;
     }
@@ -221,14 +203,6 @@ public class Volonter implements Serializable{
     public String getDrzavljanstvo() {
         return drzavljanstvo;
     }
-
-//    public Drzavljanstvo getDrzavljanstvo() {
-//        return drzavljanstvo;
-//    }
-//
-//    public void setDrzavljanstvo(Drzavljanstvo drzavljanstvo) {
-//        this.drzavljanstvo = drzavljanstvo;
-//    }
     public void setDrzavljanstvo(String drzavljanstvo) {    
         this.drzavljanstvo = drzavljanstvo;
     }
@@ -249,14 +223,6 @@ public class Volonter implements Serializable{
         this.ulica_broj = ulica_broj;
     }
 
-//    public Mesto getMestoId() {
-//        return mestoId;
-//    }
-//
-//    public void setMestoId(Mesto mestoId) {
-//        this.mestoId = mestoId;
-//    }
-
     public String getMestoAzuriranje() {
         return mestoAzuriranje;
     }
@@ -264,9 +230,6 @@ public class Volonter implements Serializable{
     public void setMestoAzuriranje(String mestoAzuriranje) {
         this.mestoAzuriranje = mestoAzuriranje;
     }
-    
-    
-    
     public String getSlika() {
         return slika;
     }
@@ -298,14 +261,6 @@ public class Volonter implements Serializable{
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
     }  
-
-//    public Status getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(Status status) {
-//        this.status = status;
-//    }
 
     public String getStatus() {
         return status;
