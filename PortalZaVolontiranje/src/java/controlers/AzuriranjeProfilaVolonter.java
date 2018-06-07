@@ -496,36 +496,36 @@ public class AzuriranjeProfilaVolonter {
 //        return statusi;
 //    }
 //     
-//    public void azurirajProfil() {
-//        try {
-//            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-//            Statement stm = conn.createStatement();
-//            ResultSet rs = stm.executeQuery("select * from volonter where email = '" + mail + "'");
-//            rs.next();
-//            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
-//                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
-//                    + ", volonter.jpdrzavljanstvo=" + jpDrzavljanstvo + ", volonter.telefon='" + telefon + "', volonter.jptelefon="
-//                    + jpTelefon + ", volonter.ulica_broj='" + ulica_broj + "' , volonter.jpulica_broj=" + jpAdresa + ", volonter.jpmesto=" + jpMesto + ", volonter.lozinka='"
-//                    + lozinka + "', volonter.slika='" + slika + "', volonter.jpslika=" + jpSlika + ", volonter.cv='" + cv + "', volonter.jpcv=" + jpCv +
-//                    ", volonter.status="+ status + ", volonter.jpstatus=" + jpStatus + ", volonter.zdravstveni_problemi='" + zdravstveneNapomene +"', "
-//                    + "', volonter.mesto_id= " + selektovanoMesto.getId() + ", volonter.drzavljanstvo_id= " + selektovanoDrzavljanstvo.getIddrz() + ", raspolozivost.iddana=" + odgovarajuciDani + ", skola.naziv='"+nazivSkole 
-//                    +"', skola.mesto='" + sedisteSkole + "', skola.nivo='" + nivoStudija + "', skola.godina_upisa='" + godinaUpisa +"', zaposlenje.kompanija='" + kompanija +"',"
-//                    + " zaposlenje.sediste='" + sedisteKompanije + "', zaposlenje.pozicija='" + pozicijaUKompaniji + "', vestine.naziv='" + vestineNaziv + "', vestine.struka= '" + vestineZvanje + "', vestine.iskustva='"
-//                    + vestineIskustva + "' where volonter.email='" + mail + "' and volonter.idvolonter = raspolozivost.idvolontera and volonter.idvolonter=raspolozivost.idvolontera and "
-//                            + "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolonter" );
-//
-////            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
-////                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
-////                    ulica_broj + "', jpulica_broj="+ jpAdresa+ ", mesto_id="+ mesto + ", jpmesto="+ jpMesto+ ", email='"+ mail + "', lozinka='"+
-////                    lozinka + ", slika='"+ slika + "', jpslika="+ jpSlika + ", cv="+ cv + "', jpcv="+ jpCv+ ", status="+ status + ", jpstatus="+
-////                    jpStatus + ", kompanija='"+ kompanija + "', sediste='"+ sedisteKompanije + "', pozicija='"+ pozicijaUKompaniji + "', naziv='"+ 
-////                    nazivSkole + "', mesto='"+ sedisteSkole + "', nivo='"+ nivoStudija + "', godina_upisa='"+ godinaUpisa + "', " );
-////            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    private Volonter volonterZaAzuriranje;
+    public void azurirajProfil() {
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
+            rs.next();
+            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
+                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
+                    + ", volonter.jpdrzavljanstvo=" + jpDrzavljanstvo + ", volonter.telefon='" + telefon + "', volonter.jptelefon="
+                    + jpTelefon + ", volonter.ulica_broj='" + ulica_broj + "' , volonter.jpulica_broj=" + jpAdresa + ", volonter.jpmesto=" + jpMesto + ", volonter.lozinka='"
+                    + lozinka + "', volonter.slika='" + slika + "', volonter.jpslika=" + jpSlika + ", volonter.cv='" + cv + "', volonter.jpcv=" + jpCv +
+                    ", volonter.status="+ status + ", volonter.jpstatus=" + jpStatus + ", volonter.zdravstveni_problemi='" + zdravstveneNapomene +"', "
+                    + "', volonter.mesto_id= " + selektovanoMesto.getId() + ", volonter.drzavljanstvo_id= " + selektovanoDrzavljanstvo.getIddrz() + ", raspolozivost.iddana=" + odgovarajuciDani + ", skola.naziv='"+nazivSkole 
+                    +"', skola.mesto='" + sedisteSkole + "', skola.nivo='" + nivoStudija + "', skola.godina_upisa='" + godinaUpisa +"', zaposlenje.kompanija='" + kompanija +"',"
+                    + " zaposlenje.sediste='" + sedisteKompanije + "', zaposlenje.pozicija='" + pozicijaUKompaniji + "', vestine.naziv='" + vestineNaziv + "', vestine.struka= '" + vestineZvanje + "', vestine.iskustva='"
+                    + vestineIskustva + "' where volonter.email='" + mail + "' and volonter.idvolonter = raspolozivost.idvolontera and volonter.idvolonter=raspolozivost.idvolontera and "
+                            + "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolonter" );
+
+//            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
+//                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
+//                    ulica_broj + "', jpulica_broj="+ jpAdresa+ ", mesto_id="+ mesto + ", jpmesto="+ jpMesto+ ", email='"+ mail + "', lozinka='"+
+//                    lozinka + ", slika='"+ slika + "', jpslika="+ jpSlika + ", cv="+ cv + "', jpcv="+ jpCv+ ", status="+ status + ", jpstatus="+
+//                    jpStatus + ", kompanija='"+ kompanija + "', sediste='"+ sedisteKompanije + "', pozicija='"+ pozicijaUKompaniji + "', naziv='"+ 
+//                    nazivSkole + "', mesto='"+ sedisteSkole + "', nivo='"+ nivoStudija + "', godina_upisa='"+ godinaUpisa + "', " );
+//            
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private static Volonter volonterZaAzuriranje;
 
     public Volonter getVolonterZaAzuriranje() {
         return volonterZaAzuriranje;
@@ -535,6 +535,20 @@ public class AzuriranjeProfilaVolonter {
         this.volonterZaAzuriranje = volonterZaAzuriranje;
     }
 
+    public List<Drzavljanstvo> getSvaDrzavljanstva() {
+        return Drzavljanstvo.ucitajSvaDrzavljanstva();
+    }
+    
+    public List<Mesto> getSvaMesta() {
+        return Mesto.ucitajSvaMesta();
+    }
+    public List<SelectItem> getStatusi() {
+        List<SelectItem> statusi = new LinkedList<>();
+        for (Map.Entry<Integer, String> statusEntry : Status.statusi.entrySet()) {
+            statusi.add(new SelectItem(statusEntry.getKey(), statusEntry.getValue()));
+        }
+        return statusi;
+    }
     public Volonter dohvatiPodatkeOVolonteru() {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
@@ -567,7 +581,11 @@ public class AzuriranjeProfilaVolonter {
             volonterZaAzuriranje.setStatus(rs.getString("sts.status"));
             volonterZaAzuriranje.setJPime(rs.getBoolean("jpime"));
             volonterZaAzuriranje.setImeKompanije(rs.getString("kompanija"));
-            volonterZaAzuriranje.setJPdani(rs.getBoolean("jpdani"));
+            //volonterZaAzuriranje.setJPdani(rs.getBoolean("jpdani"));
+            volonterZaAzuriranje.setSedisteKompanije(rs.getString("sediste"));
+            volonterZaAzuriranje.setPozicijaUKompaniji(rs.getString("pozicija"));
+            volonterZaAzuriranje.setNazivObrazovneInstitucije(rs.getString("nazivSkole"));
+            
             //kompanijaAzuriranje = new Zaposlen();
             //kompanijaAzuriranje.setKompanija(rs.getString("kompanija"));
             // volonterZaAzuriranje.setIdDana(rs.getInt("iddana"));
@@ -577,6 +595,8 @@ public class AzuriranjeProfilaVolonter {
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dohvatiD();
+        dohvatiListuSvihDana();
         return volonterZaAzuriranje;
 
     }

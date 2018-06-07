@@ -46,6 +46,7 @@ public class Volonter implements Serializable{
     private String zdravstveni_problemi;
     private String imeKompanije;
     private boolean JPdani;
+<<<<<<< HEAD
     private int skolaid;
 //    private int zaposlenjaid;
 //    private int vestineid;
@@ -54,6 +55,66 @@ public class Volonter implements Serializable{
 //    private Boolean JPoblasti;
 //    private Boolean JPvestine;
 //    private Boolean JPdan;
+=======
+    private String sedisteKompanije;
+    private String pozicijaUKompaniji;
+    private String nivoSkolovanja;
+    private String nazivObrazovneInstitucije;
+    private String sedisteSkole;
+    private String godinaUpisa;
+
+    public String getNivoSkolovanja() {
+        return nivoSkolovanja;
+    }
+
+    public void setNivoSkolovanja(String nivoSkolovanja) {
+        this.nivoSkolovanja = nivoSkolovanja;
+    }
+
+    public String getNazivObrazovneInstitucije() {
+        return nazivObrazovneInstitucije;
+    }
+
+    public void setNazivObrazovneInstitucije(String nazivObrazovneInstitucije) {
+        this.nazivObrazovneInstitucije = nazivObrazovneInstitucije;
+    }
+
+    public String getSedisteSkole() {
+        return sedisteSkole;
+    }
+
+    public void setSedisteSkole(String sedisteSkole) {
+        this.sedisteSkole = sedisteSkole;
+    }
+
+    public String getGodinaUpisa() {
+        return godinaUpisa;
+    }
+
+    public void setGodinaUpisa(String godinaUpisa) {
+        this.godinaUpisa = godinaUpisa;
+    }
+    
+    
+
+    public String getSedisteKompanije() {
+        return sedisteKompanije;
+    }
+
+    public void setSedisteKompanije(String sedisteKompanije) {
+        this.sedisteKompanije = sedisteKompanije;
+    }
+
+    public String getPozicijaUKompaniji() {
+        return pozicijaUKompaniji;
+    }
+
+    public void setPozicijaUKompaniji(String pozicijaUKompaniji) {
+        this.pozicijaUKompaniji = pozicijaUKompaniji;
+    }
+    
+    
+>>>>>>> f49b3cb47340e0a5d95c51143aea68f63fd5dec4
 
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
