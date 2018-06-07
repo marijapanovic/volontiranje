@@ -89,11 +89,11 @@
                             <p:outputLabel for="piborganizacije" value="PIB:" />
                             <p:inputText id="piborganizacije" value="#{registracijaOrganizacija.pib}" required="true" 
                                          requiredMessage="Unesite Vas PIB.">
-<<<<<<< HEAD
+
                                 <f:validateRegex pattern="^[\d]+$" ></f:validateRegex>
-=======
+
                                 <f:validateRegex pattern="[0-9]{9}" ></f:validateRegex>
->>>>>>> bdfeaa14c6603d721181e403058bb5e92a8877ba
+
                             </p:inputText>
                             <p:message for="piborganizacije"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpPib}"></h:selectBooleanCheckbox>
