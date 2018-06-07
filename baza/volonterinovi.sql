@@ -112,6 +112,7 @@ CREATE TABLE `kategorija_vesti` (
 
 LOCK TABLES `kategorija_vesti` WRITE;
 /*!40000 ALTER TABLE `kategorija_vesti` DISABLE KEYS */;
+INSERT INTO `kategorija_vesti` VALUES (1,'Obrazovanje');
 /*!40000 ALTER TABLE `kategorija_vesti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,15 +326,15 @@ DROP TABLE IF EXISTS `vesti`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vesti` (
   `idvesti` int(11) NOT NULL,
-  `kategorija` int(11) NOT NULL,
+  `idkategorija` int(11) NOT NULL,
   `autor` varchar(45) NOT NULL,
   `vreme` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tekstVesti` longtext NOT NULL,
   `tip_autora` int(1) NOT NULL,
   `vidljivost` int(1) NOT NULL,
-  PRIMARY KEY (`idvesti`,`kategorija`),
-  KEY `kategorijaKey_idx` (`kategorija`),
-  CONSTRAINT `kategorijaKey` FOREIGN KEY (`kategorija`) REFERENCES `kategorija_vesti` (`idkategorija_vesti`) ON UPDATE CASCADE
+  PRIMARY KEY (`idvesti`,`idkategorija`),
+  KEY `kategorijaKey_idx` (`idkategorija`),
+  CONSTRAINT `kategorijaKey` FOREIGN KEY (`idkategorija`) REFERENCES `kategorija_vesti` (`idkategorija_vesti`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='			';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -343,6 +344,7 @@ CREATE TABLE `vesti` (
 
 LOCK TABLES `vesti` WRITE;
 /*!40000 ALTER TABLE `vesti` DISABLE KEYS */;
+INSERT INTO `vesti` VALUES (1,1,'srki@bla.com','2018-07-06 00:00:00','Ovo je neka ves za volontere',1,1),(2,1,'srki@bla.com','2018-07-06 00:00:00','Ove je neka druga vest',1,2);
 /*!40000 ALTER TABLE `vesti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,10 +431,9 @@ CREATE TABLE `volonter` (
   `JPcv` tinyint(4) NOT NULL,
   `JPstatus` tinyint(4) NOT NULL,
   `Aktivan` tinyint(4) NOT NULL DEFAULT '0',
-  `tip` tinyint(4) NOT NULL DEFAULT '1',
+  `tip` int(1) NOT NULL DEFAULT '1',
   `Zdravstveni_problemi` varchar(200) DEFAULT NULL,
   `skola_id` int(11) DEFAULT NULL,
-  `oblastivolontiranjaid` int(11) NOT NULL,
   `zaposlenjeid` int(11) DEFAULT NULL,
   `vestineid` int(11) DEFAULT NULL,
   `oblastiid` int(11) DEFAULT NULL,
@@ -459,7 +460,7 @@ CREATE TABLE `volonter` (
 
 LOCK TABLES `volonter` WRITE;
 /*!40000 ALTER TABLE `volonter` DISABLE KEYS */;
-INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,0,NULL,NULL,0,NULL,NULL,NULL,0,0,0,0);
+INSERT INTO `volonter` VALUES (1,'Srdjan Abadzija','2008-02-02','M',1,'022/2301-797','Vojvode Misica 23',1,'','',1,'srki@bla.com','nesto',0,0,0,0,0,0,0,0,0,0,1,1,NULL,NULL,NULL,NULL,NULL,0,0,0,0);
 /*!40000 ALTER TABLE `volonter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -524,4 +525,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-07  8:55:15
+-- Dump completed on 2018-06-07 11:23:03

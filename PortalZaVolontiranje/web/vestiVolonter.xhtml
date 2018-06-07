@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
 
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+        <f:metadata>
+            <f:viewAction action="#{dohvatiVesti.uzmiVesti()}"></f:viewAction>
+        </f:metadata>
         
     </h:head>
     <h:body>
@@ -49,10 +52,44 @@
             <div class="row">
                 <div class="col-sm-3 bg-danger text-center" style="height: 500px">
                     <h4>Vase vesti</h4>
+                    <h:dataTable value="#{dohvatiVesti.sveMojeVesti}" var="sveMojeVesti" class="table table-striped">
+                        <h:column>
+                            #{sveMojeVesti.idvesti}
+                        </h:column>
+                        <h:column>
+                            #{sveMojeVesti.kategorija_naziv}
+                        </h:column>
+                        <h:column>
+                            #{sveMojeVesti.autor}
+                        </h:column>
+                        <h:column>
+                            #{sveMojeVesti.vreme}
+                        </h:column>
+                        <h:column>
+                            #{sveMojeVesti.tekst}
+                        </h:column>
+                    </h:dataTable>
                 </div>
             
                 <div class="col-sm-6 bg-success text-center" style="height: 500px">
                     <h3>Poslednje vesti</h3>
+                    <h:dataTable value="#{dohvatiVesti.sveVesti}" var="vesti" class="table table-striped">
+                        <h:column>
+                            #{vesti.idvesti}
+                        </h:column>
+                        <h:column>
+                            #{vesti.kategorija_naziv}
+                        </h:column>
+                        <h:column>
+                            #{vesti.autor}
+                        </h:column>
+                        <h:column>
+                            #{vesti.vreme}
+                        </h:column>
+                        <h:column>
+                            #{vesti.tekst}
+                        </h:column>
+                    </h:dataTable>
                 </div>
                     
                 <div class="col-sm-3 bg-secondary text-center" style="height: 500px">

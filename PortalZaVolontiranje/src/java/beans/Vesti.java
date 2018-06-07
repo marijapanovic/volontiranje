@@ -20,6 +20,17 @@ public class Vesti {
     private String tekst;
     private int tipAutora;
     private int vidljivost;
+    private String kategorija_naziv;
+
+    public String getKategorija_naziv() {
+        return kategorija_naziv;
+    }
+
+    public void setKategorija_naziv(String kategorija_naziv) {
+        this.kategorija_naziv = kategorija_naziv;
+    }
+    
+    
 
     public int getIdvesti() {
         return idvesti;

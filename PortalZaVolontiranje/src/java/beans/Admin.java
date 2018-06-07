@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author SRDJAN
  */
-public class Admin {
+public class Admin implements Serializable{
     private int admin_id;
     private String email;
     private String lozinka;
