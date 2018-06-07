@@ -89,8 +89,8 @@
                             
                             <p:outputLabel for="piborganizacije" value="PIB:" />
                             <p:inputText id="piborganizacije" value="#{registracijaOrganizacija.pib}" required="true" 
-                                         requiredMessage="Unesite Vas PIB."
-                                         validatorMessage="Unesite ispravan pib." >
+                                         requiredMessage="Unesite PIB organizacije."
+                                         validatorMessage="Pib mora imati 9 brojeva." >
                                 <f:validateRegex pattern="^[0-9]{9}$" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="piborganizacije"/>
@@ -100,7 +100,7 @@
                             
                             <p:outputLabel for="telefon" value="Kontakt telefon:" />
                             <p:inputText id="telefon" value="#{registracijaOrganizacija.telefon}" required="true" 
-                                         validatorMessage="Unesite isparvan telefon"
+                                         validatorMessage="Unesite ispravan telefon"
                                          requiredMessage="Unesite telefon.">
                                 <f:validateRegex pattern="^[\d\-/]+$" ></f:validateRegex>
                             </p:inputText>
@@ -112,7 +112,7 @@
                             <p:outputLabel for="mail" value="E-mail:" />
                             <p:inputText id="mail" value="#{registracijaOrganizacija.email}" required="true" 
                                          requiredMessage="Unesite e-mail."
-                                         validatorMessage="Unesite isparavan meil">
+                                         validatorMessage="Unesite ispravan e-mail.">
                                  <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="mail"/>
@@ -140,7 +140,11 @@
                            
                             <p:outputLabel for="web" value="Web adresa:" />
                             <p:inputText id="web" value="#{registracijaOrganizacija.webAdresa}" required="true" 
-                                         requiredMessage="Unesite web adresu.">
+                                         requiredMessage="Unesite web adresu."
+                                         validatorMessage="Unesite ispravanu web adresu">
+                                <f:validateRegex pattern="^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}\.([a-z]+)?$">
+                                    
+                                </f:validateRegex>
                             </p:inputText>
                             <p:message for="web"/>
                             <h:selectBooleanCheckbox value="#{registracijaOrganizacija.jpWebAdresa}"></h:selectBooleanCheckbox>
@@ -148,7 +152,9 @@
                             
                             <p:outputLabel for="lozinka" value="Lozinka:" />
                             <p:password id="lozinka" value="#{registracijaOrganizacija.lozinka}" required="true" 
-                                        requiredMessage="Unesite lozinku.">
+                                        requiredMessage="Unesite lozinku."
+                                        validatorMessage="Lozinka mora imati minimum 5 karaktera.">
+                                <f:validateLength minimum="5"/>
                             </p:password>
                             <p:message for="lozinka"/>
                             <p:outputLabel></p:outputLabel>
