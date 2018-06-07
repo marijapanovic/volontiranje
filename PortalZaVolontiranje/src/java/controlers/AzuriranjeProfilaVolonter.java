@@ -62,7 +62,7 @@ public class AzuriranjeProfilaVolonter {
     private String kompanija;
     private String sedisteKompanije;
     private String pozicijaUKompaniji;
-    private String nazivSkole;
+    private Integer nazivSkole;
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
@@ -77,7 +77,38 @@ public class AzuriranjeProfilaVolonter {
     private String vestineIskustva;
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
+    
+    private Integer idzaposlenja;
+    private Integer idVestine;
+    private String diplome;
 
+    public String getDiplome() {
+        return diplome;
+    }
+
+    public void setDiplome(String diplome) {
+        this.diplome = diplome;
+    }
+    
+
+    public Integer getIdVestine() {
+        return idVestine;
+    }
+
+    public void setIdVestine(Integer idVestine) {
+        this.idVestine = idVestine;
+    }
+    
+
+    public Integer getIdzaposlenja() {
+        return idzaposlenja;
+    }
+
+    public void setIdzaposlenja(Integer idzaposlenja) {
+        this.idzaposlenja = idzaposlenja;
+    }
+    
+    
     public Boolean getJpIme() {
         return jpIme;
     }
@@ -262,11 +293,11 @@ public class AzuriranjeProfilaVolonter {
         this.pozicijaUKompaniji = pozicijaUKompaniji;
     }
 
-    public String getNazivSkole() {
+    public Integer getNazivSkole() {
         return nazivSkole;
     }
 
-    public void setNazivSkole(String nazivSkole) {
+    public void setNazivSkole(Integer nazivSkole) {
         this.nazivSkole = nazivSkole;
     }
 
@@ -502,17 +533,17 @@ public class AzuriranjeProfilaVolonter {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
             rs.next();
-            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
-                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
-                    + ", volonter.jpdrzavljanstvo=" + jpDrzavljanstvo + ", volonter.telefon='" + telefon + "', volonter.jptelefon="
-                    + jpTelefon + ", volonter.ulica_broj='" + ulica_broj + "' , volonter.jpulica_broj=" + jpAdresa + ", volonter.jpmesto=" + jpMesto + ", volonter.lozinka='"
-                    + lozinka + "', volonter.slika='" + slika + "', volonter.jpslika=" + jpSlika + ", volonter.cv='" + cv + "', volonter.jpcv=" + jpCv +
-                    ", volonter.status="+ status + ", volonter.jpstatus=" + jpStatus + ", volonter.zdravstveni_problemi='" + zdravstveneNapomene +"', "
-                    + "', volonter.mesto_id= " + selektovanoMesto.getId() + ", volonter.drzavljanstvo_id= " + selektovanoDrzavljanstvo.getIddrz() + ", raspolozivost.iddana=" + odgovarajuciDani + ", skola.naziv='"+nazivSkole 
-                    +"', skola.mesto='" + sedisteSkole + "', skola.nivo='" + nivoStudija + "', skola.godina_upisa='" + godinaUpisa +"', zaposlenje.kompanija='" + kompanija +"',"
-                    + " zaposlenje.sediste='" + sedisteKompanije + "', zaposlenje.pozicija='" + pozicijaUKompaniji + "', vestine.naziv='" + vestineNaziv + "', vestine.struka= '" + vestineZvanje + "', vestine.iskustva='"
-                    + vestineIskustva + "' where volonter.email='" + mail + "' and volonter.idvolonter = raspolozivost.idvolontera and volonter.idvolonter=raspolozivost.idvolontera and "
-                            + "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolonter" );
+//            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
+//                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
+//                    + ", volonter.jpdrzavljanstvo=" + jpDrzavljanstvo + ", volonter.telefon='" + telefon + "', volonter.jptelefon="
+//                    + jpTelefon + ", volonter.ulica_broj='" + ulica_broj + "' , volonter.jpulica_broj=" + jpAdresa + ", volonter.jpmesto=" + jpMesto + ", volonter.lozinka='"
+//                    + lozinka + "', volonter.slika='" + slika + "', volonter.jpslika=" + jpSlika + ", volonter.cv='" + cv + "', volonter.jpcv=" + jpCv +
+//                    ", volonter.status="+ status + ", volonter.jpstatus=" + jpStatus + ", volonter.zdravstveni_problemi='" + zdravstveneNapomene +"', "
+//                    + "', volonter.mesto_id= " + selektovanoMesto.getId() + ", volonter.drzavljanstvo_id= " + selektovanoDrzavljanstvo.getIddrz() + ", raspolozivost.iddana=" + odgovarajuciDani + ", skola.naziv='"+nazivSkole 
+//                    +"', skola.mesto='" + sedisteSkole + "', skola.nivo='" + nivoStudija + "', skola.godina_upisa='" + godinaUpisa +"', zaposlenje.kompanija='" + kompanija +"',"
+//                    + " zaposlenje.sediste='" + sedisteKompanije + "', zaposlenje.pozicija='" + pozicijaUKompaniji + "', vestine.naziv='" + vestineNaziv + "', vestine.struka= '" + vestineZvanje + "', vestine.iskustva='"
+//                    + vestineIskustva + "' where volonter.email='" + mail + "' and volonter.idvolonter = raspolozivost.idvolontera and volonter.idvolonter=raspolozivost.idvolontera and "
+//                            + "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolonter" );
 
 //            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
 //                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
@@ -520,6 +551,24 @@ public class AzuriranjeProfilaVolonter {
 //                    lozinka + ", slika='"+ slika + "', jpslika="+ jpSlika + ", cv="+ cv + "', jpcv="+ jpCv+ ", status="+ status + ", jpstatus="+
 //                    jpStatus + ", kompanija='"+ kompanija + "', sediste='"+ sedisteKompanije + "', pozicija='"+ pozicijaUKompaniji + "', naziv='"+ 
 //                    nazivSkole + "', mesto='"+ sedisteSkole + "', nivo='"+ nivoStudija + "', godina_upisa='"+ godinaUpisa + "', " );
+
+            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine, skolasif set " +
+                    " volonter.jpime="+jpIme+" , volonter.jpdatum_rodjenja="+jpDatumRodjenja+" , volonter.jppol="+jpPol+
+                    ", volonter.jpdrzavljanstvo="+jpDrzavljanstvo+", volonter.telefon='"+telefon+"', volonter.jptelefon="+jpTelefon+
+                    " volonter.ulica_broj='"+ulica_broj+"' , volonter.jpulica_broj="+ jpAdresa+" , volonter.jpmesto="+jpMesto+", volonter.lozinka='" +lozinka+
+                    "' , volonter.slika='"+slika+"', volonter.jpslika="+jpSlika+", volonter.cv='"+cv+"', volonter.jpcv="+jpCv+
+                    ", volonter.status="+status+", volonter.jpstatus="+jpStatus+", volonter.zdravstveni_problemi='"+zdravstveneNapomene+
+                    "', volonter.mesto_id="+mesto+", volonter.drzavljanstvo_id="+drzavljanstvo+", raspolozivost.iddana="+odgovarajuciDani+", skola.idskolasif="+nazivSkole+
+                    ", skola.nivo='"+nivoStudija+"', skola.godina_upisa='" +godinaUpisa + 
+                    "', zaposlenje.idzaposlenje=" + idzaposlenja+
+                    " zaposlenje.sediste='"+sedisteKompanije+"', zaposlenje.pozicija='" +pozicijaUKompaniji+
+                    "', vestine.idvestine="+idVestine+", vestine.diplome='"+diplome+"' , vestine.iskustva='" +vestineIskustva+
+                    " where volonter.email='srki@bla.com' and volonter.idvolonter = raspolozivost.idvolontera and \n" +
+                    "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolont\n" +
+                    "and skola.idskolasif=skolasif.idskolaSif");
+
+
+
 //            
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
