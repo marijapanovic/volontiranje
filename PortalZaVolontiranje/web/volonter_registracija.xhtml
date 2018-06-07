@@ -230,11 +230,12 @@
                             
                             <p:outputLabel for="dani" value="Dani za volontiranje:" />
                             <p:selectManyMenu id ="dani" value="#{registracijaVolonter.odgovarajuciDani}" required="true" 
-                                             requiredMessage="Drzite Ctrl i oznacite dane za volontiranje" >
+                                             requiredMessage="Odaberite dane za volontiranje" >
                                 <f:selectItems value="#{registracijaVolonter.daniUNedelji}" var="dan"
                                                itemValue="#{dan.brDana}" itemLabel="#{dan.getImeDana()}">
                                 </f:selectItems>
                             </p:selectManyMenu>
+                            <small>* Za vise dana drzite CTRL i onda selektujte dane</small>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpOdovarajuciDani}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:message for="dani" />

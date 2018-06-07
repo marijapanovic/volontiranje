@@ -6,7 +6,6 @@
 package controlers;
 
 import beans.Organizacija;
-import beans.Volonter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -128,20 +127,7 @@ public class LoginOrganizacija {
             } else {
                 if (rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                    logInOrganizacija = new Organizacija();
-                    logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
-                    logInOrganizacija.setNaziv(rs.getString("naziv"));
-                    logInOrganizacija.setMesto(rs.getInt("mesto_id"));
-                    logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
-                    logInOrganizacija.setPib(rs.getInt("pib"));
-                    logInOrganizacija.setEmail(rs.getString("email"));
-                    logInOrganizacija.setText(rs.getString("text"));
-                 // logInOrganizacija.setOblastDelovanja(rs.getInt("oblast_id"));
-                    logInOrganizacija.setWebAdresa(rs.getString("web_adresa"));
-                    logInOrganizacija.setLozinka(rs.getString("lozinka"));
-                    logInOrganizacija.setTip(rs.getInt("tip"));
-                    logInOrganizacija.setUlica_broj(rs.getString("ulica_broj"));
-                    logInOrganizacija.setTelefon(rs.getString("kontakt_telefon"));
+                    logInOrganizacija = new Organizacija(idOrganizacija, email, aktivan, email, email, email, email, aktivan, lozinka, email, email, aktivan, ok, ok, ok, ok, ok, ok, ok, ok);
                     sesija.setAttribute("organizacija", logInOrganizacija);
                     ok=true;
                     return "organizacija_login?faces-redirect=true";

@@ -5,7 +5,6 @@
  */
 package controlers;
 
-
 import beans.Mesto;
 import beans.OblastDelovanja;
 import java.util.LinkedList;
@@ -25,32 +24,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-/**
- *
- * @author Korisnik
- */
+
+
 @ManagedBean
 @ViewScoped
 public class RegistracijaOrganizacija {
+
     private String naziv;
-    private Integer mesto;
+    private int mesto;
     private String email;
     private String ulica_broj;
-    private Integer oblastDelovanja;
+    private Integer idoblasti;
     private String lozinka;
-    private int pib;
+    private String pib;
     private String telefon;
     private String text;
     private String webAdresa;
     private Boolean jpNaziv;
     private Boolean jpMestoId;
     private Boolean jpPib;
-    private Boolean jpText;
+    private Boolean jpTekst;
     private Boolean jpUlica_broj;
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
-    
 
     public String getNaziv() {
         return naziv;
@@ -60,14 +57,13 @@ public class RegistracijaOrganizacija {
         this.naziv = naziv;
     }
 
-    public Integer getMesto() {
+    public int getMesto() {
         return mesto;
     }
 
-    public void setMesto(Integer mesto) {
+    public void setMesto(int mesto) {
         this.mesto = mesto;
     }
-
 
     public String getEmail() {
         return email;
@@ -85,15 +81,13 @@ public class RegistracijaOrganizacija {
         this.ulica_broj = ulica_broj;
     }
 
-    public Integer getOblastDelovanja() {
-        return oblastDelovanja;
+    public Integer getIdoblasti() {
+        return idoblasti;
     }
 
-    public void setOblastDelovanja(Integer oblastDelovanja) {
-        this.oblastDelovanja = oblastDelovanja;
+    public void setIdoblasti(Integer idoblasti) {
+        this.idoblasti = idoblasti;
     }
-
-    
 
     public String getLozinka() {
         return lozinka;
@@ -103,11 +97,11 @@ public class RegistracijaOrganizacija {
         this.lozinka = lozinka;
     }
 
-    public int getPib() {
+    public String getPib() {
         return pib;
     }
 
-    public void setPib(int pib) {
+    public void setPib(String pib) {
         this.pib = pib;
     }
 
@@ -136,11 +130,11 @@ public class RegistracijaOrganizacija {
     }
 
     public Boolean getJpText() {
-        return jpText;
+        return jpTekst;
     }
 
     public void setJpText(Boolean jpText) {
-        this.jpText = jpText;
+        this.jpTekst = jpText;
     }
 
     public Boolean getJpUlica_broj() {
@@ -198,59 +192,71 @@ public class RegistracijaOrganizacija {
     public void setWebAdresa(String webAdresa) {
         this.webAdresa = webAdresa;
     }
-    
+
     private List<SelectItem> svaMesta = new LinkedList<>();
 
     public List<SelectItem> getSvaMesta() {
         return svaMesta;
     }
+    private List<SelectItem> sveOblasti = new LinkedList<>();
 
+    public List<SelectItem> getSveOblasti() {
+        return sveOblasti;
+    }
+    
     @PostConstruct
     public void init() {
         List<Mesto> svaMestaBinovi = Mesto.ucitajSvaMesta();
         for (Mesto mesto : svaMestaBinovi) {
             svaMesta.add(new SelectItem(mesto.getId(), mesto.getNazivMesta()));
         }
+
+        List<OblastDelovanja> sveOblastiBinovi = OblastDelovanja.ucitajSveOblasti();
+        for (OblastDelovanja oblastDelovanja : sveOblastiBinovi) {
+            sveOblasti.add(new SelectItem(oblastDelovanja.getIdoblasti(), oblastDelovanja.getNaziv_oblasti()));
+        }
     }
-    
+
     public String registrujOrganizaciju() throws GreskaPriRegistraciji, SQLException {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as broj_naloga from organizacija "
+            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as br_naloga from organizacija "
                     + "where email = ?");
             preparedstatement.setString(1, email);
             ResultSet resultset = preparedstatement.executeQuery();
             resultset.next();
-            if (resultset.getInt("broj_naloga") > 0) {
+            if (resultset.getInt("br_naloga") > 0) {
                 return "Email vec postoji u bazi";
             } else {
-                preparedstatement = conn.prepareStatement("insert into organizacija(naziv, mesto_id, pib, email, text, oblast_id"
+                preparedstatement = conn.prepareStatement("insert into organizacija(naziv, mesto_id, pib, email, tekst, oblast_id, "
                         + "web_adresa, lozinka, tip, ulica_broj, kontakt_tel,"
-                        + " JPnaziv, JPmesto_id, JPpib, JPtext, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel) "
+                        + " JPnaziv, JPmesto_id, JPpib, JPtekst, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel) "
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                
+                
+                Integer  mojpib = Integer.parseInt(pib);
                 preparedstatement.setString(1, naziv);
-                preparedstatement.setInt(2,mesto);
-                preparedstatement.setInt(3, pib);
+                preparedstatement.setInt(2, mesto);
+                preparedstatement.setInt(3, mojpib);
                 preparedstatement.setString(4, email);
                 preparedstatement.setString(5, text);
-                preparedstatement.setInt(6,oblastDelovanja);
-                preparedstatement.setString(7,webAdresa);
-                preparedstatement.setString(8,lozinka);
-                preparedstatement.setInt(9,TipNaloga.ORGANIZACIJA);
+                preparedstatement.setInt(6, idoblasti);
+                preparedstatement.setString(7, webAdresa);
+                preparedstatement.setString(8, lozinka);
+                preparedstatement.setInt(9, TipNaloga.ORGANIZACIJA);
                 preparedstatement.setString(10, ulica_broj);
                 preparedstatement.setString(11, telefon);
                 preparedstatement.setBoolean(12, jpNaziv);
                 preparedstatement.setBoolean(13, jpMestoId);
                 preparedstatement.setBoolean(14, jpPib);
-                preparedstatement.setBoolean(15, jpText);
+                preparedstatement.setBoolean(15, jpTekst);
                 preparedstatement.setBoolean(16, jpOblast_delovanja);
                 preparedstatement.setBoolean(17, jpWebAdresa);
                 preparedstatement.setBoolean(18, jpUlica_broj);
                 preparedstatement.setBoolean(19, jpTelefon);
                 preparedstatement.executeUpdate();
-                
-                
+
             }
 
         } catch (SQLException ex) {

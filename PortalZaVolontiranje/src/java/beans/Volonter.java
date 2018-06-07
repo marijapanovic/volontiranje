@@ -8,26 +8,26 @@ package beans;
 //import java.sql.Date;
 import java.util.Date;
 
-/**
- *
- * @author Korisnik
- */
+
 public class Volonter {
     private int idVolonter;
     private String imePrezime;
     private Date datumRodjenja;
     private char pol;
-    private Drzavljanstvo drzavljanstvo;
+    //private Drzavljanstvo drzavljanstvo;
+    private String drzavljanstvo;
     private int drzavljanstvoID;
     private String telefon;
     private String ulica_broj;
-    private Mesto mestoId;
+   // private Mesto mestoId;
+    private String mestoAzuriranje;
     private int mesto;
     private String slika;
     private String cv;
     private String email;
     private String lozinka;
-    private Status status;
+   // private Status status;
+    private String status;
     private int statusID;
     private Boolean JPime;
     private Boolean JPdatum_rodjenja;
@@ -42,6 +42,8 @@ public class Volonter {
     private int Aktivan;
     private int Tip;
     private String zdravstveni_problemi;
+    private String imeKompanije;
+    private boolean JPdani;
 
     public String getZdravstveni_problemi() {
         return zdravstveni_problemi;
@@ -214,12 +216,19 @@ public class Volonter {
     public void setPol(char pol) {
         this.pol = pol;
     }
-
-    public Drzavljanstvo getDrzavljanstvo() {
+    
+    public String getDrzavljanstvo() {
         return drzavljanstvo;
     }
 
-    public void setDrzavljanstvo(Drzavljanstvo drzavljanstvo) {
+//    public Drzavljanstvo getDrzavljanstvo() {
+//        return drzavljanstvo;
+//    }
+//
+//    public void setDrzavljanstvo(Drzavljanstvo drzavljanstvo) {
+//        this.drzavljanstvo = drzavljanstvo;
+//    }
+    public void setDrzavljanstvo(String drzavljanstvo) {    
         this.drzavljanstvo = drzavljanstvo;
     }
 
@@ -239,14 +248,24 @@ public class Volonter {
         this.ulica_broj = ulica_broj;
     }
 
-    public Mesto getMestoId() {
-        return mestoId;
+//    public Mesto getMestoId() {
+//        return mestoId;
+//    }
+//
+//    public void setMestoId(Mesto mestoId) {
+//        this.mestoId = mestoId;
+//    }
+
+    public String getMestoAzuriranje() {
+        return mestoAzuriranje;
     }
 
-    public void setMestoId(Mesto mestoId) {
-        this.mestoId = mestoId;
+    public void setMestoAzuriranje(String mestoAzuriranje) {
+        this.mestoAzuriranje = mestoAzuriranje;
     }
-
+    
+    
+    
     public String getSlika() {
         return slika;
     }
@@ -279,12 +298,38 @@ public class Volonter {
         this.lozinka = lozinka;
     }  
 
-    public Status getStatus() {
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//        this.status = status;
+//    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getImeKompanije() {
+        return imeKompanije;
+    }
+
+    public void setImeKompanije(String imeKompanije) {
+        this.imeKompanije = imeKompanije;
+    }
+
+    public boolean isJPdani() {
+        return JPdani;
+    }
+
+    public void setJPdani(boolean JPdani) {
+        this.JPdani = JPdani;
+    }
+    
+    
     
 }

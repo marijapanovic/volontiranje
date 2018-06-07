@@ -75,9 +75,6 @@ public class RegistracijaVolonter {
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
     
-  
-
-
     
     public String getImePrezime() {
         return imePrezime;
@@ -504,12 +501,12 @@ public class RegistracijaVolonter {
         Connection conn;
         try {
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as broj_naloga from volonter "
+            PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as br_naloga from volonter "
                     + "where email = ?");
             preparedstatement.setString(1, mail);
             ResultSet resultset = preparedstatement.executeQuery();
             resultset.next();
-            if (resultset.getInt("broj_naloga") > 0) {
+            if (resultset.getInt("br_naloga") > 0) {
                 return "Email vec postoji u bazi";
             } else {
                 preparedstatement = conn.prepareStatement("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
