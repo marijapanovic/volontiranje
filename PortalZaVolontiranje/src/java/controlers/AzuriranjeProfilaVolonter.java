@@ -49,7 +49,7 @@ public class AzuriranjeProfilaVolonter {
     private Boolean jpTelefon;
     private String ulica_broj;
     private Boolean jpAdresa;
-    private Integer mesto;
+    private int mesto;
     private Boolean jpMesto;
     private String mail;
     private String lozinka;
@@ -57,7 +57,7 @@ public class AzuriranjeProfilaVolonter {
     private Boolean jpSlika;
     private String cv;
     private Boolean jpCv;
-    private String status;
+    private int status;
     private Boolean jpStatus;
     private String kompanija;
     private String sedisteKompanije;
@@ -66,7 +66,7 @@ public class AzuriranjeProfilaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
-    private Integer[] odgovarajuciDani;
+    //private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
 
     private String vestine;
@@ -189,11 +189,11 @@ public class AzuriranjeProfilaVolonter {
         this.jpAdresa = jpAdresa;
     }
 
-    public Integer getMesto() {
+    public int getMesto() {
         return mesto;
     }
 
-    public void setMesto(Integer mesto) {
+    public void setMesto(int mesto) {
         this.mesto = mesto;
     }
 
@@ -253,11 +253,11 @@ public class AzuriranjeProfilaVolonter {
         this.jpCv = jpCv;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -552,20 +552,17 @@ public class AzuriranjeProfilaVolonter {
 //                    jpStatus + ", kompanija='"+ kompanija + "', sediste='"+ sedisteKompanije + "', pozicija='"+ pozicijaUKompaniji + "', naziv='"+ 
 //                    nazivSkole + "', mesto='"+ sedisteSkole + "', nivo='"+ nivoStudija + "', godina_upisa='"+ godinaUpisa + "', " );
 
-            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine, skolasif set " +
-                    " volonter.jpime="+jpIme+" , volonter.jpdatum_rodjenja="+jpDatumRodjenja+" , volonter.jppol="+jpPol+
-                    ", volonter.jpdrzavljanstvo="+jpDrzavljanstvo+", volonter.telefon='"+telefon+"', volonter.jptelefon="+jpTelefon+
-                    " volonter.ulica_broj='"+ulica_broj+"' , volonter.jpulica_broj="+ jpAdresa+" , volonter.jpmesto="+jpMesto+", volonter.lozinka='" +lozinka+
-                    "' , volonter.slika='"+slika+"', volonter.jpslika="+jpSlika+", volonter.cv='"+cv+"', volonter.jpcv="+jpCv+
-                    ", volonter.status="+status+", volonter.jpstatus="+jpStatus+", volonter.zdravstveni_problemi='"+zdravstveneNapomene+
-                    "', volonter.mesto_id="+mesto+", volonter.drzavljanstvo_id="+drzavljanstvo+", raspolozivost.iddana="+odgovarajuciDani+", skola.idskolasif="+nazivSkole+
-                    ", skola.nivo='"+nivoStudija+"', skola.godina_upisa='" +godinaUpisa + 
-                    "', zaposlenje.idzaposlenje=" + idzaposlenja+
-                    " zaposlenje.sediste='"+sedisteKompanije+"', zaposlenje.pozicija='" +pozicijaUKompaniji+
-                    "', vestine.idvestine="+idVestine+", vestine.diplome='"+diplome+"' , vestine.iskustva='" +vestineIskustva+
-                    " where volonter.email='srki@bla.com' and volonter.idvolonter = raspolozivost.idvolontera and \n" +
-                    "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolont\n" +
-                    "and skola.idskolasif=skolasif.idskolaSif");
+            stm.executeUpdate("update volonter, raspolozivost, vestine set " + 
+            " volonter.jpime="+jpIme+", volonter.jpdatum_rodjenja="+jpDatumRodjenja+", volonter.jppol=" +jpPol+
+            ", volonter.jpdrzavljanstvo="+jpDrzavljanstvo+", volonter.telefon='"+telefon+"', volonter.jptelefon=" + jpTelefon+
+            ", volonter.ulica_broj='"+ulica_broj+"', volonter.jpulica_broj="+jpAdresa+", volonter.jpmesto="+jpMesto+", volonter.lozinka='" +lozinka+
+            "', volonter.slika='"+slika+"', volonter.jpslika="+jpSlika+", volonter.cv='"+cv+"', volonter.jpcv=" +jpCv + 
+            ", volonter.status="+status+", volonter.jpstatus="+jpStatus+", volonter.zdravstveni_problemi='"+zdravstveneNapomene+"', volonter.jpzdravstveniproblemi=" +jpZdravstveneNapomene+
+            ", volonter.mesto_id="+mesto+", volonter.drzavljanstvo_id="+selektovanoDrzavljanstvo.getIddrz()+" , raspolozivost.iddana=2, volonter.skola_id=6\n" +
+", volonter.nivo_skole='4dddad', volonter.godinaupisa='1222', volonter.zaposlenjeid='Samsung',\n" +
+"volonter.sediste_firme='Finska', volonter.pozicijaufirmi='kurir', vestine.idvestine=1, vestine.diplome='bez strukfdsfdfda' , vestine.iskustva='iskusan sveps'\n" +
+"where volonter.email='srki@bla.com' and volonter.idvolonter=raspolozivost.idvolontera\n" +
+"	  and volonter.idvolonter = vestine.idvolont");
 
 
 
@@ -587,6 +584,15 @@ public class AzuriranjeProfilaVolonter {
     public List<Drzavljanstvo> getSvaDrzavljanstva() {
         return Drzavljanstvo.ucitajSvaDrzavljanstva();
     }
+    public List<SelectItem> svaMestaAzuriranje = new LinkedList<>();
+
+    public List<SelectItem> getSvaMestaAzuriranje() {
+        return svaMestaAzuriranje;
+    }
+
+    public void setSvaMestaAzuriranje(List<SelectItem> svaMestaAzuriranje) {
+        this.svaMestaAzuriranje = svaMestaAzuriranje;
+    }
     
     public List<Mesto> getSvaMesta() {
         return Mesto.ucitajSvaMesta();
@@ -602,16 +608,16 @@ public class AzuriranjeProfilaVolonter {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, s.*, sf.*, ve.*, z.*, tg.*, da.*, sts.*, zs.* from Volonter v "
+            ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.* from Volonter v "
                     + " left join drzavljanstvo d on v.drzavljanstvo_id = d.iddrz "
                     + " left join raspolozivost r on v.idvolonter = r.idvolontera "
                     + " left join dani da on r.iddana = da.iddani "
-                    + " left join skola s on v.idvolonter = s.idvolont "
-                    + " left join skolasif sf on s.idskolasif = sf.idskolasif "
+                   
+                    + " left join skolasif sf on v.skola_id = sf.idskolasif "
                     + " left join statussif sts on v.status = sts.idstatussif "
                     + " left join vestine ve on v.idvolonter = ve.idvolont "
-                    + " left join zaposlenje z on v.idvolonter = z.idvolonter "
-                    + "  left join zaposlenjesif zs on z.idzaposlenje = zs.id_zaposlenje "
+                   
+                    
                     + " left join tblgrad tg on v.mesto_id = tg.id  where email = 'srki@bla.com'");
             rs.next();
             volonterZaAzuriranje = new Volonter();
