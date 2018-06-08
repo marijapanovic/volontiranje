@@ -639,7 +639,7 @@ public class AzuriranjeProfilaVolonter {
             //volonterZaAzuriranje.setJPdani(rs.getBoolean("jpdani"));
             volonterZaAzuriranje.setSedisteKompanije(rs.getString("sediste"));
             volonterZaAzuriranje.setPozicijaUKompaniji(rs.getString("pozicija"));
-            volonterZaAzuriranje.setNazivObrazovneInstitucije(rs.getString("nazivSkole"));
+//            volonterZaAzuriranje.setNazivObrazovneInstitucije(rs.getString("nazivSkole"));
             
             //kompanijaAzuriranje = new Zaposlen();
             //kompanijaAzuriranje.setKompanija(rs.getString("kompanija"));

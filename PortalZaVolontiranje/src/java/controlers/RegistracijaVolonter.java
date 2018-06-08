@@ -546,9 +546,8 @@ public class RegistracijaVolonter {
                 preparedstatement = conn.prepareStatement("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
                         + " telefon, ulica_broj, mesto_id, slika, cv, status, email, lozinka,  JPime, JPdatum_rodjenja, JPpol,"
                         + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, tip, Zdravstveni_problemi, "
-                        + " skola_id, zaposlenjeid, vestineid, oblastiid,JPzdravstveniproblemi, JPoblasti, JPvestine, JPdan, "
-                        + "sediste_firme, pozicijaufirmi, godinaupisa, nivo_skole) "
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + " vestineid, oblastiid,JPzdravstveniproblemi, JPoblasti, JPvestine, JPdan) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 preparedstatement.setString(1, imePrezime);
           
                 java.sql.Date sqlDatumRodjenja = new java.sql.Date(datumRodjenja.getTime());
@@ -557,7 +556,7 @@ public class RegistracijaVolonter {
                 preparedstatement.setInt(4, drzavljanstvo);
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
-                preparedstatement.setInt(7,mesto);
+                preparedstatement.setInt(7, mesto);
                 preparedstatement.setString(8, slika);
                 preparedstatement.setString(9, cv);
                 preparedstatement.setInt(10,status);
@@ -575,18 +574,18 @@ public class RegistracijaVolonter {
                 preparedstatement.setBoolean(22, jpStatus);
                 preparedstatement.setInt(23, TipNaloga.VOLONTER);
                 preparedstatement.setString(24, zdravstveneNapomene);
-                preparedstatement.setInt(25, skolaid);
-                preparedstatement.setString(26, kompanija);
-                preparedstatement.setInt(27, idvestinesif);
-                preparedstatement.setInt(28,idoblasti );
-                preparedstatement.setBoolean(29, jpZdravstveneNapomene);
-                preparedstatement.setBoolean(30, jpOblast_delovanja);
-                preparedstatement.setBoolean(31, jpVestine);
-                preparedstatement.setBoolean(32, jpOdovarajuciDani);
-                preparedstatement.setString(33, sedisteKompanije);
-                preparedstatement.setString(34, pozicijaUKompaniji);
-                preparedstatement.setString(35, godinaUpisa);
-                preparedstatement.setString(36, nivoStudija);
+//                preparedstatement.setInt(25, skolaid);
+//                preparedstatement.setString(26, kompanija);
+                preparedstatement.setInt(25, idvestinesif);
+                preparedstatement.setInt(26,idoblasti );
+                preparedstatement.setBoolean(27, jpZdravstveneNapomene);
+                preparedstatement.setBoolean(28, jpOblast_delovanja);
+                preparedstatement.setBoolean(29, jpVestine);
+                preparedstatement.setBoolean(30, jpOdovarajuciDani);
+//                preparedstatement.setString(33, sedisteKompanije);
+//                preparedstatement.setString(34, pozicijaUKompaniji);
+//                preparedstatement.setString(35, godinaUpisa);
+//                preparedstatement.setString(36, nivoStudija);
                 preparedstatement.executeUpdate();
           
                 
@@ -611,79 +610,50 @@ public class RegistracijaVolonter {
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-        return "ulogovani_volonter.xhtml";
+        return registrovaniVolonterStatus();
     }
     
-//    public String registrovaniVolonterStatus() throws GreskaPriRegistraciji, SQLException{
-//        
-//        Connection con;
-//        try {
-//            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-//            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
-//            preparedstatement.setString(1, mail);
-//            ResultSet resultset = preparedstatement.executeQuery();
-//            resultset.next();
-//            int idVolonter;
-//            
-//            idVolonter = resultset.getInt("idvolonter");
-//            if (status == 1){
-//               preparedstatement = con.prepareStatement("insert into zaposlenje(idvolonter, kompanija, sediste,pozicija) "
-//                       + "values(?,?,?,?)");
-//            
-//               preparedstatement.setInt(1,idVolonter);
-//               preparedstatement.setString(2,kompanija);
-//               preparedstatement.setString(3, sedisteKompanije);
-//               preparedstatement.setString(4,pozicijaUKompaniji);
-//                
-//               preparedstatement.executeUpdate();
-//                
-//               return "volonter_login.xhtml";
-//            }
-//            else if (status == 3){
-//                preparedstatement = con.prepareStatement("insert into skola(idvolont, naziv, mesto, nivo, godina_upisa) "
-//                        + "values(?,?,?,?,?)");
-//                preparedstatement.setInt(1, idVolonter);
-////                preparedstatement.setString(2, nazivSkole);
-// //               preparedstatement.setString(3, sedisteSkole);
-//                preparedstatement.setString(4, nivoStudija);
-//                preparedstatement.setString(5, godinaUpisa);
-//                
-//                preparedstatement.executeUpdate();
-//            }
-//            
-//          
-//        }   catch (SQLException ex) {
-//            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
-//            throw ex;
-//        }
-//        return "ulogovani_volonter.xhtml";
-//
-//    }
-////    public String RegistrovaniVolonterVestine(){
-////        Connection con;
-////        
-////        try{
-////            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-////            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
-////            preparedstatement.setString(1, mail);
-////            ResultSet resultset = preparedstatement.executeQuery();
-////            resultset.next();
-////            int idVolonter = resultset.getInt("idvolonter");
-//////            if(vestine != ""){
-//////               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
-//////               preparedstatement.setInt(1,idVolonter);
-//////               preparedstatement.setString(2,vestineNaziv);
-//////               preparedstatement.setString(3, vestineZvanje);
-//////               preparedstatement.setString(4, vestineIskustva);
-//////               
-//////               preparedstatement.executeUpdate();
-//////            }
-////        
-////        } catch (SQLException ex) {
-////            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-////        return "ulogovani_volonter.xhtml";
-////    }
+    public String registrovaniVolonterStatus() throws GreskaPriRegistraciji, SQLException{
+        
+        Connection con;
+        try {
+            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            PreparedStatement preparedstatement;
+            
+            if (status == 1){
+               preparedstatement = con.prepareStatement("update volonter set zaposlenjeid = ?, sediste_firme = ?, pozicijaufirmi = ? "
+                       + "where email = ?");
+               preparedstatement.setString(4, mail);
+            
+               preparedstatement.setString(1,kompanija);
+               preparedstatement.setString(2, sedisteKompanije);
+               preparedstatement.setString(3,pozicijaUKompaniji);
+                
+               preparedstatement.executeUpdate();
+                
+               return "ulogovani_volonter.xhtml";
+            }
+            else if (status == 3){
+                preparedstatement = con.prepareStatement("update volonter set skolaid = ?, godinaupisa = ?, nivo_studija = ? "
+                        + "where email = ?");
+                
+                preparedstatement.setInt(1, skolaid);
+                preparedstatement.setString(2, godinaUpisa);
+                preparedstatement.setString(3, nivoStudija);
+                preparedstatement.setString(4, mail);
+                preparedstatement.executeUpdate();
+            }
+            
+          
+        }   catch (SQLException ex) {
+            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+        return "ulogovani_volonter.xhtml";
+
+    }
+    
+
     
     
     
