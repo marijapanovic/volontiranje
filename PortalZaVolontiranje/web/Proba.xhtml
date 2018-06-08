@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <head>
         <title>Proba</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,18 +21,19 @@ and open the template in the editor.
                 <div class="offset-sm-3 col-sm-7 bg-secondary rounded p-2 text-center">
                     <h2>Registracija</h2>
                     <h:form>
-                        <h:panelGrid columns="2">
-                            Izaberite dane koji vam najvise odgovaraju:
-                            <h:selectManyListbox value="#{proba.odgovarajuciDani}">
-                                <f:selectItems value="#{proba.daniUNedelji}" var="dan" 
-                                               itemValue="#{dan.getImeDana()}" 
-                                               itemLabel="#{dan.getImeDana()}">
-                                    
-                                </f:selectItems>
-                            </h:selectManyListbox>
+                        <h:panelGrid >
+                           
+                            <p:multiSelectListbox value="#{proba.selection}" effect="slide" header="Categories" showHeaders="true">
+                                <f:selectItems value="#{proba.categories}" />
+                            </p:multiSelectListbox>
+
+                            <p:commandButton value="Save" icon="ui-icon-check" update="out" style="display:block;margin:10px 0" />
+
+                            <h:outputText id="out" value="Value: #{proba.selection}" style="display:block" />
+
                            
                         </h:panelGrid>
-                         <h:commandButton class="btn btn-success mt-2" value="Register" action="#{proba.registracijaNova()}"></h:commandButton>
+                       <h:commandButton class="btn btn-success mt-2" value="Register" action="#{proba.registracijaNova()}"></h:commandButton>
                          
                     </h:form>
                 </div>

@@ -7,9 +7,9 @@
     <h:head>
         <title>Registracija volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
     </h:head>
     <h:body>
+        <h:outputStylesheet library="css" name="pravila.css"></h:outputStylesheet>
         <div class="media">
             <div class="col-sm-3">
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
@@ -174,53 +174,65 @@
                             <p:outputLabel for="status" value="Status:" />
                             <p:selectOneMenu id="status" value="#{registracijaVolonter.status}"
                                              required="true"
+                                             style="width: 220px"
                                              requiredMessage="Izaberite status.">
                                 <f:selectItem itemLabel="Izaberite status" itemValue=""/>
                                 <f:selectItems value="#{registracijaVolonter.statusi}" />
-                                <f:ajax render="statusDodatnaPolja" execute="imeKompanije" />
+                                <f:ajax render="statusDodatnaPoljaLabele" />
+                                <f:ajax render="statusDodatnaPoljaUnos" />
                             </p:selectOneMenu>
+                            <p:message for="status" />
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpStatus}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="status" />
+                            <p:outputLabel></p:outputLabel>
                             
-                            <h:panelGroup id="statusDodatnaPolja">
-                                <p:outputLabel  value="Ime kompanije" rendered="#{registracijaVolonter.status == 1}" />
+                            <h:panelGroup id="statusDodatnaPoljaLabele">
+                                <p:outputLabel  value="Ime kompanije:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p:outputLabel value="Sediste kompanije:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p:outputLabel  value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p:outputLabel value="Skola:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p></p>
+                                <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p></p>
+                                <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 3}" />
+                                
+                            </h:panelGroup>
+                            <h:panelGroup  id="statusDodatnaPoljaUnos">
                                 <p:inputText id="kompanija" value="#{registracijaVolonter.kompanija}" required="true" 
                                              requiredMessage="Unesite ime kompanije." 
                                              rendered="#{registracijaVolonter.status == 1}" >
                                 </p:inputText>
-                               
-                                
-                                <p:outputLabel value="Sediste kompanije:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p></p>
                                 <p:inputText value="#{registracijaVolonter.sedisteKompanije}" required="true" 
                                              requiredMessage="Unesite sediste kompanije." 
                                              rendered="#{registracijaVolonter.status == 1}">
                                 </p:inputText>
-                                
-                                
-                                <p:outputLabel  value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p></p>
                                 <p:inputText value="#{registracijaVolonter.pozicijaUKompaniji}" 
                                              rendered="#{registracijaVolonter.status == 1}">
                                 </p:inputText>
-                                
-                                <p:outputLabel for="skola" value = "Izaberite skolu koju pohadjate:" 
-                                               rendered="#{registracijaVolonter.status == 3}" />
-                                <p:selectOneMenu id="skola" required="true"
-                                                 value="#{registracijaVolonter.skolaid}">
-                                                 <f:selectItem itemValue="" itemLabel="Izaberite skolu." />
+                                <p:selectOneMenu id="skola" required="true" 
+                                                 style="width: 220px"
+                                                 value="#{registracijaVolonter.skolaid}"
+                                                 rendered="#{registracijaVolonter.status == 3}" >
+                                                 <f:selectItem itemValue="" itemLabel="Izaberite skolu :" />
                                                  <f:selectItems value="#{registracijaVolonter.sveSkole}" />
                                 </p:selectOneMenu>
+                                <p></p>
                                 
-                                <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p:inputText value="#{registracijaVolonter.nivoStudija}" 
                                              rendered="#{registracijaVolonter.status == 3}">
                                 </p:inputText>
-                                
-                                <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p></p>
                                 <p:inputText value="#{registracijaVolonter.godinaUpisa}" 
                                              rendered="#{registracijaVolonter.status == 3}">
                                 </p:inputText>
+                                <p></p>
                             </h:panelGroup>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel for="dani" value="Dani za volontiranje:" />
                             <p:selectManyMenu id ="dani" value="#{registracijaVolonter.odgovarajuciDani}" required="true" 
