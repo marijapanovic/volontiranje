@@ -34,7 +34,45 @@ and open the template in the editor.
                            
                         </h:panelGrid>
                        <h:commandButton class="btn btn-success mt-2" value="Register" action="#{proba.registracijaNova()}"></h:commandButton>
-                         
+                                                     
+                    <!--        <p:outputLabel></p:outputLabel> -->
+                            
+            <!--                <p:outputLabel for="vestine" value="Vestine:" />
+                            <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
+                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue="#{0}"/>
+                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
+                                    <f:ajax render="statusDodatneVestine" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpVestine}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+
+                            <h:panelGroup id="statusDodatneVestine">
+                                    <p:outputLabel value="Naziv obrazovne institucije" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineNaziv}" required="true" 
+                                                             requiredMessage="Unesite poslednji zavrseni obrazovni stepen." 
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    
+                                    <p:outputLabel value="Strucno zvanje" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineZvanje}" required="true" 
+                                                             requiredMessage="Unesite strucno zvanje."
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    <p:outputLabel value="Ostale diplome,znanja i vestine" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineOstalo}"  
+                                                              
+                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    <p:outputLabel value="Prethodna iskustva" 
+                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
+                                    <p:inputText value="#{registracijaVolonter.vestineIskustva}" 
+                                                            rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
+                                    </p:inputText>
+                                    
+                           </h:panelGroup>                   -->   
                     </h:form>
                 </div>
             </div>

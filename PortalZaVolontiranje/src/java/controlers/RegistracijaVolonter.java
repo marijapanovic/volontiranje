@@ -18,9 +18,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.OblastDelovanja;
 import beans.Skola;
 import beans.Status;
 import beans.TipNaloga;
+import beans.Vestine;
 
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
@@ -60,30 +62,25 @@ public class RegistracijaVolonter {
     private String kompanija;
     private String sedisteKompanije;
     private String pozicijaUKompaniji;
-    private String nazivSkole;
-    private String sedisteSkole;
-    private String nivoStudija;
-    private String godinaUpisa;
+    
+    
     private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
-    
-    private String vestine;
-    private Boolean jpVestine;
-    private String vestineNaziv;
-    private String vestineZvanje;
-    private String vestineOstalo;
-    private String vestineIskustva;
+
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
     private Integer skolaid;
+    private String nivoStudija;
+    private String godinaUpisa;
+    
+    private Integer idvestinesif;
+    private Boolean jpVestine;
+    private String vestineIskustva;
+    private String vestineDiploma;
+    
+    private Integer idoblasti;
+    private Boolean jpOblast_delovanja;
 
-//    private int zaposlenjaid;
-//    private int vestineid;
-//    private int oblastid;
-//    private Boolean JPzdravstveni_problemi;
-//    private Boolean JPoblasti;
-//    private Boolean JPvestine;
-//    private Boolean JPdan;
     
     public String getImePrezime() {
         return imePrezime;
@@ -118,6 +115,22 @@ public class RegistracijaVolonter {
         return sveSkole;
     }
     
+    public List<SelectItem> sveVestine = new LinkedList<>();
+
+    public List<SelectItem> getSveVestine() {
+        return sveVestine;
+    }
+
+    public void setSveVestine(List<SelectItem> sveVestine) {
+        this.sveVestine = sveVestine;
+    }
+    
+    private List<SelectItem> sveOblasti = new LinkedList<>();
+
+    public List<SelectItem> getSveOblasti() {
+        return sveOblasti;
+    }
+    
     @PostConstruct
     public void init() {
         List<Drzavljanstvo> svaDrzavljanstvaBinovi = Drzavljanstvo.ucitajSvaDrzavljanstva();
@@ -133,6 +146,16 @@ public class RegistracijaVolonter {
         List<Skola> sveSkoleBinovi = Skola.ucitajSveSkole();
         for(Skola skola: sveSkoleBinovi){
             sveSkole.add(new SelectItem(skola.getIdskolaSif(), skola.getNazivSkole()));
+        }
+        
+        List<Vestine> sveVestineBinovi = Vestine.ucitajSveVestine();
+        for(Vestine vestine: sveVestineBinovi){
+            sveVestine.add(new SelectItem(vestine.getIdvestinesif(),vestine.getNaziv()));
+        }
+        
+        List<OblastDelovanja> sveOblastiBinovi = OblastDelovanja.ucitajSveOblasti();
+        for (OblastDelovanja oblastDelovanja : sveOblastiBinovi) {
+            sveOblasti.add(new SelectItem(oblastDelovanja.getIdoblasti(), oblastDelovanja.getNaziv_oblasti()));
         }
     }
 
@@ -283,21 +306,7 @@ public class RegistracijaVolonter {
         this.pozicijaUKompaniji = pozicijaUKompaniji;
     }
 
-    public String getNazivSkole() {
-        return nazivSkole;
-    }
 
-    public void setNazivSkole(String nazivSkole) {
-        this.nazivSkole = nazivSkole;
-    }
-
-    public String getSedisteSkole() {
-        return sedisteSkole;
-    }
-
-    public void setSedisteSkole(String sedisteSkole) {
-        this.sedisteSkole = sedisteSkole;
-    }
 
     public String getNivoStudija() {
         return nivoStudija;
@@ -359,28 +368,12 @@ public class RegistracijaVolonter {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
-    public String getVestineNaziv() {
-        return vestineNaziv;
+    public String getVestineDiploma() {
+        return vestineDiploma;
     }
 
-    public void setVestineNaziv(String vestineNaziv) {
-        this.vestineNaziv = vestineNaziv;
-    }
-
-    public String getVestineZvanje() {
-        return vestineZvanje;
-    }
-
-    public void setVestineZvanje(String vestineZvanje) {
-        this.vestineZvanje = vestineZvanje;
-    }
-
-    public String getVestineOstalo() {
-        return vestineOstalo;
-    }
-
-    public void setVestineOstalo(String vestineOstalo) {
-        this.vestineOstalo = vestineOstalo;
+    public void setVestineDiploma(String vestineDiploma) {
+        this.vestineDiploma = vestineDiploma;
     }
 
     public String getVestineIskustva() {
@@ -391,13 +384,6 @@ public class RegistracijaVolonter {
         this.vestineIskustva = vestineIskustva;
     }
 
-    public String getVestine() {
-        return vestine;
-    }
-
-    public void setVestine(String vestine) {
-        this.vestine = vestine;
-    }
 
     public String getZdravstveneNapomene() {
         return zdravstveneNapomene;
@@ -519,11 +505,32 @@ public class RegistracijaVolonter {
     public void setSkolaid(Integer skolaid) {
         this.skolaid = skolaid;
     }
-    
-    
 
-    
+    public Integer getIdvestinesif() {
+        return idvestinesif;
+    }
 
+    public void setIdvestinesif(Integer idvestinesif) {
+        this.idvestinesif = idvestinesif;
+    }
+
+    public Integer getIdoblasti() {
+        return idoblasti;
+    }
+
+    public void setIdoblasti(Integer idoblasti) {
+        this.idoblasti = idoblasti;
+    }
+
+    public Boolean getJpOblast_delovanja() {
+        return jpOblast_delovanja;
+    }
+
+    public void setJpOblast_delovanja(Boolean jpOblast_delovanja) {
+        this.jpOblast_delovanja = jpOblast_delovanja;
+    }
+    
+    
     public String registrujVolontera() throws GreskaPriRegistraciji, SQLException {
         Connection conn;
         try {
@@ -622,8 +629,8 @@ public class RegistracijaVolonter {
                 preparedstatement = con.prepareStatement("insert into skola(idvolont, naziv, mesto, nivo, godina_upisa) "
                         + "values(?,?,?,?,?)");
                 preparedstatement.setInt(1, idVolonter);
-                preparedstatement.setString(2, nazivSkole);
-                preparedstatement.setString(3, sedisteSkole);
+//                preparedstatement.setString(2, nazivSkole);
+ //               preparedstatement.setString(3, sedisteSkole);
                 preparedstatement.setString(4, nivoStudija);
                 preparedstatement.setString(5, godinaUpisa);
                 
