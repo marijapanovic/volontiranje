@@ -66,7 +66,7 @@ public class AzuriranjeProfilaVolonter {
     private String sedisteSkole;
     private String nivoStudija;
     private String godinaUpisa;
-    private Integer[] odgovarajuciDani;
+    //private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
 
     private String vestine;
@@ -558,7 +558,7 @@ public class AzuriranjeProfilaVolonter {
                     " volonter.ulica_broj='"+ulica_broj+"' , volonter.jpulica_broj="+ jpAdresa+" , volonter.jpmesto="+jpMesto+", volonter.lozinka='" +lozinka+
                     "' , volonter.slika='"+slika+"', volonter.jpslika="+jpSlika+", volonter.cv='"+cv+"', volonter.jpcv="+jpCv+
                     ", volonter.status="+status+", volonter.jpstatus="+jpStatus+", volonter.zdravstveni_problemi='"+zdravstveneNapomene+
-                    "', volonter.mesto_id="+mesto+", volonter.drzavljanstvo_id="+drzavljanstvo+", raspolozivost.iddana="+odgovarajuciDani+", skola.idskolasif="+nazivSkole+
+                    "', volonter.mesto_id="+mesto+", volonter.drzavljanstvo_id="+drzavljanstvo+", raspolozivost.iddana='"+odgovarajuciDaniVolontera+"', skola.idskolasif="+nazivSkole+
                     ", skola.nivo='"+nivoStudija+"', skola.godina_upisa='" +godinaUpisa + 
                     "', zaposlenje.idzaposlenje=" + idzaposlenja+
                     " zaposlenje.sediste='"+sedisteKompanije+"', zaposlenje.pozicija='" +pozicijaUKompaniji+

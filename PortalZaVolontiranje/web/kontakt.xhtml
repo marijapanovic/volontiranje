@@ -13,6 +13,14 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+                    <script>
+            function otvoriProzorVolontera() {
+                window.open("volonter_login.xhtml", "_blank", "toolbar=no,top=100, left=500, height=300, width=600");
+            }
+            function otvoriProzorOrganizacije() {
+                window.open("organizacija_login.xhtml", "_blank", "toolbar=no, top=100, left=400, height=250, width=500");
+            }
+        </script>
     </h:head>
     <h:body>
         <div class="media">
@@ -36,10 +44,10 @@
                         <a class="nav-link" href="index.xhtml">Pocetna</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">Volonter</a>
+                        <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Organizacija</a>
+                        <a class="nav-link" href="#" onclick="otvoriProzorOrganizacije()">Organizacija</a>
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
