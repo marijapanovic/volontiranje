@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beans;
 
 
-//import java.sql.Date;
+
 import java.io.Serializable;
 
 
@@ -44,25 +40,74 @@ public class Volonter implements Serializable{
     private int Aktivan;
     private int Tip;
     private String zdravstveni_problemi;
+    private Boolean JPzdravstveni_problemi;
+    
     private String imeKompanije;
+    private String sedisteKompanije;
+    private String pozicijaUKompaniji;
     private boolean JPdani;
 
     private int skolaid;
-//    private int zaposlenjaid;
-//    private int vestineid;
-//    private int oblastid;
-//    private Boolean JPzdravstveni_problemi;
-//    private Boolean JPoblasti;
-//    private Boolean JPvestine;
-//    private Boolean JPdan;
-
-    private String sedisteKompanije;
-    private String pozicijaUKompaniji;
     private String nivoSkolovanja;
-    private String nazivObrazovneInstitucije;
-    private String sedisteSkole;
     private String godinaUpisa;
+    
+    private int vestineid;
+    private int oblastid;
+    
+    private Boolean JPoblasti;
+    private Boolean JPvestine;
 
+    
+    
+
+    public Volonter() {
+    }
+
+    public Volonter(int idVolonter, String imePrezime, Date datumRodjenja, char pol, int drzavljanstvoID, String telefon, String ulica_broj, int mesto, String slika, String cv, String email, String lozinka, String status, int statusID, Boolean JPime, Boolean JPdatum_rodjenja, Boolean JPpol, Boolean JPdrzavljanstvo, Boolean JPtelefon, Boolean JPulica_broj, Boolean JPmesto, Boolean JPslika, Boolean JPcv, Boolean JPstatus, int Aktivan, int Tip, String zdravstveni_problemi, String imeKompanije, String sedisteKompanije, String pozicijaUKompaniji, boolean JPdani, int skolaid, int vestineid, int oblastid, Boolean JPzdravstveni_problemi, Boolean JPoblasti, Boolean JPvestine, String nivoSkolovanja, String nazivObrazovneInstitucije, String sedisteSkole, String godinaUpisa) {
+        this.idVolonter = idVolonter;
+        this.imePrezime = imePrezime;
+        this.datumRodjenja = datumRodjenja;
+        this.pol = pol;
+        this.drzavljanstvoID = drzavljanstvoID;
+        this.telefon = telefon;
+        this.ulica_broj = ulica_broj;
+        this.mesto = mesto;
+        this.slika = slika;
+        this.cv = cv;
+        this.email = email;
+        this.lozinka = lozinka;
+        this.status = status;
+        this.statusID = statusID;
+        this.JPime = JPime;
+        this.JPdatum_rodjenja = JPdatum_rodjenja;
+        this.JPpol = JPpol;
+        this.JPdrzavljanstvo = JPdrzavljanstvo;
+        this.JPtelefon = JPtelefon;
+        this.JPulica_broj = JPulica_broj;
+        this.JPmesto = JPmesto;
+        this.JPslika = JPslika;
+        this.JPcv = JPcv;
+        this.JPstatus = JPstatus;
+        this.Aktivan = Aktivan;
+        this.Tip = Tip;
+        this.zdravstveni_problemi = zdravstveni_problemi;
+        this.imeKompanije = imeKompanije;
+        this.sedisteKompanije = sedisteKompanije;
+        this.pozicijaUKompaniji = pozicijaUKompaniji;
+        this.JPdani = JPdani;
+        this.skolaid = skolaid;
+        this.vestineid = vestineid;
+        this.oblastid = oblastid;
+        this.JPzdravstveni_problemi = JPzdravstveni_problemi;
+        this.JPoblasti = JPoblasti;
+        this.JPvestine = JPvestine;
+        this.nivoSkolovanja = nivoSkolovanja;
+        this.godinaUpisa = godinaUpisa;
+    }
+
+    
+    
+    
     public String getNivoSkolovanja() {
         return nivoSkolovanja;
     }
@@ -71,21 +116,6 @@ public class Volonter implements Serializable{
         this.nivoSkolovanja = nivoSkolovanja;
     }
 
-    public String getNazivObrazovneInstitucije() {
-        return nazivObrazovneInstitucije;
-    }
-
-    public void setNazivObrazovneInstitucije(String nazivObrazovneInstitucije) {
-        this.nazivObrazovneInstitucije = nazivObrazovneInstitucije;
-    }
-
-    public String getSedisteSkole() {
-        return sedisteSkole;
-    }
-
-    public void setSedisteSkole(String sedisteSkole) {
-        this.sedisteSkole = sedisteSkole;
-    }
 
     public String getGodinaUpisa() {
         return godinaUpisa;
@@ -358,6 +388,46 @@ public class Volonter implements Serializable{
 
     public void setSkolaid(int skolaid) {
         this.skolaid = skolaid;
+    }
+
+    public int getVestineid() {
+        return vestineid;
+    }
+
+    public void setVestineid(int vestineid) {
+        this.vestineid = vestineid;
+    }
+
+    public int getOblastid() {
+        return oblastid;
+    }
+
+    public void setOblastid(int oblastid) {
+        this.oblastid = oblastid;
+    }
+
+    public Boolean getJPzdravstveni_problemi() {
+        return JPzdravstveni_problemi;
+    }
+
+    public void setJPzdravstveni_problemi(Boolean JPzdravstveni_problemi) {
+        this.JPzdravstveni_problemi = JPzdravstveni_problemi;
+    }
+
+    public Boolean getJPoblasti() {
+        return JPoblasti;
+    }
+
+    public void setJPoblasti(Boolean JPoblasti) {
+        this.JPoblasti = JPoblasti;
+    }
+
+    public Boolean getJPvestine() {
+        return JPvestine;
+    }
+
+    public void setJPvestine(Boolean JPvestine) {
+        this.JPvestine = JPvestine;
     }
     
     

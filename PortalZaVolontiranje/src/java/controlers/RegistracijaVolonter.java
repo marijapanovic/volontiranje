@@ -18,9 +18,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
+import beans.OblastDelovanja;
 import beans.Skola;
 import beans.Status;
 import beans.TipNaloga;
+import beans.Vestine;
 
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
@@ -60,30 +62,25 @@ public class RegistracijaVolonter {
     private String kompanija;
     private String sedisteKompanije;
     private String pozicijaUKompaniji;
-    private String nazivSkole;
-    private String sedisteSkole;
-    private String nivoStudija;
-    private String godinaUpisa;
+    
+    
     private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
-    
-    private String vestine;
-    private Boolean jpVestine;
-    private String vestineNaziv;
-    private String vestineZvanje;
-    private String vestineOstalo;
-    private String vestineIskustva;
+
     private String zdravstveneNapomene;
     private Boolean jpZdravstveneNapomene;
     private Integer skolaid;
+    private String nivoStudija;
+    private String godinaUpisa;
+    
+    private Integer idvestinesif;
+    private Boolean jpVestine;
+    private String vestineIskustva;
+    private String vestineDiploma;
+    
+    private Integer idoblasti;
+    private Boolean jpOblast_delovanja;
 
-//    private int zaposlenjaid;
-//    private int vestineid;
-//    private int oblastid;
-//    private Boolean JPzdravstveni_problemi;
-//    private Boolean JPoblasti;
-//    private Boolean JPvestine;
-//    private Boolean JPdan;
     
     public String getImePrezime() {
         return imePrezime;
@@ -118,6 +115,22 @@ public class RegistracijaVolonter {
         return sveSkole;
     }
     
+    public List<SelectItem> sveVestine = new LinkedList<>();
+
+    public List<SelectItem> getSveVestine() {
+        return sveVestine;
+    }
+
+    public void setSveVestine(List<SelectItem> sveVestine) {
+        this.sveVestine = sveVestine;
+    }
+    
+    private List<SelectItem> sveOblasti = new LinkedList<>();
+
+    public List<SelectItem> getSveOblasti() {
+        return sveOblasti;
+    }
+    
     @PostConstruct
     public void init() {
         List<Drzavljanstvo> svaDrzavljanstvaBinovi = Drzavljanstvo.ucitajSvaDrzavljanstva();
@@ -133,6 +146,16 @@ public class RegistracijaVolonter {
         List<Skola> sveSkoleBinovi = Skola.ucitajSveSkole();
         for(Skola skola: sveSkoleBinovi){
             sveSkole.add(new SelectItem(skola.getIdskolaSif(), skola.getNazivSkole()));
+        }
+        
+        List<Vestine> sveVestineBinovi = Vestine.ucitajSveVestine();
+        for(Vestine vestine: sveVestineBinovi){
+            sveVestine.add(new SelectItem(vestine.getIdvestinesif(),vestine.getNaziv()));
+        }
+        
+        List<OblastDelovanja> sveOblastiBinovi = OblastDelovanja.ucitajSveOblasti();
+        for (OblastDelovanja oblastDelovanja : sveOblastiBinovi) {
+            sveOblasti.add(new SelectItem(oblastDelovanja.getIdoblasti(), oblastDelovanja.getNaziv_oblasti()));
         }
     }
 
@@ -283,21 +306,7 @@ public class RegistracijaVolonter {
         this.pozicijaUKompaniji = pozicijaUKompaniji;
     }
 
-    public String getNazivSkole() {
-        return nazivSkole;
-    }
 
-    public void setNazivSkole(String nazivSkole) {
-        this.nazivSkole = nazivSkole;
-    }
-
-    public String getSedisteSkole() {
-        return sedisteSkole;
-    }
-
-    public void setSedisteSkole(String sedisteSkole) {
-        this.sedisteSkole = sedisteSkole;
-    }
 
     public String getNivoStudija() {
         return nivoStudija;
@@ -359,28 +368,12 @@ public class RegistracijaVolonter {
         this.odgovarajuciDani = odgovarajuciDani;
     }
 
-    public String getVestineNaziv() {
-        return vestineNaziv;
+    public String getVestineDiploma() {
+        return vestineDiploma;
     }
 
-    public void setVestineNaziv(String vestineNaziv) {
-        this.vestineNaziv = vestineNaziv;
-    }
-
-    public String getVestineZvanje() {
-        return vestineZvanje;
-    }
-
-    public void setVestineZvanje(String vestineZvanje) {
-        this.vestineZvanje = vestineZvanje;
-    }
-
-    public String getVestineOstalo() {
-        return vestineOstalo;
-    }
-
-    public void setVestineOstalo(String vestineOstalo) {
-        this.vestineOstalo = vestineOstalo;
+    public void setVestineDiploma(String vestineDiploma) {
+        this.vestineDiploma = vestineDiploma;
     }
 
     public String getVestineIskustva() {
@@ -391,13 +384,6 @@ public class RegistracijaVolonter {
         this.vestineIskustva = vestineIskustva;
     }
 
-    public String getVestine() {
-        return vestine;
-    }
-
-    public void setVestine(String vestine) {
-        this.vestine = vestine;
-    }
 
     public String getZdravstveneNapomene() {
         return zdravstveneNapomene;
@@ -519,11 +505,32 @@ public class RegistracijaVolonter {
     public void setSkolaid(Integer skolaid) {
         this.skolaid = skolaid;
     }
-    
-    
 
-    
+    public Integer getIdvestinesif() {
+        return idvestinesif;
+    }
 
+    public void setIdvestinesif(Integer idvestinesif) {
+        this.idvestinesif = idvestinesif;
+    }
+
+    public Integer getIdoblasti() {
+        return idoblasti;
+    }
+
+    public void setIdoblasti(Integer idoblasti) {
+        this.idoblasti = idoblasti;
+    }
+
+    public Boolean getJpOblast_delovanja() {
+        return jpOblast_delovanja;
+    }
+
+    public void setJpOblast_delovanja(Boolean jpOblast_delovanja) {
+        this.jpOblast_delovanja = jpOblast_delovanja;
+    }
+    
+    
     public String registrujVolontera() throws GreskaPriRegistraciji, SQLException {
         Connection conn;
         try {
@@ -537,9 +544,10 @@ public class RegistracijaVolonter {
                 return "Email vec postoji u bazi";
             } else {
                 preparedstatement = conn.prepareStatement("insert into volonter(ime_prezime, datum_rodjenja, pol, drzavljanstvo_id,"
-                        + " telefon, ulica_broj, mesto_id, slika, cv, email, lozinka, status, JPime, JPdatum_rodjenja, JPpol,"
-                        + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, Zdravstveni_problemi, tip) "
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + " telefon, ulica_broj, mesto_id, slika, cv, status, email, lozinka,  JPime, JPdatum_rodjenja, JPpol,"
+                        + " JPdrzavljanstvo, JPtelefon, JPulica_broj, JPmesto, JPslika, JPcv, JPstatus, tip, Zdravstveni_problemi, "
+                        + " vestineid, oblastiid,JPzdravstveniproblemi, JPoblasti, JPvestine, JPdan) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 preparedstatement.setString(1, imePrezime);
           
                 java.sql.Date sqlDatumRodjenja = new java.sql.Date(datumRodjenja.getTime());
@@ -548,12 +556,12 @@ public class RegistracijaVolonter {
                 preparedstatement.setInt(4, drzavljanstvo);
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
-                preparedstatement.setInt(7,mesto);
+                preparedstatement.setInt(7, mesto);
                 preparedstatement.setString(8, slika);
                 preparedstatement.setString(9, cv);
-                preparedstatement.setString(10, mail);
-                preparedstatement.setString(11, lozinka);
-                preparedstatement.setInt(12, status);
+                preparedstatement.setInt(10,status);
+                preparedstatement.setString(11, mail);
+                preparedstatement.setString(12, lozinka);
                 preparedstatement.setBoolean(13, jpIme);
                 preparedstatement.setBoolean(14, jpDatumRodjenja);
                 preparedstatement.setBoolean(15, jpPol);
@@ -564,10 +572,22 @@ public class RegistracijaVolonter {
                 preparedstatement.setBoolean(20, jpSlika);
                 preparedstatement.setBoolean(21, jpCv);
                 preparedstatement.setBoolean(22, jpStatus);
-                preparedstatement.setString(23, zdravstveneNapomene);
-                preparedstatement.setInt(24, TipNaloga.VOLONTER);
+                preparedstatement.setInt(23, TipNaloga.VOLONTER);
+                preparedstatement.setString(24, zdravstveneNapomene);
+//                preparedstatement.setInt(25, skolaid);
+//                preparedstatement.setString(26, kompanija);
+                preparedstatement.setInt(25, idvestinesif);
+                preparedstatement.setInt(26,idoblasti );
+                preparedstatement.setBoolean(27, jpZdravstveneNapomene);
+                preparedstatement.setBoolean(28, jpOblast_delovanja);
+                preparedstatement.setBoolean(29, jpVestine);
+                preparedstatement.setBoolean(30, jpOdovarajuciDani);
+//                preparedstatement.setString(33, sedisteKompanije);
+//                preparedstatement.setString(34, pozicijaUKompaniji);
+//                preparedstatement.setString(35, godinaUpisa);
+//                preparedstatement.setString(36, nivoStudija);
                 preparedstatement.executeUpdate();
-                
+          
                 
                 preparedstatement = conn.prepareStatement("select idvolonter from volonter where email = ?");
                 preparedstatement.setString(1, mail);
@@ -598,35 +618,29 @@ public class RegistracijaVolonter {
         Connection con;
         try {
             con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
-            preparedstatement.setString(1, mail);
-            ResultSet resultset = preparedstatement.executeQuery();
-            resultset.next();
-            int idVolonter;
+            PreparedStatement preparedstatement;
             
-            idVolonter = resultset.getInt("idvolonter");
             if (status == 1){
-               preparedstatement = con.prepareStatement("insert into zaposlenje(idvolonter, kompanija, sediste,pozicija) "
-                       + "values(?,?,?,?)");
+               preparedstatement = con.prepareStatement("update volonter set zaposlenjeid = ?, sediste_firme = ?, pozicijaufirmi = ? "
+                       + "where email = ?");
+               preparedstatement.setString(4, mail);
             
-               preparedstatement.setInt(1,idVolonter);
-               preparedstatement.setString(2,kompanija);
-               preparedstatement.setString(3, sedisteKompanije);
-               preparedstatement.setString(4,pozicijaUKompaniji);
+               preparedstatement.setString(1,kompanija);
+               preparedstatement.setString(2, sedisteKompanije);
+               preparedstatement.setString(3,pozicijaUKompaniji);
                 
                preparedstatement.executeUpdate();
                 
-               return "volonter_login.xhtml";
+               return "ulogovani_volonter.xhtml";
             }
             else if (status == 3){
-                preparedstatement = con.prepareStatement("insert into skola(idvolont, naziv, mesto, nivo, godina_upisa) "
-                        + "values(?,?,?,?,?)");
-                preparedstatement.setInt(1, idVolonter);
-                preparedstatement.setString(2, nazivSkole);
-                preparedstatement.setString(3, sedisteSkole);
-                preparedstatement.setString(4, nivoStudija);
-                preparedstatement.setString(5, godinaUpisa);
+                preparedstatement = con.prepareStatement("update volonter set skolaid = ?, godinaupisa = ?, nivo_studija = ? "
+                        + "where email = ?");
                 
+                preparedstatement.setInt(1, skolaid);
+                preparedstatement.setString(2, godinaUpisa);
+                preparedstatement.setString(3, nivoStudija);
+                preparedstatement.setString(4, mail);
                 preparedstatement.executeUpdate();
             }
             
@@ -638,31 +652,8 @@ public class RegistracijaVolonter {
         return "ulogovani_volonter.xhtml";
 
     }
-//    public String RegistrovaniVolonterVestine(){
-//        Connection con;
-//        
-//        try{
-//            con = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
-//            PreparedStatement preparedstatement = con.prepareStatement("select * from volonter where email = ?");
-//            preparedstatement.setString(1, mail);
-//            ResultSet resultset = preparedstatement.executeQuery();
-//            resultset.next();
-//            int idVolonter = resultset.getInt("idvolonter");
-////            if(vestine != ""){
-////               preparedstatement = con.prepareStatement("insert into vestine(idvolonter,naziv, struka, iskustva) values(?,?,?,?)");
-////               preparedstatement.setInt(1,idVolonter);
-////               preparedstatement.setString(2,vestineNaziv);
-////               preparedstatement.setString(3, vestineZvanje);
-////               preparedstatement.setString(4, vestineIskustva);
-////               
-////               preparedstatement.executeUpdate();
-////            }
-//        
-//        } catch (SQLException ex) {
-//            Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return "ulogovani_volonter.xhtml";
-//    }
+    
+
     
     
     

@@ -192,7 +192,7 @@
                                 <p:outputLabel  value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 1}" />
                                 <p:outputLabel value="Skola:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p></p>
-                                <p:outputLabel value="Nivo studija:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p:outputLabel value="Nivo skolovanja:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p></p>
                                 <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 3}" />
                                 
@@ -245,45 +245,7 @@
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpOdovarajuciDani}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:message for="dani" />
-                            
-                    <!--        <p:outputLabel></p:outputLabel> -->
-                            
-            <!--                <p:outputLabel for="vestine" value="Vestine:" />
-                            <p:selectOneMenu id="vestine" value="#{registracijaVolonter.vestine}">
-                                            <f:selectItem itemLabel="Izaberite vestine:" itemValue="#{0}"/>
-                                            <f:selectItem itemLabel="Popunite vestine:" itemValue="popuniteVestine"/>
-                                    <f:ajax render="statusDodatneVestine" />
-                            </p:selectOneMenu>
-                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpVestine}"></h:selectBooleanCheckbox>
-                            <p:outputLabel value="Javni podatak"></p:outputLabel>
-
-                            <h:panelGroup id="statusDodatneVestine">
-                                    <p:outputLabel value="Naziv obrazovne institucije" 
-                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineNaziv}" required="true" 
-                                                             requiredMessage="Unesite poslednji zavrseni obrazovni stepen." 
-                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
-                                    </p:inputText>
-                                    
-                                    <p:outputLabel value="Strucno zvanje" 
-                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineZvanje}" required="true" 
-                                                             requiredMessage="Unesite strucno zvanje."
-                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
-                                    </p:inputText>
-                                    <p:outputLabel value="Ostale diplome,znanja i vestine" 
-                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineOstalo}"  
-                                                              
-                                                             rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
-                                    </p:inputText>
-                                    <p:outputLabel value="Prethodna iskustva" 
-                                                   rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}" />
-                                    <p:inputText value="#{registracijaVolonter.vestineIskustva}" 
-                                                            rendered="#{registracijaVolonter.vestine == 'popuniteVestine'}">
-                                    </p:inputText>
-                                    
-                           </h:panelGroup>                   -->       
+    
                             
                             <p:outputLabel value="Zdravstvene napomene:" />
                             <p:inputText value="#{registracijaVolonter.zdravstveneNapomene}">
@@ -293,6 +255,54 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
+                            
+                            
+                             <p:outputLabel for="vestine" value="Vestine:" />
+                             <p:selectOneMenu id="vestine" value="#{registracijaVolonter.idvestinesif}"
+                                             required="true"
+                                             style="width: 220px"
+                                             requiredMessage="Izaberite vestine.">
+                                <f:selectItem itemLabel="Izaberite vestine" itemValue=""/>
+                                <f:selectItems value="#{registracijaVolonter.sveVestine}" />
+                                <f:ajax render="vestineDodatnaPoljaLabele" />
+                                <f:ajax render="vestineDodatnaPoljaUnos" />
+                            </p:selectOneMenu>
+                            <p:message for="vestine" />
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpVestine}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                          
+                            <h:panelGroup id="vestineDodatnaPoljaLabele">
+                                <p:outputLabel value="Iskustva:"/>
+                                <p></p>
+                                <p:outputLabel  value="Diplome:" />
+                         
+                            </h:panelGroup>
+
+                            <h:panelGroup id="vestineDodatnaPoljaUnos">
+                                <p:inputText value="#{registracijaVolonter.vestineIskustva}"></p:inputText>
+                                <p></p>
+                                <p:inputText value="#{registracijaVolonter.vestineDiploma}"></p:inputText>
+
+                            </h:panelGroup>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            
+                            <p:outputLabel for="delatnost" value="Oblast delovanja:" />
+                            <p:selectOneMenu id="delatnost" value="#{registracijaVolonter.idoblasti}"
+                                           required="true"
+                                           requiredMessage="Izaberite oblast delovanja">
+                                <f:selectItem itemLabel="Izaberite oblast delovanja" itemValue="" />
+                                <f:selectItems value="#{registracijaVolonter.sveOblasti}" />
+                            </p:selectOneMenu>
+                            <p:message for="delatnost"/>
+                            <h:selectBooleanCheckbox value="#{registracijaVolonter.jpOblast_delovanja}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
                             <h:commandButton value="Registruj se"  action="#{registracijaVolonter.registrujVolontera()}">
                             </h:commandButton>
                             
