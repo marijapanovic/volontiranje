@@ -11,6 +11,7 @@
         <f:metadata>
             <f:viewAction action="#{azuriranjeProfilaVolonter.dohvatiPodatkeOVolonteru()}"></f:viewAction>
         </f:metadata>
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
     </h:head>
     <h:body>
@@ -56,10 +57,9 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel for="drzavljanstvo" value="Drzavljanstvo:" />
+                            <p:outputLabel  value="Drzavljanstvo:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.drzavljanstvo}"></h:outputText>
-                            <p:selectOneMenu id="drzavljanstvo" required="true" 
-                                             requiredMessage="Izaberite drzavljanstvo."
+                            <p:selectOneMenu 
                                              value="#{azuriranjeProfilaVolonter.drzavljanstvo}">
                                 <f:selectItem itemValue="" itemLabel="Promeni drzavljanstvo." />
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.getSvaDrzavljanstva()}" var="drzavljanstvo" 
@@ -69,15 +69,15 @@
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="drzavljanstvo" />
+                            <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
                             <p:outputLabel for="telefon" value="Kontakt telefon:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.telefon}"></h:outputText>
-                            <p:inputText id="telefon" value="#{azuriranjeProfilaVolonter.telefon}" required="true" 
+                            <p:inputText id="telefon" value="#{azuriranjeProfilaVolonter.telefon}"  
                                          validatorMessage="Niste uneli ispravan broj telefona."
-                                         requiredMessage="Unesite telefon."   a:placeholder="Unesite novi telefon">
+                                           a:placeholder="Unesite novi telefon">
                                 <f:validateRegex pattern="^[\d\-/]+$" ></f:validateRegex>
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPtelefon}">
@@ -90,9 +90,9 @@
 
                             <p:outputLabel for="adresa" value="Ulica i broj stanovanja:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.ulica_broj}"></h:outputText>
-                            <p:inputText id="adresa" value="#{azuriranjeProfilaVolonter.ulica_broj}" required="true" 
+                            <p:inputText id="adresa" value="#{azuriranjeProfilaVolonter.ulica_broj}" 
                                          validatorMessage="Niste uneli ipravnu adresu stanovanja."
-                                         requiredMessage="Unesite adresu stanovanja."  a:placeholder="Promeni adresu">
+                                          a:placeholder="Promeni adresu">
                                 <f:validateRegex pattern="^[\p{L}0-9\s,'-]+$"></f:validateRegex>
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPulica_broj}">
@@ -103,41 +103,38 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel for="mesto" value="Mesto prebivalista:" />
+                            <p:outputLabel  value="Mesto prebivalista:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoAzuriranje}"></h:outputText>
-                            <p:selectOneMenu id="mesto" value="#{azuriranjeProfilaVolonter.mesto}"
-                                             required="true"
-                                             requiredMessage="Izaberite mesto stanovanja." >
+                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.nazivMesta}"
+                                             >
                                 <f:selectItem itemLabel="Promeni mesto" itemValue="" />
-                                <f:selectItems value="#{azuriranjeProfilaVolonter.getSvaMesta()}"  var="mesto"
-                                               itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.id}"/>
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.svaMestaAzuriranje}" var="mesto" itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.nazivMesta}"/>
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpMesto}">
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="mesto" />
+                            <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel for="cv" value="CV:" />
+                            <p:outputLabel  value="CV:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.cv}"></h:outputText>
-                            <p:inputText id="cv" value="#{azuriranjeProfilaVolonter.cv}" required="true" 
-                                         requiredMessage="Unesite CV sa Google Drive." a:placeholder="Ubaci npvi CV">
+                            <p:inputText  value="#{azuriranjeProfilaVolonter.cv}"  a:placeholder="Ubaci npvi CV">
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpCv}">
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="cv"/>
+                            <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
                             <p:outputLabel for="mail" value="E-mail:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.email}"></h:outputText>
-                            <p:inputText id="mail" value="#{azuriranjeProfilaVolonter.mail}" required="true"
+                            <p:inputText id="mail" value="#{azuriranjeProfilaVolonter.mail}"
                                          validatorMessage="Niste uneli ispravan e-meil."
-                                         requiredMessage="Unesite e-mail." a:placeholder="Promeni e-mail">
+                                        a:placeholder="Promeni e-mail">
                                 <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" ></f:validateRegex>
                             </p:inputText>
                             <p:message for="mail" />
@@ -148,8 +145,7 @@
 
                             <p:outputLabel for="lozinka" value="Lozinka:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.lozinka}"></h:outputText>
-                            <p:password id="lozinka" value="#{azuriranjeProfilaVolonter.lozinka}" required="true"
-                                        requiredMessage="Unesite lozinku."
+                            <p:password id="lozinka" value="#{azuriranjeProfilaVolonter.lozinka}" 
                                         validatorMessage="Lozinka mora imati minimum 5 karaktera." a:placeholder="Promeni lozinku">
                                 <f:validateLength minimum="5"/>
                             </p:password>
@@ -162,8 +158,7 @@
                             <p:outputLabel for="status" value="Status:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status}"></h:outputText>
                             <p:selectOneMenu id="status" value="#{azuriranjeProfilaVolonter.status}"
-                                             required="true"
-                                             requiredMessage="Izaberite status.">
+                                             >
                                 <f:selectItem itemLabel="Promeni status" itemValue=""/>
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.getStatusi()}" />
                                 <f:ajax render="statusDodatnaPolja" execute="imeKompanije" />
@@ -172,15 +167,14 @@
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="status" />
+                            <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
                             <h:panelGroup id="statusDodatnaPolja">
                                 <p:outputLabel  value="Ime kompanije:" rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" />
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.imeKompanije}" 
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" class="ml-3"></h:outputText>
-                                              <p:inputText id="kompanija" value="#{azuriranjeProfilaVolonter.kompanija}" required="true" 
-                                             requiredMessage="Unesite ime kompanije." a:placeholder="Promeni ime kompanije"
+                                              <p:inputText id="kompanija" value="#{azuriranjeProfilaVolonter.kompanija}"  a:placeholder="Promeni ime kompanije"
                                              rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" >
                                 </p:inputText>
 
@@ -188,8 +182,7 @@
                                 <p:outputLabel value="Sediste kompanije:" rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" />
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.sedisteKompanije}" 
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" class="ml-3" ></h:outputText>
-                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteKompanije}" required="true" 
-                                             requiredMessage="Unesite sediste kompanije." a:placeholder="Promeni sediste kompanije"
+                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteKompanije}"  a:placeholder="Promeni sediste kompanije"
                                              rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}">
                                 </p:inputText>
 
@@ -206,16 +199,14 @@
                                                rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}" />
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivObrazovneInstitucije}" 
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}"></h:outputText>
-                                <p:inputText value="#{azuriranjeProfilaVolonter.nazivSkole}" required="true" 
-                                             requiredMessage="Unesite naziv nove obrazovne ustanove koju pohadjate." 
+                                <p:inputText value="#{azuriranjeProfilaVolonter.nazivSkole}" 
                                              >
                                 </p:inputText>
 
                                 <p:outputLabel value="Sediste(grad,drzava):" rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}" />
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.sedisteSkole}" 
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}" ></h:outputText>
-                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteSkole}" required="true" 
-                                             requiredMessage="Unesite sediste skola" 
+                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteSkole}" 
                                              rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}" >
                                 </p:inputText>
 
@@ -241,8 +232,7 @@
                                 </f:selectItems>
                             </p:selectManyMenu>
                             <h:outputText value="Promenite odgovarajuce dane:"></h:outputText>
-                            <p:selectManyMenu id="dani" required="true"
-                                                 requiredMessage="Drzite Ctrl i oznacite dane za volontiranje" value="#{azuriranjeProfilaVolonter.odgovarajuciDaniVolontera}">
+                            <p:selectManyMenu id="dani"  value="#{azuriranjeProfilaVolonter.odgovarajuciDaniVolontera}">
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.listaSvihDana}" var="dan"
                                                itemValue="#{dan.idDana}" itemLabel="#{dan.imeDana}" > 
                                 </f:selectItems>
@@ -252,7 +242,7 @@
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="dani"></p:message>
+                            <p:outputLabel></p:outputLabel>
 
 
 
@@ -269,10 +259,9 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <h:commandButton value="Sacuvaj izmene"  action="#{azuriranjeProfilaVolonter.azurirajProfil()}">
-                            </h:commandButton>
+                            <button onclick="#{azuriranjeProfilaVolonter.azurirajProfil()}">Klikni me klikni me klikni</button>
 
-                           
+                            <h:commandButton action="#{azuriranjeProfilaVolonter.azurirajProfil()}" value="azsjkaoso"></h:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </div> 
