@@ -11,7 +11,7 @@ public class Organizacija implements Serializable{
     private Integer idOrganizacija;
     private String naziv;
     private Integer mestoId;
-    private String pib;
+    private int pib;
     private String email;
     private String text;
     private String ulica_broj;
@@ -29,7 +29,7 @@ public class Organizacija implements Serializable{
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
 
-    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, String pib, String email, String text, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpText, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon) {
+    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String text, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpText, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon) {
         this.idOrganizacija = idOrganizacija;
         this.naziv = naziv;
         this.mestoId = mestoId;
@@ -51,8 +51,10 @@ public class Organizacija implements Serializable{
         this.jpWebAdresa = jpWebAdresa;
         this.jpTelefon = jpTelefon;
     }
-    
-    
+
+    public Organizacija() {
+    }
+
     public String getNaziv() {
         return naziv;
     }
@@ -75,11 +77,11 @@ public class Organizacija implements Serializable{
         this.email = email;
     }
 
-    public String getPib() {
+    public int getPib() {
         return pib;
     }
 
-    public void setPib(String pib) {
+    public void setPib(int pib) {
         this.pib = pib;
     }
 
