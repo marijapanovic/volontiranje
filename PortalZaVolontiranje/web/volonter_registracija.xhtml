@@ -52,7 +52,7 @@
                 <div class="offset-sm-3 col-sm-6  rounded p-2 text-center">
                     <h2>Registracija volontera</h2>
                     <p></p>
-                    <h:form>
+                    <h:form enctype="multipart/form-data">
                         <h:panelGrid columns="6" cellpadding="3">
                             
                             <p:outputLabel for="ime" value="Ime i prezime:" />
@@ -131,22 +131,22 @@
                             <p:message for="mesto" />
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="slika" value="Slika:" />
-                            <p:inputText id="slika" value="#{registracijaVolonter.slika}" required="true" 
-                                         requiredMessage="Unesite sliku sa Google Drive.">
-                            </p:inputText>
+                            
+                            <p:outputLabel value="Slika:" /> 
+                            <p:fileUpload  value="#{registracijaVolonter.fileSlika}"  mode="simple" skinSimple="true"/>
+                            
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpSlika}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="slika"/>
+                            <p:growl id="messages1" showDetail="true" />
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="cv" value="CV:" />
-                            <p:inputText id="cv" value="#{registracijaVolonter.cv}" required="true" 
-                                         requiredMessage="Unesite CV sa Google Drive.">
-                            </p:inputText>
+                            
+                            <p:outputLabel value="CV :" /> 
+                            <p:fileUpload  value="#{registracijaVolonter.fileCv}"  mode="simple" skinSimple="true"/>
+                            
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpCv}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="cv"/>
+                            <p:growl id="messages2" showDetail="true" />
                             <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel for="mail" value="E-mail:" />
@@ -181,9 +181,9 @@
                                 <f:ajax render="statusDodatnaPoljaLabele" />
                                 <f:ajax render="statusDodatnaPoljaUnos" />
                             </p:selectOneMenu>
-                            <p:message for="status" />
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpStatus}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:message for="status" />
                             <p:outputLabel></p:outputLabel>
                             
                             <h:panelGroup id="statusDodatnaPoljaLabele">
@@ -234,6 +234,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
+                            
                             <p:outputLabel for="dani" value="Dani za volontiranje:" />
                             <p:selectManyMenu id ="dani" value="#{registracijaVolonter.odgovarajuciDani}" required="true" 
                                              requiredMessage="Odaberite dane za volontiranje" >
@@ -267,9 +268,10 @@
                                 <f:ajax render="vestineDodatnaPoljaLabele" />
                                 <f:ajax render="vestineDodatnaPoljaUnos" />
                             </p:selectOneMenu>
-                            <p:message for="vestine" />
+                            
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpVestine}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:message for="vestine" />
                             <p:outputLabel></p:outputLabel>
                           
                             <h:panelGroup id="vestineDodatnaPoljaLabele">
@@ -294,13 +296,15 @@
                             <p:outputLabel for="delatnost" value="Oblast delovanja:" />
                             <p:selectOneMenu id="delatnost" value="#{registracijaVolonter.idoblasti}"
                                            required="true"
+                                           style="width: 220px"
                                            requiredMessage="Izaberite oblast delovanja">
                                 <f:selectItem itemLabel="Izaberite oblast delovanja" itemValue="" />
                                 <f:selectItems value="#{registracijaVolonter.sveOblasti}" />
                             </p:selectOneMenu>
-                            <p:message for="delatnost"/>
+                            
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpOblast_delovanja}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:message for="delatnost"/>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <h:commandButton value="Registruj se"  action="#{registracijaVolonter.registrujVolontera()}">

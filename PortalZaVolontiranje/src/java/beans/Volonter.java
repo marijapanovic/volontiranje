@@ -3,14 +3,27 @@ package beans;
 
 
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 
 
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.io.IOUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 
-public class Volonter implements Serializable{
+public class Volonter implements Serializable {
+
+    public static final String UPLOAD_DIRECTORY = "c:/upload";
+     
     private int idVolonter;
     private String imePrezime;
     private Date datumRodjenja;
@@ -430,6 +443,28 @@ public class Volonter implements Serializable{
         this.JPvestine = JPvestine;
     }
     
-    
+    public StreamedContent getSlikaSadrzajFajla() {
+        if (this.slika != null) {
+            FileInputStream slikaStream = null;
+            try {
+                File slikaFajl = new File(UPLOAD_DIRECTORY, this.slika);
+                slikaStream = new FileInputStream(slikaFajl);
+                return new DefaultStreamedContent(new ByteArrayInputStream(IOUtils.toByteArray(slikaStream)));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Volonter.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Volonter.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (slikaStream != null) {
+                        slikaStream.close();
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Volonter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
     
 }

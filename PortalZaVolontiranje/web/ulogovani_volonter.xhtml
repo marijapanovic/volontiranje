@@ -24,6 +24,9 @@
             #{login.errorEmail}
             #{login.errorPassword}
             #{login.errorNeaktivan}</h6>
+            <p:graphicImage width="200"
+                            value="#{login.logInVolonter.slikaSadrzajFajla}" 
+                            rendered="#{login.logInVolonter.slika != null}"/>
             </div>
         </div>
 

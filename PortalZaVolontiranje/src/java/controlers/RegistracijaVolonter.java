@@ -23,6 +23,7 @@ import beans.Skola;
 import beans.Status;
 import beans.TipNaloga;
 import beans.Vestine;
+import beans.Volonter;
 
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
@@ -32,6 +33,20 @@ import javax.faces.model.SelectItem;
 import java.sql.PreparedStatement;
 import javax.faces.bean.ViewScoped;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import org.apache.commons.io.IOUtils;
+ 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 @ManagedBean
 @ViewScoped
@@ -53,7 +68,7 @@ public class RegistracijaVolonter {
     private Boolean jpMesto;
     private String mail;
     private String lozinka;
-    private String slika;
+    
     private Boolean jpSlika;
     private String cv;
     private Boolean jpCv;
@@ -240,14 +255,6 @@ public class RegistracijaVolonter {
 
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
-    }
-
-    public String getSlika() {
-        return slika;
-    }
-
-    public void setSlika(String slika) {
-        this.slika = slika;
     }
 
     public String getCv() {
@@ -530,10 +537,89 @@ public class RegistracijaVolonter {
         this.jpOblast_delovanja = jpOblast_delovanja;
     }
     
+    private UploadedFile fileSlika;
+ 
+    public UploadedFile getFileSlika() {
+        return fileSlika;
+    }
+ 
+    public void setFileSlika(UploadedFile file) {
+        this.fileSlika = file;
+    }
+     
+    public String uploadSlika() {
+        if(fileSlika != null) {
+            
+            try {
+                String filename = fileSlika.getFileName();
+                InputStream input = fileSlika.getInputstream();
+                String fileNameSlika;
+                fileNameSlika = mail + "_" + filename;
+                OutputStream output = new FileOutputStream(new File(Volonter.UPLOAD_DIRECTORY, fileNameSlika));
+                
+                try {
+                    IOUtils.copy(input, output);
+                } finally {
+                    input.close();
+                    output.close();
+                }
+                
+                FacesMessage message = new FacesMessage("Succesful", fileSlika.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+                
+            return fileNameSlika;
+            } catch (IOException ex) {
+                Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return fileSlika.getFileName();
+    }
+    
+    private UploadedFile fileCv;
+
+    public UploadedFile getFileCv() {
+        return fileCv;
+    }
+
+    public void setFileCv(UploadedFile fileCv) {
+        this.fileCv = fileCv;
+    }
+ 
+    
+     
+    public String uploadCv() {
+        if(fileCv != null) {
+            
+            try {
+                String filename = fileCv.getFileName();
+                InputStream input = fileCv.getInputstream();
+                String fileNameCv;
+                fileNameCv = mail + "_" + filename;
+                OutputStream output = new FileOutputStream(new File(Volonter.UPLOAD_DIRECTORY, fileNameCv));
+
+                try {
+                    IOUtils.copy(input, output);
+                } finally {
+                    input.close();
+                    output.close();
+                }
+                
+                FacesMessage message = new FacesMessage("Succesful", fileCv.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+                
+               return fileNameCv; 
+            } catch (IOException ex) {
+                Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
     
     public String registrujVolontera() throws GreskaPriRegistraciji, SQLException {
         Connection conn;
         try {
+            String slikaFileName = uploadSlika();
+            String cvFileName = uploadCv();
             conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             PreparedStatement preparedstatement = conn.prepareStatement("select count(*) as br_naloga from volonter "
                     + "where email = ?");
@@ -557,8 +643,8 @@ public class RegistracijaVolonter {
                 preparedstatement.setString(5, telefon);
                 preparedstatement.setString(6, ulica_broj);
                 preparedstatement.setInt(7, mesto);
-                preparedstatement.setString(8, slika);
-                preparedstatement.setString(9, cv);
+                preparedstatement.setString(8, slikaFileName );
+                preparedstatement.setString(9, cvFileName);
                 preparedstatement.setInt(10,status);
                 preparedstatement.setString(11, mail);
                 preparedstatement.setString(12, lozinka);
@@ -586,6 +672,7 @@ public class RegistracijaVolonter {
 //                preparedstatement.setString(34, pozicijaUKompaniji);
 //                preparedstatement.setString(35, godinaUpisa);
 //                preparedstatement.setString(36, nivoStudija);
+
                 preparedstatement.executeUpdate();
           
                 
