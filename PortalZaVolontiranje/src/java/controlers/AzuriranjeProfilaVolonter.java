@@ -552,7 +552,7 @@ public class AzuriranjeProfilaVolonter {
 //                    jpStatus + ", kompanija='"+ kompanija + "', sediste='"+ sedisteKompanije + "', pozicija='"+ pozicijaUKompaniji + "', naziv='"+ 
 //                    nazivSkole + "', mesto='"+ sedisteSkole + "', nivo='"+ nivoStudija + "', godina_upisa='"+ godinaUpisa + "', " );
 
-<<<<<<< HEAD
+
             stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine, skolasif set " +
                     " volonter.jpime="+jpIme+" , volonter.jpdatum_rodjenja="+jpDatumRodjenja+" , volonter.jppol="+jpPol+
                     ", volonter.jpdrzavljanstvo="+jpDrzavljanstvo+", volonter.telefon='"+telefon+"', volonter.jptelefon="+jpTelefon+
@@ -567,7 +567,7 @@ public class AzuriranjeProfilaVolonter {
                     " where volonter.email='srki@bla.com' and volonter.idvolonter = raspolozivost.idvolontera and \n" +
                     "volonter.idvolonter=skola.idvolont and volonter.idvolonter = zaposlenje.idvolonter and volonter.idvolonter = vestine.idvolont\n" +
                     "and skola.idskolasif=skolasif.idskolaSif");
-=======
+
             stm.executeUpdate("update volonter, raspolozivost, vestine set " + 
             " volonter.jpime="+jpIme+", volonter.jpdatum_rodjenja="+jpDatumRodjenja+", volonter.jppol=" +jpPol+
             ", volonter.jpdrzavljanstvo="+jpDrzavljanstvo+", volonter.telefon='"+telefon+"', volonter.jptelefon=" + jpTelefon+
@@ -579,7 +579,7 @@ public class AzuriranjeProfilaVolonter {
 "volonter.sediste_firme='Finska', volonter.pozicijaufirmi='kurir', vestine.idvestine=1, vestine.diplome='bez strukfdsfdfda' , vestine.iskustva='iskusan sveps'\n" +
 "where volonter.email='srki@bla.com' and volonter.idvolonter=raspolozivost.idvolontera\n" +
 "	  and volonter.idvolonter = vestine.idvolont");
->>>>>>> a4722a21fdbf3e8030c1465e1f3e1726f28c97eb
+
 
 
 
