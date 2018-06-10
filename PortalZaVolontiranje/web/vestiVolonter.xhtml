@@ -53,9 +53,7 @@
 
                 <div class="col-sm-3 text-center" style="height: 500px">
 
-               
-
-                    <h4>Vase vesti</h4>
+                <h4>Vase vesti</h4>
                     <div class="dropdown show">
                         <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Vesti po kategorijama
@@ -67,7 +65,7 @@
                           <a class="dropdown-item" href="#">Kategorija 3</a>
                         </div>
                       </div>   
-                    <h:dataTable value="#{dohvatiVesti.sveMojeVesti}" var="sveMojeVesti" class="table table-striped">
+                <h:dataTable value="#{dohvatiVesti.sveMojeVesti}" var="sveMojeVesti" class="table table-striped">
                         <h:column>
                             #{sveMojeVesti.idvesti}
                         </h:column>
@@ -84,8 +82,24 @@
                             #{sveMojeVesti.tekst}
                         </h:column>
                     </h:dataTable>
+                     <h2>Dodavanje/Azuriranje vesti</h2>
+                    <h:form>
+                        <p:growl id="growl" showDetail="true" sticky="true" />  
+                        <h:panelGrid columns="2" style="margin:0 auto;">
+                            Id vesti:
+                            <h:inputText value="#{dodajVestVolonter.idvesti}"></h:inputText>
+                            Kategorija:
+                            <h:inputText value="#{dodajVestVolonter.idkategorija}"></h:inputText>
+                            Tekst:
+                            <h:inputText value="#{dodajVestVolonter.tekst}"></h:inputText>
+                            Vidljivost:
+                            <h:inputText value="#{dodajVestVolonter.vidljivost}"></h:inputText>
+                        </h:panelGrid>
+                        <h:commandButton value="Dodaj/Azuriraj vest" class="btn btn-success mt-2" action="#{dodajVestVolonter.ubaciVest()}"></h:commandButton>
+                    </h:form>
+                </div>
                 
-                    <div class="text-center">
+                    <!--<div class="text-center">
                         
                         <button type="button" class="btn btn-success btn-sm ml-4">Nova vest</button>
                         
@@ -93,9 +107,9 @@
                         
                         <button type="button" class="btn btn-danger btn-sm">Brisanje vesti</button>
                         
-                    </div>
+                    </div>-->
                     
-                </div>
+               <!-- </div>-->
         
             
                 <div class="col-sm-6 text-center" style="height: 500px">
