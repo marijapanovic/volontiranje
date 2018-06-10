@@ -92,7 +92,7 @@ public class DohvatiVestiOrganizacija {
             Statement stm = conn.createStatement();
             HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             Organizacija organizacija = (Organizacija) sesija.getAttribute("organizacija");
-            ResultSet rs1 = stm.executeQuery("select *,kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + organizacija.getEmail() + "'");
+            ResultSet rs1 = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + organizacija.getEmail() + "'");
             sveMojeVesti = new ArrayList<Vesti>();
             while (rs1.next()) {
                 Vesti mojeVesti = new Vesti();
