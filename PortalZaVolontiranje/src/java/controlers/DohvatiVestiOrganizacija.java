@@ -106,7 +106,7 @@ public class DohvatiVestiOrganizacija {
                 sveMojeVesti.add(mojeVesti);
             }
             if (organizacija.getTip() == 3) {
-                ResultSet rs = stm.executeQuery("select *, kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 2);
+                ResultSet rs = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 2);
                 sveVesti = new ArrayList<Vesti>();
                 while (rs.next()) {
                     Vesti vesti = new Vesti();

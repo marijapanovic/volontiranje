@@ -122,8 +122,8 @@ public class Login {
             if (!rs.next()){
                 errorEmail = "Ne postoji korisnicko ime, registrujte se";
                 return errorEmail;
-            };
-            aktivan=rs.getInt("Aktivan");
+                };
+            aktivan = rs.getInt("Aktivan");
             if (aktivan == 0) {
                errorNeaktivan="Vas nalog jos nije aktiviran";
                return errorNeaktivan;

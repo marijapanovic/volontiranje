@@ -92,7 +92,7 @@ public class DohvatiVesti {
             Statement stm = conn.createStatement();
             HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             Volonter volonter = (Volonter) sesija.getAttribute("volonter");
-            ResultSet rs1 = stm.executeQuery("select *,kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + volonter.getEmail() + "'");
+            ResultSet rs1 = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + volonter.getEmail() + "'");
             sveMojeVesti = new ArrayList<Vesti>();
             while (rs1.next()) {
                 Vesti mojeVesti = new Vesti();
@@ -106,7 +106,7 @@ public class DohvatiVesti {
                 sveMojeVesti.add(mojeVesti);
             }
             if (volonter.getTip() == 1) {
-                ResultSet rs = stm.executeQuery("select *, kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 1);
+                ResultSet rs = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 1);
                 sveVesti = new ArrayList<Vesti>();
                 while (rs.next()) {
                     Vesti vesti = new Vesti();
