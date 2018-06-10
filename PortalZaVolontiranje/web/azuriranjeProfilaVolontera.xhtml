@@ -10,7 +10,7 @@
         <h:outputStylesheet library="css" name="css2.css"></h:outputStylesheet>
         <f:metadata>
             <f:viewAction action="#{azuriranjeProfilaVolonter.dohvatiPodatkeOVolonteru()}"></f:viewAction>
-        </f:metadata>
+        </f:metadata>  
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
     </h:head>
@@ -105,10 +105,10 @@
 
                             <p:outputLabel  value="Mesto prebivalista:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoAzuriranje}"></h:outputText>
-                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.nazivMesta}"
+                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.mestoZaAzuriranje}"
                                              >
                                 <f:selectItem itemLabel="Promeni mesto" itemValue="" />
-                                <f:selectItems value="#{azuriranjeProfilaVolonter.svaMestaAzuriranje}" var="mesto" itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.nazivMesta}"/>
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.svaMestaAzuriranje}" var="mesto" itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.id}"/>
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpMesto}">
                                 <p:ajax event="change"  />
@@ -122,7 +122,7 @@
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.cv}"></h:outputText>
                             <p:inputText  value="#{azuriranjeProfilaVolonter.cv}"  a:placeholder="Ubaci npvi CV">
                             </p:inputText>
-                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpCv}">
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPcv}">
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -259,9 +259,10 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <button onclick="#{azuriranjeProfilaVolonter.azurirajProfil()}">Klikni me klikni me klikni</button>
+                           
 
-                            <h:commandButton action="#{azuriranjeProfilaVolonter.azurirajProfil()}" value="azsjkaoso"></h:commandButton>
+                            <h:commandButton action="#{azuriranjeProfilaVolonter.azurirajProfil()}"  value="Sacuvaj izmene"></h:commandButton>
+                        
                         </h:panelGrid>
                     </h:form>
                 </div> 

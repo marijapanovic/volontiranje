@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <f:metadata>
+            <f:viewAction action="#{odobravanjeOrganizacija.dohvatiZahteveZaOdobravanjeOrganizacija()}"></f:viewAction>
+        </f:metadata>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 offset-4">
+        <h:form id="forma">
+            <p:dataList widgetVar="refresovanjeListe"  value="#{odobravanjeOrganizacija.organizacijeZaOdobravanje}" var="organizacija" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" emptyMessage="Nema zahteva." style="text-align: center">
+        <f:facet name="header">
+            Zahtevi
+        </f:facet>
+                <p:commandLink update=":forma:organizacijaDetalji" oncomplete="PF('organizacijaDijalog').show()" title="Detalji o organizaciji" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+                    <f:setPropertyActionListener value="#{organizacija}" target="#{odobravanjeOrganizacija.selektovanaOrganizacija}" />
+                    <h:outputText value="#{organizacija.naziv}" />
+        </p:commandLink>
+                <h:outputText value="#{organizacija.naziv}" style="display:inline-block"/>
+    </p:dataList>
+ 
+    <p:dialog header="Informacije o organizaciji" widgetVar="organizacijaDijalog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+        <p:outputPanel id="organizacijaDetalji" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty odobravanjeOrganizacija.selektovanaOrganizacija}"  columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="resources/images/drzavni.png" style="width: 150px; height: 170px"/> 
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{odobravanjeOrganizacija.selektovanaOrganizacija.idOrganizacija}" />
+ 
+                <h:outputText value="Naziv:" />
+                <h:outputText value="#{odobravanjeOrganizacija.selektovanaOrganizacija.naziv}" />
+ 
+                <h:outputText value="E-mail:" />
+                <h:outputText value="#{odobravanjeOrganizacija.selektovanaOrganizacija.email}"/>
+ 
+                <h:outputText value="Ulica i broj:" />
+                <h:outputText value="#{odobravanjeOrganizacija.selektovanaOrganizacija.ulica_broj}" />
+                
+                <h:outputText value="Web adresa:" />
+                <h:outputText value="#{odobravanjeOrganizacija.selektovanaOrganizacija.webAdresa}" />
+            </p:panelGrid>
+            <p:commandButton  value="Odobri zahtev" actionListener="#{odobravanjeOrganizacija.odobriZahtevOrganizacije()}" oncomplete="PF('refresovanjeListe').show()" ajax="true" update="@all" ></p:commandButton>
+            <p:commandButton value="Odbij zahtev" actionListener="#{odobravanjeOrganizacija.odbijZahtevOrganizacije()}" oncomplete="PF('refresovanjeListe').show()" ajax="true" update="@all"></p:commandButton>
+            <ui:include src="#{odobravanjeOrganizacija.dohvatiZahteveZaOdobravanjeOrganizacija()}"></ui:include>
+            
+        </p:outputPanel>
+    </p:dialog>
+        </h:form>
+        
+                </div>
+            </div>
+            
+        </div>
+        
+
+    </h:body>
+</html>
+
+

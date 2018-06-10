@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Pretraga organizacija</title>
+        <f:metadata>
+            <f:viewAction action="#{dohvatiPretraziOrganizacije.dohvatiSveOrganizacije()}"></f:viewAction>
+        </f:metadata>
+    </h:head>
+    <h:body>
+       
+        <h:form id="form">
+            <p:dataTable  widgetVar="dataTableRefresh" var="organizacija" value="#{dohvatiPretraziOrganizacije.sveOrganizacije}" paginator="true" rows="1000" selectionMode="single" selection="#{obrisiOrganizaciju.selektovanaOrganizacija}" rowKey="#{organizacija.idOrganizacija}"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                        emptyMessage="Jos uvek nema registrovanih organizacija." >
+
+                <p:column headerText="Id" sortBy="#{organizacija.idOrganizacija}" filterBy="#{organizacija.idOrganizacija}">
+                    <h:outputText value="#{organizacija.idOrganizacija}" />
+                </p:column>
+                <p:column headerText="Naziv organizacije" sortBy="#{organizacija.naziv}" filterBy="#{organizacija.naziv}">
+                    <h:outputText value="#{organizacija.naziv}" />
+                </p:column>
+                <p:column headerText="E-mail" sortBy="#{organizacija.email}" filterBy="#{organizacija.email}">
+                    <h:outputText value="#{organizacija.email}" />
+                </p:column>
+                <p:column headerText="PIB" sortBy="#{organizacija.pib}" filterBy="#{organizacija.pib}">
+                    <h:outputText value="#{organizacija.pib}" />
+                </p:column> 
+                <p:column headerText="Web adresa" sortBy="#{organizacija.webAdresa}" filterBy="#{organizacija.webAdresa}">
+                    <h:outputText value="#{organizacija.webAdresa}" />
+                </p:column> 
+                
+              <!--  <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
+                    <h:outputText value="#{volonter.datumRodjenja}">
+                        <f:convertDateTime pattern="dd-mm-yyyy" ></f:convertDateTime>
+                    </h:outputText>
+                    
+                </p:column>-->
+                <p:column headerText="Ulica i broj" sortBy="#{organizacija.ulica_broj}" filterBy="#{organizacija.ulica_broj}">
+                    <h:outputText value="#{organizacija.ulica_broj}" />
+                </p:column>
+                <p:column headerText="Brisanje">
+                    
+                    <p:commandButton  actionListener="#{obrisiOrganizaciju.obrisiOrganizaciju()}"  value="Obrisi"  ajax="true" update="@all"   pt:data-tooltip="Najpre selektujte zeljeni red pa onda kliknite Obrisi" oncomplete="PF('dataTableRefresh').filter()"> 
+                        <p:tooltip></p:tooltip> 
+                        
+                    </p:commandButton>
+                                       
+                    <ui:include src="#{dohvatiPretraziOrganizacije.dohvatiSveOrganizacije()}"></ui:include>  
+                    
+                </p:column>
+            </p:dataTable>
+          
+        </h:form>
+        
+    </h:body>
+</html>
+
+
