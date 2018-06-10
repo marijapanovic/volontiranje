@@ -16,6 +16,7 @@ public class Organizacija implements Serializable{
     private String text;
     private String ulica_broj;
     private Integer idoblasti;
+    private String oblast;
     private String lozinka;
     private String webAdresa;
     private String telefon;
@@ -28,6 +29,35 @@ public class Organizacija implements Serializable{
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
+
+    public String getOblast() {
+        return oblast;
+    }
+
+    public void setOblast(String oblast) {
+        this.oblast = oblast;
+    }
+    
+    
+    
+    private String mestoAzuriranje;
+
+    public String getMestoAzuriranje() {
+        return mestoAzuriranje;
+    }
+
+    public void setMestoAzuriranje(String mestoAzuriranje) {
+        this.mestoAzuriranje = mestoAzuriranje;
+    }
+    
+
+    public Integer getMestoId() {
+        return mestoId;
+    }
+
+    public void setMestoId(Integer mestoId) {
+        this.mestoId = mestoId;
+    }
 
     public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String text, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpText, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon) {
         this.idOrganizacija = idOrganizacija;
@@ -62,12 +92,7 @@ public class Organizacija implements Serializable{
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
-     public Integer getMesto() {
-        return mestoId;  
-    }
-    public void setMesto(Integer mesto) {
-        this.mestoId = mesto;
-    }
+    
 
     public String getEmail() {
         return email;

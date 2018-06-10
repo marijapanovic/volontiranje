@@ -5,12 +5,14 @@
  */
 package controlers;
 
+import beans.Mesto;
 import beans.Organizacija;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -171,7 +173,7 @@ public class AzuriranjeProfilaOrganizacije {
     }
     
     
-    private Organizacija organizacijaZaAzuriranje;
+    private static Organizacija organizacijaZaAzuriranje;
 
     public Organizacija getOrganizacijaZaAzuriranje() {
         return organizacijaZaAzuriranje;
@@ -187,12 +189,12 @@ public class AzuriranjeProfilaOrganizacije {
     
     public Organizacija dohvatiPodatkeOOrganizaciji(){
         try {
-            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+           Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select o.*, tg.*, obl.* from Organizacija o\n" +
 "      left join oblasti obl on o.oblast_id = obl.idoblasti\n" +
 "      left join tblgrad tg on o.mesto_id = tg.id \n" +
-"       where email = 'suma@yahoo.com'");
+"       where email = 'novi@mail.com'");
             rs.next();
             organizacijaZaAzuriranje = new Organizacija();
             organizacijaZaAzuriranje.setEmail(rs.getString("email"));
@@ -208,12 +210,14 @@ public class AzuriranjeProfilaOrganizacije {
             organizacijaZaAzuriranje.setNaziv(rs.getString("naziv"));
             organizacijaZaAzuriranje.setJpNaziv(rs.getBoolean("jpnaziv"));
             organizacijaZaAzuriranje.setJpPib(rs.getBoolean("jppib"));
-            organizacijaZaAzuriranje.setJpTelefon(rs.getBoolean("jpkontakt_telefon"));
+            organizacijaZaAzuriranje.setJpTelefon(rs.getBoolean("jpkontakt_tel"));
             organizacijaZaAzuriranje.setJpOblast_delovanja(rs.getBoolean("jpoblast_id"));
             organizacijaZaAzuriranje.setJpText(rs.getBoolean("jptekst"));
             organizacijaZaAzuriranje.setJpWebAdresa(rs.getBoolean("jpweb_adresa"));
             organizacijaZaAzuriranje.setJpUlica_broj(rs.getBoolean("jpulica_broj"));
-            organizacijaZaAzuriranje.setMesto(rs.getInt("mesto_id"));
+            organizacijaZaAzuriranje.setMestoAzuriranje(rs.getString("naziv_mesta"));
+            organizacijaZaAzuriranje.setOblast(rs.getString("naziv_oblasti"));
+            
             
             
             
@@ -226,7 +230,58 @@ public class AzuriranjeProfilaOrganizacije {
             Logger.getLogger(AzuriranjeProfilaOrganizacije.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return organizacijaZaAzuriranje;
+        return organizacijaZaAzuriranje; 
+        
     }
+    private List<Mesto> svaMestaZaAzuriranjeOrg;
+
+    public List<Mesto> getSvaMestaZaAzuriranjeOrg() {
+        return svaMestaZaAzuriranjeOrg;
+    }
+
+    public void setSvaMestaZaAzuriranjeOrg(List<Mesto> svaMestaZaAzuriranjeOrg) {
+        this.svaMestaZaAzuriranjeOrg = svaMestaZaAzuriranjeOrg;
+    }
+    
+    public List<Mesto> dohvatiSvaMestaZaAzuriranjeOrg(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select id, naziv_mesta from tblgrad ");
+            svaMestaZaAzuriranjeOrg = new ArrayList<>();
+            while(rs.next()){
+                Mesto mesto = new Mesto();
+                mesto.setId(rs.getInt("id"));
+                mesto.setNazivMesta(rs.getString("naziv_mesta"));
+                svaMestaZaAzuriranjeOrg.add(mesto);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaOrganizacije.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return svaMestaZaAzuriranjeOrg;
+    }
+    
+    public void azurirajProfilOrganizacije(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from organizacija where email='"+AzuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.getEmail()+"'");     //potrebno je dodati static kod organizacijazaazuriranje
+            rs.next();
+            
+            stm.executeUpdate("update organizacija set mesto_id= "+mesto+", email= ' "+email+" ' , tekst= ' "+tekst+
+                    " ' , web_adresa= ' "+webAdresa+" ' , lozinka= ' "+lozinka+" ' , ulica_broj= ' "+ ulicaIBroj+ " ' ,  kontakt_tel= ' "+
+                    telefon+" ' , jpnaziv= "+jpNaziv+" , jpmesto_id= "+jpMesto+" , jptekst= "+jpTekst+" , jppib= "+jpPib+
+                    " , jpoblast_id= "+jpOblast+" , jpweb_adresa= "+jpWebAdresa+" , jpulica_broj= "+jpUlicaIBroj+
+                    " , jpkontakt_tel= "+jpTelefon);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaOrganizacije.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }

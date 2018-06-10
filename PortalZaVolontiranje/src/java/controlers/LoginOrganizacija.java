@@ -131,7 +131,7 @@ public class LoginOrganizacija {
                     logInOrganizacija = new Organizacija();
                     logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
                     logInOrganizacija.setNaziv(rs.getString("naziv"));
-                    logInOrganizacija.setMesto(rs.getInt("mesto_id"));
+                    logInOrganizacija.setMestoId(rs.getInt("mesto_id"));
                     logInOrganizacija.setPib(rs.getInt("pib"));
                     logInOrganizacija.setEmail(rs.getString("email"));
                     logInOrganizacija.setText(rs.getString("text"));
