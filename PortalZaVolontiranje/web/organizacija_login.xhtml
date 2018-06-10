@@ -7,11 +7,10 @@
     <h:head>
         <title>Login organizacije</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         
         
            <script>
-                if(#{loginorganizacija.ok}){
+                if(#{loginOrganizacija.ok}){
                     window.opener.location.href="ulogovana_organizacija.xhtml";
                     window.close();
                 }

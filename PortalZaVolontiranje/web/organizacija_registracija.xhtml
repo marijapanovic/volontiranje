@@ -7,7 +7,6 @@
     <h:head>
         <title>Registracija organizacije</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
     </h:head>
     <h:body>
         <div class="media">
@@ -172,8 +171,8 @@
                             </h:commandButton>
                         </div>
                         <div>
-                            <h:button value="Odustani" style="text-align: center">
-                                <a href="/index.xhtml"></a>
+                            <h:button value="Odustani" style="text-align: center" onclick="window.open('index.xhtml')">
+                                
                             </h:button>
                         </div>   
                             </h:panelGrid>

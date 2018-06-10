@@ -564,8 +564,8 @@ public class RegistracijaVolonter {
                     output.close();
                 }
                 
-                FacesMessage message = new FacesMessage("Succesful", fileSlika.getFileName() + " is uploaded.");
-                FacesContext.getCurrentInstance().addMessage(null, message);
+                FacesMessage message1 = new FacesMessage("Succesful", fileSlika.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message1);
                 
             return fileNameSlika;
             } catch (IOException ex) {
@@ -604,8 +604,8 @@ public class RegistracijaVolonter {
                     output.close();
                 }
                 
-                FacesMessage message = new FacesMessage("Succesful", fileCv.getFileName() + " is uploaded.");
-                FacesContext.getCurrentInstance().addMessage(null, message);
+                FacesMessage message2 = new FacesMessage("Succesful", fileCv.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message2);
                 
                return fileNameCv; 
             } catch (IOException ex) {
