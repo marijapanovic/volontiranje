@@ -170,5 +170,10 @@ public class Login {
         //
         return null; 
     }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
+    }
 
 }

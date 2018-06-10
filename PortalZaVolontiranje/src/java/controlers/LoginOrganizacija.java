@@ -1,4 +1,3 @@
-
 package controlers;
 
 import beans.Organizacija;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class LoginOrganizacija {
-    
+
     private String email;
     private String lozinka;
     private String errorNeaktivan;
@@ -29,7 +28,7 @@ public class LoginOrganizacija {
     private int aktivan;
     private String errorPassword = "";
     private String errorEmail = "";
-    private boolean ok=false;
+    private boolean ok = false;
 
     public String getEmail() {
         return email;
@@ -63,8 +62,6 @@ public class LoginOrganizacija {
         this.idOrganizacija = idOrganizacija;
     }
 
-    
-
     public int getAktivan() {
         return aktivan;
     }
@@ -96,8 +93,8 @@ public class LoginOrganizacija {
     public void setOk(boolean ok) {
         this.ok = ok;
     }
-    
-     public Organizacija logInOrganizacija;
+
+    public Organizacija logInOrganizacija;
 
     public Organizacija getLogInOrganizacija() {
         return logInOrganizacija;
@@ -106,27 +103,27 @@ public class LoginOrganizacija {
     public void setLogInOrganizacija(Organizacija logInOrganizacija) {
         this.logInOrganizacija = logInOrganizacija;
     }
-    
-     public String login() {
+
+    public String login() {
         errorEmail = "";
         errorPassword = "";
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from organizacija where email='" + email + "'");
-            if (!rs.next()){
+            if (!rs.next()) {
                 errorEmail = "Ne postoji korisnicko ime, registrujte se.";
                 return errorEmail;
             };
-            aktivan=rs.getInt("aktivan"); 
+            aktivan = rs.getInt("aktivan");
             if (aktivan == 0) {
-               errorNeaktivan="Vas nalog jos nije aktiviran";
-               return errorNeaktivan;
-                    
+                errorNeaktivan = "Vas nalog jos nije aktiviran";
+                return errorNeaktivan;
+
             } else {
                 if (rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                    
+
                     logInOrganizacija = new Organizacija();
                     logInOrganizacija.setIdOrganizacija(rs.getInt("idorganizacija"));
                     logInOrganizacija.setNaziv(rs.getString("naziv"));
@@ -149,20 +146,24 @@ public class LoginOrganizacija {
                     logInOrganizacija.setJpUlica_broj(rs.getBoolean("JPulica_broj"));
                     logInOrganizacija.setJpTelefon(rs.getBoolean("JPkontakt_tel"));
                     logInOrganizacija.setAktivan(rs.getInt("aktivan"));
-                    
+
                     sesija.setAttribute("organizacija", logInOrganizacija);
-                    ok=true;
+                    ok = true;
                     return "organizacija_login?faces-redirect=true";
                 } else {
                     errorPassword = "Pogresna lozinka";
                     return errorPassword;
                 }
-                    
-                }
+
+            }
         } catch (SQLException ex) {
             Logger.getLogger(LoginOrganizacija.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-     } 
-}
+    }
 
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
+    }
+}

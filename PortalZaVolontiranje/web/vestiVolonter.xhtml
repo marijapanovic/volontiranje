@@ -35,15 +35,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.xhtml">Pocetna</a>
                     </li>
-                    <li class="nav-item ">
+            <!--        <li class="nav-item ">
                         <a class="nav-link" href="#" onclick="">Vas profil</a>
                     </li>
-                    <li class="nav-item">
+                -->    <li class="nav-item">
                         <a class="nav-link" href="vestiVolonter.xhtml">Vesti</a>
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
                     </li> 
+                    <h:form>
+                            <h:commandLink class="nav-link" value="Logout" action="#{loginOrganizacija.logout}" />
+                    </h:form>
                 </ul>
             </div> 
         </nav>
