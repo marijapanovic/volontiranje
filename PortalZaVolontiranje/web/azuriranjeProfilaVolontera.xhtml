@@ -105,7 +105,7 @@
 
                             <p:outputLabel  value="Mesto prebivalista:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoAzuriranje}"></h:outputText>
-                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.mestoZaAzuriranje}"
+                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.mestoAzuriranje}"
                                              >
                                 <f:selectItem itemLabel="Promeni mesto" itemValue="" />
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.svaMestaAzuriranje}" var="mesto" itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.id}"/>
@@ -251,7 +251,7 @@
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.zdravstveni_problemi}"></h:outputText>
                             <p:inputText value="#{azuriranjeProfilaVolonter.zdravstveneNapomene}"  a:placeholder="Izmeni zdravstvene napomene">
                             </p:inputText>
-                            <h:selectBooleanCheckbox value="">
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpZdravstveneNapomene}">
                                 <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -259,7 +259,53 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                           
+                           <p:outputLabel  value="Vestine:" />
+                           <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivVestine}"></h:outputText>
+                           <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.idVestine}" style="width: 220px">
+                                <f:selectItem itemLabel="Promeni vestine" itemValue=""/>
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.listaVestina}" var="vestina" 
+                                               itemValue="#{vestina.idvestinesif}" itemLabel="#{vestina.naziv}"></f:selectItems>
+                                <f:ajax render="vestineDodatnaPoljaLabele" />
+                                <f:ajax render="vestineDodatnaPoljaUnos" />
+                            </p:selectOneMenu>
+                           <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.jpVestine}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                              
+                            <h:panelGroup id="vestineDodatnaPoljaLabele">
+                                <p:outputLabel value="Iskustva:"/>
+                                <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.iskustva}"></h:outputText>
+                                <p></p>
+                                <p:outputLabel  value="Diplome:" />
+                                <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.diplome}"></h:outputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup id="vestineDodatnaPoljaUnos">
+                                <p:inputText value="#{azuriranjeProfilaVolonter.iskustva}" a:placeholder="Izmenite iskustva"></p:inputText>
+                                <p></p>
+                                <p:inputText value="#{azuriranjeProfilaVolonter.diplome}" a:placeholder="Izmenite diplome"></p:inputText>
+
+                            </h:panelGroup>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            
+                            <p:outputLabel value="Oblast delovanja:" />
+                            <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivOblasti}"></h:outputText>
+                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.idOblasti}" style="width: 220px">
+                                <f:selectItem itemLabel="Promeni oblast delovanja" itemValue="" />
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.listaOblastidelovanja}" />
+                            </p:selectOneMenu>
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.oblastiDelovanja}"></h:selectBooleanCheckbox>
+                            <p:outputLabel value="Javni podatak"></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
 
                             <h:commandButton action="#{azuriranjeProfilaVolonter.azurirajProfil()}"  value="Sacuvaj izmene"></h:commandButton>
                         

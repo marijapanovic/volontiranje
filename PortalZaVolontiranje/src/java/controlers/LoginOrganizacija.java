@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlers;
 
 import beans.Organizacija;
@@ -59,13 +55,15 @@ public class LoginOrganizacija {
         this.errorNeaktivan = errorNeaktivan;
     }
 
-    public int getIdOrganizacije() {
+    public int getIdOrganizacija() {
         return idOrganizacija;
     }
 
-    public void setIdOrganizacije(int idOrganizacije) {
-        this.idOrganizacija = idOrganizacije;
+    public void setIdOrganizacija(int idOrganizacija) {
+        this.idOrganizacija = idOrganizacija;
     }
+
+    
 
     public int getAktivan() {
         return aktivan;
@@ -117,13 +115,14 @@ public class LoginOrganizacija {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from organizacija where email='" + email + "'");
             if (!rs.next()){
-                errorEmail = "Ne postoji korisnicko ime";
+                errorEmail = "Ne postoji korisnicko ime, registrujte se.";
                 return errorEmail;
             };
-            aktivan=rs.getInt("Aktivan");
+            aktivan=rs.getInt("aktivan"); 
             if (aktivan == 0) {
                errorNeaktivan="Vas nalog jos nije aktiviran";
                return errorNeaktivan;
+                    
             } else {
                 if (rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
@@ -134,21 +133,22 @@ public class LoginOrganizacija {
                     logInOrganizacija.setMesto(rs.getInt("mesto_id"));
                     logInOrganizacija.setPib(rs.getInt("pib"));
                     logInOrganizacija.setEmail(rs.getString("email"));
-                    logInOrganizacija.setText(rs.getString("text"));
+                    logInOrganizacija.setTekst(rs.getString("tekst"));
                     logInOrganizacija.setIdoblasti(rs.getInt("oblast_id"));
                     logInOrganizacija.setWebAdresa(rs.getString("web_adresa"));
                     logInOrganizacija.setLozinka(rs.getString("lozinka"));
                     logInOrganizacija.setTip(rs.getInt("tip"));
                     logInOrganizacija.setUlica_broj(rs.getString("ulica_broj"));
-                    logInOrganizacija.setTelefon(rs.getString("kontakt_telefon"));
+                    logInOrganizacija.setTelefon(rs.getString("kontakt_tel"));
                     logInOrganizacija.setJpNaziv(rs.getBoolean("JPnaziv"));
                     logInOrganizacija.setJpMestoId(rs.getBoolean("JPmesto_id"));
                     logInOrganizacija.setJpPib(rs.getBoolean("JPpib"));
-                    logInOrganizacija.setJpText(rs.getBoolean("JPtext"));
+                    logInOrganizacija.setJpTekst(rs.getBoolean("JPtekst"));
                     logInOrganizacija.setJpOblast_delovanja(rs.getBoolean("JPoblast_id"));
                     logInOrganizacija.setJpWebAdresa(rs.getBoolean("JPweb_adresa"));
                     logInOrganizacija.setJpUlica_broj(rs.getBoolean("JPulica_broj"));
                     logInOrganizacija.setJpTelefon(rs.getBoolean("JPkontakt_tel"));
+                    logInOrganizacija.setAktivan(rs.getInt("aktivan"));
                     
                     sesija.setAttribute("organizacija", logInOrganizacija);
                     ok=true;

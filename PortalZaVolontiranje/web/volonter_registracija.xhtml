@@ -7,9 +7,12 @@
     <h:head>
         <title>Registracija volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <f:metadata>
+            <f:viewAction action="#{registracijaVolonter.dohvatiListuSvihDana()}"></f:viewAction>
+        </f:metadata>
     </h:head>
     <h:body>
-        <h:outputStylesheet library="css" name="pravila.css"></h:outputStylesheet>
+       <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         <div class="media">
             <div class="col-sm-3">
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
@@ -25,11 +28,9 @@
 
             <div class="collapse navbar-collapse offset-1" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="#">O portalu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pocetna</a>
+                        <a class="nav-link" href="index.xhtml">Pocetna</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="#">Vesti</a>
@@ -41,7 +42,7 @@
                         <a class="nav-link" href="#">Oglasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kontakt</a>
+                        <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
                     </li> 
                 </ul>
             </div> 
@@ -63,7 +64,7 @@
                             </p:inputText>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpIme}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                           <p:message for="ime" /> 
+                            <p:message for="ime" /> 
                            <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel for="datumRodjenja" value="Datum rodjenja:" />
@@ -79,10 +80,10 @@
                             <h:selectOneRadio id="pol" value="#{registracijaVolonter.pol}" required="true"
                                               requiredMessage="Izaberite pol.">
                                 <f:selectItems value="#{registracijaVolonter.polovi}"></f:selectItems>
-                            </h:selectOneRadio>
+                            </h:selectOneRadio> 
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpPol}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:message for="pol" /> 
+                            <p:message for="pol" />
                             <p:outputLabel></p:outputLabel>
                             
                             <p:outputLabel for="drzavljanstvo" value="Drzavljanstvo:" />
@@ -137,7 +138,7 @@
                             
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpSlika}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:growl id="messages1" showDetail="true" />
+                            <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
                             
@@ -146,8 +147,8 @@
                             
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpCv}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            <p:growl id="messages2" showDetail="true" />
                             <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel> 
                             
                             <p:outputLabel for="mail" value="E-mail:" />
                             <p:inputText id="mail" value="#{registracijaVolonter.mail}" required="true"
@@ -238,8 +239,8 @@
                             <p:outputLabel for="dani" value="Dani za volontiranje:" />
                             <p:selectManyMenu id ="dani" value="#{registracijaVolonter.odgovarajuciDani}" required="true" 
                                              requiredMessage="Odaberite dane za volontiranje" >
-                                <f:selectItems value="#{registracijaVolonter.daniUNedelji}" var="dan"
-                                               itemValue="#{dan.brDana}" itemLabel="#{dan.getImeDana()}">
+                                <f:selectItems value="#{registracijaVolonter.listaSvihDana}" var="dan"
+                                               itemValue="#{dan.idDana}" itemLabel="#{dan.imeDana}">
                                 </f:selectItems>
                             </p:selectManyMenu>
                             <small>* Za vise dana drzite CTRL i onda selektujte dane</small>

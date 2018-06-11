@@ -38,6 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -564,8 +565,8 @@ public class RegistracijaVolonter {
                     output.close();
                 }
                 
-                FacesMessage message = new FacesMessage("Succesful", fileSlika.getFileName() + " is uploaded.");
-                FacesContext.getCurrentInstance().addMessage(null, message);
+                FacesMessage message1 = new FacesMessage("Succesful", fileSlika.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message1);
                 
             return fileNameSlika;
             } catch (IOException ex) {
@@ -604,8 +605,8 @@ public class RegistracijaVolonter {
                     output.close();
                 }
                 
-                FacesMessage message = new FacesMessage("Succesful", fileCv.getFileName() + " is uploaded.");
-                FacesContext.getCurrentInstance().addMessage(null, message);
+                FacesMessage message2 = new FacesMessage("Succesful", fileCv.getFileName() + " is uploaded.");
+                FacesContext.getCurrentInstance().addMessage(null, message2);
                 
                return fileNameCv; 
             } catch (IOException ex) {
@@ -741,7 +742,33 @@ public class RegistracijaVolonter {
     }
     
 
-    
+     private List<beans.Dan> listaSvihDana;
+
+    public List<beans.Dan> getListaSvihDana() {
+        return listaSvihDana;
+    }
+
+    public void setListaSvihDana(List<beans.Dan> listaSvihDana) {
+        this.listaSvihDana = listaSvihDana;
+    }
+
+    public String dohvatiListuSvihDana() {
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from dani");
+            listaSvihDana = new ArrayList<>();
+            while (rs.next()) {
+                beans.Dan dan = new beans.Dan();
+                dan.setIdDana(rs.getInt("iddani"));
+                dan.setImeDana(rs.getString("dan"));
+                listaSvihDana.add(dan);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     
 }

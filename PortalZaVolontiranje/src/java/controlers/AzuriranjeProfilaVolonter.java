@@ -74,7 +74,7 @@ public class AzuriranjeProfilaVolonter {
     //private Integer[] odgovarajuciDani;
     private Boolean jpOdovarajuciDani;
 
-    private String vestine;
+   private String vestine;
     private Boolean jpVestine;
     private String vestineNaziv;
     private String vestineZvanje;
@@ -86,7 +86,40 @@ public class AzuriranjeProfilaVolonter {
     private Integer idzaposlenja;
     private Integer idVestine;
     private String diplome;
+    private String iskustva;
+    private Integer idOblasti;
+    private boolean oblastiDelovanja;
 
+    public boolean isOblastiDelovanja() {
+        return oblastiDelovanja;
+    }
+
+    public void setOblastiDelovanja(boolean oblastiDelovanja) {
+        this.oblastiDelovanja = oblastiDelovanja;
+    }
+    
+    
+    
+    public Integer getIdOblasti() {
+        return idOblasti;
+    }
+
+    public void setIdOblasti(Integer idOblasti) {
+        this.idOblasti = idOblasti;
+    }
+    
+    
+    
+    public String getIskustva() {
+        return iskustva;
+    }
+
+    public void setIskustva(String iskustva) {
+        this.iskustva = iskustva;
+    }
+    
+    
+    
     public String getDiplome() {
         return diplome;
     }
@@ -569,7 +602,7 @@ public class AzuriranjeProfilaVolonter {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.* from Volonter v "
+            ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.*, vsif.*, obl.* from Volonter v "
                     + " left join drzavljanstvo d on v.drzavljanstvo_id = d.iddrz "
                     + " left join raspolozivost r on v.idvolonter = r.idvolontera "
                     + " left join dani da on r.iddana = da.iddani "
@@ -577,8 +610,8 @@ public class AzuriranjeProfilaVolonter {
                     + " left join skolasif sf on v.skola_id = sf.idskolasif "
                     + " left join statussif sts on v.status = sts.idstatussif "
                     + " left join vestine ve on v.idvolonter = ve.idvolont "
-                   
-                    
+                    + " left join vestinesif vsif on ve.idvestine = vsif.idvestinesif "
+                    + " left join oblasti obl on v.oblastiid = obl.idoblasti "
                     + " left join tblgrad tg on v.mesto_id = tg.id  where email = 'srki@bla.com'");
             rs.next();
             volonterZaAzuriranje = new Volonter();
@@ -601,7 +634,10 @@ public class AzuriranjeProfilaVolonter {
             volonterZaAzuriranje.setSedisteKompanije(rs.getString("sediste_firme"));
             volonterZaAzuriranje.setPozicijaUKompaniji(rs.getString("pozicijaufirmi"));
 //            volonterZaAzuriranje.setNazivObrazovneInstitucije(rs.getString("nazivSkole"));
-            
+            volonterZaAzuriranje.setNazivVestine(rs.getString("vsif.naziv"));
+            volonterZaAzuriranje.setIskustva(rs.getString("iskustva"));
+            volonterZaAzuriranje.setDiplome(rs.getString("diplome"));
+            volonterZaAzuriranje.setNazivOblasti(rs.getString("naziv_oblasti"));
             //kompanijaAzuriranje = new Zaposlen();
             //kompanijaAzuriranje.setKompanija(rs.getString("kompanija"));
             // volonterZaAzuriranje.setIdDana(rs.getInt("iddana"));
@@ -614,8 +650,8 @@ public class AzuriranjeProfilaVolonter {
         dohvatiD();
         dohvatiListuSvihDana();
         dohvatiSvaMestaAzuriranje();
-       
-       
+        dohvatiSveVestine();
+        dohvatiOblastiDelovanja();
         return volonterZaAzuriranje;
 
     }
@@ -810,5 +846,65 @@ public class AzuriranjeProfilaVolonter {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      
+    private List<Vestine> listaVestina;
 
+    public List<Vestine> getListaVestina() {
+        return listaVestina;
+    }
+
+    public void setListaVestina(List<Vestine> listaVestina) {
+        this.listaVestina = listaVestina;
+    }
+      
+      
+      
+       public  List<Vestine> dohvatiSveVestine() {
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from vestinesif");
+            listaVestina = new ArrayList<>();
+            while (rs.next()) {
+                Vestine vestina = new Vestine();
+                vestina.setIdvestinesif(rs.getInt("idvestinesif"));
+                vestina.setNaziv(rs.getString("naziv"));
+                listaVestina.add(vestina);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaVestina;
+    }
+       
+       private List<OblastDelovanja> listaOblastidelovanja;
+
+    public List<OblastDelovanja> getListaOblastidelovanja() {
+        return listaOblastidelovanja;
+    }
+
+    public void setListaOblastidelovanja(List<OblastDelovanja> listaOblastidelovanja) {
+        this.listaOblastidelovanja = listaOblastidelovanja;
+    }
+       
+    public List<OblastDelovanja> dohvatiOblastiDelovanja(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from oblasti");
+            listaOblastidelovanja = new ArrayList<>();
+            while(rs.next()){
+                OblastDelovanja oblast = new OblastDelovanja();
+                oblast.setIdoblasti(rs.getInt("idoblasti"));
+                oblast.setNaziv_oblasti(rs.getString("naziv_oblasti"));
+                listaOblastidelovanja.add(oblast);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaOblastidelovanja;
+    }
 }
+
+
+

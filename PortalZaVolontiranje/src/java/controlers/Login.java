@@ -120,7 +120,7 @@ public class Login {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email='" + email + "'");
             if (!rs.next()){
-                errorEmail = "Ne postoji korisnicko ime";
+                errorEmail = "Ne postoji korisnicko ime, registrujte se";
                 return errorEmail;
             };
             aktivan=rs.getInt("Aktivan");

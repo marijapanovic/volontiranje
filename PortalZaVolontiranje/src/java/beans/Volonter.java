@@ -66,10 +66,42 @@ public class Volonter implements Serializable {
     
     private int vestineid;
     private int oblastid;
-    
+    private String nazivVestine;
     private Boolean JPoblasti;
     private Boolean JPvestine;
+    private String iskustva;
+    private String diplome;
+    private String nazivOblasti;
 
+    public String getNazivOblasti() {
+        return nazivOblasti;
+    }
+
+    public void setNazivOblasti(String nazivOblasti) {
+        this.nazivOblasti = nazivOblasti;
+    }
+    
+    
+    
+    public String getDiplome() {
+        return diplome;
+    }
+
+    public void setDiplome(String diplome) {
+        this.diplome = diplome;
+    }
+    
+    
+    
+    public String getIskustva() {
+        return iskustva;
+    }
+
+    public void setIskustva(String iskustva) {
+        this.iskustva = iskustva;
+    }
+    
+    
     
     
 
@@ -465,6 +497,14 @@ public class Volonter implements Serializable {
             }
         }
         return null;
+    }
+
+    public String getNazivVestine() {
+        return nazivVestine;
+    }
+
+    public void setNazivVestine(String nazivVestine) {
+        this.nazivVestine = nazivVestine;
     }
     
 }
