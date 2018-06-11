@@ -788,7 +788,7 @@ public class AzuriranjeProfilaVolonter {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
             rs.next();
-             stm.executeUpdate("update volonter set mesto_id=451" );
+             stm.executeUpdate("update volonter set telefon'" + telefon + "'" );
            // stm.executeUpdate("update volonter set telefon= '"+ telefon +"'");
 //            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
 //                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
@@ -877,14 +877,14 @@ public class AzuriranjeProfilaVolonter {
         return listaVestina;
     }
        
-       private List<OblastDelovanja> listaOblastidelovanja;
+       private List<OblastDelovanja> listaOblastiDelovanja;
 
-    public List<OblastDelovanja> getListaOblastidelovanja() {
-        return listaOblastidelovanja;
+    public List<OblastDelovanja> getListaOblastiDelovanja() {
+        return listaOblastiDelovanja;
     }
 
     public void setListaOblastidelovanja(List<OblastDelovanja> listaOblastidelovanja) {
-        this.listaOblastidelovanja = listaOblastidelovanja;
+        this.listaOblastiDelovanja = listaOblastidelovanja;
     }
        
     public List<OblastDelovanja> dohvatiOblastiDelovanja(){
@@ -892,17 +892,17 @@ public class AzuriranjeProfilaVolonter {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from oblasti");
-            listaOblastidelovanja = new ArrayList<>();
+            listaOblastiDelovanja = new ArrayList<>();
             while(rs.next()){
                 OblastDelovanja oblast = new OblastDelovanja();
                 oblast.setIdoblasti(rs.getInt("idoblasti"));
                 oblast.setNaziv_oblasti(rs.getString("naziv_oblasti"));
-                listaOblastidelovanja.add(oblast);
+                listaOblastiDelovanja.add(oblast);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listaOblastidelovanja;
+        return listaOblastiDelovanja;
     }
 }
 

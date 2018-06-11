@@ -259,7 +259,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                           <p:outputLabel  value="Vestine:" />
+                          <p:outputLabel  value="Vestine:" />
                            <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivVestine}"></h:outputText>
                            <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.idVestine}" style="width: 220px">
                                 <f:selectItem itemLabel="Promeni vestine" itemValue=""/>
@@ -299,14 +299,17 @@
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivOblasti}"></h:outputText>
                             <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.idOblasti}" style="width: 220px">
                                 <f:selectItem itemLabel="Promeni oblast delovanja" itemValue="" />
-                                <f:selectItems value="#{azuriranjeProfilaVolonter.listaOblastidelovanja}" />
-                            </p:selectOneMenu>
-                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.oblastiDelovanja}"></h:selectBooleanCheckbox>
+                                <f:selectItems value="#{azuriranjeProfilaVolonter.listaOblastiDelovanja}" var="oblast"
+                                               itemValue="#{oblast.idoblasti}" itemLabel="#{oblast.naziv_oblasti}"></f:selectItems>
+                            </p:selectOneMenu>  <!-- oblast delovanja nece ni da menja rekli smo -->
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPoblasti}">
+                                 <p:ajax event="change"  />
+                            </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-
+                            
                             <h:commandButton action="#{azuriranjeProfilaVolonter.azurirajProfil()}"  value="Sacuvaj izmene"></h:commandButton>
                         
                         </h:panelGrid>

@@ -28,7 +28,6 @@ public class Vestine {
     }
 
     public Vestine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdvestinesif() {
