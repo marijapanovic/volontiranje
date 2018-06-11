@@ -48,6 +48,7 @@ public class RegistracijaOrganizacija {
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
+    private int aktivan;
 
     public String getNaziv() {
         return naziv;
@@ -193,6 +194,23 @@ public class RegistracijaOrganizacija {
         this.webAdresa = webAdresa;
     }
 
+    public Boolean getJpTekst() {
+        return jpTekst;
+    }
+
+    public void setJpTekst(Boolean jpTekst) {
+        this.jpTekst = jpTekst;
+    }
+
+    public int getAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(int aktivan) {
+        this.aktivan = aktivan;
+    }
+    
+
     private List<SelectItem> svaMesta = new LinkedList<>();
 
     public List<SelectItem> getSvaMesta() {
@@ -231,8 +249,8 @@ public class RegistracijaOrganizacija {
             } else {
                 preparedstatement = conn.prepareStatement("insert into organizacija(naziv, mesto_id, pib, email, tekst, oblast_id, "
                         + "web_adresa, lozinka, tip, ulica_broj, kontakt_tel,"
-                        + " JPnaziv, JPmesto_id, JPpib, JPtekst, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel) "
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + " JPnaziv, JPmesto_id, JPpib, JPtekst, JPoblast_id, JPweb_adresa, JPulica_broj, JPkontakt_tel, aktivan) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 
                 
                 Integer  mojpib = Integer.parseInt(pib);
@@ -255,6 +273,7 @@ public class RegistracijaOrganizacija {
                 preparedstatement.setBoolean(17, jpWebAdresa);
                 preparedstatement.setBoolean(18, jpUlica_broj);
                 preparedstatement.setBoolean(19, jpTelefon);
+                preparedstatement.setInt(20, aktivan);
                 preparedstatement.executeUpdate();
 
             }

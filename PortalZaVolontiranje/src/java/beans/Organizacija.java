@@ -2,21 +2,33 @@
 package beans;
 
 import java.io.Serializable;
+//import java.io.ByteArrayInputStream;
+//import java.io.File;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
+//import java.io.IOException;
+//import java.io.Serializable;
+//
+//
+//
+//import java.util.Date;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import org.apache.commons.io.IOUtils;
+//import org.primefaces.model.DefaultStreamedContent;
+//import org.primefaces.model.StreamedContent;
 
-/**
- *
- * @author Korisnik
- */
+
 public class Organizacija implements Serializable{
     private Integer idOrganizacija;
     private String naziv;
     private Integer mestoId;
     private int pib;
     private String email;
-    private String text;
+    private String tekst;
     private String ulica_broj;
     private Integer idoblasti;
-    private String oblast;
+//    private String oblast;
     private String lozinka;
     private String webAdresa;
     private String telefon;
@@ -24,19 +36,21 @@ public class Organizacija implements Serializable{
     private Boolean jpNaziv;
     private Boolean jpMestoId;
     private Boolean jpPib;
-    private Boolean jpText;
+    private Boolean jpTekst;
     private Boolean jpUlica_broj;
     private Boolean jpOblast_delovanja;
     private Boolean jpWebAdresa;
     private Boolean jpTelefon;
+    private int aktivan;
 
-    public String getOblast() {
-        return oblast;
-    }
 
-    public void setOblast(String oblast) {
-        this.oblast = oblast;
-    }
+//    public String getOblast() {
+//        return oblast;
+//    }
+//
+//    public void setOblast(String oblast) {
+//        this.oblast = oblast;
+//    }
     
     
     
@@ -59,15 +73,16 @@ public class Organizacija implements Serializable{
         this.mestoId = mestoId;
     }
 
-    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String text, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpText, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon) {
+    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String tekst, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpTekst, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon, int aktivan, String mestoAzuriranje) {
         this.idOrganizacija = idOrganizacija;
         this.naziv = naziv;
         this.mestoId = mestoId;
         this.pib = pib;
         this.email = email;
-        this.text = text;
+        this.tekst = tekst;
         this.ulica_broj = ulica_broj;
         this.idoblasti = idoblasti;
+    //    this.oblast = oblast;
         this.lozinka = lozinka;
         this.webAdresa = webAdresa;
         this.telefon = telefon;
@@ -75,12 +90,18 @@ public class Organizacija implements Serializable{
         this.jpNaziv = jpNaziv;
         this.jpMestoId = jpMestoId;
         this.jpPib = jpPib;
-        this.jpText = jpText;
+        this.jpTekst = jpTekst;
         this.jpUlica_broj = jpUlica_broj;
         this.jpOblast_delovanja = jpOblast_delovanja;
         this.jpWebAdresa = jpWebAdresa;
         this.jpTelefon = jpTelefon;
+        this.aktivan = aktivan;
+        this.mestoAzuriranje = mestoAzuriranje;
     }
+
+   
+
+    
 
     public Organizacija() {
     }
@@ -110,13 +131,23 @@ public class Organizacija implements Serializable{
         this.pib = pib;
     }
 
-    public String getText() {
-        return text;
+    public String getTekst() {
+        return tekst;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTekst(String tekst) {
+        this.tekst = tekst;
     }
+
+    public Boolean getJpTekst() {
+        return jpTekst;
+    }
+
+    public void setJpTekst(Boolean jpTekst) {
+        this.jpTekst = jpTekst;
+    }
+
+
     
     public String getUlica_broj() {
         return ulica_broj;
@@ -200,13 +231,7 @@ public class Organizacija implements Serializable{
         this.jpPib = jpPib;
     }
 
-    public Boolean getJpText() {
-        return jpText;
-    }
-
-    public void setJpText(Boolean jpText) {
-        this.jpText = jpText;
-    }
+   
 
     public Boolean getJpUlica_broj() {
         return jpUlica_broj;
@@ -240,6 +265,15 @@ public class Organizacija implements Serializable{
         this.jpTelefon = jpTelefon;
     }
 
+
+    public int getAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(int aktivan) {
+        this.aktivan = aktivan;
+    }
+    
 
       
 }

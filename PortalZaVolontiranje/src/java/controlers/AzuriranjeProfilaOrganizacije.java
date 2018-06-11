@@ -204,7 +204,7 @@ public class AzuriranjeProfilaOrganizacije {
             organizacijaZaAzuriranje.setJpMestoId(rs.getBoolean("jpmesto_id"));
             organizacijaZaAzuriranje.setWebAdresa(rs.getString("web_adresa"));
             organizacijaZaAzuriranje.setUlica_broj(rs.getString("ulica_broj"));
-            organizacijaZaAzuriranje.setText(rs.getString("tekst"));
+            organizacijaZaAzuriranje.setTekst(rs.getString("tekst"));
             organizacijaZaAzuriranje.setPib(rs.getInt("pib"));
             organizacijaZaAzuriranje.setTelefon(rs.getString("kontakt_tel"));
             organizacijaZaAzuriranje.setNaziv(rs.getString("naziv"));
@@ -212,11 +212,11 @@ public class AzuriranjeProfilaOrganizacije {
             organizacijaZaAzuriranje.setJpPib(rs.getBoolean("jppib"));
             organizacijaZaAzuriranje.setJpTelefon(rs.getBoolean("jpkontakt_tel"));
             organizacijaZaAzuriranje.setJpOblast_delovanja(rs.getBoolean("jpoblast_id"));
-            organizacijaZaAzuriranje.setJpText(rs.getBoolean("jptekst"));
+            organizacijaZaAzuriranje.setJpTekst(rs.getBoolean("jptekst"));
             organizacijaZaAzuriranje.setJpWebAdresa(rs.getBoolean("jpweb_adresa"));
             organizacijaZaAzuriranje.setJpUlica_broj(rs.getBoolean("jpulica_broj"));
             organizacijaZaAzuriranje.setMestoAzuriranje(rs.getString("naziv_mesta"));
-            organizacijaZaAzuriranje.setOblast(rs.getString("naziv_oblasti"));
+    //        organizacijaZaAzuriranje.setOblast(rs.getString("naziv_oblasti"));
             
             
             
