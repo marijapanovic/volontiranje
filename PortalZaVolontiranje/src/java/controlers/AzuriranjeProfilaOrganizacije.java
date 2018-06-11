@@ -216,7 +216,7 @@ public class AzuriranjeProfilaOrganizacije {
             organizacijaZaAzuriranje.setJpWebAdresa(rs.getBoolean("jpweb_adresa"));
             organizacijaZaAzuriranje.setJpUlica_broj(rs.getBoolean("jpulica_broj"));
             organizacijaZaAzuriranje.setMestoAzuriranje(rs.getString("naziv_mesta"));
-    //        organizacijaZaAzuriranje.setOblast(rs.getString("naziv_oblasti"));
+            organizacijaZaAzuriranje.setOblast(rs.getString("naziv_oblasti"));
             
             
             
