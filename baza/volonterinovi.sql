@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `volonteri` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `volonteri`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: volonteri
@@ -168,12 +166,13 @@ CREATE TABLE `organizacija` (
   `JPweb_adresa` tinyint(4) NOT NULL,
   `JPulica_broj` tinyint(4) NOT NULL,
   `JPkontakt_tel` tinyint(4) NOT NULL,
+  `aktivan` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idorganizacija`),
   KEY `mestoKey_idx` (`mesto_id`),
   KEY `oblastiKey_idx` (`oblast_id`),
   CONSTRAINT `mesto_idKey` FOREIGN KEY (`mesto_id`) REFERENCES `tblgrad` (`Id`) ON UPDATE CASCADE,
   CONSTRAINT `oblastiKey` FOREIGN KEY (`oblast_id`) REFERENCES `oblasti` (`idoblasti`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,6 +181,7 @@ CREATE TABLE `organizacija` (
 
 LOCK TABLES `organizacija` WRITE;
 /*!40000 ALTER TABLE `organizacija` DISABLE KEYS */;
+INSERT INTO `organizacija` VALUES (1,'Moja',1,123456789,'nesto@negde.com','Imamo sve, radimo sve',2,'www.outthere.com','12345',3,'Negde 34','123456',1,1,1,1,1,1,1,1,1);
 /*!40000 ALTER TABLE `organizacija` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +314,7 @@ CREATE TABLE `vesti` (
 
 LOCK TABLES `vesti` WRITE;
 /*!40000 ALTER TABLE `vesti` DISABLE KEYS */;
-INSERT INTO `vesti` VALUES (1,1,'srki@bla.com','2018-07-06 00:00:00','Ovo je neka ves za volontere',1,1),(2,1,'srki@bla.com','2018-07-06 00:00:00','Ove je neka druga vest',1,2);
+INSERT INTO `vesti` VALUES (1,1,'srki@bla.com','2018-07-06 00:00:00','Ovo je neka ves za volontere',1,1),(2,1,'srki@bla.com','2018-07-06 00:00:00','Ove je neka vest za organizacije',1,2),(3,1,'srki@bla.com','2018-07-06 22:45:00','Ovo je neka vest za sve',1,0);
 /*!40000 ALTER TABLE `vesti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,4 +450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-08  9:48:02
+-- Dump completed on 2018-06-10 20:43:44

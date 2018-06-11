@@ -721,7 +721,7 @@ public class RegistracijaVolonter {
                return "ulogovani_volonter.xhtml";
             }
             else if (status == 3){
-                preparedstatement = con.prepareStatement("update volonter set skolaid = ?, godinaupisa = ?, nivo_studija = ? "
+                preparedstatement = con.prepareStatement("update volonter set skola_id = ?, godinaupisa = ?, nivo_skole = ? "
                         + "where email = ?");
                 
                 preparedstatement.setInt(1, skolaid);

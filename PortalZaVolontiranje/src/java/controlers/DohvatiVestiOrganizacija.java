@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class DohvatiVesti {
+public class DohvatiVestiOrganizacija {
 
     private int vidljivostVol;
     private int vidljivostOrg;
@@ -91,8 +91,8 @@ public class DohvatiVesti {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-            Volonter volonter = (Volonter) sesija.getAttribute("volonter");
-            ResultSet rs1 = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + volonter.getEmail() + "'");
+            Organizacija organizacija = (Organizacija) sesija.getAttribute("organizacija");
+            ResultSet rs1 = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where autor='" + organizacija.getEmail() + "'");
             sveMojeVesti = new ArrayList<Vesti>();
             while (rs1.next()) {
                 Vesti mojeVesti = new Vesti();
@@ -105,8 +105,8 @@ public class DohvatiVesti {
                 mojeVesti.setKategorija_naziv(rs1.getString("kategorija"));
                 sveMojeVesti.add(mojeVesti);
             }
-            if (volonter.getTip() == 1) {
-                ResultSet rs = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 1);
+            if (organizacija.getTip() == 3) {
+                ResultSet rs = stm.executeQuery("select * kategorija_vesti.kategorija from vesti, kategorija_vesti where vidljivost=" + 2);
                 sveVesti = new ArrayList<Vesti>();
                 while (rs.next()) {
                     Vesti vesti = new Vesti();
@@ -123,7 +123,7 @@ public class DohvatiVesti {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DohvatiVesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DohvatiVestiOrganizacija.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
