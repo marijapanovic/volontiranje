@@ -2,21 +2,21 @@
 package beans;
 
 import java.io.Serializable;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
-
-
-
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.io.IOUtils;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+//import java.io.ByteArrayInputStream;
+//import java.io.File;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
+//import java.io.IOException;
+//import java.io.Serializable;
+//
+//
+//
+//import java.util.Date;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import org.apache.commons.io.IOUtils;
+//import org.primefaces.model.DefaultStreamedContent;
+//import org.primefaces.model.StreamedContent;
 
 
 public class Organizacija implements Serializable{
@@ -28,6 +28,7 @@ public class Organizacija implements Serializable{
     private String tekst;
     private String ulica_broj;
     private Integer idoblasti;
+    private String oblast;
     private String lozinka;
     private String webAdresa;
     private String telefon;
@@ -56,7 +57,26 @@ public class Organizacija implements Serializable{
 
     private int aktivan;
 
-    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String tekst, String ulica_broj, Integer idoblasti, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpTekst, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon, int aktivan) {
+
+    public String getOblast() {
+        return oblast;
+    }
+
+    public void setOblast(String oblast) {
+        this.oblast = oblast;
+    }
+   
+    
+
+    public Integer getMestoId() {
+        return mestoId;
+    }
+
+    public void setMestoId(Integer mestoId) {
+        this.mestoId = mestoId;
+    }
+
+    public Organizacija(Integer idOrganizacija, String naziv, Integer mestoId, int pib, String email, String tekst, String ulica_broj, Integer idoblasti, String oblast, String lozinka, String webAdresa, String telefon, Integer Tip, Boolean jpNaziv, Boolean jpMestoId, Boolean jpPib, Boolean jpTekst, Boolean jpUlica_broj, Boolean jpOblast_delovanja, Boolean jpWebAdresa, Boolean jpTelefon, int aktivan, String mestoAzuriranje) {
 
         this.idOrganizacija = idOrganizacija;
         this.naziv = naziv;
@@ -66,6 +86,7 @@ public class Organizacija implements Serializable{
         this.tekst = tekst;
         this.ulica_broj = ulica_broj;
         this.idoblasti = idoblasti;
+        this.oblast = oblast;
         this.lozinka = lozinka;
         this.webAdresa = webAdresa;
         this.telefon = telefon;
@@ -79,13 +100,17 @@ public class Organizacija implements Serializable{
         this.jpWebAdresa = jpWebAdresa;
         this.jpTelefon = jpTelefon;
         this.aktivan = aktivan;
+        this.mestoAzuriranje = mestoAzuriranje;
     }
+
+   
 
     
 
     public Organizacija() {
     }
-
+    
+    
     public String getNaziv() {
         return naziv;
     }
@@ -93,12 +118,7 @@ public class Organizacija implements Serializable{
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
-     public Integer getMesto() {
-        return mestoId;  
-    }
-    public void setMesto(Integer mesto) {
-        this.mestoId = mesto;
-    }
+    
 
     public String getEmail() {
         return email;
@@ -215,6 +235,7 @@ public class Organizacija implements Serializable{
     public void setJpPib(Boolean jpPib) {
         this.jpPib = jpPib;
     }
+
     public Boolean getJpUlica_broj() {
         return jpUlica_broj;
     }
@@ -247,13 +268,6 @@ public class Organizacija implements Serializable{
         this.jpTelefon = jpTelefon;
     }
 
-    public Integer getMestoId() {
-        return mestoId;
-    }
-
-    public void setMestoId(Integer mestoId) {
-        this.mestoId = mestoId;
-    }
 
     public int getAktivan() {
         return aktivan;
