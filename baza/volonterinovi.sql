@@ -62,7 +62,7 @@ CREATE TABLE `dani` (
 
 LOCK TABLES `dani` WRITE;
 /*!40000 ALTER TABLE `dani` DISABLE KEYS */;
-INSERT INTO `dani` VALUES (1,'Ponedeljak'),(2,'Utorak'),(3,'Sreda'),(4,'Cetvrtak'),(5,'Petak'),(6,'Subota'),(7,'Nedelja');
+INSERT INTO `dani` VALUES (1,'Ponedeljak'),(2,'Utorak'),(3,'Sreda'),(4,'Četvrtak'),(5,'Petak'),(6,'Subota'),(7,'Nedelja');
 /*!40000 ALTER TABLE `dani` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +77,7 @@ CREATE TABLE `drzavljanstvo` (
   `iddrz` int(11) NOT NULL AUTO_INCREMENT,
   `drzavljanstvo` varchar(100) NOT NULL,
   PRIMARY KEY (`iddrz`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `drzavljanstvo` (
 
 LOCK TABLES `drzavljanstvo` WRITE;
 /*!40000 ALTER TABLE `drzavljanstvo` DISABLE KEYS */;
-INSERT INTO `drzavljanstvo` VALUES (1,'Srbija');
+INSERT INTO `drzavljanstvo` VALUES (1,'Srpsko'),(2,'Makedonsko'),(3,'Bugarsko'),(4,'Bosansko'),(5,'Crnogorsko'),(6,'Hrvatsko'),(7,'Grčko'),(8,'Rumunsko'),(9,'Mađarsko'),(10,'Nemačko'),(11,'Špansko'),(12,'Rusko'),(13,'Tursko'),(14,'Francusko'),(15,'Kinesko'),(16,'Japansko'),(17,'Portugalsko'),(18,'Poljsko'),(19,'Švajcarsko'),(20,'Brazilsko');
 /*!40000 ALTER TABLE `drzavljanstvo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `oblasti` (
   `idoblasti` int(11) NOT NULL AUTO_INCREMENT,
   `naziv_oblasti` varchar(100) NOT NULL,
   PRIMARY KEY (`idoblasti`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `oblasti` (
 
 LOCK TABLES `oblasti` WRITE;
 /*!40000 ALTER TABLE `oblasti` DISABLE KEYS */;
-INSERT INTO `oblasti` VALUES (1,'Gradjevinarstvo'),(2,'Poljoprivreda'),(3,'Racunarstvo'),(4,'Veterina');
+INSERT INTO `oblasti` VALUES (1,'Građevinarstvo'),(2,'Poljoprivreda'),(3,'Računarstvo'),(4,'Veterina'),(5,'Šumarstvo'),(6,'Saobraćaj'),(7,'Ekologija');
 /*!40000 ALTER TABLE `oblasti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `statussif` (
 
 LOCK TABLES `statussif` WRITE;
 /*!40000 ALTER TABLE `statussif` DISABLE KEYS */;
-INSERT INTO `statussif` VALUES (1,'Zaposlen'),(2,'Nezaposlen'),(3,'Na skolovanju'),(4,'U penziji');
+INSERT INTO `statussif` VALUES (1,'Zaposlen'),(2,'Nezaposlen'),(3,'Na školovanju'),(4,'U penziji');
 /*!40000 ALTER TABLE `statussif` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,7 +366,7 @@ CREATE TABLE `vestinesif` (
 
 LOCK TABLES `vestinesif` WRITE;
 /*!40000 ALTER TABLE `vestinesif` DISABLE KEYS */;
-INSERT INTO `vestinesif` VALUES (1,'Rad sa mladima'),(2,'Rad sa starima'),(3,'Rad sa hendikepiranima'),(4,'Obuka kucnih ljubimaca'),(5,'Rad na racunaru');
+INSERT INTO `vestinesif` VALUES (1,'Rad sa mladima'),(2,'Rad sa starima'),(3,'Rad sa osobama sa posebnim potrebama'),(4,'Rad na računarima');
 /*!40000 ALTER TABLE `vestinesif` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,4 +450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-10 20:43:44
+-- Dump completed on 2018-06-12 10:09:53
