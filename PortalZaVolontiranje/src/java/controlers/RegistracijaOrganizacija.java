@@ -285,6 +285,6 @@ public class RegistracijaOrganizacija {
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Uspesno ste se registrovali."));
-        return "ulogovana_organizacija";
+        return "registracijaNijeAktivirana";
     }
 }

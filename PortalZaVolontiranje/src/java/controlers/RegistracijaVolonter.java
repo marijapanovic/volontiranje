@@ -654,19 +654,12 @@ public class RegistracijaVolonter {
                 preparedstatement.setBoolean(22, jpStatus);
                 preparedstatement.setInt(23, TipNaloga.VOLONTER);
                 preparedstatement.setString(24, zdravstveneNapomene);
-//                preparedstatement.setInt(25, skolaid);
-//                preparedstatement.setString(26, kompanija);
                 preparedstatement.setInt(25, idvestinesif);
                 preparedstatement.setInt(26,idoblasti );
                 preparedstatement.setBoolean(27, jpZdravstveneNapomene);
                 preparedstatement.setBoolean(28, jpOblast_delovanja);
                 preparedstatement.setBoolean(29, jpVestine);
                 preparedstatement.setBoolean(30, jpOdovarajuciDani);
-//                preparedstatement.setString(33, sedisteKompanije);
-//                preparedstatement.setString(34, pozicijaUKompaniji);
-//                preparedstatement.setString(35, godinaUpisa);
-//                preparedstatement.setString(36, nivoStudija);
-
                 preparedstatement.executeUpdate();
           
                 
@@ -712,7 +705,7 @@ public class RegistracijaVolonter {
                 
                preparedstatement.executeUpdate();
                 
-               return "ulogovani_volonter.xhtml";
+               return "registracijaNijeAktivirana";
             }
             else if (status == 3){
                 preparedstatement = con.prepareStatement("update volonter set skola_id = ?, godinaupisa = ?, nivo_skole = ? "
@@ -730,12 +723,12 @@ public class RegistracijaVolonter {
             Logger.getLogger(RegistracijaVolonter.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-        return "ulogovani_volonter.xhtml";
+        return "registracijaNijeAktivirana";
 
     }
     
 
-     private List<beans.Dan> listaSvihDana;
+    private List<beans.Dan> listaSvihDana;
 
     public List<beans.Dan> getListaSvihDana() {
         return listaSvihDana;

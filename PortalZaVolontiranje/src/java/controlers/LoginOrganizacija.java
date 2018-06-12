@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -113,12 +114,15 @@ public class LoginOrganizacija {
             ResultSet rs = stm.executeQuery("select * from organizacija where email='" + email + "'");
             if (!rs.next()) {
                 errorEmail = "Ne postoji korisnicko ime, registrujte se.";
-                return errorEmail;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorEmail, null));
+                return null;
+                
             };
             aktivan = rs.getInt("aktivan");
             if (aktivan == 0) {
                 errorNeaktivan = "Vas nalog jos nije aktiviran";
-                return errorNeaktivan;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorNeaktivan, null));
+               return null;
 
             } else {
                 if (rs.getString("lozinka").equals(lozinka)) {
@@ -152,7 +156,8 @@ public class LoginOrganizacija {
                     return "organizacija_login?faces-redirect=true";
                 } else {
                     errorPassword = "Pogresna lozinka";
-                    return errorPassword;
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorPassword, null));
+                    return null;
                 }
 
             }

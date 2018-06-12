@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -121,12 +122,14 @@ public class Login {
             ResultSet rs = stm.executeQuery("select * from volonter where email='" + email + "'");
             if (!rs.next()){
                 errorEmail = "Ne postoji korisnicko ime, registrujte se";
-                return errorEmail;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorEmail, null));
+                return null;
                 };
             aktivan = rs.getInt("Aktivan");
             if (aktivan == 0) {
                errorNeaktivan="Vas nalog jos nije aktiviran";
-               return errorNeaktivan;
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorNeaktivan, null));
+               return null;
             } else {
                 if (rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
@@ -161,7 +164,8 @@ public class Login {
                     return "volonter_login?faces-redirect=true";
                 } else {
                     errorPassword = "Pogresna lozinka";
-                    return errorPassword;
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorPassword, null));
+                    return null;
                 }
             }
         } catch (SQLException ex) {

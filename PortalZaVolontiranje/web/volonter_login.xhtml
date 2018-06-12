@@ -7,7 +7,6 @@
     <h:head>
         <title>Login volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-        <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         
            <script>
                if(#{login.ok}){
@@ -29,9 +28,8 @@
             <p:panel id="panel" header="Login volonter">
 
                 
-                #{login.errorPassword}
-                #{login.errorEmail}
-                <h:panelGrid columns="3" cellpadding="5">
+                <p:messages id="greske" />
+                <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel for="mail" value="Mail:" />
                     <p:inputText id="mail" value="#{login.email}" required="true" 
                                  label="Mail" requiredMessage="Mejl je obavezan."
@@ -39,7 +37,7 @@
                         
                         <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" />
                     </p:inputText>
-                <p:message for="mail" /> 
+                
 
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{login.lozinka}" 
@@ -49,13 +47,13 @@
                         <f:validateLength minimum="5"/>
                         
                     </p:password>
-                 <p:message for="password" />
+                 
 
                 </h:panelGrid>
 
                 <p:commandButton value="Login" update="panel" action="#{login.login()}" />
 
-              <a href="#" onclick="window.open('password_reset.xhtml'); window.close();">Zaboravio sam lozinku</a>
+              <a  onclick="window.open('password_reset.xhtml'); window.close();">Zaboravio sam lozinku</a>
               <p></p>
               <p:commandButton value="Registruj se" update="panel" onclick="window.open('volonter_registracija.xhtml'); window.close();"/>
          </p:panel>
