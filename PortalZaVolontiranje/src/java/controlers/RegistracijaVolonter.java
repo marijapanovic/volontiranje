@@ -154,7 +154,7 @@ public class RegistracijaVolonter {
         
         List<Skola> sveSkoleBinovi = Skola.ucitajSveSkole();
         for(Skola skola: sveSkoleBinovi){
-            sveSkole.add(new SelectItem(skola.getIdskolaSif(), skola.getNazivSkole()));
+            sveSkole.add(new SelectItem(skola.getIdskolaSif(), skola.getNazivSkole(), skola.getMestoSkole()));
         }
         
         List<Vestine> sveVestineBinovi = Vestine.ucitajSveVestine();
