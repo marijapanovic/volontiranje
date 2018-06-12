@@ -60,6 +60,7 @@ public class Volonter implements Serializable {
     private String pozicijaUKompaniji;
     private boolean JPdani;
 
+    private String nazivSkole;
     private int skolaid;
     private String nivoSkolovanja;
     private String godinaUpisa;
@@ -99,6 +100,14 @@ public class Volonter implements Serializable {
 
     public void setIskustva(String iskustva) {
         this.iskustva = iskustva;
+    }
+
+    public String getNazivSkole() {
+        return nazivSkole;
+    }
+
+    public void setNazivSkole(String nazivSkole) {
+        this.nazivSkole = nazivSkole;
     }
     
     
