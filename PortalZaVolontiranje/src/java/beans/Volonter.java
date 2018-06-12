@@ -64,6 +64,7 @@ public class Volonter implements Serializable {
     private int skolaid;
     private String nivoSkolovanja;
     private String godinaUpisa;
+    private String mestoSkole;
     
     private int vestineid;
     private int oblastid;
@@ -90,6 +91,14 @@ public class Volonter implements Serializable {
 
     public void setDiplome(String diplome) {
         this.diplome = diplome;
+    }
+
+    public String getMestoSkole() {
+        return mestoSkole;
+    }
+
+    public void setMestoSkole(String mestoSkole) {
+        this.mestoSkole = mestoSkole;
     }
     
     

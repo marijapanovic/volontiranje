@@ -634,6 +634,7 @@ public class AzuriranjeProfilaVolonter {
             volonterZaAzuriranje.setSedisteKompanije(rs.getString("sediste_firme"));
             volonterZaAzuriranje.setPozicijaUKompaniji(rs.getString("pozicijaufirmi"));
             volonterZaAzuriranje.setNazivSkole(rs.getString("nazivSkole"));
+            volonterZaAzuriranje.setMestoSkole(rs.getString("sf.mesto"));
             volonterZaAzuriranje.setNazivVestine(rs.getString("vsif.naziv"));
             volonterZaAzuriranje.setIskustva(rs.getString("iskustva"));
             volonterZaAzuriranje.setDiplome(rs.getString("diplome"));

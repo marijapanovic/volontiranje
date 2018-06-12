@@ -197,7 +197,9 @@
 
                                 <p:outputLabel value="Naziv obrazovne institucije:" 
                                                rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}" />
-                                <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivObrazovneInstitucije}" 
+                                <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivSkole}" 
+                                              rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}"></h:outputText>
+                                              <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoSkole}">
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}"></h:outputText>
                                 <p:inputText value="#{azuriranjeProfilaVolonter.nazivSkole}" 
                                              >
