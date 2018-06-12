@@ -67,7 +67,7 @@
                       </div>   
                 <h:dataTable value="#{dohvatiVesti.sveMojeVesti}" var="sveMojeVesti" class="table table-striped">
                         <h:column>
-                            #{sveMojeVesti.idvesti}
+                            #{sveMojeVesti.kategorija}
                         </h:column>
                         <h:column>
                             #{sveMojeVesti.kategorija_naziv}
@@ -86,10 +86,13 @@
                     <h:form>
                         <p:growl id="growl" showDetail="true" sticky="true" />  
                         <h:panelGrid columns="2" style="margin:0 auto;">
-                            Id vesti:
-                            <h:inputText value="#{dodajVestVolonter.idvesti}"></h:inputText>
-                            Kategorija:
-                            <h:inputText value="#{dodajVestVolonter.idkategorija}"></h:inputText>
+                
+                        Kategorija:
+                       <h:selectOneMenu value="kategorija">
+                           <f:selectItem itemValue="" itemLabel="Izaberite kategoriju" class="kategorijavesti"/>
+                           <f:selectItems value="#{dodajVestVolonter.kategorija}"/>
+                       </h:selectOneMenu>
+                       
                             Tekst:
                             <h:inputText value="#{dodajVestVolonter.tekst}"></h:inputText>
                             Vidljivost:

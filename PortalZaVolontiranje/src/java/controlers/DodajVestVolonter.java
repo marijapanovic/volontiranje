@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
 @RequestScoped
 public class DodajVestVolonter {
     private int idvesti;
+    private String kategorija;
     private int idkategorija;
     private String autor;
     private Date vreme;
@@ -45,15 +46,15 @@ public class DodajVestVolonter {
         this.idvesti = idvesti;
     }
 
-    
-    
-    public int getIdkategorija() {
-        return idkategorija;
+    public String getKategorija() {
+        return kategorija;
     }
 
-    public void setIdkategorija(int idkategorija) {
-        this.idkategorija = idkategorija;
+    public void setKategorija(String kategorija) {
+        this.kategorija = kategorija;
     }
+
+    
 
     public String getAutor() {
         return autor;
@@ -93,6 +94,14 @@ public class DodajVestVolonter {
 
     public void setVidljivost(int vidljivost) {
         this.vidljivost = vidljivost;
+    }
+
+    public int getIdkategorija() {
+        return idkategorija;
+    }
+
+    public void setIdkategorija(int idkategorija) {
+        this.idkategorija = idkategorija;
     }
     
     public String ubaciVest(){

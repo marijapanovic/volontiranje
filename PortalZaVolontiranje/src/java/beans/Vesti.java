@@ -13,13 +13,15 @@ import java.util.Date;
  */
 
 public class Vesti {
-    private int idvesti;
-    private int kategorija;
+//    private int idvesti;
+    private Integer idkategorija_vesti;
+    private String kategorija;
     private String autor;
     private Date vreme;
     private String tekst;
     private int tipAutora;
-    private int vidljivost;
+    private String vidljivost;
+//    private int vidljivost;
     private String kategorija_naziv;
 
     public String getKategorija_naziv() {
@@ -29,24 +31,33 @@ public class Vesti {
     public void setKategorija_naziv(String kategorija_naziv) {
         this.kategorija_naziv = kategorija_naziv;
     }
+
+    public Integer getIdkategorija_vesti() {
+        return idkategorija_vesti;
+    }
+
+    public void setIdkategorija_vesti(Integer idkategorija_vesti) {
+        this.idkategorija_vesti = idkategorija_vesti;
+    }
     
     
+    
 
-    public int getIdvesti() {
-        return idvesti;
-    }
-
-    public void setIdvesti(int idvesti) {
-        this.idvesti = idvesti;
-    }
-
-    public int getKategorija() {
-        return kategorija;
-    }
-
-    public void setKategorija(int kategorija) {
-        this.kategorija = kategorija;
-    }
+//    public int getIdvesti() {
+//        return idvesti;
+//    }
+//
+//    public void setIdvesti(int idvesti) {
+//        this.idvesti = idvesti;
+//    }
+//
+//    public int getKategorija() {
+//        return kategorija;
+//    }
+//
+//    public void setKategorija(int kategorija) {
+//        this.kategorija = kategorija;
+//    }
 
     public String getAutor() {
         return autor;
@@ -79,12 +90,28 @@ public class Vesti {
     public void setTipAutora(int tipAutora) {
         this.tipAutora = tipAutora;
     }
+    
+//    public int getVidljivost() {
+//        return vidljivost;
+//    }
+//
+//    public void setVidljivost(int vidljivost) {
+//        this.vidljivost = vidljivost;
+//    }
 
-    public int getVidljivost() {
+    public String getKategorija() {
+        return kategorija;
+    }
+
+    public void setKategorija(String kategorija) {
+        this.kategorija = kategorija;
+    }
+
+    public String getVidljivost() {
         return vidljivost;
     }
 
-    public void setVidljivost(int vidljivost) {
+    public void setVidljivost(String vidljivost) {
         this.vidljivost = vidljivost;
     }
     

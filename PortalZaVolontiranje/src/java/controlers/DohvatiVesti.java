@@ -5,6 +5,8 @@
  */
 package controlers;
 
+
+import beans.KategorijaVesti;
 import beans.Organizacija;
 import beans.Vesti;
 import beans.Volonter;
@@ -14,12 +16,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -33,6 +38,7 @@ public class DohvatiVesti {
     private int vidljivostVol;
     private int vidljivostOrg;
     private int tip_autora;
+    private Integer idkategorija_vesti;
 
     public int getVidljivostOrg() {
         return vidljivostOrg;
@@ -86,6 +92,30 @@ public class DohvatiVesti {
         this.sveMojeVesti = sveMojeVesti;
     }
 
+    public Integer getIdkategorija_vesti() {
+        return idkategorija_vesti;
+    }
+
+    public void setIdkategorija_vesti(Integer idkategorija_vesti) {
+        this.idkategorija_vesti = idkategorija_vesti;
+    }
+    
+    
+     private List<SelectItem> sveKategorijeVesti = new LinkedList<>();
+
+    public List<SelectItem> getSveKategorijeVesti() {
+        return sveKategorijeVesti;
+    }
+
+       
+    @PostConstruct
+    public void init() {
+        List<KategorijaVesti> sveKategorijeVestiBinovi = KategorijaVesti.ucitajSveVesti();
+
+        for (KategorijaVesti kategorijeVesti : sveKategorijeVestiBinovi) {
+            sveKategorijeVesti.add(new SelectItem(kategorijeVesti.getIdKategorijaVesti(),kategorijeVesti.getKategorija()));
+        }
+    }
     public String uzmiVesti() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
@@ -96,8 +126,7 @@ public class DohvatiVesti {
             sveMojeVesti = new ArrayList<Vesti>();
             while (rs1.next()) {
                 Vesti mojeVesti = new Vesti();
-                mojeVesti.setIdvesti(rs1.getInt("idvesti"));
-                mojeVesti.setKategorija(rs1.getInt("idkategorija"));
+                mojeVesti.setIdkategorija_vesti(rs1.getInt("idkategorija"));
                 mojeVesti.setAutor(rs1.getString("autor"));
                 mojeVesti.setTekst(rs1.getString("tekstVesti"));
                 mojeVesti.setVreme(rs1.getDate("vreme"));
@@ -110,8 +139,8 @@ public class DohvatiVesti {
                 sveVesti = new ArrayList<Vesti>();
                 while (rs.next()) {
                     Vesti vesti = new Vesti();
-                    vesti.setIdvesti(rs.getInt("idvesti"));
-                    vesti.setKategorija(rs.getInt("idkategorija"));
+
+                    vesti.setIdkategorija_vesti(rs.getInt("idkategorija"));
                     vesti.setAutor(rs.getString("autor"));
                     vesti.setTekst(rs.getString("tekstVesti"));
                     vesti.setVreme(rs.getDate("vreme"));

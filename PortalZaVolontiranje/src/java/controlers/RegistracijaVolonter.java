@@ -12,11 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import beans.Drzavljanstvo;
 import beans.OblastDelovanja;
 import beans.Skola;
@@ -28,7 +24,6 @@ import beans.Volonter;
 import controlers.greske.GreskaPriRegistraciji;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import java.sql.PreparedStatement;
 import javax.faces.bean.ViewScoped;
@@ -45,8 +40,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.apache.commons.io.IOUtils;
- 
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 @ManagedBean

@@ -96,8 +96,8 @@ public class DohvatiVestiOrganizacija {
             sveMojeVesti = new ArrayList<Vesti>();
             while (rs1.next()) {
                 Vesti mojeVesti = new Vesti();
-                mojeVesti.setIdvesti(rs1.getInt("idvesti"));
-                mojeVesti.setKategorija(rs1.getInt("idkategorija"));
+//                mojeVesti.setIdvesti(rs1.getInt("idvesti"));
+//                mojeVesti.setKategorija(rs1.getInt("idkategorija"));
                 mojeVesti.setAutor(rs1.getString("autor"));
                 mojeVesti.setTekst(rs1.getString("tekstVesti"));
                 mojeVesti.setVreme(rs1.getDate("vreme"));
@@ -110,8 +110,8 @@ public class DohvatiVestiOrganizacija {
                 sveVesti = new ArrayList<Vesti>();
                 while (rs.next()) {
                     Vesti vesti = new Vesti();
-                    vesti.setIdvesti(rs.getInt("idvesti"));
-                    vesti.setKategorija(rs.getInt("idkategorija"));
+//                    vesti.setIdvesti(rs.getInt("idvesti"));
+//                    vesti.setKategorija(rs.getInt("idkategorija"));
                     vesti.setAutor(rs.getString("autor"));
                     vesti.setTekst(rs.getString("tekstVesti"));
                     vesti.setVreme(rs.getDate("vreme"));
