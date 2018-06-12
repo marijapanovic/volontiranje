@@ -89,7 +89,17 @@ public class AzuriranjeProfilaVolonter {
     private String iskustva;
     private Integer idOblasti;
     private boolean oblastiDelovanja;
+    private int skolaId;
 
+    public int getSkolaId() {
+        return skolaId;
+    }
+
+    public void setSkolaId(int skolaId) {
+        this.skolaId = skolaId;
+    }
+    
+    
     public boolean isOblastiDelovanja() {
         return oblastiDelovanja;
     }
@@ -558,7 +568,7 @@ public class AzuriranjeProfilaVolonter {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
             rs.next();
-            stm.executeUpdate("update volonter set telefon = 11111111111" );
+            stm.executeUpdate("update volonter set telefon = 2121231111111" );
 
 //            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
 //                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
@@ -653,6 +663,7 @@ public class AzuriranjeProfilaVolonter {
         dohvatiSvaMestaAzuriranje();
         dohvatiSveVestine();
         dohvatiOblastiDelovanja();
+        dohvatiSkole();
         return volonterZaAzuriranje;
 
     }
@@ -789,7 +800,7 @@ public class AzuriranjeProfilaVolonter {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
             rs.next();
-             stm.executeUpdate("update volonter set telefon'" + telefon + "'" );
+             stm.executeUpdate("update volonter set ime_prezime= ' 00002141300 ' " );
            // stm.executeUpdate("update volonter set telefon= '"+ telefon +"'");
 //            stm.executeUpdate("update volonter, raspolozivost, skola, zaposlenje, vestine set "
 //                    + "volonter.jpime=" + jpIme + ", volonter.jpdatum_rodjenja=" + jpDatumRodjenja + ", volonter.jppol=" + jpPol
@@ -846,6 +857,7 @@ public class AzuriranjeProfilaVolonter {
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
       
     private List<Vestine> listaVestina;
@@ -878,7 +890,7 @@ public class AzuriranjeProfilaVolonter {
         return listaVestina;
     }
        
-       private List<OblastDelovanja> listaOblastiDelovanja;
+    private List<OblastDelovanja> listaOblastiDelovanja;
 
     public List<OblastDelovanja> getListaOblastiDelovanja() {
         return listaOblastiDelovanja;
@@ -904,6 +916,36 @@ public class AzuriranjeProfilaVolonter {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaOblastiDelovanja;
+    }
+    
+    private List<Skola> listaSkola;
+
+    public List<Skola> getListaSkola() {
+        return listaSkola;
+    }
+
+    public void setListaSkola(List<Skola> listaSkola) {
+        this.listaSkola = listaSkola;
+    }
+    
+    public List<Skola> dohvatiSkole(){
+        try {
+            Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("select * from skolasif");
+            listaSkola = new ArrayList<>();
+            while(rs.next()){
+                Skola skola = new Skola();
+                skola.setIdskolaSif(rs.getInt("idskolasif"));
+                skola.setNazivSkole(rs.getString("nazivskole"));
+                skola.setMestoSkole(rs.getString("mesto"));
+                listaSkola.add(skola);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaSkola;
     }
 }
 

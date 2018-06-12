@@ -16,7 +16,17 @@ import java.util.logging.Logger;
 public class Skola {
     private Integer idskolaSif;
     private String nazivSkole;
+    private String mestoSkole;
 
+    public String getMestoSkole() {
+        return mestoSkole;
+    }
+
+    public void setMestoSkole(String mestoSkole) {
+        this.mestoSkole = mestoSkole;
+    }
+    
+    
     public Skola(Integer idskolaSif, String nazivSkole) {
         this.idskolaSif = idskolaSif;
         this.nazivSkole = nazivSkole;
