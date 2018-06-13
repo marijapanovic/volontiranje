@@ -563,14 +563,16 @@ public class AzuriranjeProfilaVolonter {
     
     
 //     
-    
-       public void azurirajProfilcic(){
+        
+       public String azurirajProfilcic(){
         try {
+            int javniTel=(jpTelefon ? 1 : 0);
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
+            HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            String email = (String) sesija.getAttribute("email");
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
-            rs.next();
-            stm.executeUpdate("update volonter set telefon = 232323 where email='" + rs.getString("email") + "'" );
+            String upit="update volonter set telefon = '"+telefon+"'  where email='" + email + "'";
+            stm.executeUpdate(upit);
 
 //            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
 //                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
@@ -582,10 +584,11 @@ public class AzuriranjeProfilaVolonter {
         } catch (SQLException ex) {
             Logger.getLogger(AzuriranjeProfilaVolonter.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
+        return "azuriranjeProfilaVolontera?faces-redirect=true";
     }
   
-    private static Volonter volonterZaAzuriranje;
+    private Volonter volonterZaAzuriranje;
 
     public Volonter getVolonterZaAzuriranje() {
         return volonterZaAzuriranje;
@@ -610,13 +613,14 @@ public class AzuriranjeProfilaVolonter {
         }
         return statusi;
     }
+    
     public Volonter dohvatiPodatkeOVolonteru() {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
             HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             String email = (String) sesija.getAttribute("email");
-            ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.*, vsif.*, obl.* from Volonter v "
+            String upit="select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.*, vsif.*, obl.* from Volonter v "
                     + " left join drzavljanstvo d on v.drzavljanstvo_id = d.iddrz "
                     + " left join raspolozivost r on v.idvolonter = r.idvolontera "
                     + " left join dani da on r.iddana = da.iddani "
@@ -626,7 +630,8 @@ public class AzuriranjeProfilaVolonter {
                     + " left join vestine ve on v.idvolonter = ve.idvolont "
                     + " left join vestinesif vsif on ve.idvestine = vsif.idvestinesif "
                     + " left join oblasti obl on v.oblastiid = obl.idoblasti "
-                    + " left join tblgrad tg on v.mesto_id = tg.id  where email = '" + email + "'");
+                    + " left join tblgrad tg on v.mesto_id = tg.id  where email = '" + email + "'";
+            ResultSet rs = stm.executeQuery(upit);
             rs.next();
             volonterZaAzuriranje = new Volonter();
             volonterZaAzuriranje.setIdVolonter(rs.getInt("idvolonter"));
@@ -688,9 +693,8 @@ public class AzuriranjeProfilaVolonter {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
-
             ResultSet rs = stm.executeQuery("select  d.dan, r.iddana, v.idvolonter from raspolozivost r, volonter v, dani d where "
-                    + "r.idvolontera=v.idvolonter and r.iddana=d.iddani and  idvolonter=1");
+                    + "r.idvolontera=v.idvolonter and r.iddana=d.iddani and  v.email='"+volonterZaAzuriranje.getEmail()+"'");
             listaDanaVolontera = new ArrayList<>();
 
             while (rs.next()) {
