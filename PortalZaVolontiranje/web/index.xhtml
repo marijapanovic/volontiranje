@@ -7,7 +7,7 @@
     <h:head>
         <title>Pocetna</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-
+        <link rel="stylesheet" type="text/css" href="resources/quotes.css"></link>
         
         <script>
             function otvoriProzorVolontera() {
@@ -16,7 +16,9 @@
             function otvoriProzorOrganizacije() {
                 window.open("organizacija_login.xhtml", "_blank", "toolbar=no, top=100, left=400, height=250, width=500");
             }
+            
         </script>
+        
     </h:head>
     <h:body>
         <div class="media">
@@ -137,14 +139,105 @@
                     <div class="container">
 
                         <div class="row py-4 d-flex align-items-center">
+                           
+                            
+                                <div>
+                                
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">Sta je volontiranje?</button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Sta je volontiranje?</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          – Delatnost u interesu ljudi.<br/>
+                                                          – Delatnost koja nije motivisana finansijskim interesom.<br/>
+                                                          – Delatnost koja se sprovodi na lokalnom ili nacionalnom nivou.<br/>
+                                                          – Delatnost koja je dobrovoljna.<br/>
+                                                          – Delatnost koja je miroljubiva.<br/>
+                                                          – Delatnost koja je utemeljena na sopstvenoj motivaciji i slobodi izbora.<br/>
+                                                          – Delatnost koja potstiče razvoj ljudskih potencijala.<br/>
+                                                          – Delatnost koja potstiče aktivnu građansku ulogu za dobrobit zajednice.<br/>
+                                                          – Delatnost koja poboljšava kvalitet života po načelima solidarnosti.<br/>
+
+                                                          – Podsticaj iskorištavanju preduzetničkih prilika.<br/>
+                                                          – Osnova razvoja partnerskih odnosa između aktera sastava blagostanja.<br/>
+                                                          – Podsticaj samoorganizovanja ljudi pri rešavanju problema!<br/>
+                                                          Šta za tebe predstavlja volontiranje? 🙂
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
 
 
+                                                                  <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-default ml-5" data-toggle="modal" data-target="#exampleModal">
+                                    Zasto volontirati?
+                                  </button>
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="justModal" tabindex="-1" role="dialog" aria-labelledby="justModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="justModalModalLabel">Zasto volontirati?</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Kad moze Srdjan da obucava kerove mozes i ti da volontiras!!!
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
                             <div class="col-12 col-md-5 text-center mb-4 mb-md-0">
                                 <h6 class="mb-0 white-text text-center">
                                     <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
                                 </h6>
                             </div>
+                            <button type="button" class="btn btn-default ml-5" data-toggle="modal" data-target="#3modal">
+                                    Prijatelji portala
+                                  </button>
 
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="3modal" tabindex="-1" role="dialog" aria-labelledby="3modal" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="myModalLabel">Prijatelji portala</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            https://www.studentskizivot.com/volontiranje-za-studente/<br/>
+                                            http://www.volonter.rs/<br/>
+                                            http://www.volonteribeograda.rs/<br/>
+                                            http://www.volontiram.ba/<br/>
+                                            http://www.volonteri.hr/<br/>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                         </div>
 
                     </div>
@@ -179,7 +272,7 @@
                                     <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
                                 </div>
                                 <div class="media-body ">
-                                    <p class="mt-0 ">info@example.com</p>
+                                    <p class="mt-0 ">info@volontiranje.com</p>
                                 </div>
                             </div>
                             <div class="media">
@@ -195,7 +288,7 @@
                                     <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
                                 </div>
                                 <div class="media-body ">
-                                    <p class="mt-0 ">+ 011 234 567</p>
+                                    <p class="mt-0 ">+ 011 345 678</p>
                                 </div>
                             </div>
                         </div>
@@ -221,6 +314,8 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
+        
+        
     </h:body>
 </html>
 
