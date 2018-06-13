@@ -5,8 +5,9 @@
        xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Pocetna</title>
+        <title>Početna</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
            
@@ -20,7 +21,7 @@
                 <h2 class="mt-4 text-center" style="padding-top:10px; color: forestgreen">Ulogovana organizacija</h2>
             </div>
             <div class="col-sm-3 mt-4 mr-1">
-                <h6>Dobrodosli,  #{loginOrganizacija.email}
+                <h6>Dobrodošli,  #{loginOrganizacija.email}
             #{login.errorEmail}
             #{login.errorPassword}
             #{login.errorNeaktivan}</h6>
@@ -57,15 +58,15 @@
                     </li> 
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="Logout" action="#{loginOrganizacija.logout}" />
+                            <h:commandLink class="nav-link" value="Izloguj se" action="#{loginOrganizacija.logout}" />
                         </h:form>
                     </li> 
                 </ul>
             </div> 
         </nav>
 
-        <div class="container">
-            <div id="demo" class="carousel slide container" style="margin-top:10px;" data-ride="carousel">
+        <div class="container ">
+            <div id="demo" class="carousel slide container mb-4" style="margin-top:10px;" data-ride="carousel">
 
 
                 <ul class="carousel-indicators">
@@ -103,13 +104,10 @@
                 </a>
 
             </div>
-            
-            <div id="naslov">
-                <h3>Naslov</h3>
-            </div>
+          
            
 
-        <footer class="page-footer font-small blue-grey lighten-5 pt-0">
+        <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
 
             <div class="bg-success">
                 <div class="container">
@@ -138,7 +136,7 @@
                         </h6>
                         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
                         <p>
-                            <a href="pravilaKoriscenjaUlogovanaOrganizacija.xhtml" class="dark-grey-text">Pravilnik i uputstvo koriscenja portala</a>
+                            <a href="pravilaKoriscenjaUlogovanaOrganizacija.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
                         </p>
 
                     </div>

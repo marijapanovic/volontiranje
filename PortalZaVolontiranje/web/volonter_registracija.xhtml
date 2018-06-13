@@ -7,6 +7,7 @@
     <h:head>
         <title>Registracija volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         <f:metadata>
             <f:viewAction action="#{registracijaVolonter.dohvatiListuSvihDana()}"></f:viewAction>
         </f:metadata>
@@ -30,7 +31,7 @@
                 <ul class="navbar-nav offset-4">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                        <a class="nav-link" href="index.xhtml">Početna</a>
                     </li>
             <!--        <li class="nav-item ">
                         <a class="nav-link" href="#">Vesti</a>
@@ -67,9 +68,9 @@
                             <p:message for="ime" /> 
                            <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="datumRodjenja" value="Datum rodjenja:" />
+                            <p:outputLabel for="datumRodjenja" value="Datum rođenja:" />
                             <p:calendar id="datumRodjenja" value="#{registracijaVolonter.datumRodjenja}" required="true" 
-                                        requiredMessage="Unesite datum rodjenja."
+                                        requiredMessage="Unesite datum rođenja."
                                         pattern="dd-MM-yyyy" mask="true" />
                             <h:selectBooleanCheckbox  value="#{registracijaVolonter.jpDatumRodjenja}"></h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -86,11 +87,11 @@
                             <p:message for="pol" />
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="drzavljanstvo" value="Drzavljanstvo:" />
+                            <p:outputLabel for="drzavljanstvo" value="Državljanstvo:" />
                             <p:selectOneMenu id="drzavljanstvo" required="true" 
                                              requiredMessage="Izaberite drzavljanstvo."
                                              value="#{registracijaVolonter.drzavljanstvo}">
-                                <f:selectItem itemValue="" itemLabel="Izaberite drzavljanstvo." />
+                                <f:selectItem itemValue="" itemLabel="Izaberite državljanstvo." />
                                 <f:selectItems value="#{registracijaVolonter.svaDrzavljanstva}" />
                             </p:selectOneMenu>
                             <h:selectBooleanCheckbox value="#{registracijaVolonter.jpDrzavljanstvo}"></h:selectBooleanCheckbox>
@@ -120,7 +121,7 @@
                             <p:message for="adresa" />
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel for="mesto" value="Mesto prebivalista:" />
+                            <p:outputLabel for="mesto" value="Mesto prebivališta:" />
                             <p:selectOneMenu id="mesto" value="#{registracijaVolonter.mesto}"
                                              required="true"
                                              requiredMessage="Izaberite mesto stanovanja.">
@@ -189,11 +190,11 @@
                             
                             <h:panelGroup id="statusDodatnaPoljaLabele">
                                 <p:outputLabel  value="Ime kompanije:" rendered="#{registracijaVolonter.status == 1}" />
-                                <p:outputLabel value="Sediste kompanije:" rendered="#{registracijaVolonter.status == 1}" />
+                                <p:outputLabel value="Sedište kompanije:" rendered="#{registracijaVolonter.status == 1}" />
                                 <p:outputLabel  value="Pozicija u kompaniji:" rendered="#{registracijaVolonter.status == 1}" />
-                                <p:outputLabel value="Skola:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p:outputLabel value="Škola:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p></p>
-                                <p:outputLabel value="Nivo skolovanja:" rendered="#{registracijaVolonter.status == 3}" />
+                                <p:outputLabel value="Nivo školovanja:" rendered="#{registracijaVolonter.status == 3}" />
                                 <p></p>
                                 <p:outputLabel value="Godina upisa:" rendered="#{registracijaVolonter.status == 3}" />
                                 
@@ -205,7 +206,7 @@
                                 </p:inputText>
                                 <p></p>
                                 <p:inputText value="#{registracijaVolonter.sedisteKompanije}" required="true" 
-                                             requiredMessage="Unesite sediste kompanije." 
+                                             requiredMessage="Unesite sedište kompanije." 
                                              rendered="#{registracijaVolonter.status == 1}">
                                 </p:inputText>
                                 <p></p>
@@ -216,7 +217,7 @@
                                                  style="width: 220px"
                                                  value="#{registracijaVolonter.skolaid}"
                                                  rendered="#{registracijaVolonter.status == 3}" >
-                                                 <f:selectItem itemValue="" itemLabel="Izaberite skolu :" />
+                                                 <f:selectItem itemValue="" itemLabel="Izaberite školu :" />
                                                  <f:selectItems value="#{registracijaVolonter.sveSkole}" />
                                 </p:selectOneMenu>
                                 <p></p>
@@ -259,12 +260,12 @@
                             
                             
                             
-                             <p:outputLabel for="vestine" value="Vestine:" />
+                             <p:outputLabel for="vestine" value="Veštine:" />
                              <p:selectOneMenu id="vestine" value="#{registracijaVolonter.idvestinesif}"
                                              required="true"
                                              style="width: 220px"
-                                             requiredMessage="Izaberite vestine.">
-                                <f:selectItem itemLabel="Izaberite vestine" itemValue=""/>
+                                             requiredMessage="Izaberite veštine.">
+                                <f:selectItem itemLabel="Izaberite veštine" itemValue=""/>
                                 <f:selectItems value="#{registracijaVolonter.sveVestine}" />
                                 <f:ajax render="vestineDodatnaPoljaLabele" />
                                 <f:ajax render="vestineDodatnaPoljaUnos" />
@@ -327,6 +328,85 @@
                     </h:form>
                 </div> 
             </div>
+             <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
+
+                <div class="bg-success">
+                    <div class="container">
+
+                        <div class="row py-4 d-flex align-items-center">
+
+
+                            <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
+                                <h6 class="mb-0 white-text text-center text-md-left">
+                                    <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                                </h6>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container mt-5 mb-4 text-center text-md-left">
+                    <div class="row mt-3">
+
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Korisni linkovi</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+                            <p>
+                                <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
+                            </p>
+                            <p>
+                                <a href="http://www.volonteribeograda.rs/download/zakon_o_volontiranju.pdf" class="dark-grey-text">Zakon o volontiranju</a>
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Pitanja i odgovori</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">info@example.com</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="footer-copyright py-3 text-center">
+                    © All rights reserved 2018.
+                </div>
+
+
+            </footer>
         </div>
     </h:body>
 </html>

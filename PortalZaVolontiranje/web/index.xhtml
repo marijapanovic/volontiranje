@@ -5,10 +5,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Pocetna</title>
+        <title>Početna</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <link rel="stylesheet" type="text/css" href="resources/quotes.css"></link>
-        
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         <script>
             function otvoriProzorVolontera() {
                 window.open("volonter_login.xhtml", "_blank", "toolbar=no,top=100, left=500, height=300, width=600");
@@ -16,9 +16,9 @@
             function otvoriProzorOrganizacije() {
                 window.open("organizacija_login.xhtml", "_blank", "toolbar=no, top=100, left=400, height=250, width=500");
             }
-            
+
         </script>
-        
+
     </h:head>
     <h:body>
         <div class="media">
@@ -26,13 +26,13 @@
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="media-body mt-4 col-sm-7">
-                
+
                 <img class="" src="resources/images/portalvrh.jpg" style="width:90%"></img>
             </div>
-            
+
             <div class="col-sm-1">
                 <img class="mr-3 mt-4 ml-5" src="resources/images/zemlja.gif" style="width:150px"></img>
-                </div>
+            </div>
         </div>
 
 
@@ -43,7 +43,7 @@
 
             <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
-                    
+
                     <li class="nav-item ">
                         <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
                     </li>
@@ -61,154 +61,153 @@
 
         <div class="container col-sm-12">
             <div class="row col-sm-12">
-                
+
                 <div class="col-sm-3">
                     <img class="mr-3 mt-4 ml-5" src="resources/images/Poziv-slika.png" style="width:300px"></img>
-                    
+
                 </div>
                 <div class="col-sm-6">
-            <div id="demo" class="carousel slide container col-sm-8 text-center" style="margin-top:10px;" data-ride="carousel">
+                    <div id="demo" class="carousel slide container col-sm-10 text-center" style="margin-top:10px;" data-ride="carousel">
 
 
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                    <li data-target="#demo" data-slide-to="1"></li>
-                    <li data-target="#demo" data-slide-to="2"></li>
-                    <li data-target="#demo" data-slide-to="3"></li>
-                    <li data-target="#demo" data-slide-to="4"></li>
-                </ul>
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" class="active"></li>
+                            <li data-target="#demo" data-slide-to="1"></li>
+                            <li data-target="#demo" data-slide-to="2"></li>
+                            <li data-target="#demo" data-slide-to="3"></li>
+                            <li data-target="#demo" data-slide-to="4"></li>
+                        </ul>
 
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="resources/images/vol4_1.jpg" style="width: 525px; height: 330px" alt="Vol4_1"></img>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="resources/images/vol4_1.jpg" style="width: 525px; height: 330px" alt="Vol4_1"></img>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="resources/images/vol5.jpg" style="width: 525px; height: 330px" alt="Vol5"></img>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="resources/images/vol7.jpg" style="width: 525px; height: 330px" alt="Vol7"></img>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="resources/images/vol10.jpg" style="width: 525px; height: 330px" alt="Vol10"></img>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="resources/images/vol11.jpg" style="width: 525px; height: 330px" alt="Vol11"></img>
+                            </div>
+                        </div>
+
+
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+
                     </div>
-                    <div class="carousel-item">
-                        <img src="resources/images/vol5.jpg" style="width: 525px; height: 330px" alt="Vol5"></img>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/images/vol7.jpg" style="width: 525px; height: 330px" alt="Vol7"></img>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/images/vol10.jpg" style="width: 525px; height: 330px" alt="Vol10"></img>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/images/vol11.jpg" style="width: 525px; height: 330px" alt="Vol11"></img>
+
+                </div>
+                <div class="col-sm-3 border mt-2 border-success border-5 rounded" style="background-color: lightyellow; border-width: 3px !important; border-radius: 20px !important;">
+                    <h3>Poznati o volontiranju:</h3>
+                    <blockquote class="blockquote">
+                        <p class="mb-0" style="color: green"> <i>"Volonteri nisu plaćeni, ne zato što su bezvredni, već zato što su neprocenljivi."</i></p>
+                        <footer class="blockquote-footer">Sherry Anderson<cite title="Source Title"></cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-0" style="color: blueviolet"><i>"Najbolji način da pronađete sebe jeste da se izgubite služeći drugima."</i> </p>
+                        <footer class="blockquote-footer">Mahatma Gandhi<cite title="Source Title"> </cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-0" style="color: red"><i>"Volonteri ne obavljaju samo posao, oni ga omogućavaju."</i> </p>
+                        <footer class="blockquote-footer">Carol Pettit<cite title="Source Title"> </cite></footer>
+                    </blockquote>
+                    <blockquote class="blockquote">
+                        <p class="mb-0" style="color: brown"><i>"Služenje drugima je renta koju plaćamo za našu sobu, ovde na Zemlji"</i></p>
+                        <footer class="blockquote-footer">Muhammad Ali<cite title="Source Title"> </cite></footer>
+                    </blockquote>
+
+                </div>
+            </div>
+            
+            <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
+
+                <div class="bg-success">
+                    <div class="container">
+
+                        <div class="row py-4 d-flex align-items-center">
+
+
+                            <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
+                                <h6 class="mb-0 white-text text-center text-md-left">
+                                    <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                                </h6>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
 
-
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
-
-            </div>
-                
-            </div>
-                <div class="col-sm-3">
-                    <h3>Poznati o volontiranju</h3>
-                    <blockquote class="blockquote">
-                        <p class="mb-0">"Volonteri nisu plaćeni, ne zato što su bezvredni, već zato što su neprocenljivi."</p>
-                        <footer class="blockquote-footer">Sherry Anderson<cite title="Source Title"> gledajuci sliku Srdjana Abadzije.</cite></footer>
-                      </blockquote>
-                    <blockquote class="blockquote">
-                        <p class="mb-0">Ovde nema excela, znaci pozzz</p>
-                        <footer class="blockquote-footer">Srdjan Abadzija<cite title="Source Title"> radeci bazu Portala za volontiranje.</cite></footer>
-                      </blockquote>
-                    <blockquote class="blockquote">
-                        <p class="mb-0">Ubacio sam vesti, gitujem.</p>
-                        <footer class="blockquote-footer">Srdjan Abadzija<cite title="Source Title"> jureci za vozom.</cite></footer>
-                      </blockquote>
-                    <blockquote class="blockquote">
-                        <p class="mb-0">Baza opet ne radi!?</p>
-                        <footer class="blockquote-footer">Marija, Nikola, Vladica i Dalibor<cite title="Source Title"> svi u glas.</cite></footer>
-                      </blockquote>
-                    
-                </div>
-</div>
-            <div id="naslov">
-                <h3></h3>
-            </div>
+                <div class="container mt-5 mb-4 text-center text-md-left">
+                    <div class="row mt-3">
 
 
-            <footer class="page-footer font-small blue-grey lighten-5 pt-0">
-
-            <div class="bg-success">
-                <div class="container">
-
-                    <div class="row py-4 d-flex align-items-center">
-
-
-                        <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
-                            <h6 class="mb-0 white-text text-center text-md-left">
-                                <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Korisni linkovi</strong>
                             </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+                            <p>
+                                <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
+                            </p>
+                            <p>
+                                <a href="http://www.volonteribeograda.rs/download/zakon_o_volontiranju.pdf" class="dark-grey-text">Zakon o volontiranju</a>
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Pitanja i odgovori</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">info@example.com</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
-
                 </div>
-            </div>
-
-            <div class="container mt-5 mb-4 text-center text-md-left">
-                <div class="row mt-3">
 
 
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <strong>Korisni linkovi</strong>
-                        </h6>
-                        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
-                        <p>
-                            <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo koriscenja portala</a>
-                        </p>
-
-                    </div>
-
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <strong>Pitanja i odgovori</strong>
-                        </h6>
-                        <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
-
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
-                            </div>
-                            <div class="media-body ">
-                                <p class="mt-0 ">info@example.com</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
-                            </div>
-                            <div class="media-body ">
-                                <p class="mt-0 ">+ 011 234 567</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
-                            </div>
-                            <div class="media-body ">
-                                <p class="mt-0 ">+ 011 234 567</p>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="footer-copyright py-3 text-center">
+                    © All rights reserved 2018.
                 </div>
-            </div>
 
 
-            <div class="footer-copyright py-3 text-center">
-                © All rights reserved 2018.
-            </div>
-
-
-        </footer>
+            </footer>
         </div>
 
 

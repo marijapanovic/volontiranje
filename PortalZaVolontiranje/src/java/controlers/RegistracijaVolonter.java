@@ -182,8 +182,8 @@ public class RegistracijaVolonter {
 
     static {
         polovi = new LinkedHashMap<>();
-        polovi.put("Zensko", "Z");
-        polovi.put("Musko", "M");
+        polovi.put("Žensko", "Ž");
+        polovi.put("Muško", "M");
 
     }
 
@@ -683,7 +683,7 @@ public class RegistracijaVolonter {
         }
 
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Uspesno ste se registrovali."));
+                new FacesMessage("Uspešno ste se registrovali."));
         return registrovaniVolonterStatus();
     }
     

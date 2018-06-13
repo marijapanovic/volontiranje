@@ -12,20 +12,21 @@ and open the template in the editor.
     <head>
         <title>Logovanje administratora</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
     </head>
     <body>
          <div class="container">
             <div class="row">
                 <div class="offset-sm-4 col-sm-4 bg-light rounded p-2 text-center">
-                    <h2>Login</h2>
+                    <h2>Logovanje</h2>
                     <h:form>
                         <h:panelGrid columns="2">
-                            <b>Email:</b>
-                            <h:inputText value="#{loginAdmin.email}" required="true" requiredMessage="Morate uneti email"></h:inputText>
+                            <b>E-mail:</b>
+                            <h:inputText value="#{loginAdmin.email}" required="true" requiredMessage="Morate uneti e-mail"></h:inputText>
                             <b>Lozinka:</b>
                             <h:inputSecret value="#{loginAdmin.lozinka}"  required="true" requiredMessage="Morate uneti lozinku"></h:inputSecret>  
                         </h:panelGrid>
-                        <h:commandButton value="Login" action="#{loginAdmin.loginAdminNew()}" class="btn btn-info mt-2"></h:commandButton>
+                        <h:commandButton value="Uloguj se" action="#{loginAdmin.loginAdminNew()}" class="btn btn-info mt-2"></h:commandButton>
                     </h:form>
                 </div>
             </div>

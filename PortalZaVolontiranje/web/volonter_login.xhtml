@@ -5,8 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Login volontera</title>
+        <title>Logovanje volontera</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         
            <script>
                if(#{login.ok}){
@@ -25,21 +26,21 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="panel" header="Login volonter">
+            <p:panel id="panel" header="Logovanje volontera">
 
                 
                 <p:messages id="greske" />
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="mail" value="Mail:" />
+                    <p:outputLabel for="mail" value="E-mail:" />
                     <p:inputText id="mail" value="#{login.email}" required="true" 
-                                 label="Mail" requiredMessage="Mejl je obavezan."
-                                 validatorMessage="Unesite ispravan mejl.">
+                                 label="Mail" requiredMessage="E-mail je obavezan."
+                                 validatorMessage="Unesite ispravan e-mejl.">
                         
                         <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" />
                     </p:inputText>
                 
 
-                    <p:outputLabel for="password" value="Password:" />
+                    <p:outputLabel for="password" value="Lozinka:" />
                     <p:password id="password" value="#{login.lozinka}" 
                                  label="Password" required="true" 
                                  requiredMessage="Lozinka je obavezna."
@@ -51,9 +52,9 @@
 
                 </h:panelGrid>
 
-                <p:commandButton value="Login" update="panel" action="#{login.login()}" />
+                <p:commandButton value="Uloguj se" update="panel" action="#{login.login()}" />
 
-              <a  onclick="window.open('password_reset.xhtml'); window.close();">Zaboravio sam lozinku</a>
+                <a  onclick="window.open('password_reset.xhtml'); window.close();" style="cursor: pointer; color: red;">Zaboravio sam lozinku</a>
               <p></p>
               <p:commandButton value="Registruj se" update="panel" onclick="window.open('volonter_registracija.xhtml'); window.close();"/>
          </p:panel>
