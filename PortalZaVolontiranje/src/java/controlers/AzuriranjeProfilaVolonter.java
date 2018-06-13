@@ -566,7 +566,7 @@ public class AzuriranjeProfilaVolonter {
         
        public String azurirajProfilcic(){
         try {
-            int javniTel=(jpTelefon ? 1 : 0);
+        //    int javniTel=(jpTelefon ? 1 : 0);
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             String email = (String) sesija.getAttribute("email");
