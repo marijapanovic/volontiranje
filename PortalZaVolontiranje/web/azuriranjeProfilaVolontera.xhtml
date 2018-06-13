@@ -20,7 +20,7 @@
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="media-body mt-4 col-sm-6">
-                <h2 class="mt-0 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje - Vaš profil</h2>
+                <h2 class="mt-0 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje - Moj profil</h2>
             </div>
         </div>
 
@@ -33,13 +33,13 @@
             <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav  offset-sm-4">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                        <a class="nav-link" href="ulogovani_volonter.xhtml">Pocetna</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" onclick="otvoriProzorVolontera()">Volonter</a>
+                        <a class="nav-link" href="vestiVolonter.xhtml" >Vesti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="otvoriProzorOrganizacije()">Organizacija</a>
+                        <a class="nav-link" href="forumUlogovanVolonter.xhtml" >Forum</a>
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
@@ -349,7 +349,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            <button onclick="#{azuriranjeProfilaVolonter.azurirajProfilcic()}">asihfius</button>
+                          <!--  <button onclick="#{azuriranjeProfilaVolonter.azurirajProfilcic()}">asihfius</button> -->
                             <h:commandButton class="btn mt-2" action="#{azuriranjeProfilaVolonter.azurirajProfilcic()}"  value="Sacuvaj izmene"></h:commandButton>
                              <h:button class="btn mt-2" value="Odustani" style="text-align: center" onclick="window.open('index.xhtml')">
                              

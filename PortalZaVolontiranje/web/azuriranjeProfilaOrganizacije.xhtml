@@ -142,11 +142,11 @@
 
                         
                             <p:outputLabel  value="Tekst o organizaciji:" />
-                            <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.text}"></h:outputText>
+                            <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.tekst}"></h:outputText>
                             <p:inputTextarea id="text" rows="3" cols="22" value="#{azuriranjeProfilaOrganizacije.tekst}"  
                                             a:placeholder="Promenite opis" ></p:inputTextarea>
                             
-                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpText}">
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpTekst}">
                             <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
