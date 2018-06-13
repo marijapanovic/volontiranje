@@ -131,8 +131,9 @@ public class Login {
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errorNeaktivan, null));
                return null;
             } else {
-                if (rs.getString("lozinka").equals(lozinka)) {
+                if (rs.getString("email").equals(email) && rs.getString("lozinka").equals(lozinka)) {
                     HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                    sesija.setAttribute("email", email);
                     logInVolonter = new Volonter();
                     logInVolonter.setIdVolonter(rs.getInt("idvolonter"));
                     logInVolonter.setEmail(rs.getString("email"));

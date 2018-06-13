@@ -30,7 +30,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -568,7 +570,7 @@ public class AzuriranjeProfilaVolonter {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("select * from volonter where email = '" + AzuriranjeProfilaVolonter.volonterZaAzuriranje.getEmail() + "'");
             rs.next();
-            stm.executeUpdate("update volonter set telefon = 32141223" );
+            stm.executeUpdate("update volonter set telefon = 232323 where email='" + rs.getString("email") + "'" );
 
 //            stm.executeUpdate("update volonter set jpime="+ jpIme+ ", jpdatum_rodjenja="+ jpDatumRodjenja + ", jppol="+ jpPol + ", drzavljanstvo_id="+
 //                    drzavljanstvo + ", jpdrzavljanstvo="+ jpDrzavljanstvo+", telefon='"+ telefon + "', jptelefon="+ jpTelefon + ", ulica_broj='" + 
@@ -612,6 +614,8 @@ public class AzuriranjeProfilaVolonter {
         try {
             Connection conn = DriverManager.getConnection(db.DB.connectionString, db.DB.user, db.DB.pass);
             Statement stm = conn.createStatement();
+            HttpSession sesija = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            String email = (String) sesija.getAttribute("email");
             ResultSet rs = stm.executeQuery("select v.*, d.*, r.*, sf.*, ve.*, tg.*, da.*, sts.*, vsif.*, obl.* from Volonter v "
                     + " left join drzavljanstvo d on v.drzavljanstvo_id = d.iddrz "
                     + " left join raspolozivost r on v.idvolonter = r.idvolontera "
@@ -622,7 +626,7 @@ public class AzuriranjeProfilaVolonter {
                     + " left join vestine ve on v.idvolonter = ve.idvolont "
                     + " left join vestinesif vsif on ve.idvestine = vsif.idvestinesif "
                     + " left join oblasti obl on v.oblastiid = obl.idoblasti "
-                    + " left join tblgrad tg on v.mesto_id = tg.id  where email = 'srki@bla.com'");
+                    + " left join tblgrad tg on v.mesto_id = tg.id  where email = '" + email + "'");
             rs.next();
             volonterZaAzuriranje = new Volonter();
             volonterZaAzuriranje.setIdVolonter(rs.getInt("idvolonter"));
