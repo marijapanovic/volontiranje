@@ -5,14 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Registracija organizacije</title>
+        <title>Ažuriranje profila</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         <f:metadata>
             <f:viewAction action="#{azuriranjeProfilaOrganizacije.dohvatiPodatkeOOrganizaciji()}"></f:viewAction>
         </f:metadata>
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
     </h:head>
     <h:body>
         <div class="media">
@@ -20,7 +21,7 @@
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="col-sm-6">
-                <h2 class="mt-4 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje</h2>
+                <h2 class="mt-4 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje - Moj profil</h2>
             </div>
         </div>
         <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
@@ -30,17 +31,15 @@
 
             <div class="collapse navbar-collapse offset-1" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
+                   
                     <li class="nav-item">
-                        <a class="nav-link" href="#">O portalu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.xhtml">Pocetna</a>
+                        <a class="nav-link" href="index.xhtml">Početna</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="#">Vesti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Obavestenja</a>
+                        <a class="nav-link" href="#">Obaveštenja</a>
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="#">Oglasi</a>
@@ -53,137 +52,136 @@
         </nav>
         <div class="container">
             <div class="row">
-                
+
                 <div class="offset-sm-2 col-sm-8  rounded p-2 text-center">
-                    <h2>Registracija organizacije</h2>
-                    <p></p>
+              
                     <h:form>
                         <h:panelGrid columns="7" cellpadding="3">
-                            
+
                             <p:outputLabel  value="Naziv organizacije:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.naziv}"></h:outputText>
                             <p:outputLabel></p:outputLabel>
-                          
+
                             <h:selectBooleanCheckbox  value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpNaziv}" >
                                 <p:ajax event="change"   /> 
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                            
+
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
-                 
-                            <p:outputLabel  value="Sediste organizacije:" />
+
+
+                            <p:outputLabel  value="Sedište organizacije:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.mestoAzuriranje}"></h:outputText>
                             <p:selectOneMenu id="sediste" value="#{azuriranjeProfilaOrganizacije.mesto}">
                                 <f:selectItem itemLabel="Izaberite mesto" itemValue="" />
                                 <f:selectItems value="#{azuriranjeProfilaOrganizacije.dohvatiSvaMestaZaAzuriranjeOrg()}" var="mesto"
                                                itemLabel="#{mesto.nazivMesta}" itemValue="#{mesto.id}"/>
                             </p:selectOneMenu>
-                            
+
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpMestoId}">
-                            <p:ajax event="change"  />
+                                <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            
+
                             <p:outputLabel  value="Ulica i broj:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.ulica_broj}"></h:outputText>
                             <p:inputText value="#{azuriranjeProfilaOrganizacije.ulicaIBroj}" a:placeholder="Promeni adresu" >
                             </p:inputText>
-                            
+
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpUlica_broj}">
-                            <p:ajax event="change"  />
+                                <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
+
                             <p:outputLabel  value="PIB:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.pib}"></h:outputText>
 
-                                <p:outputLabel></p:outputLabel>
-                            
-                            
-                                <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpPib}">
+                            <p:outputLabel></p:outputLabel>
+
+
+                            <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpPib}">
                                 <p:ajax event="change"  />
-                                </h:selectBooleanCheckbox>
+                            </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
+
                             <p:outputLabel for="telefon" value="Kontakt telefon:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.telefon}"></h:outputText>
                             <p:inputText id="telefon" value="#{azuriranjeProfilaOrganizacije.telefon}"  
                                          validatorMessage="Unesite ispravan telefon" a:placeholder="Promeni telefon"
                                          >
-                                
+
                             </p:inputText>
                             <p:message for="telefon"/>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpTelefon}">
-                            <p:ajax event="change"  />
+                                <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
+
                             <p:outputLabel for="mail" value="E-mail:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.email}"></h:outputText>
                             <p:inputText id="mail" value="#{registracijaOrganizacija.email}" a:placeholder="Promeni e-mail" 
-                                         
+
                                          validatorMessage="Unesite ispravan e-mail.">
-                                 
+
                             </p:inputText>
                             <p:message for="mail"/>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                        
+
                             <p:outputLabel  value="Tekst o organizaciji:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.tekst}"></h:outputText>
                             <p:inputTextarea id="text" rows="3" cols="22" value="#{azuriranjeProfilaOrganizacije.tekst}"  
-                                            a:placeholder="Promenite opis" ></p:inputTextarea>
-                            
+                                             a:placeholder="Promenite opis" ></p:inputTextarea>
+
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpTekst}">
-                            <p:ajax event="change"  />
+                                <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
-                          <p:outputLabel  value="Oblast delovanja:" />
-                          <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.oblast}"></h:outputText>
+
+                            <p:outputLabel  value="Oblast delovanja:" />
+                            <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.oblast}"></h:outputText>
                             <p:outputLabel></p:outputLabel>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpOblast_delovanja}">
-                          <p:ajax event="change"  />
-                          </h:selectBooleanCheckbox>
+                                <p:ajax event="change"  />
+                            </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
-                           <p:outputLabel></p:outputLabel>
-                           <p:outputLabel></p:outputLabel>
-                           
-                           
+                            <p:outputLabel></p:outputLabel>
+                            <p:outputLabel></p:outputLabel>
+
+
                             <p:outputLabel for="web" value="Web adresa:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.webAdresa}"></h:outputText>
-                                          <p:inputText id="web" value="#{azuriranjeProfilaOrganizacije.webAdresa}" a:placeholder="Promenite web adresu" 
+                            <p:inputText id="web" value="#{azuriranjeProfilaOrganizacije.webAdresa}" a:placeholder="Promenite web adresu" 
                                          validatorMessage="Unesite ispravanu web adresu">
-                               
+
                             </p:inputText>
                             <p:message for="web"/>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.jpWebAdresa}">
-                            <p:ajax event="change"  />
+                                <p:ajax event="change"  />
                             </h:selectBooleanCheckbox>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            
-                            
+
+
                             <p:outputLabel for="lozinka" value="Lozinka:" />
                             <h:outputText value="#{azuriranjeProfilaOrganizacije.organizacijaZaAzuriranje.lozinka}"></h:outputText>
                             <p:password id="lozinka" value="#{azuriranjeProfilaOrganizacije.lozinka}"  a:placeholder="Promenite lozinku"
-                                        
+
                                         validatorMessage="Lozinka mora imati minimum 5 karaktera.">
-                                
+
                             </p:password>
                             <p:message for="lozinka"/>
                             <p:outputLabel></p:outputLabel>
@@ -191,31 +189,110 @@
                             <p:outputLabel></p:outputLabel>
 
                         </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="2">
-                        <div class="media-left">
-                            <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:150px"></img>
-                        </div>   
-                        <div>
-                            <h:commandButton  value="Sacuvaj izmene" 
-                                             action="#{azuriranjeProfilaOrganizacije.azurirajProfilOrganizacije()}" >
-                                  
-                            </h:commandButton>
-                            
-                            
-                        </div>
-                        <div>
-                            <h:button value="Odustani" style="text-align: center">
-                                <a href="/index.xhtml"></a>
-                            </h:button>
-                        </div>   
-                            </h:panelGrid>
-                        
-                        
-                        </h:form>
-                    
-                    
+                        <h:panelGrid columns="4" cellpadding="2">
+                            <div class="media-left">
+                                <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:150px"></img>
+                            </div>   
+                            <div>
+                                <p:commandButton  value="Sačuvaj izmene"  class="btn mt-2"
+                                                  action="#{azuriranjeProfilaOrganizacije.azurirajProfilOrganizacije()}" >
+
+                                </p:commandButton>
+
+
+                            </div>
+                            <div>
+                                <p:commandButton value="Odustani" class="btn mt-2">
+                                    <a href="/index.xhtml"></a>
+                                </p:commandButton>>
+                            </div>   
+                        </h:panelGrid>
+
+
+                    </h:form>
+
+
                 </div> 
             </div>
+            <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
+
+                <div class="bg-success">
+                    <div class="container">
+
+                        <div class="row py-4 d-flex align-items-center">
+
+
+                            <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
+                                <h6 class="mb-0 white-text text-center text-md-left">
+                                    <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                                </h6>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container mt-5 mb-4 text-center text-md-left">
+                    <div class="row mt-3">
+
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Korisni linkovi</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+                            <p>
+                                <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
+                            </p>
+                            <p>
+                                <a href="http://www.volonteribeograda.rs/download/zakon_o_volontiranju.pdf" class="dark-grey-text">Zakon o volontiranju</a>
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Pitanja i odgovori</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">info@example.com</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="footer-copyright py-3 text-center">
+                    © All rights reserved 2018.
+                </div>
+
+
+            </footer>
         </div>
     </h:body>
 </html>

@@ -12,13 +12,138 @@
             <f:viewAction action="#{dohvatiPretraziVolontere.dohvatiSveVolontere()}"></f:viewAction>
         </f:metadata>
         <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
+        <h:outputStylesheet library="css" name="css2.css"></h:outputStylesheet>
     </h:head>
     <h:body>
-       
-        <h:form id="form">
+        <div class="media">   
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 mt-4">
+                <h3 class="mt-0 text-center" style="padding-top:10px; text-align: center; color: forestgreen">Portal za volontiranje - Zahtevi organizacija</h3>
+            </div>
+            <div class="col-sm-3">
+                <img class="mt-4  offset-4" src="resources/images/povezuje.png" style="width:200px"></img>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: #228b22">
+
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: center">
+                <ul class="navbar-nav offset-1">
+                    <div class="dropdown">
+                        <button class="dropbtn" style="color: yellow">Vesti</button>
+                        <div class="dropdown-content">
+                            <a href="#">Neke vesti</a>
+                            <a href="#">Neke druge vesti</a>
+                        </div>
+                    </div>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Obaveštenje</button>
+                            <div class="dropdown-content">
+                                <a href="#">Neka obaveštenja</a>
+                                <a href="#">Druga obaveštenja</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Oglasi</button>
+                            <div class="dropdown-content">
+                                <a href="#">Neki oglasi</a>
+                                <a href="#">Neki drugi oglasi</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Diskusije</button>
+                            <div class="dropdown-content">
+                                <a href="#">Volonterske</a>
+                                <a href="#">Organizacijske</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Organizacije</button>
+                            <div class="dropdown-content">
+                                <a href="#">Nešto</a>
+                                <a href="#">Nešto drugo</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Volonteri</button>
+                            <div class="dropdown-content">
+                                <a href="AdminPretragaVolontera.xhtml">Spisak i pretraga volontera</a>
+                                <a href="#">Nešto drugo</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Statistika</button>
+                            <div class="dropdown-content">
+                                <a href="#">Stat nešto</a>
+                                <a href="#">Stat nešto drugo</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Šifarnici</button>
+                            <div class="dropdown-content">
+                                <a href="#">Neke šifre</a>
+                                <a href="#">Neke druge šifre</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Izveštaji</button>
+                            <div class="dropdown-content">
+                                <a href="#">Nešto1</a>
+                                <a href="#">Nešto2</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Zahtevi za odobrenje</button>
+                            <div class="dropdown-content">
+                                <a href="#">Volonteri</a>
+                                <a href="#">Organizacije</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <button class="dropbtn" style="color: yellow">Prijave neprikladnog sadržaja</button>
+                            <div class="dropdown-content">
+                                <a href="#">Neki neprikladan sadržaj</a>
+                                <a href="#">Neki drugi neprikladan sadržaj</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> 
+        </nav>
+        <h:form id="form" class="mt-4">
             <p:dataTable  widgetVar="dataTableRefresh" var="volonter" value="#{dohvatiPretraziVolontere.sviVolonteri}" paginator="true" rows="1000" selectionMode="single" selection="#{obrisiVolontera.selektovaniVolonter}" rowKey="#{volonter.idVolonter}"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                        emptyMessage="Još uvek nema registrovanih volontera." >
+                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                          emptyMessage="Još uvek nema registrovanih volontera." >
 
                 <p:column headerText="Id" sortBy="#{volonter.idVolonter}" filterBy="#{volonter.idVolonter}">
                     <h:outputText value="#{volonter.idVolonter}" />
@@ -32,108 +157,30 @@
               <!-- <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
                     <h:outputText value="#{volonter.datumRodjenja}" />
                 </p:column> -->
-                
-              <!--  <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
-                    <h:outputText value="#{volonter.datumRodjenja}">
-                        <f:convertDateTime pattern="dd-mm-yyyy" ></f:convertDateTime>
-                    </h:outputText>
-                    
-                </p:column>-->
+
+<!--  <p:column headerText="Datum rodjenja" sortBy="#{volonter.datumRodjenja}" filterBy="#{volonter.datumRodjenja}">
+    <h:outputText value="#{volonter.datumRodjenja}">
+        <f:convertDateTime pattern="dd-mm-yyyy" ></f:convertDateTime>
+    </h:outputText>
+    
+</p:column>-->
                 <p:column headerText="Ulica i broj" sortBy="#{volonter.ulica_broj}" filterBy="#{volonter.ulica_broj}">
                     <h:outputText value="#{volonter.ulica_broj}" />
                 </p:column>
                 <p:column headerText="Brisanje">
-                    
+
                     <p:commandButton  actionListener="#{obrisiVolontera.obrisiVolontera()}"  value="Obriši"  ajax="true" update="@all"   pt:data-tooltip="Najpre selektujte željeni red pa onda kliknite Obriši" oncomplete="PF('dataTableRefresh').filter()"> 
                         <p:tooltip></p:tooltip> 
-                        
+
                     </p:commandButton>
-                                       
+
                     <ui:include src="#{dohvatiPretraziVolontere.dohvatiSveVolontere()}"></ui:include>  
-                    
+
                 </p:column>
             </p:dataTable>
-          
+
         </h:form>
-         <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
 
-                <div class="bg-success">
-                    <div class="container">
-
-                        <div class="row py-4 d-flex align-items-center">
-
-
-                            <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
-                                <h6 class="mb-0 white-text text-center text-md-left">
-                                    <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
-                                </h6>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="container mt-5 mb-4 text-center text-md-left">
-                    <div class="row mt-3">
-
-
-                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <strong>Korisni linkovi</strong>
-                            </h6>
-                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
-                            <p>
-                                <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
-                            </p>
-                            <p>
-                                <a href="http://www.volonteribeograda.rs/download/zakon_o_volontiranju.pdf" class="dark-grey-text">Zakon o volontiranju</a>
-                            </p>
-
-                        </div>
-
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <strong>Pitanja i odgovori</strong>
-                            </h6>
-                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
-
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
-                                </div>
-                                <div class="media-body ">
-                                    <p class="mt-0 ">info@example.com</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
-                                </div>
-                                <div class="media-body ">
-                                    <p class="mt-0 ">+ 011 234 567</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
-                                </div>
-                                <div class="media-body ">
-                                    <p class="mt-0 ">+ 011 234 567</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="footer-copyright py-3 text-center">
-                    © All rights reserved 2018.
-                </div>
-
-
-            </footer>
     </h:body>
 </html>
 

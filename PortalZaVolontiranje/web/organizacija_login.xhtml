@@ -8,18 +8,18 @@
         <title>Logovanje organizacije</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
-        
-        
-           <script>
-                if(#{loginOrganizacija.ok}){
-                    window.opener.location.href="ulogovana_organizacija.xhtml";
-                    window.close();
-                }
-            function RegistracijaOrganizacije() {
-                window.open("organizacija_registracija.xhtml","_blank");
+
+
+        <script>
+            if (#{loginOrganizacija.ok}) {
+                window.opener.location.href = "ulogovana_organizacija.xhtml";
+                window.close();
             }
-            
-            </script>
+            function RegistracijaOrganizacije() {
+                window.open("organizacija_registracija.xhtml", "_blank");
+            }
+
+        </script>
     </h:head>
     <h:body>
         <h:form>
@@ -30,26 +30,27 @@
                     <p:inputText id="mail" value="#{loginOrganizacija.email}" required="true" 
                                  label="Mail" requiredMessage="E-mail je obavezan."
                                  validatorMessage="Unesite ispravan e-mail.">
-                        
+
                         <f:validateRegex pattern="[a-z0-9\._-]+@[a-z0-9\.-]+\.[a-z]{2,}$" />
                     </p:inputText>
 
                     <p:outputLabel for="password" value="Lozinka:" />
                     <p:password id="password" value="#{loginOrganizacija.lozinka}" 
-                                 label="Password" required="true" 
-                                 requiredMessage="Lozinka je obavezna."
-                                 validatorMessage="Lozinka mora imati minimum 5 karaktera.">
+                                label="Password" required="true" 
+                                requiredMessage="Lozinka je obavezna."
+                                validatorMessage="Lozinka mora imati minimum 5 karaktera.">
                         <f:validateLength minimum="5"/>
                     </p:password>
 
 
                 </h:panelGrid>
-                <p:commandButton value="Uloguj se" update="panel" action="#{loginOrganizacija.login()}"  />
-              <a  onclick="window.open('password_reset.xhtml'); window.close();" style="cursor: pointer; color: red;">Zaboravio sam lozinku</a>
-              <p></p>
-              <p:commandButton value="Registruj se" update="panel" onclick="window.open('organizacija_registracija.xhtml'); window.close();"/>
-              
+                <p:commandButton value="Uloguj se" update="panel" action="#{loginOrganizacija.login()}" class="btn mt-2"  ></p:commandButton>
+                <a  onclick="window.open('password_reset.xhtml'); window.close();" style="cursor: pointer; color: red;">Zaboravio sam lozinku</a>
+                <p></p>
+                <p:commandButton value="Registruj se" update="panel" onclick="window.open('organizacija_registracija.xhtml');
+                    window.close();" class="btn mt-2"></p:commandButton>
+
             </p:panel>
         </h:form>
-   </h:body>
+    </h:body>
 </html>

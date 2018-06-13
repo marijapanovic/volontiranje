@@ -7,7 +7,7 @@
     <h:head>
         <title>Vesti</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
-
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
         <f:metadata>
             <f:viewAction action="#{dohvatiVesti.uzmiVesti()}"></f:viewAction>
@@ -33,7 +33,7 @@
             <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav offset-4">
                     <li class="nav-item">
-                        <a class="nav-link" href="ulogovani_volonter.xhtml">Pocetna</a>
+                        <a class="nav-link" href="ulogovani_volonter.xhtml">Početna</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="forumUlogovanVolonter.xhtml">Forum</a>
@@ -42,7 +42,7 @@
                         <a class="nav-link" href="kontaktUlogovanVolonter.xhtml">Kontakt</a>
                     </li> 
                     <h:form>
-                            <h:commandLink class="nav-link" value="Logout" action="#{loginOrganizacija.logout}" />
+                            <h:commandLink class="nav-link" value="Izloguj se" action="#{loginOrganizacija.logout}" />
                     </h:form>
                 </ul>
             </div> 
@@ -82,23 +82,23 @@
                             #{sveMojeVesti.tekst}
                         </h:column>
                     </h:dataTable>
-                     <h2>Dodavanje/Azuriranje vesti</h2>
+                     <h2>Dodavanje/Ažuriranje vesti</h2>
                     <h:form>
                         <p:growl id="growl" showDetail="true" sticky="true" />  
                         <h:panelGrid columns="2" style="margin:0 auto;">
                 
                         Kategorija:
-                       <h:selectOneMenu value="kategorija">
+                       <p:selectOneMenu value="kategorija">
                            <f:selectItem itemValue="" itemLabel="Izaberite kategoriju" class="kategorijavesti"/>
                            <f:selectItems value="#{dodajVestVolonter.kategorija}"/>
-                       </h:selectOneMenu>
+                       </p:selectOneMenu>
                        
                             Tekst:
                             <h:inputText value="#{dodajVestVolonter.tekst}"></h:inputText>
                             Vidljivost:
                             <h:inputText value="#{dodajVestVolonter.vidljivost}"></h:inputText>
                         </h:panelGrid>
-                        <h:commandButton value="Dodaj/Azuriraj vest" class="btn btn-success mt-2" action="#{dodajVestVolonter.ubaciVest()}"></h:commandButton>
+                        <p:commandButton value="Dodaj/Ažuriraj vest" class="btn mt-2" action="#{dodajVestVolonter.ubaciVest()}"></p:commandButton>
                     </h:form>
                 </div>
                 
@@ -165,6 +165,85 @@
                 </div>    
 
             </div>
+            <footer class="page-footer font-small blue-grey lighten-5 pt-0 mt-2">
+
+                <div class="bg-success">
+                    <div class="container">
+
+                        <div class="row py-4 d-flex align-items-center">
+
+
+                            <div class="col-12 col-md-5 text-left mb-4 mb-md-0 offset-4">
+                                <h6 class="mb-0 white-text text-center text-md-left">
+                                    <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
+                                </h6>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container mt-5 mb-4 text-center text-md-left">
+                    <div class="row mt-3">
+
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Korisni linkovi</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+                            <p>
+                                <a href="pravilaKoriscenjaUlogovanVolonter.xhtml" class="dark-grey-text">Pravilnik i uputstvo korišćenja portala</a>
+                            </p>
+                            <p>
+                                <a href="http://www.volonteribeograda.rs/download/zakon_o_volontiranju.pdf" class="dark-grey-text">Zakon o volontiranju</a>
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <strong>Pitanja i odgovori</strong>
+                            </h6>
+                            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"></hr>
+
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/mail.png" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">info@example.com</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="mr-3" src="resources/images/phone.jpg" style="width:20px; height: 20px"></img>
+                                </div>
+                                <div class="media-body ">
+                                    <p class="mt-0 ">+ 011 234 567</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="footer-copyright py-3 text-center">
+                    © All rights reserved 2018.
+                </div>
+
+
+            </footer>
         </div>
         <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

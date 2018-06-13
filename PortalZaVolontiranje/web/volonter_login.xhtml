@@ -51,12 +51,13 @@
                  
 
                 </h:panelGrid>
-
-                <p:commandButton value="Uloguj se" update="panel" action="#{login.login()}" />
+                <p:commandButton class="btn mt-2" action="#{login.login()}"  value="Uloguj se" update="panel"></p:commandButton>
+                
 
                 <a  onclick="window.open('password_reset.xhtml'); window.close();" style="cursor: pointer; color: red;">Zaboravio sam lozinku</a>
               <p></p>
-              <p:commandButton value="Registruj se" update="panel" onclick="window.open('volonter_registracija.xhtml'); window.close();"/>
+            <p:commandButton class="btn mt-2" onclick="window.open('volonter_registracija.xhtml'); window.close();"  value="Registruj se" update="panel"></p:commandButton>
+              
          </p:panel>
         </h:form>
    </h:body>

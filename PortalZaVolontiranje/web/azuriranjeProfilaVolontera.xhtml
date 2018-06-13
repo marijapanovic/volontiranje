@@ -7,12 +7,12 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Azuriranje profila</title>
+        <title>Ažuriranje profila</title>
         <h:outputStylesheet library="css" name="css2.css"></h:outputStylesheet>
         <f:metadata>
             <f:viewAction action="#{azuriranjeProfilaVolonter.dohvatiPodatkeOVolonteru()}"></f:viewAction>
         </f:metadata>  
-
+        <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
     </h:head>
     <h:body>
@@ -34,7 +34,7 @@
             <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav  offset-sm-4">
                     <li class="nav-item">
-                        <a class="nav-link" href="ulogovani_volonter.xhtml">Pocetna</a>
+                        <a class="nav-link" href="ulogovani_volonter.xhtml">Početna</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="vestiVolonter.xhtml" >Vesti</a>
@@ -52,10 +52,10 @@
             <div class="row col-sm-4 offset-sm-5 mt-4">
                 
                 <div class="col-sm-2">
-                    <img class="img border border-6 border-success rounded" src="resources/images/srdjan.png" alt="Profilna slika" style="width:180px; height:200px;  border-width: 10px !important;"></img>  
+                    <img class="img border border-success rounded" src="resources/images/avatar_1.png" alt="Profilna slika" style="width:180px; height:200px;  border-width: 6px !important; border-radius: 25px !important"></img>  
                 </div>  
             </div>
-            <h:button class="offset-sm-5 mt-3 btn" value="Promeni profilnu fotografiju"></h:button>
+            <p:button class="offset-sm-5 mt-3 btn" value="Promeni profilnu fotografiju"></p:button>
             <div class="row">
 
                 <div class="offset-sm-3 col-sm-6  rounded p-2 text-center">
@@ -73,7 +73,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel value="Datum rodjenja:" />
+                            <p:outputLabel value="Datum rođenja:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.datumRodjenja}"></h:outputText>
                             <h:selectBooleanCheckbox  value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPdatum_rodjenja}"/>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
@@ -91,11 +91,11 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel  value="Drzavljanstvo:" />
+                            <p:outputLabel  value="Državljanstvo:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.drzavljanstvo}"></h:outputText>
                             <p:selectOneMenu 
                                 value="#{azuriranjeProfilaVolonter.drzavljanstvo}">
-                                <f:selectItem itemValue="" itemLabel="Promeni drzavljanstvo." />
+                                <f:selectItem itemValue="" itemLabel="Promeni državljanstvo." />
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.getSvaDrzavljanstva()}" var="drzavljanstvo" 
                                                itemLabel="#{drzavljanstvo.drzavljanstvo}" itemValue="#{drzavljanstvo.iddrz}"/>
                             </p:selectOneMenu>
@@ -130,7 +130,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
                             
-                            <p:outputLabel  value="Mesto prebivalista:" />
+                            <p:outputLabel  value="Mesto prebivališta:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoAzuriranje}"></h:outputText>
                             <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.mestoAzuriranje}">
                                 <f:selectItem itemLabel="Promeni mesto" itemValue="" />
@@ -166,7 +166,7 @@
                             
                             							
 							
-							<p:outputLabel for="lozinka" value="Lozinka:" />
+                            <p:outputLabel for="lozinka" value="Lozinka:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.lozinka}"></h:outputText>
                             <p:password id="lozinka" value="#{azuriranjeProfilaVolonter.lozinka}" 
                                         validatorMessage="Lozinka mora imati minimum 5 karaktera." a:placeholder="Promeni lozinku">
@@ -189,10 +189,10 @@
                                 </p:inputText>
 
 
-                                <p:outputLabel value="Sediste kompanije:" rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" />
+                                <p:outputLabel value="Sedište kompanije:" rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" />
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.sedisteKompanije}" 
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}" class="ml-3" ></h:outputText>
-                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteKompanije}"  a:placeholder="Promeni sediste kompanije"
+                                <p:inputText value="#{azuriranjeProfilaVolonter.sedisteKompanije}"  a:placeholder="Promeni sedište kompanije"
                                              rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('zaposlen')}">
                                 </p:inputText>
 
@@ -212,7 +212,7 @@
                                 <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.mestoSkole}" class="ml-3"
                                               rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}"></h:outputText>
                                 <p:selectOneMenu  style="width: 220px" value="#{azuriranjeProfilaVolonter.skolaId}"  rendered="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.status.equalsIgnoreCase('na skolovanju')}">
-                                    <f:selectItem itemValue="" itemLabel="Promenite skolu :" />
+                                    <f:selectItem itemValue="" itemLabel="Promenite školu :" />
                                     <f:selectItems value="#{azuriranjeProfilaVolonter.listaSkola}" var="skola" 
                                                    itemValue="#{skola.idskolaSif}" itemLabel="#{skola.nazivSkole}" itemDescription="#{skola.mestoSkole}"></f:selectItems>
                                 </p:selectOneMenu>
@@ -263,7 +263,7 @@
                                                itemValue="#{dan.idDana}" itemLabel="#{dan.imeDana}" > 
                                 </f:selectItems>
                             </p:selectManyMenu>
-                            <small>* Za vise dana drzite CTRL i onda selektujte dane</small>
+                            <small>* Za više dana držite CTRL i onda selektujte dane</small>
                             <h:selectBooleanCheckbox value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.JPdani}"/>
                             <p:outputLabel value="Javni podatak"></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
@@ -279,10 +279,10 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
 
-                            <p:outputLabel  value="Vestine:" />
+                            <p:outputLabel  value="Veštine:" />
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.nazivVestine}"></h:outputText>
                             <p:selectOneMenu  value="#{azuriranjeProfilaVolonter.idVestine}" style="width: 220px">
-                                <f:selectItem itemLabel="Promeni vestine" itemValue=""/>
+                                <f:selectItem itemLabel="Promeni veštine" itemValue=""/>
                                 <f:selectItems value="#{azuriranjeProfilaVolonter.listaVestina}" var="vestina" 
                                                itemValue="#{vestina.idvestinesif}" itemLabel="#{vestina.naziv}"></f:selectItems>
                                 <f:ajax render="vestineDodatnaPoljaLabele" />
@@ -303,7 +303,7 @@
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel> 
 
-							<p:outputLabel value="Diplome:"></p:outputLabel>
+                            <p:outputLabel value="Diplome:"></p:outputLabel>
                             <h:outputText value="#{azuriranjeProfilaVolonter.volonterZaAzuriranje.diplome}"></h:outputText>
                             <p:inputText value="#{azuriranjeProfilaVolonter.diplome}" a:placeholder="Izmeni diplome"></p:inputText>
                             <p:outputLabel></p:outputLabel>

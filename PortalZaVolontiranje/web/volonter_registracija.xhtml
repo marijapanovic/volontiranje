@@ -309,13 +309,9 @@
                             <p:message for="delatnost"/>
                             <p:outputLabel></p:outputLabel>
                             <p:outputLabel></p:outputLabel>
-                            <h:commandButton value="Registruj se"  action="#{registracijaVolonter.registrujVolontera()}">
-                            </h:commandButton>
-                            <h:button value="Odustani" style="text-align: center" onclick="window.open('index.xhtml')">
-                                
-                            </h:button>
-                            
-                            
+                            <p:commandButton class="btn mt-2" action="#{registracijaVolonter.registrujVolontera()}"  value="Registruj se"></p:commandButton>
+                            <p:commandButton class="btn mt-2" onclick="window.open('index.xhtml')"  value="Odustani"></p:commandButton>
+      
                         </h:panelGrid>
                         <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
                             <p:panelGrid id="display" columns="2" columnClasses="label,value">
