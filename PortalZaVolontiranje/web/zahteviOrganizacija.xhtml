@@ -136,6 +136,13 @@
                             </div>
                           </div>
                     </li>
+                    <li class="nav-item">
+                        <div >
+                            <h:form>
+                                <h:commandLink style="color: yellow" class="nav-link mt-2" value="Izloguj se" action="#{login.logout}" />
+                            </h:form>
+                        </div>
+                    </li> 
                 </ul>
             </div> 
         </nav>
@@ -158,7 +165,7 @@
         <p:outputPanel id="organizacijaDetalji" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty odobravanjeOrganizacija.selektovanaOrganizacija}"  columnClasses="label,value">
                 <f:facet name="header">
-                    <p:graphicImage value="resources/images/drzavni.png" style="width: 150px; height: 170px"/> 
+                    <p:graphicImage value="resources/images/logo.jpg" style="width: 150px; height: 170px"/> 
                 </f:facet>
  
                 <h:outputText value="Id:" />

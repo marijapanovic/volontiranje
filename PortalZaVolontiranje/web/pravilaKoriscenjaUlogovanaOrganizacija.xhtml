@@ -31,7 +31,7 @@ and open the template in the editor.
             </button>
 
             <div class="offset-1 collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav offset-5">
+                <ul class="navbar-nav offset-4">
                     <li class="nav-item">
                         <a class="nav-link" href="index.xhtml">Početna</a>
                     </li>
@@ -48,6 +48,9 @@ and open the template in the editor.
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
                     </li> 
+                    <h:form>
+                            <h:commandLink class="nav-link" value="Izloguj se" action="#{login.logout}" />
+                    </h:form>
                 </ul>
             </div> 
         </nav>

@@ -194,7 +194,7 @@ public class AzuriranjeProfilaOrganizacije {
             ResultSet rs = stm.executeQuery("select o.*, tg.*, obl.* from Organizacija o\n" +
 "      left join oblasti obl on o.oblast_id = obl.idoblasti\n" +
 "      left join tblgrad tg on o.mesto_id = tg.id \n" +
-"       where email = 'novi@mail.com'");
+"       where email = 'nesto@negde.com'");
             rs.next();
             organizacijaZaAzuriranje = new Organizacija();
             organizacijaZaAzuriranje.setEmail(rs.getString("email"));
