@@ -70,3 +70,11 @@ and open the template in the editor.
     background-color: #3e8e41;
 
 }
+#naslov{
+	font-family: "Brush Script MT";
+	font-size: 40px;
+	font-style: italic;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 44px;
+}

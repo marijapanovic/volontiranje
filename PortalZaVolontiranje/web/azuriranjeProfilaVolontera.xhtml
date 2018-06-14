@@ -21,7 +21,7 @@
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="media-body mt-4 col-sm-6">
-                <h2 class="mt-0 text-center" style="padding-top:10px; color: forestgreen">Portal za volontiranje - Moj profil</h2>
+                <h2 class="mt-0 text-center" id="naslov" style="padding-top:10px; color: forestgreen">Portal za volontiranje - Moj profil</h2>
             </div>
         </div>
 
@@ -44,6 +44,11 @@
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.xhtml">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <h:form>
+                            <h:commandLink class="nav-link" value="Izloguj se" action="#{login.logout}" />
+                        </h:form>
                     </li> 
                 </ul>
             </div> 
@@ -348,7 +353,7 @@
                         <div class="row py-4 d-flex align-items-center">
 
 
-                            <div class="col-12 col-md-5 text-center mb-4 mb-md-0">
+                            <div class="col-12 col-md-5 text-center mb-4 mb-md-0 offset-sm-3">
                                 <h6 class="mb-0 white-text text-center">
                                     <strong>Volontirati mogu veliki i mali ako niste znali!</strong>
                                 </h6>

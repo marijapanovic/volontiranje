@@ -6,22 +6,23 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
       >
-    <head>
+    <h:head>
         <title>Pravila korišćenja</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></link>
         <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png" />
         <link library="css" name="pravila.css"></link>
+        <h:outputStylesheet library="css" name="css2.css"></h:outputStylesheet>
 
-
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <div class="media">
             <div class="col-sm-3">
                 <img class="mr-3 mt-4 ml-5" src="resources/images/povezuje.png" style="width:250px"></img>
             </div>
             <div class="col-sm-6">
-                <h2 class="mt-4 offset-2" style="padding-top:10px; color: forestgreen">Portal za volontiranje - pravila za korišćenje sajta</h2>
+                <h2 class="mt-4 offset-2 text-center" id="naslov" style="padding-top:10px; color: forestgreen">Portal za volontiranje - pravila za korišćenje sajta</h2>
             </div>
         </div>
         <nav class="navbar navbar-expand-md navbar-dark mt-2" style="background-color: forestgreen">
@@ -203,5 +204,5 @@ and open the template in the editor.
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
-    </body>
+    </h:body>
 </html>
